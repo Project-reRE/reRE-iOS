@@ -12,6 +12,27 @@
 		430C2DDF2BB9790D00DE5FC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430C2DDE2BB9790D00DE5FC2 /* ViewController.swift */; };
 		430C2DE42BB9790F00DE5FC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 430C2DE32BB9790F00DE5FC2 /* Assets.xcassets */; };
 		430C2DE72BB9790F00DE5FC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 430C2DE52BB9790F00DE5FC2 /* LaunchScreen.storyboard */; };
+		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
+		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
+		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
+		4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1352BC6676D00F867B6 /* MyPageBaseCoordinator.swift */; };
+		4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1372BC6679C00F867B6 /* HistoryBaseCoordinator.swift */; };
+		4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1392BC667AC00F867B6 /* SearchBaseCoordinator.swift */; };
+		4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A13B2BC667BB00F867B6 /* RankBaseCoordinator.swift */; };
+		4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A13E2BC667D800F867B6 /* CommonBaseCoordinator.swift */; };
+		4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1402BC6686B00F867B6 /* TabBarCoordinator.swift */; };
+		4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1422BC668CB00F867B6 /* RankCoordinator.swift */; };
+		4364A1452BC6692100F867B6 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1442BC6692100F867B6 /* SearchCoordinator.swift */; };
+		4364A1472BC6693500F867B6 /* HistoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1462BC6693500F867B6 /* HistoryCoordinator.swift */; };
+		4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1482BC6694B00F867B6 /* MyPageCoordinator.swift */; };
+		4364A14B2BC6696700F867B6 /* CommonCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A14A2BC6696700F867B6 /* CommonCoordinator.swift */; };
+		4364A14E2BC66B0A00F867B6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A14D2BC66B0A00F867B6 /* Enums.swift */; };
+		4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1502BC66EB700F867B6 /* MainCoordinator.swift */; };
+		4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1522BC66F1900F867B6 /* SplashViewController.swift */; };
+		4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1542BC6724F00F867B6 /* RankViewController.swift */; };
+		4364A1572BC6725700F867B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1562BC6725700F867B6 /* SearchViewController.swift */; };
+		4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1582BC6725F00F867B6 /* HistoryViewController.swift */; };
+		4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A15A2BC6726600F867B6 /* MyPageViewController.swift */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +44,27 @@
 		430C2DE32BB9790F00DE5FC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		430C2DE62BB9790F00DE5FC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		430C2DE82BB9790F00DE5FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
+		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
+		4364A1352BC6676D00F867B6 /* MyPageBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageBaseCoordinator.swift; sourceTree = "<group>"; };
+		4364A1372BC6679C00F867B6 /* HistoryBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBaseCoordinator.swift; sourceTree = "<group>"; };
+		4364A1392BC667AC00F867B6 /* SearchBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBaseCoordinator.swift; sourceTree = "<group>"; };
+		4364A13B2BC667BB00F867B6 /* RankBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankBaseCoordinator.swift; sourceTree = "<group>"; };
+		4364A13E2BC667D800F867B6 /* CommonBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBaseCoordinator.swift; sourceTree = "<group>"; };
+		4364A1402BC6686B00F867B6 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		4364A1422BC668CB00F867B6 /* RankCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCoordinator.swift; sourceTree = "<group>"; };
+		4364A1442BC6692100F867B6 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		4364A1462BC6693500F867B6 /* HistoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCoordinator.swift; sourceTree = "<group>"; };
+		4364A1482BC6694B00F867B6 /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
+		4364A14A2BC6696700F867B6 /* CommonCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCoordinator.swift; sourceTree = "<group>"; };
+		4364A14D2BC66B0A00F867B6 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		4364A1502BC66EB700F867B6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		4364A1522BC66F1900F867B6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		4364A1542BC6724F00F867B6 /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
+		4364A1562BC6725700F867B6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4364A1582BC6725F00F867B6 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		4364A15A2BC6726600F867B6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8108B98035D765B0474EAA /* Pods-reRE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.debug.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,11 +115,104 @@
 				430C2DDA2BB9790D00DE5FC2 /* AppDelegate.swift */,
 				430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */,
 				430C2DDE2BB9790D00DE5FC2 /* ViewController.swift */,
+				4364A1282BC665A500F867B6 /* Coordinator */,
+				4364A15C2BC6728D00F867B6 /* PresentationLayer */,
+				4364A14C2BC66AFF00F867B6 /* Util */,
 				430C2DE32BB9790F00DE5FC2 /* Assets.xcassets */,
 				430C2DE52BB9790F00DE5FC2 /* LaunchScreen.storyboard */,
 				430C2DE82BB9790F00DE5FC2 /* Info.plist */,
 			);
 			path = reRE;
+			sourceTree = "<group>";
+		};
+		4364A1282BC665A500F867B6 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1292BC665CF00F867B6 /* Coordinator.swift */,
+				4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */,
+				4364A1502BC66EB700F867B6 /* MainCoordinator.swift */,
+				4364A1322BC6672400F867B6 /* TabBar */,
+				4364A12D2BC666FF00F867B6 /* Rank */,
+				4364A12F2BC6670800F867B6 /* Search */,
+				4364A1302BC6671400F867B6 /* History */,
+				4364A1312BC6671A00F867B6 /* MyPage */,
+				4364A13D2BC667C900F867B6 /* Common */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4364A12D2BC666FF00F867B6 /* Rank */ = {
+			isa = PBXGroup;
+			children = (
+				4364A13B2BC667BB00F867B6 /* RankBaseCoordinator.swift */,
+				4364A1422BC668CB00F867B6 /* RankCoordinator.swift */,
+			);
+			path = Rank;
+			sourceTree = "<group>";
+		};
+		4364A12F2BC6670800F867B6 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1392BC667AC00F867B6 /* SearchBaseCoordinator.swift */,
+				4364A1442BC6692100F867B6 /* SearchCoordinator.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		4364A1302BC6671400F867B6 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1372BC6679C00F867B6 /* HistoryBaseCoordinator.swift */,
+				4364A1462BC6693500F867B6 /* HistoryCoordinator.swift */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		4364A1312BC6671A00F867B6 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1352BC6676D00F867B6 /* MyPageBaseCoordinator.swift */,
+				4364A1482BC6694B00F867B6 /* MyPageCoordinator.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		4364A1322BC6672400F867B6 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */,
+				4364A1402BC6686B00F867B6 /* TabBarCoordinator.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		4364A13D2BC667C900F867B6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4364A13E2BC667D800F867B6 /* CommonBaseCoordinator.swift */,
+				4364A14A2BC6696700F867B6 /* CommonCoordinator.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4364A14C2BC66AFF00F867B6 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				4364A14D2BC66B0A00F867B6 /* Enums.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		4364A15C2BC6728D00F867B6 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
+				4364A1542BC6724F00F867B6 /* RankViewController.swift */,
+				4364A1562BC6725700F867B6 /* SearchViewController.swift */,
+				4364A1582BC6725F00F867B6 /* HistoryViewController.swift */,
+				4364A15A2BC6726600F867B6 /* MyPageViewController.swift */,
+			);
+			path = PresentationLayer;
 			sourceTree = "<group>";
 		};
 		EFACF14DC5922FA5B9F3E8AE /* Frameworks */ = {
@@ -202,9 +337,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
+				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
+				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
+				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
+				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
+				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
+				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
+				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
+				4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */,
+				4364A1452BC6692100F867B6 /* SearchCoordinator.swift in Sources */,
+				4364A14B2BC6696700F867B6 /* CommonCoordinator.swift in Sources */,
 				430C2DDF2BB9790D00DE5FC2 /* ViewController.swift in Sources */,
 				430C2DDB2BB9790D00DE5FC2 /* AppDelegate.swift in Sources */,
+				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
+				4364A1572BC6725700F867B6 /* SearchViewController.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
+				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
+				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
+				4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */,
+				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,
+				4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */,
+				4364A14E2BC66B0A00F867B6 /* Enums.swift in Sources */,
+				4364A1472BC6693500F867B6 /* HistoryCoordinator.swift in Sources */,
+				4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
