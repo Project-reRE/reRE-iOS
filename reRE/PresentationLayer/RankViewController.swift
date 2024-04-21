@@ -13,6 +13,6 @@ final class RankViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        view.backgroundColor = ColorSet.gray(.gray10).color
     }
 }
