@@ -14,7 +14,11 @@ enum NetworkService {
 
 extension NetworkService: TargetType {
     var baseURL: URL {
-        return URL(string: "www.naver.com")!
+        #if DEBUG
+        return URL(string: "dev-api.revaluation.co.kr")!
+        #else
+        return URL(string: "api.revaluation.co.kr")!
+        #endif
     }
     
     var path: String {
