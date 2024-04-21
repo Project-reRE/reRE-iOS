@@ -17,6 +17,7 @@
 		432C09432BC6796600BBFDB1 /* LocalDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09422BC6796600BBFDB1 /* LocalDataFetcher.swift */; };
 		432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09442BC679D200BBFDB1 /* NetworkService.swift */; };
 		432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09462BC67AAE00BBFDB1 /* NetworkManager.swift */; };
+		432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09482BD4EB5100BBFDB1 /* ColorSet.swift */; };
 		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
 		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
 		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
@@ -54,6 +55,7 @@
 		432C09422BC6796600BBFDB1 /* LocalDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataFetcher.swift; sourceTree = "<group>"; };
 		432C09442BC679D200BBFDB1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		432C09462BC67AAE00BBFDB1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		432C09482BD4EB5100BBFDB1 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
 		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				4364A14D2BC66B0A00F867B6 /* Enums.swift */,
+				432C09482BD4EB5100BBFDB1 /* ColorSet.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
+				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
 				432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */,
