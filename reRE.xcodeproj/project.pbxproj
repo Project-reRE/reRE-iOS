@@ -26,6 +26,14 @@
 		432C09562BD4F00900BBFDB1 /* ScreenUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09552BD4F00900BBFDB1 /* ScreenUtil.swift */; };
 		432C09582BD4F15F00BBFDB1 /* DecodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09572BD4F15F00BBFDB1 /* DecodeUtil.swift */; };
 		432C095A2BD4F17C00BBFDB1 /* DispatchMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09592BD4F17C00BBFDB1 /* DispatchMain.swift */; };
+		432C095F2BD4F25000BBFDB1 /* RankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C095E2BD4F25000BBFDB1 /* RankViewModel.swift */; };
+		432C09612BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09602BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift */; };
+		432C09632BD4F34500BBFDB1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09622BD4F34500BBFDB1 /* BaseViewController.swift */; };
+		432C09652BD4F41B00BBFDB1 /* TouchableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09642BD4F41B00BBFDB1 /* TouchableView.swift */; };
+		432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */; };
+		432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09682BD4F4C800BBFDB1 /* TouchableLabel.swift */; };
+		432C096B2BD4F52100BBFDB1 /* TouchableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */; };
+		432C096D2BD4F59600BBFDB1 /* TouchableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */; };
 		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
 		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
 		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
@@ -72,6 +80,14 @@
 		432C09552BD4F00900BBFDB1 /* ScreenUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenUtil.swift; sourceTree = "<group>"; };
 		432C09572BD4F15F00BBFDB1 /* DecodeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeUtil.swift; sourceTree = "<group>"; };
 		432C09592BD4F17C00BBFDB1 /* DispatchMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchMain.swift; sourceTree = "<group>"; };
+		432C095E2BD4F25000BBFDB1 /* RankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewModel.swift; sourceTree = "<group>"; };
+		432C09602BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRankingBannerCell.swift; sourceTree = "<group>"; };
+		432C09622BD4F34500BBFDB1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		432C09642BD4F41B00BBFDB1 /* TouchableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableView.swift; sourceTree = "<group>"; };
+		432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizer.swift; sourceTree = "<group>"; };
+		432C09682BD4F4C800BBFDB1 /* TouchableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableLabel.swift; sourceTree = "<group>"; };
+		432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableImageView.swift; sourceTree = "<group>"; };
+		432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableStackView.swift; sourceTree = "<group>"; };
 		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
 		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
@@ -194,6 +210,32 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		432C095B2BD4F1E100BBFDB1 /* Rank */ = {
+			isa = PBXGroup;
+			children = (
+				432C095C2BD4F24000BBFDB1 /* View */,
+				432C095D2BD4F24800BBFDB1 /* ViewModel */,
+			);
+			path = Rank;
+			sourceTree = "<group>";
+		};
+		432C095C2BD4F24000BBFDB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1542BC6724F00F867B6 /* RankViewController.swift */,
+				432C09602BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		432C095D2BD4F24800BBFDB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				432C095E2BD4F25000BBFDB1 /* RankViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		4364A1282BC665A500F867B6 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,8 +322,14 @@
 		4364A15C2BC6728D00F867B6 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				432C09622BD4F34500BBFDB1 /* BaseViewController.swift */,
+				432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */,
+				432C09642BD4F41B00BBFDB1 /* TouchableView.swift */,
+				432C09682BD4F4C800BBFDB1 /* TouchableLabel.swift */,
+				432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */,
+				432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */,
+				432C095B2BD4F1E100BBFDB1 /* Rank */,
 				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
-				4364A1542BC6724F00F867B6 /* RankViewController.swift */,
 				4364A1562BC6725700F867B6 /* SearchViewController.swift */,
 				4364A1582BC6725F00F867B6 /* HistoryViewController.swift */,
 				4364A15A2BC6726600F867B6 /* MyPageViewController.swift */,
@@ -420,7 +468,10 @@
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
 				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
+				432C09632BD4F34500BBFDB1 /* BaseViewController.swift in Sources */,
 				432C09562BD4F00900BBFDB1 /* ScreenUtil.swift in Sources */,
+				432C096D2BD4F59600BBFDB1 /* TouchableStackView.swift in Sources */,
+				432C095F2BD4F25000BBFDB1 /* RankViewModel.swift in Sources */,
 				432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
@@ -428,8 +479,11 @@
 				4364A1452BC6692100F867B6 /* SearchCoordinator.swift in Sources */,
 				4364A14B2BC6696700F867B6 /* CommonCoordinator.swift in Sources */,
 				430C2DDB2BB9790D00DE5FC2 /* AppDelegate.swift in Sources */,
+				432C09612BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift in Sources */,
 				432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */,
+				432C096B2BD4F52100BBFDB1 /* TouchableImageView.swift in Sources */,
 				432C095A2BD4F17C00BBFDB1 /* DispatchMain.swift in Sources */,
+				432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */,
 				432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
@@ -444,6 +498,8 @@
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,
 				432C09582BD4F15F00BBFDB1 /* DecodeUtil.swift in Sources */,
 				432C09432BC6796600BBFDB1 /* LocalDataFetcher.swift in Sources */,
+				432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */,
+				432C09652BD4F41B00BBFDB1 /* TouchableView.swift in Sources */,
 				432C094C2BD4EF0C00BBFDB1 /* UIView+Extension.swift in Sources */,
 				4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */,
 				4364A14E2BC66B0A00F867B6 /* Enums.swift in Sources */,
