@@ -26,6 +26,7 @@ final class RankingItemCell: UICollectionViewCell {
         $0.text = "1"
         $0.textColor = ColorSet.gray(.white).color
         $0.textAlignment = .center
+        $0.font = FontSet.body02.font
         $0.backgroundColor = .black.withAlphaComponent(0.75)
         $0.layer.masksToBounds = true
         $0.layer.borderWidth = 1
@@ -36,6 +37,7 @@ final class RankingItemCell: UICollectionViewCell {
     private lazy var movieTitleLabel = UILabel().then {
         $0.text = "영화 이름"
         $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.title03.font
     }
     
     private lazy var titleUnderLineView = UIView().then {
@@ -45,31 +47,33 @@ final class RankingItemCell: UICollectionViewCell {
     private lazy var yearLabel = UILabel().then {
         $0.text = "영화 년도"
         $0.textColor = ColorSet.gray(.gray60).color
+        $0.font = FontSet.body04.font
     }
     
     private lazy var genreLabel = UILabel().then {
         $0.text = "장르명"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.numberOfLines = 1
+        $0.font = FontSet.body04.font
     }
     
     private lazy var directorLabel = UILabel().then {
         $0.text = "감독명"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.numberOfLines = 1
+        $0.font = FontSet.body04.font
     }
     
     private lazy var actorLabel = UILabel().then {
         $0.text = "출연배우"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.numberOfLines = 1
+        $0.font = FontSet.body04.font
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.yellow.cgColor
         addViews()
         makeConstraints()
     }

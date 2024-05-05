@@ -13,6 +13,7 @@ final class DailyRankingFooterView: UICollectionReusableView {
     private lazy var titleLabel = UILabel().then {
         $0.text = "데일리 랭킹"
         $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.display02.font
     }
     
     private lazy var rankingCreteriaBGView = UIView().then {
@@ -24,11 +25,13 @@ final class DailyRankingFooterView: UICollectionReusableView {
     private lazy var rankingCreteriaLabel = UILabel().then {
         $0.text = "전일 00시 00분 ~ 23시 59분 집계 기준"
         $0.textColor = ColorSet.tertiary(.navy100).color
+        $0.font = FontSet.label02.font
     }
     
     private lazy var descriptionLabel = UILabel().then {
         $0.text = "어제 재평가를 많이 받은 장르별 영화 Top 3"
         $0.textColor = ColorSet.gray(.gray70).color
+        $0.font = FontSet.body03.font
     }
     
     override init(frame: CGRect) {

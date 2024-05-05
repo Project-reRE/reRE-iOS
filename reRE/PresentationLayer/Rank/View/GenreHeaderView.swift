@@ -17,18 +17,16 @@ final class GenreHeaderView: UICollectionReusableView {
     }
     
     private lazy var genreView = UIView().then {
-        $0.backgroundColor = ColorSet.primary(.orange40).color
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = moderateScale(number: 12.5)
     }
     
     private lazy var genreLabel = UILabel().then {
-        $0.text = "장르명"
-        $0.textColor = ColorSet.primary(.orange90).color
+        $0.font = FontSet.label01.font
     }
     
     private lazy var descriptionLabel = UILabel().then {
-        $0.text = "가장 많은 재평가를 받은 영화 Top 3"
+        $0.font = FontSet.body02.font
     }
     
     override init(frame: CGRect) {

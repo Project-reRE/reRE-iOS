@@ -13,6 +13,7 @@ final class DailyRankingHeaderView: UICollectionReusableView {
     private lazy var titleLabel = UILabel().then {
         $0.text = "데일리 랭킹"
         $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.display01.font
     }
     
     override init(frame: CGRect) {

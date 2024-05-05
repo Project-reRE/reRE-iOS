@@ -18,11 +18,13 @@ final class DailyRankingBannerCell: UICollectionViewCell {
     private lazy var titleLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.textColor = ColorSet.gray(.black).color
+        $0.font = FontSet.display02.font
     }
     
     private lazy var moreLabel = UILabel().then {
         $0.text = "더보기"
         $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.body02.font
     }
     
     override init(frame: CGRect) {
