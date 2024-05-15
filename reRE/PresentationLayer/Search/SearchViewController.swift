@@ -46,6 +46,16 @@ final class SearchViewController: BaseViewController {
     }
     
     override func setupIfNeeded() {
+        searchMovieView.containerView.setOpaqueTapGestureRecognizer {
+            
+        }
         
+        searchBookView.containerView.setOpaqueTapGestureRecognizer {
+            
+        }
+        
+        searchMusicView.containerView.setOpaqueTapGestureRecognizer {
+            
+        }
     }
 }

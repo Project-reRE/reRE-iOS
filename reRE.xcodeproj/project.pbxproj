@@ -48,6 +48,7 @@
 		432C09862BE7793C00BBFDB1 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 432C097E2BE7793C00BBFDB1 /* Pretendard-Regular.otf */; };
 		432C09882BE77A3C00BBFDB1 /* FontSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09872BE77A3C00BBFDB1 /* FontSet.swift */; };
 		432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C098A2BF4A78300BBFDB1 /* SearchCategoryView.swift */; };
+		436351C02BF4B9D90078C8C1 /* HistoryCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351BF2BF4B9D90078C8C1 /* HistoryCategoryView.swift */; };
 		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
 		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
 		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
@@ -116,6 +117,7 @@
 		432C097E2BE7793C00BBFDB1 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		432C09872BE77A3C00BBFDB1 /* FontSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSet.swift; sourceTree = "<group>"; };
 		432C098A2BF4A78300BBFDB1 /* SearchCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCategoryView.swift; sourceTree = "<group>"; };
+		436351BF2BF4B9D90078C8C1 /* HistoryCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCategoryView.swift; sourceTree = "<group>"; };
 		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
 		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
@@ -293,6 +295,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		436351BE2BF4B9BE0078C8C1 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1582BC6725F00F867B6 /* HistoryViewController.swift */,
+				436351BF2BF4B9D90078C8C1 /* HistoryCategoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		4364A1282BC665A500F867B6 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,7 +400,7 @@
 				432C095B2BD4F1E100BBFDB1 /* Rank */,
 				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
 				432C09892BF4A72700BBFDB1 /* Search */,
-				4364A1582BC6725F00F867B6 /* HistoryViewController.swift */,
+				436351BE2BF4B9BE0078C8C1 /* History */,
 				4364A15A2BC6726600F867B6 /* MyPageViewController.swift */,
 			);
 			path = PresentationLayer;
@@ -574,6 +585,7 @@
 				4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */,
 				432C09882BE77A3C00BBFDB1 /* FontSet.swift in Sources */,
 				4364A14E2BC66B0A00F867B6 /* Enums.swift in Sources */,
+				436351C02BF4B9D90078C8C1 /* HistoryCategoryView.swift in Sources */,
 				4364A1472BC6693500F867B6 /* HistoryCoordinator.swift in Sources */,
 				432C09732BE7676D00BBFDB1 /* GenreHeaderView.swift in Sources */,
 				4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */,
