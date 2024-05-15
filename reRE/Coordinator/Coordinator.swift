@@ -46,6 +46,21 @@ enum TabBarFlow: Flow {
     case rank
     case search
     case history
-    case myPage
+    case myPage(MyPageFlow)
     case common
+}
+
+enum MyPageFlow: Flow {
+    case appSetting(AppSettingScene)
+}
+
+enum AppSettingScene {
+    case main
+    case termsPolicy
+    case privacyPolicy
+    case servicePolicy
+    case teensPolicy
+    case openSourceLicense
+    case openAPI
+    case deleteAccount
 }

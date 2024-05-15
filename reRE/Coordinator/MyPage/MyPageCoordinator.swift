@@ -20,6 +20,46 @@ final class MyPageCoordinator: NSObject, MyPageBaseCoordinator {
     }
     
     func moveTo(appFlow: Flow, userData: [String : Any]?) {
+        guard let tabBarFlow = appFlow.tabBarFlow else {
+            parentCoordinator?.moveTo(appFlow: appFlow, userData: userData)
+            return
+        }
         
+        switch tabBarFlow {
+        case .myPage(let myPageFlow):
+            startMoreFlow(myPageFlow, userData: userData)
+        default:
+            parentCoordinator?.moveTo(appFlow: appFlow, userData: userData)
+        }
+    }
+    
+    private func startMoreFlow(_ flow: MyPageFlow, userData: [String: Any]?) {
+        switch flow {
+        case .appSetting(let appSettingScene):
+            startAppsettingFlow(appSettingScene, userData: userData)
+        }
+    }
+    
+    private func startAppsettingFlow(_ scene: AppSettingScene, userData: [String: Any]?) {
+        switch scene {
+        case .main:
+            let appSettingVC = AppSettingViewController()
+            appSettingVC.coordinator = self
+            currentNavigationViewController?.pushViewController(appSettingVC, animated: true)
+        case .termsPolicy:
+            break
+        case .privacyPolicy:
+            break
+        case .servicePolicy:
+            break
+        case .teensPolicy:
+            break
+        case .openSourceLicense:
+            break
+        case .openAPI:
+            break
+        case .deleteAccount:
+            break
+        }
     }
 }

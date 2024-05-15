@@ -57,8 +57,8 @@ final class MyPageViewController: BaseViewController {
             
         }
         
-        guestView.settingButton.setOpaqueTapGestureRecognizer {
-            
+        guestView.settingButton.setOpaqueTapGestureRecognizer { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.myPage(.appSetting(.main)), userData: nil)
         }
     }
 }
