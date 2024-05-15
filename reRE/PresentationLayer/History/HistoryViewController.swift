@@ -7,9 +7,20 @@
 
 import UIKit
 import SnapKit
+import Then
 
 final class HistoryViewController: BaseViewController {
     var coordinator: HistoryBaseCoordinator?
+    
+    private lazy var topContainerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    private lazy var titleLabel = UILabel().then {
+        $0.text = "히스토리"
+        $0.font = FontSet.display02.font
+        $0.textColor = ColorSet.gray(.white).color
+    }
     
     private lazy var movieHistoryView = HistoryCategoryView(category: .movie)
     private lazy var bookHistoryView = HistoryCategoryView(category: .book)
@@ -22,12 +33,24 @@ final class HistoryViewController: BaseViewController {
     }
     
     override func addViews() {
-        view.addSubviews([movieHistoryView, bookHistoryView, musicHistoryView])
+        view.addSubviews([topContainerView, movieHistoryView, bookHistoryView, musicHistoryView])
+        topContainerView.addSubview(titleLabel)
     }
     
     override func makeConstraints() {
+        topContainerView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(getSafeAreaTop())
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(moderateScale(number: 44))
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(moderateScale(number: 16))
+        }
+        
         movieHistoryView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(moderateScale(number: 60) + getSafeAreaTop())
+            $0.top.equalTo(topContainerView.snp.bottom).offset(moderateScale(number: 16))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 69))
         }
