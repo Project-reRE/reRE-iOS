@@ -21,30 +21,58 @@ final class TabBarCoordinator: NSObject, TabBarBaseCoordinator {
     func start() -> UIViewController {
         let rankVC = rankCoordinator.start()
         rankCoordinator.parentCoordinator = self
-        rankVC.tabBarItem = UITabBarItem(title: "rank", image: nil, selectedImage: nil)
-        
+        rankVC.tabBarItem = UITabBarItem(title: nil,
+                                         image: UIImage(named: "NormalTabBarIcon"),
+                                         selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+        rankVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
+                                                          left: 0,
+                                                          bottom: -moderateScale(number: 5),
+                                                          right: 0)
         let searchVC = searchCoordinator.start()
         searchCoordinator.parentCoordinator = self
-        searchVC.tabBarItem = UITabBarItem(title: "search", image: nil, selectedImage: nil)
+        searchVC.tabBarItem = UITabBarItem(title: nil,
+                                           image: UIImage(named: "NormalTabBarIcon"),
+                                           selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+        searchVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
+                                                            left: 0,
+                                                            bottom: -moderateScale(number: 5),
+                                                            right: 0)
         
         let historyVC = historyCoordinator.start()
         historyCoordinator.parentCoordinator = self
-        historyVC.tabBarItem = UITabBarItem(title: "history", image: nil, selectedImage: nil)
+        historyVC.tabBarItem = UITabBarItem(title: nil,
+                                            image: UIImage(named: "NormalTabBarIcon"),
+                                            selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+        historyVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
+                                                             left: 0,
+                                                             bottom: -moderateScale(number: 5),
+                                                             right: 0)
         
         let myPageVC = myPageCoordinator.start()
         myPageCoordinator.parentCoordinator = self
-        myPageVC.tabBarItem = UITabBarItem(title: "myPage", image: nil, selectedImage: nil)
+        myPageVC.tabBarItem = UITabBarItem(title: nil,
+                                           image: UIImage(named: "NormalTabBarIcon"),
+                                           selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+        myPageVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
+                                                            left: 0,
+                                                            bottom: -moderateScale(number: 5),
+                                                            right: 0)
+        
+        let customTabBar = BaseTabBar()
         
         let rootTabBar = rootViewController as? UITabBarController
+        rootTabBar?.setValue(customTabBar, forKey: "tabBar")
         rootTabBar?.delegate = self
         rootTabBar?.viewControllers = [rankVC, searchVC, historyVC, myPageVC]
         
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundImage = UIImage()
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = .clear
         appearance.shadowColor = .clear
+        
         UITabBar.appearance().standardAppearance = appearance
+        
         rootTabBar?.tabBar.standardAppearance = appearance
         rootTabBar?.tabBar.scrollEdgeAppearance = appearance
         

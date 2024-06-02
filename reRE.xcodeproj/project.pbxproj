@@ -52,6 +52,7 @@
 		436351C32BF4BFE60078C8C1 /* MyPageGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C22BF4BFE60078C8C1 /* MyPageGuestView.swift */; };
 		436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */; };
 		436351C72C0C35AD0078C8C1 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C62C0C35AD0078C8C1 /* ToastView.swift */; };
+		436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C82C0C39380078C8C1 /* BaseTabBar.swift */; };
 		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
 		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
 		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
@@ -124,6 +125,7 @@
 		436351C22BF4BFE60078C8C1 /* MyPageGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageGuestView.swift; sourceTree = "<group>"; };
 		436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
 		436351C62C0C35AD0078C8C1 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		436351C82C0C39380078C8C1 /* BaseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBar.swift; sourceTree = "<group>"; };
 		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
 		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				432C09622BD4F34500BBFDB1 /* BaseViewController.swift */,
+				436351C82C0C39380078C8C1 /* BaseTabBar.swift */,
 				432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */,
 				432C09642BD4F41B00BBFDB1 /* TouchableView.swift */,
 				436351C62C0C35AD0078C8C1 /* ToastView.swift */,
@@ -588,6 +591,7 @@
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
 				4364A1572BC6725700F867B6 /* SearchViewController.swift in Sources */,
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
+				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
 				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
