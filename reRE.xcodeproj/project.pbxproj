@@ -53,6 +53,12 @@
 		436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */; };
 		436351C72C0C35AD0078C8C1 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C62C0C35AD0078C8C1 /* ToastView.swift */; };
 		436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C82C0C39380078C8C1 /* BaseTabBar.swift */; };
+		436351CB2C0C43200078C8C1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351CA2C0C43200078C8C1 /* SearchViewController.swift */; };
+		436351CD2C0C44060078C8C1 /* RevaluationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */; };
+		436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351CE2C0C45EA0078C8C1 /* UITextField+Extension.swift */; };
+		436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351D02C0C48AC0078C8C1 /* SearchViewModel.swift */; };
+		436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351D22C0C49A50078C8C1 /* SearchDescriptionView.swift */; };
+		436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351D42C0C4C090078C8C1 /* SearchResultItemCell.swift */; };
 		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
 		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
 		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
@@ -71,7 +77,7 @@
 		4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1502BC66EB700F867B6 /* MainCoordinator.swift */; };
 		4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1522BC66F1900F867B6 /* SplashViewController.swift */; };
 		4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1542BC6724F00F867B6 /* RankViewController.swift */; };
-		4364A1572BC6725700F867B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1562BC6725700F867B6 /* SearchViewController.swift */; };
+		4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1562BC6725700F867B6 /* SearchMainViewController.swift */; };
 		4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1582BC6725F00F867B6 /* HistoryViewController.swift */; };
 		4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A15A2BC6726600F867B6 /* MyPageViewController.swift */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
@@ -126,6 +132,12 @@
 		436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
 		436351C62C0C35AD0078C8C1 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		436351C82C0C39380078C8C1 /* BaseTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBar.swift; sourceTree = "<group>"; };
+		436351CA2C0C43200078C8C1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationDetailViewController.swift; sourceTree = "<group>"; };
+		436351CE2C0C45EA0078C8C1 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		436351D02C0C48AC0078C8C1 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		436351D22C0C49A50078C8C1 /* SearchDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDescriptionView.swift; sourceTree = "<group>"; };
+		436351D42C0C4C090078C8C1 /* SearchResultItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultItemCell.swift; sourceTree = "<group>"; };
 		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
 		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
@@ -144,7 +156,7 @@
 		4364A1502BC66EB700F867B6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		4364A1522BC66F1900F867B6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		4364A1542BC6724F00F867B6 /* RankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
-		4364A1562BC6725700F867B6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4364A1562BC6725700F867B6 /* SearchMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainViewController.swift; sourceTree = "<group>"; };
 		4364A1582BC6725F00F867B6 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		4364A15A2BC6726600F867B6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +257,7 @@
 				432C094D2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift */,
 				432C094F2BD4EF6600BBFDB1 /* UIScrollView+Extension.swift */,
 				432C09512BD4EF8800BBFDB1 /* UIStackView+Extension.swift */,
+				436351CE2C0C45EA0078C8C1 /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -297,8 +310,12 @@
 		432C09892BF4A72700BBFDB1 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				4364A1562BC6725700F867B6 /* SearchViewController.swift */,
+				4364A1562BC6725700F867B6 /* SearchMainViewController.swift */,
 				432C098A2BF4A78300BBFDB1 /* SearchCategoryView.swift */,
+				436351CA2C0C43200078C8C1 /* SearchViewController.swift */,
+				436351D42C0C4C090078C8C1 /* SearchResultItemCell.swift */,
+				436351D22C0C49A50078C8C1 /* SearchDescriptionView.swift */,
+				436351D02C0C48AC0078C8C1 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -417,6 +434,7 @@
 				432C09682BD4F4C800BBFDB1 /* TouchableLabel.swift */,
 				432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */,
 				432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */,
+				436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */,
 				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
 				432C095B2BD4F1E100BBFDB1 /* Rank */,
 				432C09892BF4A72700BBFDB1 /* Search */,
@@ -563,6 +581,7 @@
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
+				436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
 				436351C72C0C35AD0078C8C1 /* ToastView.swift in Sources */,
 				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
@@ -573,6 +592,7 @@
 				432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */,
 				432C09712BE75E8800BBFDB1 /* DailyRankingFooterView.swift in Sources */,
 				432C09752BE7679300BBFDB1 /* RankingItemCell.swift in Sources */,
+				436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
 				4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */,
@@ -584,12 +604,13 @@
 				432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */,
 				436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */,
 				432C096B2BD4F52100BBFDB1 /* TouchableImageView.swift in Sources */,
+				436351CB2C0C43200078C8C1 /* SearchViewController.swift in Sources */,
 				432C095A2BD4F17C00BBFDB1 /* DispatchMain.swift in Sources */,
 				432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */,
 				432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
-				4364A1572BC6725700F867B6 /* SearchViewController.swift in Sources */,
+				4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */,
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
@@ -600,11 +621,14 @@
 				432C09542BD4EFD800BBFDB1 /* Logger.swift in Sources */,
 				4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */,
 				432C09412BC6795D00BBFDB1 /* RemoteDataFetcher.swift in Sources */,
+				436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */,
+				436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */,
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,
 				432C09582BD4F15F00BBFDB1 /* DecodeUtil.swift in Sources */,
 				432C09432BC6796600BBFDB1 /* LocalDataFetcher.swift in Sources */,
 				432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */,
 				432C09652BD4F41B00BBFDB1 /* TouchableView.swift in Sources */,
+				436351CD2C0C44060078C8C1 /* RevaluationDetailViewController.swift in Sources */,
 				432C094C2BD4EF0C00BBFDB1 /* UIView+Extension.swift in Sources */,
 				4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */,
 				432C09882BE77A3C00BBFDB1 /* FontSet.swift in Sources */,

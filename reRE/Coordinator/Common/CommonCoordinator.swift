@@ -17,6 +17,25 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
     }
     
     func moveTo(appFlow: Flow, userData: [String : Any]?) {
+        guard let tabBarFlow = appFlow.tabBarFlow else {
+            parentCoordinator?.moveTo(appFlow: appFlow, userData: userData)
+            return
+        }
         
+        switch tabBarFlow {
+        case .common(let commonFlow):
+            moveToCommonFlow(commonFlow, userData: userData)
+        default:
+            parentCoordinator?.moveTo(appFlow: appFlow, userData: userData)
+        }
+    }
+    
+    private func moveToCommonFlow(_ flow: CommonFlow, userData: [String: Any]?) {
+        switch flow {
+        case .revaluationDetail:
+            let revaluationVC = RevaluationDetailViewController()
+            revaluationVC.coordinator = self
+            currentNavigationViewController?.pushViewController(revaluationVC, animated: true)
+        }
     }
 }
