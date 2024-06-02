@@ -51,6 +51,7 @@
 		436351C02BF4B9D90078C8C1 /* HistoryCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351BF2BF4B9D90078C8C1 /* HistoryCategoryView.swift */; };
 		436351C32BF4BFE60078C8C1 /* MyPageGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C22BF4BFE60078C8C1 /* MyPageGuestView.swift */; };
 		436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */; };
+		436351C72C0C35AD0078C8C1 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351C62C0C35AD0078C8C1 /* ToastView.swift */; };
 		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
 		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
 		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
@@ -122,6 +123,7 @@
 		436351BF2BF4B9D90078C8C1 /* HistoryCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCategoryView.swift; sourceTree = "<group>"; };
 		436351C22BF4BFE60078C8C1 /* MyPageGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageGuestView.swift; sourceTree = "<group>"; };
 		436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingViewController.swift; sourceTree = "<group>"; };
+		436351C62C0C35AD0078C8C1 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
 		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				432C09622BD4F34500BBFDB1 /* BaseViewController.swift */,
 				432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */,
 				432C09642BD4F41B00BBFDB1 /* TouchableView.swift */,
+				436351C62C0C35AD0078C8C1 /* ToastView.swift */,
 				432C09682BD4F4C800BBFDB1 /* TouchableLabel.swift */,
 				432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */,
 				432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */,
@@ -558,6 +561,7 @@
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
+				436351C72C0C35AD0078C8C1 /* ToastView.swift in Sources */,
 				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
 				432C09632BD4F34500BBFDB1 /* BaseViewController.swift in Sources */,
 				432C09562BD4F00900BBFDB1 /* ScreenUtil.swift in Sources */,

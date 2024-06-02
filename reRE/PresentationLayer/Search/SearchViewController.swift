@@ -46,16 +46,16 @@ final class SearchViewController: BaseViewController {
     }
     
     override func setupIfNeeded() {
-        searchMovieView.containerView.setOpaqueTapGestureRecognizer {
+        searchMovieView.containerView.setOpaqueTapGestureRecognizer { [weak self] in
             
         }
         
-        searchBookView.containerView.setOpaqueTapGestureRecognizer {
-            
+        searchBookView.containerView.setOpaqueTapGestureRecognizer { [weak self] in
+            self?.showToastMessageView(title: "아직 준비중이에요.")
         }
         
-        searchMusicView.containerView.setOpaqueTapGestureRecognizer {
-            
+        searchMusicView.containerView.setOpaqueTapGestureRecognizer { [weak self] in
+            self?.showToastMessageView(title: "아직 준비중이에요.")
         }
     }
 }
