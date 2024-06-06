@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
-final class RevaluationDetailViewController: BaseViewController {
+final class RevaluationDetailViewController: NavigationBaseViewController {
     var coordinator: CommonBaseCoordinator?
     
     override func viewDidLoad() {

@@ -20,6 +20,16 @@ final class RankCoordinator: NSObject, RankBaseCoordinator {
     }
     
     func moveTo(appFlow: Flow, userData: [String : Any]?) {
+        guard let tabBarFlow = appFlow.tabBarFlow else {
+            parentCoordinator?.moveTo(appFlow: appFlow, userData: userData)
+            return
+        }
         
+        switch tabBarFlow {
+        case .rank:
+            break
+        default:
+            parentCoordinator?.moveTo(appFlow: appFlow, userData: userData)
+        }
     }
 }

@@ -35,6 +35,7 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
         case .revaluationDetail:
             let revaluationVC = RevaluationDetailViewController()
             revaluationVC.coordinator = self
+            revaluationVC.hidesBottomBarWhenPushed = true
             currentNavigationViewController?.pushViewController(revaluationVC, animated: true)
         }
     }

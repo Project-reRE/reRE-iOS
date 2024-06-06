@@ -11,6 +11,7 @@
 		430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */; };
 		430C2DE42BB9790F00DE5FC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 430C2DE32BB9790F00DE5FC2 /* Assets.xcassets */; };
 		430C2DE72BB9790F00DE5FC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 430C2DE52BB9790F00DE5FC2 /* LaunchScreen.storyboard */; };
+		43263F582C1187B7004804BF /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43263F572C1187B7004804BF /* BaseNavigationViewController.swift */; };
 		432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C093C2BC6793300BBFDB1 /* LocalDataFetchable.swift */; };
 		432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C093E2BC6794600BBFDB1 /* RemoteDataFetchable.swift */; };
 		432C09412BC6795D00BBFDB1 /* RemoteDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C09402BC6795D00BBFDB1 /* RemoteDataFetcher.swift */; };
@@ -90,6 +91,7 @@
 		430C2DE32BB9790F00DE5FC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		430C2DE62BB9790F00DE5FC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		430C2DE82BB9790F00DE5FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43263F572C1187B7004804BF /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		432C093C2BC6793300BBFDB1 /* LocalDataFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataFetchable.swift; sourceTree = "<group>"; };
 		432C093E2BC6794600BBFDB1 /* RemoteDataFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataFetchable.swift; sourceTree = "<group>"; };
 		432C09402BC6795D00BBFDB1 /* RemoteDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataFetcher.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				432C09622BD4F34500BBFDB1 /* BaseViewController.swift */,
+				43263F572C1187B7004804BF /* BaseNavigationViewController.swift */,
 				436351C82C0C39380078C8C1 /* BaseTabBar.swift */,
 				432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */,
 				432C09642BD4F41B00BBFDB1 /* TouchableView.swift */,
@@ -609,6 +612,7 @@
 				432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */,
 				432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
+				43263F582C1187B7004804BF /* BaseNavigationViewController.swift in Sources */,
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
 				4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */,
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,

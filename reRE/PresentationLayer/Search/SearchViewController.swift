@@ -10,19 +10,10 @@ import Combine
 import SnapKit
 import Then
 
-final class SearchViewController: BaseViewController {
+final class SearchViewController: NavigationBaseViewController {
     var coordinator: SearchBaseCoordinator?
     
     private var cancelBag = Set<AnyCancellable>()
-    
-    private lazy var topContainerView = UIView().then {
-        $0.backgroundColor = .clear
-    }
-    
-    private lazy var backButton = TouchableImageView(frame: .zero).then {
-        $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "BackButtonIcon")
-    }
     
     private lazy var textField = UITextField().then {
         $0.addLeftPadding()
@@ -61,10 +52,7 @@ final class SearchViewController: BaseViewController {
     
     init(viewModel: SearchViewModel) {
         self.viewModel = viewModel
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        hidesBottomBarWhenPushed = true
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -82,23 +70,15 @@ final class SearchViewController: BaseViewController {
     }
     
     override func addViews() {
-        view.addSubviews([topContainerView, searchDescriptionView, searchListView])
-        topContainerView.addSubviews([backButton, textField])
+        super.addViews()
+        
+        view.addSubviews([searchDescriptionView, searchListView])
+        topContainerView.addSubviews([textField])
         textField.addSubview(clearButton)
     }
     
     override func makeConstraints() {
-        topContainerView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(getSafeAreaTop())
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(moderateScale(number: 44))
-        }
-        
-        backButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(moderateScale(number: 16))
-            $0.size.equalTo(moderateScale(number: 24))
-        }
+        super.makeConstraints()
         
         textField.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -125,9 +105,7 @@ final class SearchViewController: BaseViewController {
     }
     
     override func setupIfNeeded() {
-        backButton.setOpaqueTapGestureRecognizer { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        }
+        super.setupIfNeeded()
         
         clearButton.setOpaqueTapGestureRecognizer { [weak self] in
             self?.textField.text = ""
@@ -215,8 +193,8 @@ extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(SearchResultItemCell.self, indexPath: indexPath) else { return .init() }
         
-        cell.containerView.setOpaqueTapGestureRecognizer {
-            // 재평가 상세로 이동
+        cell.containerView.setOpaqueTapGestureRecognizer { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
         }
         return cell
     }

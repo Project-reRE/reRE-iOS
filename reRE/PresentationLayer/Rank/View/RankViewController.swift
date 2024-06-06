@@ -136,11 +136,17 @@ extension RankViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             guard let cell = collectionView.dequeueReusableCell(DailyRankingBannerCell.self, indexPath: indexPath) else { return .init() }
+            
             let order = indexPath.item % bannerColorList.count
             cell.updateView(title: "\(indexPath.item)", backgroundColor: bannerColorList[order])
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(RankingItemCell.self, indexPath: indexPath) else { return .init() }
+            
+            cell.containerView.setOpaqueTapGestureRecognizer { [weak self] in
+                self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
+            }
+            
             return cell
         }
     }
