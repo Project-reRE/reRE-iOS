@@ -33,7 +33,8 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
     private func moveToCommonFlow(_ flow: CommonFlow, userData: [String: Any]?) {
         switch flow {
         case .revaluationDetail:
-            let revaluationVC = RevaluationDetailViewController()
+            let viewModel = ReValuationDetailViewModel()
+            let revaluationVC = RevaluationDetailViewController(viewModel: viewModel)
             revaluationVC.coordinator = self
             revaluationVC.hidesBottomBarWhenPushed = true
             currentNavigationViewController?.pushViewController(revaluationVC, animated: true)

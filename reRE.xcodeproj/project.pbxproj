@@ -60,6 +60,8 @@
 		436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351D02C0C48AC0078C8C1 /* SearchViewModel.swift */; };
 		436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351D22C0C49A50078C8C1 /* SearchDescriptionView.swift */; };
 		436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436351D42C0C4C090078C8C1 /* SearchResultItemCell.swift */; };
+		436475CD2C118F0E0096F15F /* ReValuationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */; };
+		436475CF2C1198940096F15F /* NoRevaluationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436475CE2C1198940096F15F /* NoRevaluationView.swift */; };
 		4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1292BC665CF00F867B6 /* Coordinator.swift */; };
 		4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */; };
 		4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */; };
@@ -81,6 +83,8 @@
 		4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1562BC6725700F867B6 /* SearchMainViewController.swift */; };
 		4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A1582BC6725F00F867B6 /* HistoryViewController.swift */; };
 		4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4364A15A2BC6726600F867B6 /* MyPageViewController.swift */; };
+		4376DAC32C11AD3E0060E618 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376DAC22C11AD3E0060E618 /* Date+Extension.swift */; };
+		4376DAC52C11AE710060E618 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376DAC42C11AE710060E618 /* String+Extension.swift */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +144,8 @@
 		436351D02C0C48AC0078C8C1 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		436351D22C0C49A50078C8C1 /* SearchDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDescriptionView.swift; sourceTree = "<group>"; };
 		436351D42C0C4C090078C8C1 /* SearchResultItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultItemCell.swift; sourceTree = "<group>"; };
+		436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReValuationDetailViewModel.swift; sourceTree = "<group>"; };
+		436475CE2C1198940096F15F /* NoRevaluationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRevaluationView.swift; sourceTree = "<group>"; };
 		4364A1292BC665CF00F867B6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4364A12B2BC666DE00F867B6 /* MainBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBaseCoordinator.swift; sourceTree = "<group>"; };
 		4364A1332BC6673D00F867B6 /* TabBarBaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBaseCoordinator.swift; sourceTree = "<group>"; };
@@ -161,6 +167,8 @@
 		4364A1562BC6725700F867B6 /* SearchMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainViewController.swift; sourceTree = "<group>"; };
 		4364A1582BC6725F00F867B6 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		4364A15A2BC6726600F867B6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		4376DAC22C11AD3E0060E618 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		4376DAC42C11AE710060E618 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8108B98035D765B0474EAA /* Pods-reRE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.debug.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.debug.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +268,8 @@
 				432C094F2BD4EF6600BBFDB1 /* UIScrollView+Extension.swift */,
 				432C09512BD4EF8800BBFDB1 /* UIStackView+Extension.swift */,
 				436351CE2C0C45EA0078C8C1 /* UITextField+Extension.swift */,
+				4376DAC22C11AD3E0060E618 /* Date+Extension.swift */,
+				4376DAC42C11AE710060E618 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +448,8 @@
 				432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */,
 				432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */,
 				436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */,
+				436475CE2C1198940096F15F /* NoRevaluationView.swift */,
+				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
 				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
 				432C095B2BD4F1E100BBFDB1 /* Rank */,
 				432C09892BF4A72700BBFDB1 /* Search */,
@@ -585,6 +597,7 @@
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */,
+				4376DAC52C11AE710060E618 /* String+Extension.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
 				436351C72C0C35AD0078C8C1 /* ToastView.swift in Sources */,
 				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
@@ -605,6 +618,7 @@
 				436351C32BF4BFE60078C8C1 /* MyPageGuestView.swift in Sources */,
 				432C09612BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift in Sources */,
 				432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */,
+				436475CD2C118F0E0096F15F /* ReValuationDetailViewModel.swift in Sources */,
 				436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */,
 				432C096B2BD4F52100BBFDB1 /* TouchableImageView.swift in Sources */,
 				436351CB2C0C43200078C8C1 /* SearchViewController.swift in Sources */,
@@ -618,6 +632,7 @@
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
+				436475CF2C1198940096F15F /* NoRevaluationView.swift in Sources */,
 				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
@@ -626,6 +641,7 @@
 				4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */,
 				432C09412BC6795D00BBFDB1 /* RemoteDataFetcher.swift in Sources */,
 				436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */,
+				4376DAC32C11AD3E0060E618 /* Date+Extension.swift in Sources */,
 				436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */,
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,
 				432C09582BD4F15F00BBFDB1 /* DecodeUtil.swift in Sources */,

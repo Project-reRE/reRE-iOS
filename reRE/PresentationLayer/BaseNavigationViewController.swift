@@ -65,4 +65,8 @@ class NavigationBaseViewController: BaseViewController {
             self?.navigationController?.popViewController(animated: true)
         }
     }
+    
+    func setNavigationTitle(with title: String) {
+        titleLabel.text = title
+    }
 }
