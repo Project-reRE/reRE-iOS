@@ -92,7 +92,11 @@ final class RevaluationDetailViewController: NavigationBaseViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    private lazy var noRevaluationView = NoRevaluationView()
+    private lazy var noRevaluationView = NoRevaluationView().then {
+        $0.isHidden = true
+    }
+    
+    private lazy var revaluationDetailView = RevaluationDetailView()
     
     private lazy var revaluateButton = TouchableLabel().then {
         $0.text = "재평가하기"
@@ -124,7 +128,8 @@ final class RevaluationDetailViewController: NavigationBaseViewController {
         view.addSubviews([scrollView, revaluateButton])
         scrollView.addSubview(containerView)
         containerView.addSubviews([thumbnailImageView, yearLabel, titleLabel, productDetailView,
-                                   dividerView, dateLabel, leftArrowButton, rightArrowButton, noRevaluationView])
+                                   dividerView, dateLabel, leftArrowButton, rightArrowButton,
+                                   noRevaluationView, revaluationDetailView])
         productDetailView.addSubviews([genreLabel, directorLabel, actorLabel, sourceLabel])
     }
     
@@ -218,6 +223,12 @@ final class RevaluationDetailViewController: NavigationBaseViewController {
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.bottom.equalToSuperview().inset(moderateScale(number: 64))
         }
+        
+        revaluationDetailView.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom).offset(moderateScale(number: 24))
+            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+            $0.bottom.equalToSuperview().inset(moderateScale(number: 64))
+        }
     }
     
     override func setupIfNeeded() {
@@ -245,6 +256,8 @@ final class RevaluationDetailViewController: NavigationBaseViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] dateString in
                 self?.dateLabel.text = dateString
+                self?.revaluationDetailView.updateGradeView(ofDate: dateString,
+                                                            grade: CGFloat.random(in: 0...5))
             }.store(in: &cancelBag)
     }
 }

@@ -11,6 +11,8 @@
 		430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */; };
 		430C2DE42BB9790F00DE5FC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 430C2DE32BB9790F00DE5FC2 /* Assets.xcassets */; };
 		430C2DE72BB9790F00DE5FC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 430C2DE52BB9790F00DE5FC2 /* LaunchScreen.storyboard */; };
+		43103D1A2C2800FA009742BB /* RevaluationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43103D192C2800FA009742BB /* RevaluationDetailView.swift */; };
+		43103D1C2C28031F009742BB /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43103D1B2C28031F009742BB /* UIImageView+Extension.swift */; };
 		43263F582C1187B7004804BF /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43263F572C1187B7004804BF /* BaseNavigationViewController.swift */; };
 		432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C093C2BC6793300BBFDB1 /* LocalDataFetchable.swift */; };
 		432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432C093E2BC6794600BBFDB1 /* RemoteDataFetchable.swift */; };
@@ -95,6 +97,8 @@
 		430C2DE32BB9790F00DE5FC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		430C2DE62BB9790F00DE5FC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		430C2DE82BB9790F00DE5FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43103D192C2800FA009742BB /* RevaluationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationDetailView.swift; sourceTree = "<group>"; };
+		43103D1B2C28031F009742BB /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		43263F572C1187B7004804BF /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
 		432C093C2BC6793300BBFDB1 /* LocalDataFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataFetchable.swift; sourceTree = "<group>"; };
 		432C093E2BC6794600BBFDB1 /* RemoteDataFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataFetchable.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				432C094F2BD4EF6600BBFDB1 /* UIScrollView+Extension.swift */,
 				432C09512BD4EF8800BBFDB1 /* UIStackView+Extension.swift */,
 				436351CE2C0C45EA0078C8C1 /* UITextField+Extension.swift */,
+				43103D1B2C28031F009742BB /* UIImageView+Extension.swift */,
 				4376DAC22C11AD3E0060E618 /* Date+Extension.swift */,
 				4376DAC42C11AE710060E618 /* String+Extension.swift */,
 			);
@@ -449,6 +454,7 @@
 				432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */,
 				436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */,
 				436475CE2C1198940096F15F /* NoRevaluationView.swift */,
+				43103D192C2800FA009742BB /* RevaluationDetailView.swift */,
 				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
 				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
 				432C095B2BD4F1E100BBFDB1 /* Rank */,
@@ -594,6 +600,7 @@
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
+				43103D1A2C2800FA009742BB /* RevaluationDetailView.swift in Sources */,
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */,
@@ -618,6 +625,7 @@
 				436351C32BF4BFE60078C8C1 /* MyPageGuestView.swift in Sources */,
 				432C09612BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift in Sources */,
 				432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */,
+				43103D1C2C28031F009742BB /* UIImageView+Extension.swift in Sources */,
 				436475CD2C118F0E0096F15F /* ReValuationDetailViewModel.swift in Sources */,
 				436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */,
 				432C096B2BD4F52100BBFDB1 /* TouchableImageView.swift in Sources */,
