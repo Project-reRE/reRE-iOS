@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import DGCharts
 
 final class RevaluationDetailView: UIStackView {
     private lazy var gradeContainerView = UIView().then {
@@ -28,9 +29,22 @@ final class RevaluationDetailView: UIStackView {
         $0.spacing = moderateScale(number: 8)
     }
     
+    private lazy var chartContainerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    private lazy var chartTitleLabel = UILabel().then {
+        $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.title01.font
+        $0.text = "최근 5개월 간 평점 추이"
+    }
+    
+    private lazy var chartView = LineChartView(frame: .zero)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        axis = .vertical
         spacing = moderateScale(number: 48)
         
         addViews()
@@ -42,8 +56,9 @@ final class RevaluationDetailView: UIStackView {
     }
     
     private func addViews() {
-        addArrangedSubviews([gradeContainerView])
+        addArrangedSubviews([gradeContainerView, chartContainerView])
         gradeContainerView.addSubviews([gradeTitleLabel, gradeLabel, gradeImageStackView])
+        chartContainerView.addSubviews([chartTitleLabel, chartView])
         
         for _ in 0..<5 {
             let gradeImageView: UIImageView = UIImageView()
@@ -68,12 +83,23 @@ final class RevaluationDetailView: UIStackView {
         gradeImageStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(gradeLabel.snp.bottom).offset(moderateScale(number: 8))
+            $0.bottom.equalToSuperview()
         }
         
         gradeImageStackView.arrangedSubviews.forEach { subView in
             subView.snp.makeConstraints {
                 $0.size.equalTo(moderateScale(number: 28))
             }
+        }
+        
+        chartTitleLabel.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        
+        chartView.snp.makeConstraints {
+            $0.top.equalTo(chartTitleLabel.snp.bottom).offset(moderateScale(number: 16))
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(moderateScale(number: 300))
         }
     }
     
@@ -94,5 +120,80 @@ final class RevaluationDetailView: UIStackView {
                 (subView as? UIImageView)?.tintColor = ColorSet.gray(.gray40).color
             }
         }
+    }
+    
+    func updateGradeTrend(grades: [CGFloat]) {
+        var dataEntries: [ChartDataEntry] = []
+        
+        for index in 0..<grades.count {
+            let dataEntry = ChartDataEntry(x: Double(index), y: grades[index])
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = LineChartDataSet(entries: dataEntries)
+        // chart main settings
+//        chartDataSet.mode = .linear // curve smoothing
+//        chartDataSet.drawValuesEnabled = false // disble values
+//        chartDataSet.drawCirclesEnabled = false // disable circles
+//        chartDataSet.drawFilledEnabled = true // gradient setting
+        chartDataSet.circleHoleColor = .blue
+        
+        // settings for picking values on graph
+        chartDataSet.drawHorizontalHighlightIndicatorEnabled = false // leave only vertical line
+        chartDataSet.highlightLineWidth = 2 // vertical line width
+        // 차트 컬러
+        //        chartDataSet.colors = [.systemBlue]
+//        chartDataSet.colors = [.green]
+        
+        chartDataSet.setColor(ColorSet.primary(.orange60).color!)
+        chartDataSet.setCircleColor(.red)
+        // 데이터 삽입
+        //        let chartData = BarChartData(dataSet: chartDataSet)
+        //        barChartView.data = chartData
+        let chartData = LineChartData(dataSet: chartDataSet)
+        
+        //        chartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: ["1일", "-1일", "-2일", "-3일", "-4일"])
+        // 값마다 구분하고 싶은 valueFormatter를 개수만큼 출력
+        //        chartView.xAxis.setLabelCount(grades.count, force: false)
+        chartView.data = chartData
+        
+//        chartView.xAxis.drawGridLinesEnabled = false
+//        chartView.leftAxis.drawGridLinesEnabled = false
+//        chartView.rightAxis.drawGridLinesEnabled = false
+//        chartView.drawGridBackgroundEnabled = false
+        // disable axis annotations
+//        chartView.xAxis.drawLabelsEnabled = false
+//        chartView.leftAxis.drawLabelsEnabled = false
+//        chartView.rightAxis.drawLabelsEnabled = false
+        // disable legend
+        chartView.legend.enabled = false
+        // disable zoom
+        chartView.pinchZoomEnabled = false
+        chartView.doubleTapToZoomEnabled = false
+        
+        // remove artifacts around chart area
+//        chartView.xAxis.enabled = false
+//        chartView.leftAxis.enabled = false
+//        chartView.rightAxis.enabled = false
+//        chartView.drawBordersEnabled = false
+//        chartView.minOffset = 0
+        
+        chartView.isUserInteractionEnabled = false
+//        super.viewDidLoad()
+//            let lineChartEntries = [
+//                ChartDataEntry(x: 1, y: 2),
+//                ChartDataEntry(x: 2, y: 4),
+//                ChartDataEntry(x: 3, y: 3),
+//            ]
+//            let dataSet = LineChartDataSet(entries: lineChartEntries)
+//            let data = LineChartData(dataSet: dataSet)
+//            let chart = LineChartView()
+//            chart.data = data
+//            
+//            view.addSubview(chart)
+//            chart.snp.makeConstraints {
+//                $0.centerY.width.equalToSuperview()
+//                $0.height.equalTo(300)
+//            }
     }
 }

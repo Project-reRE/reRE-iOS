@@ -14,4 +14,5 @@ pod 'Moya'
 # pod 'Kingfisher', '7.6.1'
 pod 'Swinject'
 pod 'FLEX', '~> 4.6.0', :configurations => ['Debug']
+pod 'DGCharts'
 end

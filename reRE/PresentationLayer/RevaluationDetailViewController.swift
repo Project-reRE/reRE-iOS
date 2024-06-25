@@ -258,6 +258,11 @@ final class RevaluationDetailViewController: NavigationBaseViewController {
                 self?.dateLabel.text = dateString
                 self?.revaluationDetailView.updateGradeView(ofDate: dateString,
                                                             grade: CGFloat.random(in: 0...5))
+                self?.revaluationDetailView.updateGradeTrend(grades: [1.1,
+                                                                      2.2,
+                                                                      3.3,
+                                                                      4.0,
+                                                                      4.7])
             }.store(in: &cancelBag)
     }
 }
