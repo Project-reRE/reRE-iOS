@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import KakaoSDKUser
 
 final class MyPageViewController: BaseViewController {
     var coordinator: MyPageBaseCoordinator?
@@ -54,7 +55,29 @@ final class MyPageViewController: BaseViewController {
     
     override func setupIfNeeded() {
         guestView.loginButton.setOpaqueTapGestureRecognizer {
-            
+            if UserApi.isKakaoTalkLoginAvailable() {
+                UserApi.shared.loginWithKakaoTalk { oauthToken, error in
+                    print("카카오톡으로 로그인 !!!")
+                    guard error == nil else {
+                        print("error: \(error)")
+                        return
+                    }
+                    
+                    print("oauthToken?.accessToken: \(oauthToken?.accessToken)")
+                    print("oauthToken?.idToken: \(oauthToken?.idToken)")
+                }
+            } else {
+                UserApi.shared.loginWithKakaoAccount { oauthToken, error in
+                    print("카카오 계정으로 로그인 !!!")
+                    guard error == nil else {
+                        print("error: \(error)")
+                        return
+                    }
+                    
+                    print("oauthToken?.accessToken: \(oauthToken?.accessToken)")
+                    print("oauthToken?.idToken: \(oauthToken?.idToken)")
+                }
+            }
         }
         
         guestView.settingButton.setOpaqueTapGestureRecognizer { [weak self] in
