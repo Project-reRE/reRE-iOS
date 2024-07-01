@@ -100,6 +100,23 @@
 		43E496C42C2AEB150086E6A2 /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C32C2AEB150086E6A2 /* KakaoSDKTemplate */; };
 		43E496C62C2AEB150086E6A2 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C52C2AEB150086E6A2 /* KakaoSDKUser */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
+		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
+		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
+		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
+		FECFE4462C32B7E400078CDF /* RankUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4452C32B7E400078CDF /* RankUsecase.swift */; };
+		FECFE4482C32B7FE00078CDF /* RankRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4472C32B7FE00078CDF /* RankRepositoryProtocol.swift */; };
+		FECFE44B2C32B81300078CDF /* RankRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE44A2C32B81300078CDF /* RankRepository.swift */; };
+		FECFE44E2C32B8B400078CDF /* RemoteBannerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE44D2C32B8B400078CDF /* RemoteBannerItem.swift */; };
+		FECFE4522C32B94D00078CDF /* BannerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4512C32B94D00078CDF /* BannerEntity.swift */; };
+		FECFE4542C32B95600078CDF /* BannerResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4532C32B95600078CDF /* BannerResponseModel.swift */; };
+		FECFE4572C32B9A100078CDF /* BannerMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4562C32B9A100078CDF /* BannerMapper.swift */; };
+		FECFE45A2C32B9B400078CDF /* RemoteBannerMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */; };
+		FECFE45C2C32BC6B00078CDF /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE45B2C32BC6B00078CDF /* BaseViewModel.swift */; };
+		FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */; };
+		FECFE4612C32C38F00078CDF /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4602C32C38F00078CDF /* CombineMoya */; };
+		FECFE4632C32C38F00078CDF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4622C32C38F00078CDF /* Moya */; };
+		FECFE4652C32C38F00078CDF /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4642C32C38F00078CDF /* ReactiveMoya */; };
+		FECFE4672C32C38F00078CDF /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4662C32C38F00078CDF /* RxMoya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +205,19 @@
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8108B98035D765B0474EAA /* Pods-reRE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.debug.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.debug.xcconfig"; sourceTree = "<group>"; };
+		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
+		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
+		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
+		FECFE4452C32B7E400078CDF /* RankUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecase.swift; sourceTree = "<group>"; };
+		FECFE4472C32B7FE00078CDF /* RankRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankRepositoryProtocol.swift; sourceTree = "<group>"; };
+		FECFE44A2C32B81300078CDF /* RankRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankRepository.swift; sourceTree = "<group>"; };
+		FECFE44D2C32B8B400078CDF /* RemoteBannerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteBannerItem.swift; sourceTree = "<group>"; };
+		FECFE4512C32B94D00078CDF /* BannerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerEntity.swift; sourceTree = "<group>"; };
+		FECFE4532C32B95600078CDF /* BannerResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerResponseModel.swift; sourceTree = "<group>"; };
+		FECFE4562C32B9A100078CDF /* BannerMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerMapper.swift; sourceTree = "<group>"; };
+		FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteBannerMapper.swift; sourceTree = "<group>"; };
+		FECFE45B2C32BC6B00078CDF /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,11 +230,15 @@
 				43E496B02C2AEB150086E6A2 /* KakaoSDK in Frameworks */,
 				43E496BE2C2AEB150086E6A2 /* KakaoSDKNavi in Frameworks */,
 				43E496B62C2AEB150086E6A2 /* KakaoSDKCertCore in Frameworks */,
+				FECFE4652C32C38F00078CDF /* ReactiveMoya in Frameworks */,
 				43E496C42C2AEB150086E6A2 /* KakaoSDKTemplate in Frameworks */,
 				43E496BC2C2AEB150086E6A2 /* KakaoSDKFriendCore in Frameworks */,
 				43E496B22C2AEB150086E6A2 /* KakaoSDKAuth in Frameworks */,
+				FECFE4632C32C38F00078CDF /* Moya in Frameworks */,
 				43E496C62C2AEB150086E6A2 /* KakaoSDKUser in Frameworks */,
 				43E496C22C2AEB150086E6A2 /* KakaoSDKTalk in Frameworks */,
+				FECFE4672C32C38F00078CDF /* RxMoya in Frameworks */,
+				FECFE4612C32C38F00078CDF /* CombineMoya in Frameworks */,
 				43E496C02C2AEB150086E6A2 /* KakaoSDKShare in Frameworks */,
 				43E496B82C2AEB150086E6A2 /* KakaoSDKCommon in Frameworks */,
 				43E496B42C2AEB150086E6A2 /* KakaoSDKCert in Frameworks */,
@@ -246,9 +280,11 @@
 			children = (
 				430C2DDA2BB9790D00DE5FC2 /* AppDelegate.swift */,
 				430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */,
+				FECFE43A2C32B71800078CDF /* Injector.swift */,
 				4364A1282BC665A500F867B6 /* Coordinator */,
 				4364A15C2BC6728D00F867B6 /* PresentationLayer */,
 				432C09392BC678F400BBFDB1 /* DataLayer */,
+				FECFE43C2C32B74A00078CDF /* DomainLayer */,
 				4364A14C2BC66AFF00F867B6 /* Util */,
 				432C094A2BD4EEFC00BBFDB1 /* Extensions */,
 				432C09762BE7791200BBFDB1 /* Fonts */,
@@ -262,30 +298,33 @@
 		432C09392BC678F400BBFDB1 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
-				432C093B2BC6790500BBFDB1 /* RemoteData */,
-				432C093A2BC6790000BBFDB1 /* LocalData */,
+				FECFE4492C32B80B00078CDF /* Repository */,
+				432C093B2BC6790500BBFDB1 /* Remote */,
+				432C093A2BC6790000BBFDB1 /* Local */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
 		};
-		432C093A2BC6790000BBFDB1 /* LocalData */ = {
+		432C093A2BC6790000BBFDB1 /* Local */ = {
 			isa = PBXGroup;
 			children = (
 				432C093C2BC6793300BBFDB1 /* LocalDataFetchable.swift */,
 				432C09422BC6796600BBFDB1 /* LocalDataFetcher.swift */,
 			);
-			path = LocalData;
+			path = Local;
 			sourceTree = "<group>";
 		};
-		432C093B2BC6790500BBFDB1 /* RemoteData */ = {
+		432C093B2BC6790500BBFDB1 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
 				432C093E2BC6794600BBFDB1 /* RemoteDataFetchable.swift */,
 				432C09402BC6795D00BBFDB1 /* RemoteDataFetcher.swift */,
 				432C09442BC679D200BBFDB1 /* NetworkService.swift */,
 				432C09462BC67AAE00BBFDB1 /* NetworkManager.swift */,
+				FECFE44C2C32B88600078CDF /* RemoteItem */,
+				FECFE4582C32B9A500078CDF /* Mapper */,
 			);
-			path = RemoteData;
+			path = Remote;
 			sourceTree = "<group>";
 		};
 		432C094A2BD4EEFC00BBFDB1 /* Extensions */ = {
@@ -299,6 +338,7 @@
 				43103D1B2C28031F009742BB /* UIImageView+Extension.swift */,
 				4376DAC22C11AD3E0060E618 /* Date+Extension.swift */,
 				4376DAC42C11AE710060E618 /* String+Extension.swift */,
+				FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,6 +510,7 @@
 				432C09622BD4F34500BBFDB1 /* BaseViewController.swift */,
 				43263F572C1187B7004804BF /* BaseNavigationViewController.swift */,
 				436351C82C0C39380078C8C1 /* BaseTabBar.swift */,
+				FECFE45B2C32BC6B00078CDF /* BaseViewModel.swift */,
 				432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */,
 				432C09642BD4F41B00BBFDB1 /* TouchableView.swift */,
 				436351C62C0C35AD0078C8C1 /* ToastView.swift */,
@@ -495,6 +536,100 @@
 				7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FECFE43C2C32B74A00078CDF /* DomainLayer */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE43E2C32B77600078CDF /* Usecase */,
+				FECFE43D2C32B76B00078CDF /* RepositoryProtocol */,
+				FECFE4502C32B94300078CDF /* Entity */,
+				FECFE44F2C32B93F00078CDF /* ResponseModel */,
+				FECFE4552C32B97900078CDF /* Mapper */,
+			);
+			path = DomainLayer;
+			sourceTree = "<group>";
+		};
+		FECFE43D2C32B76B00078CDF /* RepositoryProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4472C32B7FE00078CDF /* RankRepositoryProtocol.swift */,
+			);
+			path = RepositoryProtocol;
+			sourceTree = "<group>";
+		};
+		FECFE43E2C32B77600078CDF /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4402C32B78400078CDF /* UsecaseProtocol */,
+				FECFE43F2C32B78000078CDF /* Usecase */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		FECFE43F2C32B78000078CDF /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4452C32B7E400078CDF /* RankUsecase.swift */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		FECFE4402C32B78400078CDF /* UsecaseProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */,
+				FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */,
+			);
+			path = UsecaseProtocol;
+			sourceTree = "<group>";
+		};
+		FECFE4492C32B80B00078CDF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE44A2C32B81300078CDF /* RankRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		FECFE44C2C32B88600078CDF /* RemoteItem */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE44D2C32B8B400078CDF /* RemoteBannerItem.swift */,
+			);
+			path = RemoteItem;
+			sourceTree = "<group>";
+		};
+		FECFE44F2C32B93F00078CDF /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4532C32B95600078CDF /* BannerResponseModel.swift */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		FECFE4502C32B94300078CDF /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4512C32B94D00078CDF /* BannerEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FECFE4552C32B97900078CDF /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4562C32B9A100078CDF /* BannerMapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		FECFE4582C32B9A500078CDF /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,6 +663,10 @@
 				43E496C12C2AEB150086E6A2 /* KakaoSDKTalk */,
 				43E496C32C2AEB150086E6A2 /* KakaoSDKTemplate */,
 				43E496C52C2AEB150086E6A2 /* KakaoSDKUser */,
+				FECFE4602C32C38F00078CDF /* CombineMoya */,
+				FECFE4622C32C38F00078CDF /* Moya */,
+				FECFE4642C32C38F00078CDF /* ReactiveMoya */,
+				FECFE4662C32C38F00078CDF /* RxMoya */,
 			);
 			productName = reRE;
 			productReference = 430C2DD72BB9790D00DE5FC2 /* reRE.app */;
@@ -559,6 +698,7 @@
 			mainGroup = 430C2DCE2BB9790D00DE5FC2;
 			packageReferences = (
 				43E496AE2C2AEB140086E6A2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 430C2DD82BB9790D00DE5FC2 /* Products */;
 			projectDirPath = "";
@@ -647,8 +787,11 @@
 				436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */,
 				4376DAC52C11AE710060E618 /* String+Extension.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
+				FECFE44B2C32B81300078CDF /* RankRepository.swift in Sources */,
+				FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */,
 				436351C72C0C35AD0078C8C1 /* ToastView.swift in Sources */,
 				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
+				FECFE4542C32B95600078CDF /* BannerResponseModel.swift in Sources */,
 				432C09632BD4F34500BBFDB1 /* BaseViewController.swift in Sources */,
 				432C09562BD4F00900BBFDB1 /* ScreenUtil.swift in Sources */,
 				432C096D2BD4F59600BBFDB1 /* TouchableStackView.swift in Sources */,
@@ -656,11 +799,13 @@
 				432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */,
 				432C09712BE75E8800BBFDB1 /* DailyRankingFooterView.swift in Sources */,
 				432C09752BE7679300BBFDB1 /* RankingItemCell.swift in Sources */,
+				FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */,
 				436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
 				4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */,
 				4364A1452BC6692100F867B6 /* SearchCoordinator.swift in Sources */,
+				FECFE4482C32B7FE00078CDF /* RankRepositoryProtocol.swift in Sources */,
 				4364A14B2BC6696700F867B6 /* CommonCoordinator.swift in Sources */,
 				430C2DDB2BB9790D00DE5FC2 /* AppDelegate.swift in Sources */,
 				436351C32BF4BFE60078C8C1 /* MyPageGuestView.swift in Sources */,
@@ -671,19 +816,25 @@
 				436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */,
 				432C096B2BD4F52100BBFDB1 /* TouchableImageView.swift in Sources */,
 				436351CB2C0C43200078C8C1 /* SearchViewController.swift in Sources */,
+				FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */,
 				432C095A2BD4F17C00BBFDB1 /* DispatchMain.swift in Sources */,
 				432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */,
 				432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */,
+				FECFE45A2C32B9B400078CDF /* RemoteBannerMapper.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
 				43263F582C1187B7004804BF /* BaseNavigationViewController.swift in Sources */,
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
+				FECFE43B2C32B71800078CDF /* Injector.swift in Sources */,
 				4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */,
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
+				FECFE4522C32B94D00078CDF /* BannerEntity.swift in Sources */,
 				436475CF2C1198940096F15F /* NoRevaluationView.swift in Sources */,
 				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
+				FECFE4462C32B7E400078CDF /* RankUsecase.swift in Sources */,
+				FECFE4572C32B9A100078CDF /* BannerMapper.swift in Sources */,
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
 				432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */,
 				432C09542BD4EFD800BBFDB1 /* Logger.swift in Sources */,
@@ -697,9 +848,11 @@
 				432C09432BC6796600BBFDB1 /* LocalDataFetcher.swift in Sources */,
 				432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */,
 				432C09652BD4F41B00BBFDB1 /* TouchableView.swift in Sources */,
+				FECFE45C2C32BC6B00078CDF /* BaseViewModel.swift in Sources */,
 				436351CD2C0C44060078C8C1 /* RevaluationDetailViewController.swift in Sources */,
 				432C094C2BD4EF0C00BBFDB1 /* UIView+Extension.swift in Sources */,
 				4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */,
+				FECFE44E2C32B8B400078CDF /* RemoteBannerItem.swift in Sources */,
 				432C09882BE77A3C00BBFDB1 /* FontSet.swift in Sources */,
 				4364A14E2BC66B0A00F867B6 /* Enums.swift in Sources */,
 				436351C02BF4B9D90078C8C1 /* HistoryCategoryView.swift in Sources */,
@@ -949,6 +1102,14 @@
 				minimumVersion = 2.22.3;
 			};
 		};
+		FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1011,6 +1172,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 43E496AE2C2AEB140086E6A2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDKUser;
+		};
+		FECFE4602C32C38F00078CDF /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		FECFE4622C32C38F00078CDF /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		FECFE4642C32C38F00078CDF /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		FECFE4662C32C38F00078CDF /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

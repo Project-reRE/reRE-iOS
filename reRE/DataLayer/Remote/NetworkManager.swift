@@ -29,8 +29,8 @@ final class NetworkManager {
 }
 
 extension NetworkManager {
-    func networkMockService(_ completion: @escaping (Result<Response, Error>) -> Void) {
-        provider().request(.networkMockService) { result in
+    func fetchPublicService(_ service: NetworkService, _ completion: @escaping (Result<Response, Error>) -> Void) {
+        provider().request(service) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))

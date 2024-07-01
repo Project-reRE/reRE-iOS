@@ -13,7 +13,8 @@ final class RankCoordinator: NSObject, RankBaseCoordinator {
     var currentFlowManager: CurrentFlowManager?
     
     func start() -> UIViewController {
-        let rankVC = RankViewController()
+        let viewModel: RankViewModel = RankViewModel(usecase: Injector.shared.resolve(RankUsecaseProtocol.self)!)
+        let rankVC = RankViewController(viewModel: viewModel)
         rankVC.coordinator = self
         rootViewController = UINavigationController(rootViewController: rankVC)
         return rootViewController

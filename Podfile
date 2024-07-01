@@ -10,7 +10,7 @@ target 'reRE' do
 pod 'Then'
 pod 'SnapKit'
 pod 'CocoaLumberjack/Swift', '~> 3.7.2'
-pod 'Moya'
+# pod 'Moya'
 # pod 'Kingfisher', '7.6.1'
 pod 'Swinject'
 pod 'FLEX', '~> 4.6.0', :configurations => ['Debug']

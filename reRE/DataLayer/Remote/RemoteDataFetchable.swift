@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol RemoteDataFetchable: AnyObject {
-    
+    func getBannerList() -> AnyPublisher<Result<[BannerEntity], Error>, Never>
 }

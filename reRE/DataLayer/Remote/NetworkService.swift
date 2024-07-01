@@ -10,33 +10,39 @@ import Moya
 
 enum NetworkService {
     case networkMockService
+    case rankingBanner
 }
 
 extension NetworkService: TargetType {
     var baseURL: URL {
-        #if DEBUG
-        return URL(string: "dev-api.revaluation.co.kr")!
-        #else
+#if DEBUG
+        return URL(string: "http://api.dev.rerevaluation.com")!
+#else
         return URL(string: "api.revaluation.co.kr")!
-        #endif
+#endif
     }
     
     var path: String {
         switch self {
         case .networkMockService:
             return "/api/v1"
+        case .rankingBanner:
+            return "/open-banners"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .networkMockService: return .get
+        case .rankingBanner: return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
         case .networkMockService:
+            return .requestPlain
+        case .rankingBanner:
             return .requestPlain
         }
     }
@@ -47,8 +53,8 @@ extension NetworkService: TargetType {
 }
 
 // MARK: - AccessTokenAuthorizable
-extension NetworkService: AccessTokenAuthorizable {
-    var authorizationType: Moya.AuthorizationType? {
-        return .bearer
-    }
-}
+//extension NetworkService: AccessTokenAuthorizable {
+//    var authorizationType: Moya.AuthorizationType? {
+//        return .bearer
+//    }
+//}

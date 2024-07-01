@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import SnapKit
 import Then
 
@@ -17,6 +18,8 @@ struct RankingGenreProperty {
 
 final class RankViewController: BaseViewController {
     var coordinator: RankBaseCoordinator?
+    
+    private var cancelBag = Set<AnyCancellable>()
     
     private let bannerColorList: [UIColor?] = [ColorSet.primary(.orange60).color,
                                                ColorSet.primary(.darkGreen50).color,
@@ -45,10 +48,24 @@ final class RankViewController: BaseViewController {
         $0.contentInset = .init(top: 0, left: 0, bottom: moderateScale(number: 48), right: 0)
     }
     
+    private let viewModel: RankViewModel
+    
+    init(viewModel: RankViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = ColorSet.gray(.gray10).color
+        
+        bind()
     }
     
     override func addViews() {
@@ -61,6 +78,20 @@ final class RankViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    private func bind() {
+        viewModel.getErrorSubject()
+            .sink { error in
+                LogDebug(error)
+            }.store(in: &cancelBag)
+        
+        viewModel.getBannerListPublisher()
+            .droppedSink { bannerList in
+                print("bannerList: \(bannerList)")
+            }.store(in: &cancelBag)
+        
+        viewModel.getBannerList()
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
