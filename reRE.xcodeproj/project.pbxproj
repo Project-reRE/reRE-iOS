@@ -100,6 +100,8 @@
 		43E496C42C2AEB150086E6A2 /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C32C2AEB150086E6A2 /* KakaoSDKTemplate */; };
 		43E496C62C2AEB150086E6A2 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C52C2AEB150086E6A2 /* KakaoSDKUser */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
+		FE9826062C340923006F0C67 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826052C340923006F0C67 /* UIColor+Extension.swift */; };
+		FE9826082C340A01006F0C67 /* RemoteMovieSetsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -205,6 +207,8 @@
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE8108B98035D765B0474EAA /* Pods-reRE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.debug.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.debug.xcconfig"; sourceTree = "<group>"; };
+		FE9826052C340923006F0C67 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieSetsItem.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				432C09512BD4EF8800BBFDB1 /* UIStackView+Extension.swift */,
 				436351CE2C0C45EA0078C8C1 /* UITextField+Extension.swift */,
 				43103D1B2C28031F009742BB /* UIImageView+Extension.swift */,
+				FE9826052C340923006F0C67 /* UIColor+Extension.swift */,
 				4376DAC22C11AD3E0060E618 /* Date+Extension.swift */,
 				4376DAC42C11AE710060E618 /* String+Extension.swift */,
 				FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */,
@@ -596,6 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				FECFE44D2C32B8B400078CDF /* RemoteBannerItem.swift */,
+				FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */,
 			);
 			path = RemoteItem;
 			sourceTree = "<group>";
@@ -793,6 +799,7 @@
 				4364A12A2BC665CF00F867B6 /* Coordinator.swift in Sources */,
 				FECFE4542C32B95600078CDF /* BannerResponseModel.swift in Sources */,
 				432C09632BD4F34500BBFDB1 /* BaseViewController.swift in Sources */,
+				FE9826082C340A01006F0C67 /* RemoteMovieSetsItem.swift in Sources */,
 				432C09562BD4F00900BBFDB1 /* ScreenUtil.swift in Sources */,
 				432C096D2BD4F59600BBFDB1 /* TouchableStackView.swift in Sources */,
 				432C095F2BD4F25000BBFDB1 /* RankViewModel.swift in Sources */,
@@ -839,6 +846,7 @@
 				432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */,
 				432C09542BD4EFD800BBFDB1 /* Logger.swift in Sources */,
 				4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */,
+				FE9826062C340923006F0C67 /* UIColor+Extension.swift in Sources */,
 				432C09412BC6795D00BBFDB1 /* RemoteDataFetcher.swift in Sources */,
 				436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */,
 				4376DAC32C11AD3E0060E618 /* Date+Extension.swift in Sources */,

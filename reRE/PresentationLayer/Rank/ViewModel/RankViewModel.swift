@@ -25,7 +25,7 @@ final class RankViewModel: BaseViewModel {
         shouldGetBannerList
             .flatMap(usecase.getBannerList)
             .sink { [weak self] bannerList in
-                self?.bannerList.send(bannerList)
+                self?.bannerList.send(bannerList.filter { $0.display })
             }.store(in: &cancelBag)
     }
     

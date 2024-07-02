@@ -21,10 +21,6 @@ final class RankViewController: BaseViewController {
     
     private var cancelBag = Set<AnyCancellable>()
     
-    private let bannerColorList: [UIColor?] = [ColorSet.primary(.orange60).color,
-                                               ColorSet.primary(.darkGreen50).color,
-                                               ColorSet.tertiary(.navy60).color]
-    
     private let genreProperties: [RankingGenreProperty] = [.init(backgroundColor: ColorSet.primary(.orange40).color,
                                                                  textColor: ColorSet.primary(.orange90).color,
                                                                  descriptionColor: ColorSet.primary(.orange60).color),
@@ -87,8 +83,9 @@ final class RankViewController: BaseViewController {
             }.store(in: &cancelBag)
         
         viewModel.getBannerListPublisher()
-            .droppedSink { bannerList in
-                print("bannerList: \(bannerList)")
+            .droppedSink { [weak self] bannerList in
+                self?.rankingView.reloadData()
+                self?.rankingView.layoutIfNeeded()
             }.store(in: &cancelBag)
         
         viewModel.getBannerList()
@@ -161,15 +158,19 @@ final class RankViewController: BaseViewController {
 // MARK: - UICollectionViewDataSource
 extension RankViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if section == 0 {
+            return viewModel.getBannerListValue().count
+        } else {
+            return 10
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             guard let cell = collectionView.dequeueReusableCell(DailyRankingBannerCell.self, indexPath: indexPath) else { return .init() }
             
-            let order = indexPath.item % bannerColorList.count
-            cell.updateView(title: "\(indexPath.item)", backgroundColor: bannerColorList[order])
+            let bannerModel: BannerResponseModel = viewModel.getBannerListValue()[indexPath.item]
+            cell.updateView(withModel: bannerModel)
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(RankingItemCell.self, indexPath: indexPath) else { return .init() }

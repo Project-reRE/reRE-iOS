@@ -61,8 +61,8 @@ final class DailyRankingBannerCell: UICollectionViewCell {
         }
     }
     
-    func updateView(title: String?, backgroundColor: UIColor?) {
-        titleLabel.text = title
-        containerView.backgroundColor = backgroundColor
+    func updateView(withModel model: BannerResponseModel) {
+        titleLabel.text = model.title
+        containerView.backgroundColor = UIColor(hexString: model.boxHexCode)
     }
 }
