@@ -10,4 +10,5 @@ import Combine
 
 protocol RankUsecaseProtocol: BaseUsecaseProtocol {
     func getBannerList() -> AnyPublisher<[BannerResponseModel], Never>
+    func getMovieSets() -> AnyPublisher<[MovieSetsResponseModel], Never>
 }

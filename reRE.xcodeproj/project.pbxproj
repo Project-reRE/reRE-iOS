@@ -102,6 +102,8 @@
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
 		FE9826062C340923006F0C67 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826052C340923006F0C67 /* UIColor+Extension.swift */; };
 		FE9826082C340A01006F0C67 /* RemoteMovieSetsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */; };
+		FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */; };
+		FE98260C2C340CDC006F0C67 /* MovieSetsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98260B2C340CDC006F0C67 /* MovieSetsResponseModel.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -209,6 +211,8 @@
 		FE8108B98035D765B0474EAA /* Pods-reRE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.debug.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.debug.xcconfig"; sourceTree = "<group>"; };
 		FE9826052C340923006F0C67 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieSetsItem.swift; sourceTree = "<group>"; };
+		FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSetsEntity.swift; sourceTree = "<group>"; };
+		FE98260B2C340CDC006F0C67 /* MovieSetsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSetsResponseModel.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -610,6 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				FECFE4532C32B95600078CDF /* BannerResponseModel.swift */,
+				FE98260B2C340CDC006F0C67 /* MovieSetsResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 			isa = PBXGroup;
 			children = (
 				FECFE4512C32B94D00078CDF /* BannerEntity.swift */,
+				FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -786,6 +792,7 @@
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
+				FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
 				43103D1A2C2800FA009742BB /* RevaluationDetailView.swift in Sources */,
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
@@ -809,6 +816,7 @@
 				FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */,
 				436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
+				FE98260C2C340CDC006F0C67 /* MovieSetsResponseModel.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
 				4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */,
 				4364A1452BC6692100F867B6 /* SearchCoordinator.swift in Sources */,

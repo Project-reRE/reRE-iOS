@@ -17,6 +17,10 @@ final class RankRepository {
 }
 
 extension RankRepository: RankRepositoryProtocol {
+    func getMovieSets() -> AnyPublisher<Result<[MovieSetsEntity], Error>, Never> {
+        return remoteDataFetcher.getMovieSets()
+    }
+    
     func getBannerList() -> AnyPublisher<Result<[BannerEntity], Error>, Never> {
         return remoteDataFetcher.getBannerList()
     }

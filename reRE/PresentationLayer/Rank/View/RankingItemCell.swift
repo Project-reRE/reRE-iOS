@@ -35,7 +35,6 @@ final class RankingItemCell: UICollectionViewCell {
     }
     
     private lazy var movieTitleLabel = UILabel().then {
-        $0.text = "영화 이름"
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.title03.font
     }
@@ -45,27 +44,23 @@ final class RankingItemCell: UICollectionViewCell {
     }
     
     private lazy var yearLabel = UILabel().then {
-        $0.text = "영화 년도"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.font = FontSet.body04.font
     }
     
     private lazy var genreLabel = UILabel().then {
-        $0.text = "장르명"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.numberOfLines = 1
         $0.font = FontSet.body04.font
     }
     
     private lazy var directorLabel = UILabel().then {
-        $0.text = "감독명"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.numberOfLines = 1
         $0.font = FontSet.body04.font
     }
     
     private lazy var actorLabel = UILabel().then {
-        $0.text = "출연배우"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.numberOfLines = 1
         $0.font = FontSet.body04.font
@@ -138,5 +133,37 @@ final class RankingItemCell: UICollectionViewCell {
             $0.trailing.equalToSuperview()
             $0.bottom.equalTo(directorLabel.snp.top).offset(-moderateScale(number: 8))
         }
+    }
+    
+    func updateView(withModel model: MovieSetResponseModel) {
+        movieTitleLabel.text = model.title
+        yearLabel.text = model.prodYear
+        
+        var directorText: String = ""
+        
+        for (index, director) in model.directors.director.enumerated() {
+            
+            if index == model.directors.director.count - 1 {
+                directorText += "\(director.directorNm)"
+            } else {
+                directorText += "\(director.directorNm), "
+            }
+        }
+        
+        directorLabel.text = directorText
+        
+        var actorText: String = ""
+        
+        for (index, actor) in model.actors.actor.enumerated() {
+            
+            if index == model.actors.actor.count - 1 {
+                actorText += "\(actor.actorNm)"
+            } else {
+                actorText += "\(actor.actorNm), "
+            }
+        }
+        
+        actorLabel.text = actorText
+        genreLabel.text = model.genre
     }
 }

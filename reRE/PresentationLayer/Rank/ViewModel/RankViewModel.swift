@@ -9,6 +9,9 @@ import Foundation
 import Combine
 
 final class RankViewModel: BaseViewModel {
+    private let shouldGetMovieSets = PassthroughSubject<Void, Never>()
+    private let movieSets = CurrentValueSubject<[MovieSetsResponseModel], Never>([])
+    
     private let shouldGetBannerList = PassthroughSubject<Void, Never>()
     private let bannerList = CurrentValueSubject<[BannerResponseModel], Never>([])
     
@@ -22,11 +25,29 @@ final class RankViewModel: BaseViewModel {
     }
     
     private func bind() {
+        shouldGetMovieSets
+            .flatMap(usecase.getMovieSets)
+            .sink { [weak self] movieSets in
+                self?.movieSets.send(movieSets)
+            }.store(in: &cancelBag)
+        
         shouldGetBannerList
             .flatMap(usecase.getBannerList)
             .sink { [weak self] bannerList in
                 self?.bannerList.send(bannerList.filter { $0.display })
             }.store(in: &cancelBag)
+    }
+    
+    func getMovieSets() {
+        shouldGetMovieSets.send(())
+    }
+    
+    func getMovieSetsPublisher() -> AnyPublisher<[MovieSetsResponseModel], Never> {
+        return movieSets.eraseToAnyPublisher()
+    }
+    
+    func getMovieSetsValue() -> [MovieSetsResponseModel] {
+        return movieSets.value
     }
     
     func getBannerList() {

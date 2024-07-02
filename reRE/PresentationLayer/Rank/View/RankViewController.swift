@@ -82,12 +82,18 @@ final class RankViewController: BaseViewController {
                 LogDebug(error)
             }.store(in: &cancelBag)
         
-        viewModel.getBannerListPublisher()
-            .droppedSink { [weak self] bannerList in
+        let bannerListPublisher = viewModel.getBannerListPublisher().dropFirst()
+        let movieSetsPublisher = viewModel.getMovieSetsPublisher().dropFirst()
+        
+        movieSetsPublisher
+            .zip(bannerListPublisher)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
                 self?.rankingView.reloadData()
                 self?.rankingView.layoutIfNeeded()
             }.store(in: &cancelBag)
         
+        viewModel.getMovieSets()
         viewModel.getBannerList()
     }
     
@@ -161,7 +167,9 @@ extension RankViewController: UICollectionViewDataSource {
         if section == 0 {
             return viewModel.getBannerListValue().count
         } else {
-            return 10
+            let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
+            let sectionIndex: Int = section - bannerSectionIndex
+            return viewModel.getMovieSetsValue()[sectionIndex].data.count
         }
     }
     
@@ -175,6 +183,10 @@ extension RankViewController: UICollectionViewDataSource {
         } else {
             guard let cell = collectionView.dequeueReusableCell(RankingItemCell.self, indexPath: indexPath) else { return .init() }
             
+            let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
+            let model: MovieSetResponseModel = viewModel.getMovieSetsValue()[indexPath.section - bannerSectionIndex].data[indexPath.item]
+            cell.updateView(withModel: model)
+            
             cell.containerView.setOpaqueTapGestureRecognizer { [weak self] in
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
             }
@@ -184,7 +196,12 @@ extension RankViewController: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 5
+        if viewModel.getBannerListValue().isEmpty && viewModel.getMovieSetsValue().isEmpty {
+            return 0
+        } else {
+            let bannerSection: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
+            return viewModel.getMovieSetsValue().count + bannerSection
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -203,11 +220,14 @@ extension RankViewController: UICollectionViewDataSource {
         } else {
             guard let view = collectionView.dequeueSupplimentaryView(GenreHeaderView.self, supplementaryViewOfKind: .header, indexPath: indexPath) else { return .init() }
             guard indexPath.section > 0 else { return .init() }
+            
             let sectionIndex: Int = indexPath.section - 1
             let order: Int = sectionIndex % genreProperties.count
+            let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
+            
             view.updateView(property: genreProperties[order],
                             genreText: "\(sectionIndex)",
-                            descriptionText: "가장 많은 재평가를 받은 영화 Top 3")
+                            descriptionText: viewModel.getMovieSetsValue()[indexPath.section - bannerSectionIndex].title)
             return view
         }
     }
