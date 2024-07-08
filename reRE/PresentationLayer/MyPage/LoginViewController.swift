@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Combine
 import Then
 import SnapKit
 import KakaoSDKUser
 
 final class LoginViewController: BaseBottomSheetViewController {
+    private var cancelBag = Set<AnyCancellable>()
+    
     var coordinator: CommonBaseCoordinator?
     
     private lazy var kakaoLoginButton = TouchableView().then {
@@ -45,6 +48,18 @@ final class LoginViewController: BaseBottomSheetViewController {
         $0.text = "Apple 로그인"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.gray(.black).color
+    }
+    
+    private let viewModel: LoginViewModel
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -102,30 +117,28 @@ final class LoginViewController: BaseBottomSheetViewController {
         
         bottomSheetContainerView.backgroundColor = .clear
         
-        kakaoLoginButton.didTapped {
-//            if UserApi.isKakaoTalkLoginAvailable() {
-//                UserApi.shared.loginWithKakaoTalk { oauthToken, error in
-//                    print("카카오톡으로 로그인 !!!")
-//                    guard error == nil else {
-//                        print("error: \(error)")
-//                        return
-//                    }
-//                    
-//                    print("oauthToken?.accessToken: \(oauthToken?.accessToken)")
-//                    print("oauthToken?.idToken: \(oauthToken?.idToken)")
-//                }
-//            } else {
-//                UserApi.shared.loginWithKakaoAccount { oauthToken, error in
-//                    print("카카오 계정으로 로그인 !!!")
-//                    guard error == nil else {
-//                        print("error: \(error)")
-//                        return
-//                    }
-//                    
-//                    print("oauthToken?.accessToken: \(oauthToken?.accessToken)")
-//                    print("oauthToken?.idToken: \(oauthToken?.idToken)")
-//                }
-//            }
+        kakaoLoginButton.didTapped { [weak self] in
+            if UserApi.isKakaoTalkLoginAvailable() {
+                UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
+                    guard error == nil,
+                          let accessToken = oauthToken?.accessToken else {
+                        return
+                    }
+                    
+                    print("accessToken: \(accessToken)")
+                    self?.viewModel.snsLogin(withToken: accessToken)
+                }
+            } else {
+                UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+                    guard error == nil,
+                          let accessToken = oauthToken?.accessToken else {
+                        return
+                    }
+                    
+                    print("accessToken: \(accessToken)")
+                    self?.viewModel.snsLogin(withToken: accessToken)
+                }
+            }
         }
         
         appleLoginButton.didTapped {
@@ -134,6 +147,14 @@ final class LoginViewController: BaseBottomSheetViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .sink { error in
+                LogDebug(error)
+            }.store(in: &cancelBag)
         
+        viewModel.getjwtPublisher()
+            .droppedSink { jwt in
+                print("jwt: \(jwt)")
+            }.store(in: &cancelBag)
     }
 }

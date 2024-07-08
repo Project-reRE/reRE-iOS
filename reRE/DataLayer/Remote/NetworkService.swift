@@ -12,6 +12,7 @@ enum NetworkService {
     case networkMockService
     case rankingMovieSets
     case rankingBanner
+    case kakaoAuth
 }
 
 extension NetworkService: TargetType {
@@ -31,6 +32,8 @@ extension NetworkService: TargetType {
             return "/open-movie-sets"
         case .rankingBanner:
             return "/open-banners"
+        case .kakaoAuth:
+            return "/auth/kakao"
         }
     }
     
@@ -39,6 +42,7 @@ extension NetworkService: TargetType {
         case .networkMockService: return .get
         case .rankingMovieSets: return .get
         case .rankingBanner: return .get
+        case .kakaoAuth: return .get
         }
     }
     
@@ -49,6 +53,8 @@ extension NetworkService: TargetType {
         case .rankingMovieSets:
             return .requestPlain
         case .rankingBanner:
+            return .requestPlain
+        case .kakaoAuth:
             return .requestPlain
         }
     }

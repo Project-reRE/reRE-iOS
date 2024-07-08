@@ -29,9 +29,19 @@ struct Injector {
             return repository
         }
         
+        container.register(LoginRepositoryProtocol.self) { resolver in
+            let repository = LoginRepository(remoteDataFetcher: resolver.resolve(RemoteDataFetchable.self)!)
+            return repository
+        }
+        
         // MARK: - usecase
         container.register(RankUsecaseProtocol.self) { resolver in
             let usecase = RankUsecase(repository: resolver.resolve(RankRepositoryProtocol.self)!)
+            return usecase
+        }
+        
+        container.register(LoginUsecaseProtocol.self) { resolver in
+            let usecase = LoginUsecase(repository: resolver.resolve(LoginRepositoryProtocol.self)!)
             return usecase
         }
         

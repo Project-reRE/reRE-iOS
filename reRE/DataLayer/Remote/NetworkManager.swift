@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 import Moya
 
 final class NetworkManager {
@@ -13,9 +14,15 @@ final class NetworkManager {
     
     private init() {}
     
-    private func provider(_ token: String? = nil) -> MoyaProvider<NetworkService> {
+    private func provider(_ token: String? = nil, customHeader: HTTPHeaders? = nil) -> MoyaProvider<NetworkService> {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 10
+        
+        if let customHeader = customHeader {
+            customHeader.forEach {
+                configuration.headers.add($0)
+            }
+        }
         
         let session = Session(configuration: configuration)
         
@@ -38,5 +45,17 @@ extension NetworkManager {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func fetchService(withHeader token: String, _ service: NetworkService, _ completion: @escaping (Result<Response, Error>) -> Void) {
+        provider(nil, customHeader: HTTPHeaders([HTTPHeader(name: "kakao-token", value: token)]))
+            .request(service) { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(response))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
     }
 }
