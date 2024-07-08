@@ -187,7 +187,7 @@ extension RankViewController: UICollectionViewDataSource {
             let model: MovieSetResponseModel = viewModel.getMovieSetsValue()[indexPath.section - bannerSectionIndex].data[indexPath.item]
             cell.updateView(withModel: model)
             
-            cell.containerView.setOpaqueTapGestureRecognizer { [weak self] in
+            cell.containerView.didTapped { [weak self] in
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
             }
             

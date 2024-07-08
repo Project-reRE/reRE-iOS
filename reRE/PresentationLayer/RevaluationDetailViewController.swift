@@ -236,11 +236,11 @@ final class RevaluationDetailViewController: NavigationBaseViewController {
         
         setNavigationTitle(with: "재평가 정보 보기")
         
-        leftArrowButton.setOpaqueTapGestureRecognizer { [weak self] in
+        leftArrowButton.didTapped { [weak self] in
             self?.viewModel.getPrevMonthRevaluation()
         }
         
-        rightArrowButton.setOpaqueTapGestureRecognizer { [weak self] in
+        rightArrowButton.didTapped { [weak self] in
             self?.viewModel.getNextMonthRevaluation()
         }
     }

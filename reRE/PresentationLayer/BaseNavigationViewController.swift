@@ -61,7 +61,7 @@ class NavigationBaseViewController: BaseViewController {
     }
     
     override func setupIfNeeded() {
-        backButton.setOpaqueTapGestureRecognizer { [weak self] in
+        backButton.didTapped { [weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
     }

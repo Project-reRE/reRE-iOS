@@ -69,15 +69,15 @@ final class HistoryViewController: BaseViewController {
     }
     
     override func setupIfNeeded() {
-        movieHistoryView.containerView.setOpaqueTapGestureRecognizer {
+        movieHistoryView.containerView.didTapped {
             
         }
         
-        bookHistoryView.containerView.setOpaqueTapGestureRecognizer {
+        bookHistoryView.containerView.didTapped {
             
         }
         
-        musicHistoryView.containerView.setOpaqueTapGestureRecognizer {
+        musicHistoryView.containerView.didTapped {
             
         }
     }

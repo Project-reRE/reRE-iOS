@@ -107,7 +107,7 @@ final class SearchViewController: NavigationBaseViewController {
     override func setupIfNeeded() {
         super.setupIfNeeded()
         
-        clearButton.setOpaqueTapGestureRecognizer { [weak self] in
+        clearButton.didTapped { [weak self] in
             self?.textField.text = ""
             self?.clearButton.isHidden = true
             self?.resetListView()
@@ -193,7 +193,7 @@ extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(SearchResultItemCell.self, indexPath: indexPath) else { return .init() }
         
-        cell.containerView.setOpaqueTapGestureRecognizer { [weak self] in
+        cell.containerView.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
         }
         return cell

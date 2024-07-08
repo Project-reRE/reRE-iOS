@@ -38,6 +38,12 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             revaluationVC.coordinator = self
             revaluationVC.hidesBottomBarWhenPushed = true
             currentNavigationViewController?.pushViewController(revaluationVC, animated: true)
+        case .login:
+            let loginVC: LoginViewController = LoginViewController()
+            loginVC.coordinator = self
+            
+            loginVC.modalPresentationStyle = .overFullScreen
+            currentNavigationViewController?.present(loginVC, animated: false)
         }
     }
 }

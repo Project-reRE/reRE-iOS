@@ -25,7 +25,7 @@ final class TouchableStackView: UIStackView {
         isUserInteractionEnabled = true
     }
     
-    func setOpaqueTapGestureRecognizer(onTapped: @escaping () -> Void) {
+    func didTapped(onTapped: @escaping () -> Void) {
         let gesture = TapGestureRecognizer(target: self, action: #selector(didTab(gesture:)))
         gesture.onTapped = onTapped
         addGestureRecognizer(gesture)

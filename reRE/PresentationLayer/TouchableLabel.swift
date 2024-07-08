@@ -17,7 +17,7 @@ final class TouchableLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setOpaqueTapGestureRecognizer(setEffect: Bool? = true, onTapped: @escaping () -> Void) {
+    func didTapped(setEffect: Bool? = true, onTapped: @escaping () -> Void) {
         let gesture = TapGestureRecognizer(target: self, action: #selector(blur(gesture:)))
         gesture.onTapped = onTapped
         addGestureRecognizer(gesture)
