@@ -11,8 +11,6 @@ import Combine
 final class LoginUsecase {
     private let errorSubject = PassthroughSubject<Error, Never>()
     
-    private let mapper = BannerMapper()
-    
     private let repository: LoginRepositoryProtocol
     
     init(repository: LoginRepositoryProtocol) {

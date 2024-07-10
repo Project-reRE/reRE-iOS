@@ -33,7 +33,7 @@ extension NetworkService: TargetType {
         case .rankingBanner:
             return "/open-banners"
         case .kakaoAuth:
-            return "/auth/kakao"
+            return "/auth/kakao/404"
         }
     }
     

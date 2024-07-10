@@ -13,6 +13,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     
     private let networkManager: NetworkManager = NetworkManager.shared
     private let remoteBannerMapper = RemoteBannerMapper()
+    private let remoteLoginMapper = RemoteLoginMapper()
     
     private enum HTTPError: LocalizedError {
         case typeMismatch
@@ -63,11 +64,12 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             self?.networkManager.fetchService(withHeader: accessToken, .kakaoAuth) { [weak self] result in
                 guard let self = self else { return }
                 
-                LogDebug(result)
-                
                 switch result {
                 case .success(let response):
-                    if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(response.data)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
                         promise(.success(.success(remoteItem.jwt ?? "")))
                     } else {
                         LogDebug(response.data)

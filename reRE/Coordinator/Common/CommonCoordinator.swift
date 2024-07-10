@@ -45,6 +45,13 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             
             loginVC.modalPresentationStyle = .overFullScreen
             currentNavigationViewController?.present(loginVC, animated: false)
+        case .signUp:
+            let viewModel: SignUpViewModel = SignUpViewModel(usecase: Injector.shared.resolve(LoginUsecaseProtocol.self)!)
+            let signUpVC = SignUpViewController(viewModel: viewModel)
+            signUpVC.coordinator = self
+            
+            signUpVC.hidesBottomBarWhenPushed = true
+            currentNavigationViewController?.pushViewController(signUpVC, animated: true)
         }
     }
 }

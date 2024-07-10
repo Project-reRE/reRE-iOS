@@ -118,26 +118,13 @@ final class LoginViewController: BaseBottomSheetViewController {
         bottomSheetContainerView.backgroundColor = .clear
         
         kakaoLoginButton.didTapped { [weak self] in
-            if UserApi.isKakaoTalkLoginAvailable() {
-                UserApi.shared.loginWithKakaoTalk { [weak self] oauthToken, error in
-                    guard error == nil,
-                          let accessToken = oauthToken?.accessToken else {
-                        return
-                    }
-                    
-                    print("accessToken: \(accessToken)")
-                    self?.viewModel.snsLogin(withToken: accessToken)
+            self?.kakaoLogin { accessToken, error in
+                guard error == nil,
+                      let accessToken = accessToken else {
+                    return
                 }
-            } else {
-                UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
-                    guard error == nil,
-                          let accessToken = oauthToken?.accessToken else {
-                        return
-                    }
-                    
-                    print("accessToken: \(accessToken)")
-                    self?.viewModel.snsLogin(withToken: accessToken)
-                }
+                
+                self?.viewModel.snsLogin(withToken: accessToken)
             }
         }
         
@@ -146,10 +133,43 @@ final class LoginViewController: BaseBottomSheetViewController {
         }
     }
     
+    private func kakaoLogin(_ completion: @escaping (String?, Error?) -> Void) {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk { oauthToken, error in
+                completion(oauthToken?.accessToken, error)
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount { oauthToken, error in
+                completion(oauthToken?.accessToken, error)
+            }
+        }
+    }
+    
     private func bind() {
         viewModel.getErrorSubject()
-            .sink { error in
+            .sink { [weak self] error in
+                
                 LogDebug(error)
+                
+                if let userError = error as? UserError {
+                    switch userError.statusCode {
+                    case 401: // AccessToken Error
+                        self?.kakaoLogin { [weak self] accessToken, error in
+                            guard error == nil,
+                                  let accessToken = accessToken else {
+                                return
+                            }
+                            
+                            self?.viewModel.snsLogin(withToken: accessToken)
+                        }
+                    case 404: // Should SignUp
+                        self?.dismissBottomSheet { [weak self] in
+                            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.signUp), userData: nil)
+                        }
+                    default:
+                        break
+                    }
+                }
             }.store(in: &cancelBag)
         
         viewModel.getjwtPublisher()

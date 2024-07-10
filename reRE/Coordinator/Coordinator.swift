@@ -63,6 +63,7 @@ enum MyPageFlow: Flow {
 enum CommonFlow: Flow {
     case revaluationDetail
     case login
+    case signUp
 }
 
 enum AppSettingScene {

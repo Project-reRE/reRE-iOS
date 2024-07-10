@@ -10,3 +10,9 @@ import Foundation
 struct RemoteLoginItem: Decodable {
     let jwt: String?
 }
+
+struct UserError: Error, Decodable {
+    let statusCode: Int
+    let code: String
+    let message: [String]
+}
