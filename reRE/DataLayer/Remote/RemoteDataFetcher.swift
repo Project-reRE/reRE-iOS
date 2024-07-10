@@ -81,4 +81,25 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             }
         }.eraseToAnyPublisher()
     }
+    
+    func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<Result<String, Error>, Never> {
+        return Future<Result<String, Error>, Never> { [weak self] promise in
+            self?.networkManager.fetchPublicService(.signUp(params: param)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(response.data)
+                        promise(.success(.failure(error)))
+                    } else if let userId = DecodeUtil.decode(String.self, data: response.data) {
+                        promise(.success(.success(userId)))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
 }

@@ -32,6 +32,19 @@ extension LoginUsecase: LoginUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
+    func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<String, Never> {
+        return repository.signUp(withParams: param)
+            .compactMap { [weak self] result in
+                switch result {
+                case .success(let userId):
+                    return userId
+                case .failure(let error):
+                    self?.errorSubject.send(error)
+                    return nil
+                }
+            }.eraseToAnyPublisher()
+    }
+    
     func getErrorSubject() -> AnyPublisher<Error, Never> {
         return errorSubject.eraseToAnyPublisher()
     }

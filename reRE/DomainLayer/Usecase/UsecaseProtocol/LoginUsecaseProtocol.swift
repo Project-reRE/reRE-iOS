@@ -10,4 +10,5 @@ import Combine
 
 protocol LoginUsecaseProtocol: BaseUsecaseProtocol {
     func snsLogin(withToken accessToken: String) -> AnyPublisher<String, Never>
+    func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<String, Never>
 }

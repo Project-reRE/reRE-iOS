@@ -116,6 +116,7 @@
 		FE98266D2C3E96E2006F0C67 /* RemoteLoginMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98266C2C3E96E2006F0C67 /* RemoteLoginMapper.swift */; };
 		FE98266F2C3E9B70006F0C67 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98266E2C3E9B70006F0C67 /* SignUpViewController.swift */; };
 		FE9826712C3E9BD2006F0C67 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826702C3E9BD2006F0C67 /* SignUpViewModel.swift */; };
+		FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -237,6 +238,7 @@
 		FE98266C2C3E96E2006F0C67 /* RemoteLoginMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginMapper.swift; sourceTree = "<group>"; };
 		FE98266E2C3E9B70006F0C67 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FE9826702C3E9BD2006F0C67 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -576,12 +578,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FE9826722C3EA06D006F0C67 /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */,
+			);
+			path = RequestModel;
+			sourceTree = "<group>";
+		};
 		FECFE43C2C32B74A00078CDF /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
 				FECFE43E2C32B77600078CDF /* Usecase */,
 				FECFE43D2C32B76B00078CDF /* RepositoryProtocol */,
 				FECFE4502C32B94300078CDF /* Entity */,
+				FE9826722C3EA06D006F0C67 /* RequestModel */,
 				FECFE44F2C32B93F00078CDF /* ResponseModel */,
 				FECFE4552C32B97900078CDF /* Mapper */,
 			);
@@ -923,6 +934,7 @@
 				FE9826512C3BFB5D006F0C67 /* LoginRepository.swift in Sources */,
 				432C09732BE7676D00BBFDB1 /* GenreHeaderView.swift in Sources */,
 				4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */,
+				FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

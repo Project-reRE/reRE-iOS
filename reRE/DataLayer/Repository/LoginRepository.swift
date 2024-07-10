@@ -20,4 +20,8 @@ extension LoginRepository: LoginRepositoryProtocol {
     func snsLogin(withToken accessToken: String) -> AnyPublisher<Result<String, Error>, Never> {
         return remoteDataFetcher.snsLogin(withToken: accessToken)
     }
+    
+    func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<Result<String, Error>, Never> {
+        return remoteDataFetcher.signUp(withParams: param)
+    }
 }
