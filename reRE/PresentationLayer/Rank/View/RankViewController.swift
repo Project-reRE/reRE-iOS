@@ -21,6 +21,7 @@ final class RankViewController: BaseViewController {
     
     private var cancelBag = Set<AnyCancellable>()
     
+    private var currentAutoScrollIndex = 1
     private let genreProperties: [RankingGenreProperty] = [.init(backgroundColor: ColorSet.primary(.orange40).color,
                                                                  textColor: ColorSet.primary(.orange90).color,
                                                                  descriptionColor: ColorSet.primary(.orange60).color),
@@ -64,6 +65,19 @@ final class RankViewController: BaseViewController {
         bind()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.stopTimer()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard viewModel.getBannerListValue().count > 1 else { return }
+        viewModel.startTimer()
+    }
+    
     override func addViews() {
         view.addSubview(rankingView)
     }
@@ -82,15 +96,40 @@ final class RankViewController: BaseViewController {
                 LogDebug(error)
             }.store(in: &cancelBag)
         
+        viewModel.getTimerPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                
+                self.currentAutoScrollIndex += 1
+                
+                if self.currentAutoScrollIndex == self.viewModel.getBannerListValue().count - 1 {
+                    self.currentAutoScrollIndex = 1
+                }
+                
+                self.rankingView.scrollToItem(at: IndexPath(item: self.currentAutoScrollIndex, section: 0),
+                                              at: .left,
+                                              animated: true)
+            }.store(in: &cancelBag)
+        
         let bannerListPublisher = viewModel.getBannerListPublisher().dropFirst()
         let movieSetsPublisher = viewModel.getMovieSetsPublisher().dropFirst()
         
         movieSetsPublisher
             .zip(bannerListPublisher)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] movieSets, bannerList in
                 self?.rankingView.reloadData()
                 self?.rankingView.layoutIfNeeded()
+                
+                if bannerList.count > 1 {
+                    self?.rankingView.scrollToItem(at: IndexPath(item: 1, section: 0),
+                                                   at: .left,
+                                                   animated: false)
+                    self?.viewModel.startTimer()
+                } else {
+                    self?.viewModel.stopTimer()
+                }
             }.store(in: &cancelBag)
         
         viewModel.getMovieSets()
@@ -100,7 +139,9 @@ final class RankViewController: BaseViewController {
     private func layout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in
             if sectionIndex == 0 {
-                let itemWidth: CGFloat = UIScreen.main.bounds.width - moderateScale(number: 48 * 2)
+                let sectionMargin: CGFloat = moderateScale(number: 48)
+                
+                let itemWidth: CGFloat = UIScreen.main.bounds.width - sectionMargin * 2
                 let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
                                                       heightDimension: .absolute(moderateScale(number: 141)))
                 let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
@@ -124,6 +165,22 @@ final class RankViewController: BaseViewController {
                                                                          alignment: .bottom)
                 section.boundarySupplementaryItems = [header, footer]
                 section.orthogonalScrollingBehavior = .groupPagingCentered
+                section.visibleItemsInvalidationHandler = { [weak self] _, point, _ in
+                    guard let maxIndex = self?.viewModel.getBannerListValue().indices.max() else {
+                        return
+                    }
+                    
+                    let page: Int = Int(round(point.x / itemWidth))
+                    
+                    self?.currentAutoScrollIndex = page
+                    
+                    if page == maxIndex {
+                        self?.currentAutoScrollIndex = 1
+                    }  else if page == 0 {
+                        self?.currentAutoScrollIndex = maxIndex - 1
+                    }
+                }
+                
                 section.interGroupSpacing = moderateScale(number: 8)
                 section.contentInsets = .init(top: 0,
                                               leading: 0,

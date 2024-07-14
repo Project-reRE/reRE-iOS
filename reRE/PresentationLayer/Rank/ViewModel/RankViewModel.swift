@@ -9,6 +9,9 @@ import Foundation
 import Combine
 
 final class RankViewModel: BaseViewModel {
+    private var timer: Timer?
+    private let timerPublisher = PassthroughSubject<Void, Never>()
+    
     private let shouldGetMovieSets = PassthroughSubject<Void, Never>()
     private let movieSets = CurrentValueSubject<[MovieSetsResponseModel], Never>([])
     
@@ -34,8 +37,41 @@ final class RankViewModel: BaseViewModel {
         shouldGetBannerList
             .flatMap(usecase.getBannerList)
             .sink { [weak self] bannerList in
-                self?.bannerList.send(bannerList.filter { $0.display })
+                var shouldDisplayBannerList = bannerList.filter { $0.display }
+                
+                guard shouldDisplayBannerList.count > 1 else {
+                    self?.bannerList.send(shouldDisplayBannerList)
+                    return
+                }
+                
+                guard let firstBanner = shouldDisplayBannerList.first,
+                      let lastBanner = shouldDisplayBannerList.last else {
+                    self?.bannerList.send(shouldDisplayBannerList)
+                    return
+                }
+                
+                shouldDisplayBannerList.insert(lastBanner, at: 0)
+                shouldDisplayBannerList.append(firstBanner)
+                
+                self?.bannerList.send(shouldDisplayBannerList)
             }.store(in: &cancelBag)
+    }
+    
+    func startTimer() {
+        timer?.invalidate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
+            self?.timerPublisher.send(())
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func getTimerPublisher() -> AnyPublisher<Void, Never> {
+        return timerPublisher.eraseToAnyPublisher()
     }
     
     func getMovieSets() {
