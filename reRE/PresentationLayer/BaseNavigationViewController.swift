@@ -19,7 +19,7 @@ class NavigationBaseViewController: BaseViewController {
         $0.image = UIImage(named: "BackButtonIcon")
     }
     
-    private lazy var titleLabel = UILabel().then {
+    private lazy var topTitleLabel = UILabel().then {
         $0.textColor = ColorSet.tertiary(.navy90).color
         $0.font = FontSet.button01.font
         $0.numberOfLines = 0
@@ -37,7 +37,7 @@ class NavigationBaseViewController: BaseViewController {
     
     override func addViews() {
         view.addSubview(topContainerView)
-        topContainerView.addSubviews([backButton, titleLabel])
+        topContainerView.addSubviews([backButton, topTitleLabel])
     }
     
     override func makeConstraints() {
@@ -53,7 +53,7 @@ class NavigationBaseViewController: BaseViewController {
             $0.size.equalTo(moderateScale(number: 24))
         }
         
-        titleLabel.snp.makeConstraints {
+        topTitleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(backButton.snp.trailing).offset(moderateScale(number: 8))
             $0.trailing.equalToSuperview().inset(moderateScale(number: 16))
@@ -67,6 +67,6 @@ class NavigationBaseViewController: BaseViewController {
     }
     
     func setNavigationTitle(with title: String) {
-        titleLabel.text = title
+        topTitleLabel.text = title
     }
 }

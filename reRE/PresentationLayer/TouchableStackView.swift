@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TouchableStackView: UIStackView {
+class TouchableStackView: UIStackView {
     fileprivate var impactFeedbackGenerator: UIImpactFeedbackGenerator?
     
     convenience init(_ vibrate: Bool = false) {
