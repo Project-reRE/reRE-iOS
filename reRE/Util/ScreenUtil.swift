@@ -38,10 +38,3 @@ func getSafeAreaTop() -> CGFloat {
 func getSafeAreaBottom() -> CGFloat {
     UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.safeAreaInsets.bottom ?? 0
 }
-
-@inline(__always)
-func isLandscapeIPad() -> Bool {
-    guard let firstScene = UIApplication.shared.windows.first?.windowScene else { return false }
-    return UIDevice.current.userInterfaceIdiom == .pad && (firstScene.interfaceOrientation == .landscapeLeft || firstScene.interfaceOrientation == .landscapeRight)
-}
-

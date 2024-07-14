@@ -149,6 +149,7 @@ final class SignUpViewController: BaseNavigationViewController {
         $0.layer.cornerRadius = moderateScale(number: 12)
         $0.backgroundColor = ColorSet.gray(.gray30).color
         $0.textColor = ColorSet.gray(.gray60).color
+        $0.font = FontSet.button01.font
         $0.isUserInteractionEnabled = false
     }
     

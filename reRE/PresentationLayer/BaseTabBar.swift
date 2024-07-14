@@ -16,17 +16,17 @@ final class BaseTabBar: UITabBar {
         backgroundColor = ColorSet.tertiary(.navy30).color
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setNeedsLayout() {
+        super.setNeedsLayout()
         
         self.frame = CGRect(x: moderateScale(number: 16),
                             y: UIScreen.main.bounds.height - getSafeAreaBottom() - moderateScale(number: 56),
                             width: UIScreen.main.bounds.width - moderateScale(number: 16 * 2),
                             height: moderateScale(number: 56))
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
