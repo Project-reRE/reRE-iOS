@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import Combine
 import Then
 import SnapKit
 
-final class SignUpViewController: NavigationBaseViewController {
+final class SignUpViewController: BaseNavigationViewController {
+    private var cancelBag = Set<AnyCancellable>()
+    
     var coordinator: CommonBaseCoordinator?
+    
+    private var isAllChecked: Bool = false {
+        didSet {
+            allAgreeButton.updateCheckStatus(isChecked: isAllChecked)
+        }
+    }
     
     private lazy var scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
@@ -53,6 +62,8 @@ final class SignUpViewController: NavigationBaseViewController {
         $0.layer.masksToBounds = true
         $0.textColor = ColorSet.gray(.gray70).color
         $0.font = FontSet.body03.font
+        $0.delegate = self
+        $0.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         $0.keyboardType = .numberPad
         $0.addRightPadding(moderateScale(number: 8 + 20 + 8))
         $0.addLeftPadding(moderateScale(number: 16))
@@ -64,6 +75,7 @@ final class SignUpViewController: NavigationBaseViewController {
     private lazy var clearButton = TouchableImageView(frame: .zero).then {
         $0.image = UIImage(named: "ClearButton")
         $0.contentMode = .scaleAspectFit
+        $0.isHidden = true
     }
     
     private lazy var genderTitleLabel = UILabel().then {
@@ -79,6 +91,8 @@ final class SignUpViewController: NavigationBaseViewController {
     
     private lazy var maleButton = TouchableLabel().then {
         $0.text = "남성"
+        $0.textColor = ColorSet.gray(.gray50).color
+        $0.font = FontSet.button02.font
         $0.layer.borderColor = ColorSet.gray(.gray40).color?.cgColor
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = moderateScale(number: 8)
@@ -89,6 +103,8 @@ final class SignUpViewController: NavigationBaseViewController {
     
     private lazy var femaleButton = TouchableLabel().then {
         $0.text = "여성"
+        $0.textColor = ColorSet.gray(.gray50).color
+        $0.font = FontSet.button02.font
         $0.layer.borderColor = ColorSet.gray(.gray40).color?.cgColor
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = moderateScale(number: 8)
@@ -133,6 +149,7 @@ final class SignUpViewController: NavigationBaseViewController {
         $0.layer.cornerRadius = moderateScale(number: 12)
         $0.backgroundColor = ColorSet.gray(.gray30).color
         $0.textColor = ColorSet.gray(.gray60).color
+        $0.isUserInteractionEnabled = false
     }
     
     private let viewModel: SignUpViewModel
@@ -140,6 +157,13 @@ final class SignUpViewController: NavigationBaseViewController {
     init(viewModel: SignUpViewModel) {
         self.viewModel = viewModel
         super.init()
+        
+        hidesBottomBarWhenPushed = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
     }
     
     override func addViews() {
@@ -204,6 +228,12 @@ final class SignUpViewController: NavigationBaseViewController {
             $0.height.equalTo(moderateScale(number: 48))
         }
         
+        clearButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(moderateScale(number: 8))
+            $0.size.equalTo(moderateScale(number: 20))
+        }
+        
         genderTitleLabel.snp.makeConstraints {
             $0.top.equalTo(yearOfBirthTextField.snp.bottom).offset(moderateScale(number: 20))
             $0.leading.equalToSuperview().inset(moderateScale(number: 24))
@@ -220,5 +250,114 @@ final class SignUpViewController: NavigationBaseViewController {
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.bottom.equalToSuperview().inset(moderateScale(number: 166))
         }
+    }
+    
+    override func setupIfNeeded() {
+        super.setupIfNeeded()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        view.addGestureRecognizer(tapGestureRecognizer)
+        
+        clearButton.didTapped { [weak self] in
+            self?.yearOfBirthTextField.text = ""
+            self?.clearButton.isHidden = true
+            self?.viewModel.setUserBirth(withYear: "")
+        }
+        
+        maleButton.didTapped { [weak self] in
+            self?.maleButton.backgroundColor = ColorSet.primary(.darkGreen40).color
+            self?.maleButton.textColor = ColorSet.gray(.white).color
+            
+            self?.femaleButton.backgroundColor = .clear
+            self?.femaleButton.textColor = ColorSet.gray(.gray50).color
+            
+            self?.viewModel.setUserGender(isMale: true)
+        }
+        
+        femaleButton.didTapped { [weak self] in
+            self?.femaleButton.backgroundColor = ColorSet.primary(.darkGreen40).color
+            self?.femaleButton.textColor = ColorSet.gray(.white).color
+            
+            self?.maleButton.backgroundColor = .clear
+            self?.maleButton.textColor = ColorSet.gray(.gray50).color
+            
+            self?.viewModel.setUserGender(isMale: false)
+        }
+        
+        allAgreeButton.didTapped { [weak self] in
+            guard let self = self else { return }
+            
+            var isChecked: Bool = self.allAgreeButton.getCheckedValue()
+            isChecked.toggle()
+            
+            self.termsStackView.arrangedSubviews.forEach { subView in
+                (subView as? TermsStackView)?.updateCheckStatus(isChecked: isChecked)
+            }
+            
+            self.isAllChecked = isChecked
+        }
+        
+        serviceAgreementButton.showTermsButton.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
+                                      userData: ["urlString": "https://revaluation.notion.site/72ff79808476490aa5feb170caa59652"])
+        }
+        
+        privacyPolicyAgreementButton.showTermsButton.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
+                                      userData: ["urlString": "https://revaluation.notion.site/3e61d87145254fc6b8cf02b7853304d7"])
+        }
+    }
+    
+    private func bind() {
+        ageAgreementButton.getCheckPublisher()
+            .combineLatest(serviceAgreementButton.getCheckPublisher(),
+                           privacyPolicyAgreementButton.getCheckPublisher())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] ageAgreement, serviceAgreement, privacyPolicyAgreement in
+                let isAllAgree: Bool = ageAgreement && serviceAgreement && privacyPolicyAgreement
+                
+                self?.isAllChecked = isAllAgree
+                self?.viewModel.setUserAgreement(isAllAgree: isAllAgree)
+            }.store(in: &cancelBag)
+        
+        viewModel.getSatisfiedConditionPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isSatisfied in
+                self?.signUpButton.isUserInteractionEnabled = isSatisfied
+                
+                if isSatisfied {
+                    self?.signUpButton.backgroundColor = ColorSet.primary(.orange50).color
+                    self?.signUpButton.textColor = ColorSet.gray(.white).color
+                } else {
+                    self?.signUpButton.backgroundColor = ColorSet.gray(.gray30).color
+                    self?.signUpButton.textColor = ColorSet.gray(.gray60).color
+                }
+            }.store(in: &cancelBag)
+    }
+    
+    @objc
+    private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    @objc
+    private func textFieldDidChange(_ sender: UITextField) {
+        guard let userBirth = sender.text else { return }
+        
+        clearButton.isHidden = userBirth.isEmpty
+        viewModel.setUserBirth(withYear: userBirth)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension SignUpViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard !string.isEmpty,
+              let text = textField.text else {
+            return true
+        }
+        
+        let isNumeric: Bool = string.isEmpty || (Double(string) != nil)
+        return isNumeric && text.count < 4
     }
 }

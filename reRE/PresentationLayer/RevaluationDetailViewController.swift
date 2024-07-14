@@ -10,7 +10,7 @@ import Combine
 import SnapKit
 import Then
 
-final class RevaluationDetailViewController: NavigationBaseViewController {
+final class RevaluationDetailViewController: BaseNavigationViewController {
     private var cancelBag = Set<AnyCancellable>()
     
     var coordinator: CommonBaseCoordinator?

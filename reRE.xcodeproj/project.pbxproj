@@ -118,6 +118,7 @@
 		FE9826712C3E9BD2006F0C67 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826702C3E9BD2006F0C67 /* SignUpViewModel.swift */; };
 		FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */; };
 		FE9826862C437652006F0C67 /* TermsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826852C437651006F0C67 /* TermsStackView.swift */; };
+		FE9826882C438D69006F0C67 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826872C438D69006F0C67 /* BaseWebViewController.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -241,6 +242,7 @@
 		FE9826702C3E9BD2006F0C67 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
 		FE9826852C437651006F0C67 /* TermsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsStackView.swift; sourceTree = "<group>"; };
+		FE9826872C438D69006F0C67 /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				432C09622BD4F34500BBFDB1 /* BaseViewController.swift */,
 				43263F572C1187B7004804BF /* BaseNavigationViewController.swift */,
 				FE9826442C3BF260006F0C67 /* BaseBottomSheetViewController.swift */,
+				FE9826872C438D69006F0C67 /* BaseWebViewController.swift */,
 				436351C82C0C39380078C8C1 /* BaseTabBar.swift */,
 				FECFE45B2C32BC6B00078CDF /* BaseViewModel.swift */,
 				432C09662BD4F43D00BBFDB1 /* TapGestureRecognizer.swift */,
@@ -928,6 +931,7 @@
 				432C09652BD4F41B00BBFDB1 /* TouchableView.swift in Sources */,
 				FECFE45C2C32BC6B00078CDF /* BaseViewModel.swift in Sources */,
 				436351CD2C0C44060078C8C1 /* RevaluationDetailViewController.swift in Sources */,
+				FE9826882C438D69006F0C67 /* BaseWebViewController.swift in Sources */,
 				432C094C2BD4EF0C00BBFDB1 /* UIView+Extension.swift in Sources */,
 				4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */,
 				FECFE44E2C32B8B400078CDF /* RemoteBannerItem.swift in Sources */,

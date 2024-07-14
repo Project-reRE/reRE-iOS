@@ -10,7 +10,7 @@ import Combine
 import SnapKit
 import Then
 
-final class SearchViewController: NavigationBaseViewController {
+final class SearchViewController: BaseNavigationViewController {
     var coordinator: SearchBaseCoordinator?
     
     private var cancelBag = Set<AnyCancellable>()

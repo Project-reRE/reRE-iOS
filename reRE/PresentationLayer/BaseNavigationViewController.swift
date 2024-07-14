@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class NavigationBaseViewController: BaseViewController {
+class BaseNavigationViewController: BaseViewController {
     lazy var topContainerView = UIView().then {
         $0.backgroundColor = .clear
     }

@@ -86,7 +86,7 @@ final class TermsStackView: TouchableStackView {
         titleLabel.text = title
     }
     
-    func updateCheckImage(isChecked: Bool) {
+    func updateCheckStatus(isChecked: Bool) {
         checkPublisher.send(isChecked)
     }
     
