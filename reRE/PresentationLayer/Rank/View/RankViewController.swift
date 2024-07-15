@@ -166,18 +166,23 @@ final class RankViewController: BaseViewController {
                 section.boundarySupplementaryItems = [header, footer]
                 section.orthogonalScrollingBehavior = .groupPagingCentered
                 section.visibleItemsInvalidationHandler = { [weak self] _, point, _ in
-                    guard let maxIndex = self?.viewModel.getBannerListValue().indices.max() else {
-                        return
-                    }
+                    guard let self = self else { return }
+                    guard let maxIndex = self.viewModel.getBannerListValue().indices.max() else { return }
                     
                     let page: Int = Int(round(point.x / itemWidth))
                     
-                    self?.currentAutoScrollIndex = page
+                    self.currentAutoScrollIndex = page
                     
                     if page == maxIndex {
-                        self?.currentAutoScrollIndex = 1
+                        self.currentAutoScrollIndex = 1
+                        self.rankingView.scrollToItem(at: IndexPath(item: self.currentAutoScrollIndex, section: 0),
+                                                      at: .left,
+                                                      animated: false)
                     }  else if page == 0 {
-                        self?.currentAutoScrollIndex = maxIndex - 1
+                        self.currentAutoScrollIndex = maxIndex - 1
+                        self.rankingView.scrollToItem(at: IndexPath(item: self.currentAutoScrollIndex, section: 0),
+                                                      at: .left,
+                                                      animated: false)
                     }
                 }
                 
