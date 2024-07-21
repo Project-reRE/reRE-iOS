@@ -12,6 +12,8 @@ import Moya
 final class NetworkManager {
     static let shared = NetworkManager()
     
+    private var token: String?
+    
     private init() {}
     
     private func provider(_ token: String? = nil, customHeader: HTTPHeaders? = nil) -> MoyaProvider<NetworkService> {
@@ -33,6 +35,17 @@ final class NetworkManager {
             return MoyaProvider<NetworkService>(session: session)
         }
     }
+    
+    func setHeaderToken(token: String) {
+        guard !token.isEmpty else {
+            print("<<<<<<<<<<<<<<<<<<<<")
+            print("Empty Token !!!")
+            print("<<<<<<<<<<<<<<<<<<<<")
+            return
+        }
+        
+        self.token = token
+    }
 }
 
 extension NetworkManager {
@@ -48,7 +61,7 @@ extension NetworkManager {
     }
     
     func fetchService(withHeader headers: HTTPHeaders?, _ service: NetworkService, _ completion: @escaping (Result<Response, Error>) -> Void) {
-        provider(nil, customHeader: headers)
+        provider(token, customHeader: headers)
             .request(service) { result in
                 switch result {
                 case .success(let response):

@@ -165,7 +165,10 @@ final class LoginViewController: BaseBottomSheetViewController {
                         }
                     case 404: // Should SignUp
                         self?.dismissBottomSheet { [weak self] in
-                            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.signUp), userData: nil)
+                            guard let self = self else { return }
+                            
+                            self.coordinator?.moveTo(appFlow: TabBarFlow.common(.signUp),
+                                                     userData: ["viewModel": self.viewModel])
                         }
                     default:
                         break
@@ -173,9 +176,11 @@ final class LoginViewController: BaseBottomSheetViewController {
                 }
             }.store(in: &cancelBag)
         
-        viewModel.getjwtPublisher()
-            .droppedSink { jwt in
-                print("jwt: \(jwt)")
+        viewModel.getLoginCompletionPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                print("login success")
+                self?.dismissBottomSheet()
             }.store(in: &cancelBag)
     }
 }

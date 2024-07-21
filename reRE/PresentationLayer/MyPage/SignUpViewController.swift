@@ -154,9 +154,9 @@ final class SignUpViewController: BaseNavigationViewController {
         $0.isUserInteractionEnabled = false
     }
     
-    private let viewModel: SignUpViewModel
+    private let viewModel: LoginViewModel
     
-    init(viewModel: SignUpViewModel) {
+    init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init()
         
@@ -317,8 +317,25 @@ final class SignUpViewController: BaseNavigationViewController {
     private func bind() {
         viewModel.getErrorSubject()
             .receive(on: DispatchQueue.main)
-            .sink { error in
+            .sink { [weak self] error in
+                
                 LogDebug(error)
+                
+                if let userError = error as? UserError {
+                    switch userError.statusCode {
+                    case 401: // AccessToken Error
+                        self?.kakaoLogin { [weak self] accessToken, error in
+                            guard error == nil,
+                                  let accessToken = accessToken else {
+                                return
+                            }
+                            
+                            self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
+                        }
+                    default:
+                        break
+                    }
+                }
             }.store(in: &cancelBag)
         
         ageAgreementButton.getCheckPublisher()
@@ -345,6 +362,25 @@ final class SignUpViewController: BaseNavigationViewController {
                     self?.signUpButton.textColor = ColorSet.gray(.gray60).color
                 }
             }.store(in: &cancelBag)
+        
+        viewModel.getLoginCompletionPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                print("login success")
+                self?.navigationController?.popViewController(animated: true)
+            }.store(in: &cancelBag)
+    }
+    
+    private func kakaoLogin(_ completion: @escaping (String?, Error?) -> Void) {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk { oauthToken, error in
+                completion(oauthToken?.accessToken, error)
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount { oauthToken, error in
+                completion(oauthToken?.accessToken, error)
+            }
+        }
     }
     
     @objc

@@ -17,8 +17,8 @@ final class LoginRepository {
 }
 
 extension LoginRepository: LoginRepositoryProtocol {
-    func snsLogin(withToken accessToken: String, loginType: SNSLoginType) -> AnyPublisher<Result<String, Error>, Never> {
-        return remoteDataFetcher.snsLogin(withToken: accessToken, loginType: loginType)
+    func snsLogin(withModel model: LoginRequestModel) -> AnyPublisher<Result<String, Error>, Never> {
+        return remoteDataFetcher.snsLogin(withModel: model)
     }
     
     func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<Result<String, Error>, Never> {

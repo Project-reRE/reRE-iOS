@@ -26,7 +26,18 @@ public func LogDebug(_ item: Any,
     dump(fileName)
     dump(functionName)
     dump(line)
-    dump(item)
+    
+    if let data = item as? Data {
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            dump(json)
+        } catch {
+            dump(item)
+        }
+    } else {
+        dump(item)
+    }
+    
     print("==================end===================")
 }
 @inline(__always)

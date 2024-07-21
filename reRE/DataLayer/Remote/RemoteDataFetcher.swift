@@ -62,20 +62,22 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
-    func snsLogin(withToken accessToken: String, loginType: SNSLoginType) -> AnyPublisher<Result<String, Error>, Never> {
+    func snsLogin(withModel model: LoginRequestModel) -> AnyPublisher<Result<String, Error>, Never> {
         return Future<Result<String, Error>, Never> { [weak self] promise in
-            let headers: HTTPHeaders = HTTPHeaders([HTTPHeader(name: loginType.headerName, value: accessToken)])
+            let headers: HTTPHeaders = HTTPHeaders([HTTPHeader(name: model.loginType.headerName, value: model.accessToken)])
             self?.networkManager.fetchService(withHeader: headers, .kakaoAuth) { [weak self] result in
                 switch result {
                 case .success(let response):
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
+                        self?.accessToken = model.accessToken
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
-                        if let jwtToken = remoteItem.jwt {
-                            self?.accessToken = jwtToken
+                        LogDebug(response.data)
+                        if let jwtToken = remoteItem.jwt, !jwtToken.isEmpty {
+                            self?.networkManager.setHeaderToken(token: jwtToken)
                         } else {
-                            self?.accessToken = accessToken
+                            self?.accessToken = model.accessToken
                         }
                         
                         promise(.success(.success(remoteItem.jwt ?? "")))

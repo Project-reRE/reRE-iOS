@@ -115,7 +115,6 @@
 		FE98266B2C3E96B4006F0C67 /* LoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98266A2C3E96B4006F0C67 /* LoginResponseModel.swift */; };
 		FE98266D2C3E96E2006F0C67 /* RemoteLoginMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98266C2C3E96E2006F0C67 /* RemoteLoginMapper.swift */; };
 		FE98266F2C3E9B70006F0C67 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98266E2C3E9B70006F0C67 /* SignUpViewController.swift */; };
-		FE9826712C3E9BD2006F0C67 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826702C3E9BD2006F0C67 /* SignUpViewModel.swift */; };
 		FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */; };
 		FE9826862C437652006F0C67 /* TermsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826852C437651006F0C67 /* TermsStackView.swift */; };
 		FE9826882C438D69006F0C67 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826872C438D69006F0C67 /* BaseWebViewController.swift */; };
@@ -239,7 +238,6 @@
 		FE98266A2C3E96B4006F0C67 /* LoginResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseModel.swift; sourceTree = "<group>"; };
 		FE98266C2C3E96E2006F0C67 /* RemoteLoginMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoginMapper.swift; sourceTree = "<group>"; };
 		FE98266E2C3E9B70006F0C67 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		FE9826702C3E9BD2006F0C67 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
 		FE9826852C437651006F0C67 /* TermsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsStackView.swift; sourceTree = "<group>"; };
 		FE9826872C438D69006F0C67 /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
@@ -458,7 +456,6 @@
 				FE9826462C3BF3EC006F0C67 /* LoginViewController.swift */,
 				FE9826482C3BFB02006F0C67 /* LoginViewModel.swift */,
 				FE98266E2C3E9B70006F0C67 /* SignUpViewController.swift */,
-				FE9826702C3E9BD2006F0C67 /* SignUpViewModel.swift */,
 				FE9826852C437651006F0C67 /* TermsStackView.swift */,
 			);
 			path = MyPage;
@@ -872,7 +869,6 @@
 				432C09752BE7679300BBFDB1 /* RankingItemCell.swift in Sources */,
 				FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */,
 				436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */,
-				FE9826712C3E9BD2006F0C67 /* SignUpViewModel.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
 				FE98260C2C340CDC006F0C67 /* MovieSetsResponseModel.swift in Sources */,
 				FE9826472C3BF3EC006F0C67 /* LoginViewController.swift in Sources */,

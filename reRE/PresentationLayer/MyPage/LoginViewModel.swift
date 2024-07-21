@@ -8,10 +8,21 @@
 import Foundation
 import Combine
 
+struct LoginRequestModel {
+    let accessToken: String
+    let loginType: SNSLoginType
+}
+
 final class LoginViewModel: BaseViewModel {
-    private let shouldSNSLogin = PassthroughSubject<(String, SNSLoginType), Never>()
+    private let isSatisfiedCondition = PassthroughSubject<Bool, Never>()
     
-    private let jwt = CurrentValueSubject<String, Never>("")
+    private let shouldSNSLogin = CurrentValueSubject<LoginRequestModel, Never>(.init(accessToken: "", loginType: .kakao))
+    private let shouldSignUp = PassthroughSubject<SignUpRequestModel, Never>()
+    private let userBirth = CurrentValueSubject<String, Never>("")
+    private let userGender = CurrentValueSubject<Bool?, Never>(nil)
+    private let userAgreement = CurrentValueSubject<Bool, Never>(false)
+    
+    private let loginCompletion = PassthroughSubject<Void, Never>()
     
     private let usecase: LoginUsecaseProtocol
     
@@ -24,21 +35,67 @@ final class LoginViewModel: BaseViewModel {
     
     private func bind() {
         shouldSNSLogin
-            .flatMap(usecase.snsLogin(withToken:loginType:))
-            .sink { [weak self] jwt in
-                self?.jwt.send(jwt)
+            .dropFirst()
+            .flatMap(usecase.snsLogin(withModel:))
+            .sink { [weak self] _ in
+                self?.loginCompletion.send(())
+            }.store(in: &cancelBag)
+        
+        let userBirthPublisher = userBirth.eraseToAnyPublisher().dropFirst()
+        let userGenderPublisher = userGender.eraseToAnyPublisher().dropFirst()
+        let userAgreementPublisher = userAgreement.eraseToAnyPublisher().dropFirst()
+        
+        userBirthPublisher
+            .combineLatest(userGenderPublisher, userAgreementPublisher)
+            .sink { [weak self] birth, gender, agreement in
+                guard let selectedGender = gender else {
+                    self?.isSatisfiedCondition.send(false)
+                    return
+                }
+                
+                let isValidBirth: Bool = birth.count == 4
+                self?.isSatisfiedCondition.send(isValidBirth && selectedGender && agreement)
+            }.store(in: &cancelBag)
+        
+        shouldSignUp
+            .flatMap(usecase.signUp(withParams:))
+            .sink { [weak self] userId in
+                guard let self = self else { return }
+                print("userId: \(userId)")
+                
+                self.shouldSNSLogin.send(self.shouldSNSLogin.value)
             }.store(in: &cancelBag)
     }
     
     func snsLogin(withToken accessToken: String, loginType: SNSLoginType) {
-        shouldSNSLogin.send((accessToken, loginType))
+        shouldSNSLogin.send(.init(accessToken: accessToken, loginType: loginType))
     }
     
-    func getjwtPublisher() -> AnyPublisher<String, Never> {
-        return jwt.eraseToAnyPublisher()
+    func setUserBirth(withYear year: String) {
+        userBirth.send(year)
     }
     
-    func getjwtValue() -> String {
-        return jwt.value
+    func setUserGender(isMale: Bool) {
+        userGender.send(isMale)
+    }
+    
+    func setUserAgreement(isAllAgree: Bool) {
+        userAgreement.send(isAllAgree)
+    }
+    
+    func getSatisfiedConditionPublisher() -> AnyPublisher<Bool, Never> {
+        return isSatisfiedCondition.eraseToAnyPublisher()
+    }
+    
+    func signUp() {
+        guard let gender = userGender.value else { return }
+        
+        shouldSignUp.send(SignUpRequestModel(provider: "kakao",
+                                             gender: gender,
+                                             birthDate: userBirth.value))
+    }
+    
+    func getLoginCompletionPublisher() -> AnyPublisher<Void, Never> {
+        return loginCompletion.eraseToAnyPublisher()
     }
 }

@@ -19,8 +19,8 @@ final class LoginUsecase {
 }
 
 extension LoginUsecase: LoginUsecaseProtocol {
-    func snsLogin(withToken accessToken: String, loginType: SNSLoginType) -> AnyPublisher<String, Never> {
-        return repository.snsLogin(withToken: accessToken, loginType: loginType)
+    func snsLogin(withModel model: LoginRequestModel) -> AnyPublisher<String, Never> {
+        return repository.snsLogin(withModel: model)
             .compactMap { [weak self] result in
                 switch result {
                 case .success(let jwt):

@@ -9,6 +9,6 @@ import Foundation
 import Combine
 
 protocol LoginRepositoryProtocol: AnyObject {
-    func snsLogin(withToken accessToken: String, loginType: SNSLoginType) -> AnyPublisher<Result<String, Error>, Never>
+    func snsLogin(withModel model: LoginRequestModel) -> AnyPublisher<Result<String, Error>, Never>
     func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<Result<String, Error>, Never>
 }
