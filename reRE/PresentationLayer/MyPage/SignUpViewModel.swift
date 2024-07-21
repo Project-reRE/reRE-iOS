@@ -7,10 +7,12 @@
 
 import Foundation
 import Combine
+import KakaoSDKUser
 
 final class SignUpViewModel: BaseViewModel {
     private let isSatisfiedCondition = PassthroughSubject<Bool, Never>()
     
+    private let shouldSignUp = PassthroughSubject<SignUpRequestModel, Never>()
     private let userBirth = CurrentValueSubject<String, Never>("")
     private let userGender = CurrentValueSubject<Bool?, Never>(nil)
     private let userAgreement = CurrentValueSubject<Bool, Never>(false)
@@ -40,6 +42,12 @@ final class SignUpViewModel: BaseViewModel {
                 let isValidBirth: Bool = birth.count == 4
                 self?.isSatisfiedCondition.send(isValidBirth && selectedGender && agreement)
             }.store(in: &cancelBag)
+        
+        shouldSignUp
+            .flatMap(usecase.signUp(withParams:))
+            .sink { userId in
+                print("userId: \(userId)")
+            }.store(in: &cancelBag)
     }
     
     func setUserBirth(withYear year: String) {
@@ -56,5 +64,23 @@ final class SignUpViewModel: BaseViewModel {
     
     func getSatisfiedConditionPublisher() -> AnyPublisher<Bool, Never> {
         return isSatisfiedCondition.eraseToAnyPublisher()
+    }
+    
+    func signUp() {
+        guard let gender = userGender.value else { return }
+        
+        UserApi.shared.me { [weak self] user, error in
+            guard let self = self else { return }
+            guard error == nil else {
+                LogDebug(error)
+                return
+            }
+            
+            self.shouldSignUp.send(SignUpRequestModel(provider: "kakao",
+                                                      profileUrl: user?.kakaoAccount?.profile?.profileImageUrl?.absoluteString,
+                                                      description: "",
+                                                      gender: gender,
+                                                      birthDate: self.userBirth.value))
+        }
     }
 }

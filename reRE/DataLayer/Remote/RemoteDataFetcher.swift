@@ -7,9 +7,12 @@
 
 import Foundation
 import Combine
+import Alamofire
 
 final class RemoteDataFetcher: RemoteDataFetchable {
     private var cancelBag = Set<AnyCancellable>()
+    
+    private var accessToken: String = ""
     
     private let networkManager: NetworkManager = NetworkManager.shared
     private let remoteBannerMapper = RemoteBannerMapper()
@@ -59,17 +62,22 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
-    func snsLogin(withToken accessToken: String) -> AnyPublisher<Result<String, Error>, Never> {
+    func snsLogin(withToken accessToken: String, loginType: SNSLoginType) -> AnyPublisher<Result<String, Error>, Never> {
         return Future<Result<String, Error>, Never> { [weak self] promise in
-            self?.networkManager.fetchService(withHeader: accessToken, .kakaoAuth) { [weak self] result in
-                guard let self = self else { return }
-                
+            let headers: HTTPHeaders = HTTPHeaders([HTTPHeader(name: loginType.headerName, value: accessToken)])
+            self?.networkManager.fetchService(withHeader: headers, .kakaoAuth) { [weak self] result in
                 switch result {
                 case .success(let response):
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
-                        LogDebug(response.data)
+                        LogDebug(error)
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
+                        if let jwtToken = remoteItem.jwt {
+                            self?.accessToken = jwtToken
+                        } else {
+                            self?.accessToken = accessToken
+                        }
+                        
                         promise(.success(.success(remoteItem.jwt ?? "")))
                     } else {
                         LogDebug(response.data)
@@ -84,11 +92,15 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     
     func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<Result<String, Error>, Never> {
         return Future<Result<String, Error>, Never> { [weak self] promise in
-            self?.networkManager.fetchPublicService(.signUp(params: param)) { result in
+            guard let self = self else { return }
+            
+            let headers: HTTPHeaders = HTTPHeaders([HTTPHeader(name: "oAuth-token", value: self.accessToken)])
+            
+            self.networkManager.fetchService(withHeader: headers, .signUp(params: param)) { result in
                 switch result {
                 case .success(let response):
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
-                        LogDebug(response.data)
+                        LogDebug(error)
                         promise(.success(.failure(error)))
                     } else if let userId = DecodeUtil.decode(String.self, data: response.data) {
                         promise(.success(.success(userId)))

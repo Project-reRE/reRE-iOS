@@ -8,11 +8,8 @@
 import Foundation
 
 struct SignUpRequestModel: Encodable {
-    let nickName: String
-    let password: String
-    let externalId: String
-    let profileUrl: String
-    let email: String
+    let provider: String
+    let profileUrl: String?
     let description: String
     let gender: Bool
     let birthDate: String

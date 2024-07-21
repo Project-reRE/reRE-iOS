@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class LoginViewModel: BaseViewModel {
-    private let shouldSNSLogin = PassthroughSubject<String, Never>()
+    private let shouldSNSLogin = PassthroughSubject<(String, SNSLoginType), Never>()
     
     private let jwt = CurrentValueSubject<String, Never>("")
     
@@ -24,14 +24,14 @@ final class LoginViewModel: BaseViewModel {
     
     private func bind() {
         shouldSNSLogin
-            .flatMap(usecase.snsLogin(withToken:))
+            .flatMap(usecase.snsLogin(withToken:loginType:))
             .sink { [weak self] jwt in
                 self?.jwt.send(jwt)
             }.store(in: &cancelBag)
     }
     
-    func snsLogin(withToken accessToken: String) {
-        shouldSNSLogin.send(accessToken)
+    func snsLogin(withToken accessToken: String, loginType: SNSLoginType) {
+        shouldSNSLogin.send((accessToken, loginType))
     }
     
     func getjwtPublisher() -> AnyPublisher<String, Never> {

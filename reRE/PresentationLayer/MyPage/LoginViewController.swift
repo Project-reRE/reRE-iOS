@@ -124,7 +124,7 @@ final class LoginViewController: BaseBottomSheetViewController {
                     return
                 }
                 
-                self?.viewModel.snsLogin(withToken: accessToken)
+                self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
             }
         }
         
@@ -147,6 +147,7 @@ final class LoginViewController: BaseBottomSheetViewController {
     
     private func bind() {
         viewModel.getErrorSubject()
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 
                 LogDebug(error)
@@ -160,7 +161,7 @@ final class LoginViewController: BaseBottomSheetViewController {
                                 return
                             }
                             
-                            self?.viewModel.snsLogin(withToken: accessToken)
+                            self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
                         }
                     case 404: // Should SignUp
                         self?.dismissBottomSheet { [weak self] in

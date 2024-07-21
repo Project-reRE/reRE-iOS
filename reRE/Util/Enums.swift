@@ -13,3 +13,17 @@ enum TabType: Int {
     case history
     case myPage
 }
+
+enum SNSLoginType {
+    case kakao
+    case apple
+    
+    var headerName: String {
+        switch self {
+        case .kakao:
+            return "kakao-token"
+        case .apple:
+            return "apple-token"
+        }
+    }
+}

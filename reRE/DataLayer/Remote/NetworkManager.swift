@@ -47,8 +47,8 @@ extension NetworkManager {
         }
     }
     
-    func fetchService(withHeader token: String, _ service: NetworkService, _ completion: @escaping (Result<Response, Error>) -> Void) {
-        provider(nil, customHeader: HTTPHeaders([HTTPHeader(name: "kakao-token", value: token)]))
+    func fetchService(withHeader headers: HTTPHeaders?, _ service: NetworkService, _ completion: @escaping (Result<Response, Error>) -> Void) {
+        provider(nil, customHeader: headers)
             .request(service) { result in
                 switch result {
                 case .success(let response):

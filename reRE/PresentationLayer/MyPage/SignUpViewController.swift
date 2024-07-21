@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import Then
 import SnapKit
+import KakaoSDKUser
 
 final class SignUpViewController: BaseNavigationViewController {
     private var cancelBag = Set<AnyCancellable>()
@@ -307,9 +308,19 @@ final class SignUpViewController: BaseNavigationViewController {
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
                                       userData: ["urlString": "https://revaluation.notion.site/3e61d87145254fc6b8cf02b7853304d7?pvs=74"])
         }
+        
+        signUpButton.didTapped { [weak self] in
+            self?.viewModel.signUp()
+        }
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .receive(on: DispatchQueue.main)
+            .sink { error in
+                LogDebug(error)
+            }.store(in: &cancelBag)
+        
         ageAgreementButton.getCheckPublisher()
             .combineLatest(serviceAgreementButton.getCheckPublisher(),
                            privacyPolicyAgreementButton.getCheckPublisher())
