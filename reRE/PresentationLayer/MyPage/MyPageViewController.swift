@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Combine
 import Then
 import SnapKit
 
 final class MyPageViewController: BaseViewController {
+    private var cancelBag = Set<AnyCancellable>()
+    
     var coordinator: MyPageBaseCoordinator?
     
     private lazy var topContainerView = UIView().then {
@@ -23,15 +26,18 @@ final class MyPageViewController: BaseViewController {
     }
     
     private lazy var guestView = MyPageGuestView()
+    private lazy var userView = MyPageUserView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = ColorSet.gray(.gray10).color
+        
+        bind()
     }
     
     override func addViews() {
-        view.addSubviews([topContainerView, guestView])
+        view.addSubviews([topContainerView, guestView, userView])
         topContainerView.addSubview(titleLabel)
     }
     
@@ -50,6 +56,12 @@ final class MyPageViewController: BaseViewController {
         guestView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        userView.snp.makeConstraints {
+            $0.top.equalTo(topContainerView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(BaseTabBar.tabBarHeight + getSafeAreaBottom())
+        }
     }
     
     override func setupIfNeeded() {
@@ -60,5 +72,14 @@ final class MyPageViewController: BaseViewController {
         guestView.settingButton.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.myPage(.appSetting(.main)), userData: nil)
         }
+    }
+    
+    private func bind() {
+        StaticValues.isLoggedIn
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoggedIn in
+                self?.guestView.isHidden = isLoggedIn
+                self?.userView.isHidden = !isLoggedIn
+            }.store(in: &cancelBag)
     }
 }

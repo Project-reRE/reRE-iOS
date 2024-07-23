@@ -8,5 +8,11 @@
 import Foundation
 
 final class LocalDataFetcher: LocalDataFetchable {
+    func getLoginType() -> String? {
+        return UserDefaultsManager.shared.getLoginType()
+    }
     
+    func setLoginType(loginType: String) {
+        UserDefaultsManager.shared.setLoginType(loginType: loginType)
+    }
 }

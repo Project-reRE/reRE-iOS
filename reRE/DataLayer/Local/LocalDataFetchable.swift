@@ -8,5 +8,6 @@
 import Foundation
 
 protocol LocalDataFetchable: AnyObject {
-    
+    func getLoginType() -> String?
+    func setLoginType(loginType: String)
 }

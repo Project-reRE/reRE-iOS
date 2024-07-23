@@ -118,6 +118,10 @@
 		FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */; };
 		FE9826862C437652006F0C67 /* TermsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826852C437651006F0C67 /* TermsStackView.swift */; };
 		FE9826882C438D69006F0C67 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826872C438D69006F0C67 /* BaseWebViewController.swift */; };
+		FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F9D7B2C4FB96E00E6FB13 /* UserDefaultsManager.swift */; };
+		FE9F9D7E2C4FBA8C00E6FB13 /* StaticValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F9D7D2C4FBA8C00E6FB13 /* StaticValues.swift */; };
+		FE9F9D802C4FBBAB00E6FB13 /* MyPageUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F9D7F2C4FBBAB00E6FB13 /* MyPageUserView.swift */; };
+		FE9F9D822C4FC2E400E6FB13 /* MyPageMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F9D812C4FC2E400E6FB13 /* MyPageMenuView.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -241,6 +245,10 @@
 		FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestModel.swift; sourceTree = "<group>"; };
 		FE9826852C437651006F0C67 /* TermsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsStackView.swift; sourceTree = "<group>"; };
 		FE9826872C438D69006F0C67 /* BaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWebViewController.swift; sourceTree = "<group>"; };
+		FE9F9D7B2C4FB96E00E6FB13 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		FE9F9D7D2C4FBA8C00E6FB13 /* StaticValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticValues.swift; sourceTree = "<group>"; };
+		FE9F9D7F2C4FBBAB00E6FB13 /* MyPageUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageUserView.swift; sourceTree = "<group>"; };
+		FE9F9D812C4FC2E400E6FB13 /* MyPageMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMenuView.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -317,6 +325,7 @@
 				430C2DDA2BB9790D00DE5FC2 /* AppDelegate.swift */,
 				430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */,
 				FECFE43A2C32B71800078CDF /* Injector.swift */,
+				FE9F9D7D2C4FBA8C00E6FB13 /* StaticValues.swift */,
 				4364A1282BC665A500F867B6 /* Coordinator */,
 				4364A15C2BC6728D00F867B6 /* PresentationLayer */,
 				432C09392BC678F400BBFDB1 /* DataLayer */,
@@ -346,6 +355,7 @@
 			children = (
 				432C093C2BC6793300BBFDB1 /* LocalDataFetchable.swift */,
 				432C09422BC6796600BBFDB1 /* LocalDataFetcher.swift */,
+				FE9F9D7B2C4FB96E00E6FB13 /* UserDefaultsManager.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -452,6 +462,8 @@
 			children = (
 				4364A15A2BC6726600F867B6 /* MyPageViewController.swift */,
 				436351C22BF4BFE60078C8C1 /* MyPageGuestView.swift */,
+				FE9F9D7F2C4FBBAB00E6FB13 /* MyPageUserView.swift */,
+				FE9F9D812C4FC2E400E6FB13 /* MyPageMenuView.swift */,
 				436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */,
 				FE9826462C3BF3EC006F0C67 /* LoginViewController.swift */,
 				FE9826482C3BFB02006F0C67 /* LoginViewModel.swift */,
@@ -840,10 +852,12 @@
 			files = (
 				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
+				FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */,
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
 				FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
+				FE9F9D7E2C4FBA8C00E6FB13 /* StaticValues.swift in Sources */,
 				43103D1A2C2800FA009742BB /* RevaluationDetailView.swift in Sources */,
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
 				FE9826492C3BFB02006F0C67 /* LoginViewModel.swift in Sources */,
@@ -872,6 +886,7 @@
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
 				FE98260C2C340CDC006F0C67 /* MovieSetsResponseModel.swift in Sources */,
 				FE9826472C3BF3EC006F0C67 /* LoginViewController.swift in Sources */,
+				FE9F9D802C4FBBAB00E6FB13 /* MyPageUserView.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
 				4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */,
 				FE98266F2C3E9B70006F0C67 /* SignUpViewController.swift in Sources */,
@@ -903,6 +918,7 @@
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
 				FECFE4522C32B94D00078CDF /* BannerEntity.swift in Sources */,
+				FE9F9D822C4FC2E400E6FB13 /* MyPageMenuView.swift in Sources */,
 				436475CF2C1198940096F15F /* NoRevaluationView.swift in Sources */,
 				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,

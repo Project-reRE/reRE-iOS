@@ -14,7 +14,7 @@ enum TabType: Int {
     case myPage
 }
 
-enum SNSLoginType {
+enum SNSLoginType: String {
     case kakao
     case apple
     

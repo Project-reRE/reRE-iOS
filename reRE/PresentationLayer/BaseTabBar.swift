@@ -8,6 +8,8 @@
 import UIKit
 
 final class BaseTabBar: UITabBar {
+    static var tabBarHeight: CGFloat = moderateScale(number: 56)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

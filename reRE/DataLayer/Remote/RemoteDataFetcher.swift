@@ -97,7 +97,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             guard let self = self else { return }
             
             let headers: HTTPHeaders = HTTPHeaders([HTTPHeader(name: "oAuth-token", value: self.accessToken)])
-            
+            print("headers: \(headers)")
             self.networkManager.fetchService(withHeader: headers, .signUp(params: param)) { result in
                 switch result {
                 case .success(let response):
@@ -105,6 +105,8 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         LogDebug(error)
                         promise(.success(.failure(error)))
                     } else if let userId = DecodeUtil.decode(String.self, data: response.data) {
+                        UserDefaultsManager.shared.setLoginType(loginType: param.provider)
+                        
                         promise(.success(.success(userId)))
                     } else {
                         LogDebug(response.data)
