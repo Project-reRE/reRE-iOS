@@ -75,6 +75,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                     } else if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
                         LogDebug(response.data)
                         if let jwtToken = remoteItem.jwt, !jwtToken.isEmpty {
+                            StaticValues.isLoggedIn.send(true)
                             self?.networkManager.setHeaderToken(token: jwtToken)
                         } else {
                             self?.accessToken = model.accessToken
@@ -97,7 +98,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             guard let self = self else { return }
             
             let headers: HTTPHeaders = HTTPHeaders([HTTPHeader(name: "oAuth-token", value: self.accessToken)])
-            print("headers: \(headers)")
+            
             self.networkManager.fetchService(withHeader: headers, .signUp(params: param)) { result in
                 switch result {
                 case .success(let response):

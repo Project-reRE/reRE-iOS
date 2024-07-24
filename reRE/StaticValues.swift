@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 struct StaticValues {
-    static var isLoggedIn = CurrentValueSubject<Bool, Never>(true)
+    static var isLoggedIn = CurrentValueSubject<Bool, Never>(false)
 }

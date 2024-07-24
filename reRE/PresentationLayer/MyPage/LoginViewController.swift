@@ -179,7 +179,6 @@ final class LoginViewController: BaseBottomSheetViewController {
         viewModel.getLoginCompletionPublisher()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("login success")
                 self?.dismissBottomSheet()
             }.store(in: &cancelBag)
     }

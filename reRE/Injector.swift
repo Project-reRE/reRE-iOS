@@ -24,6 +24,12 @@ struct Injector {
         }
         
         // MARK: - repository
+        container.register(SplashRepositoryProtocol.self) { resolver in
+            let repository = SplashRepository(localDataFetcher: resolver.resolve(LocalDataFetchable.self)!,
+                                              remoteDataFetcher: resolver.resolve(RemoteDataFetchable.self)!)
+            return repository
+        }
+        
         container.register(RankRepositoryProtocol.self) { resolver in
             let repository = RankRepository(remoteDataFetcher: resolver.resolve(RemoteDataFetchable.self)!)
             return repository
@@ -35,6 +41,11 @@ struct Injector {
         }
         
         // MARK: - usecase
+        container.register(SplashUsecaseProtocol.self) { resolver in
+            let usecase = SplashUsecase(repository: resolver.resolve(SplashRepositoryProtocol.self)!)
+            return usecase
+        }
+        
         container.register(RankUsecaseProtocol.self) { resolver in
             let usecase = RankUsecase(repository: resolver.resolve(RankRepositoryProtocol.self)!)
             return usecase

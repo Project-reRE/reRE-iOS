@@ -14,7 +14,8 @@ final class MainCoordinator: MainBaseCoordinator {
     var rootViewController: UIViewController = UIViewController()
     
     func start() -> UIViewController {
-        let splashVC = SplashViewController()
+        let viewModel: SplashViewModel = SplashViewModel(usecase: Injector.shared.resolve(SplashUsecaseProtocol.self)!)
+        let splashVC = SplashViewController(viewModel: viewModel)
         splashVC.coordinator = self
         rootViewController = UINavigationController(rootViewController: splashVC)
         rootViewController.hidesBottomBarWhenPushed = true

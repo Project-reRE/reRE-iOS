@@ -139,6 +139,11 @@
 		FECFE4632C32C38F00078CDF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4622C32C38F00078CDF /* Moya */; };
 		FECFE4652C32C38F00078CDF /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4642C32C38F00078CDF /* ReactiveMoya */; };
 		FECFE4672C32C38F00078CDF /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4662C32C38F00078CDF /* RxMoya */; };
+		FEF6F4492C510A0F00B35A9C /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4482C510A0F00B35A9C /* SplashViewModel.swift */; };
+		FEF6F44B2C510A3900B35A9C /* SplashUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F44A2C510A3900B35A9C /* SplashUsecaseProtocol.swift */; };
+		FEF6F44D2C510AE700B35A9C /* SplashUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */; };
+		FEF6F44F2C510B5200B35A9C /* SplashRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F44E2C510B5200B35A9C /* SplashRepositoryProtocol.swift */; };
+		FEF6F4512C510B6A00B35A9C /* SplashRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4502C510B6A00B35A9C /* SplashRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -262,6 +267,11 @@
 		FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteBannerMapper.swift; sourceTree = "<group>"; };
 		FECFE45B2C32BC6B00078CDF /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Extension.swift"; sourceTree = "<group>"; };
+		FEF6F4482C510A0F00B35A9C /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		FEF6F44A2C510A3900B35A9C /* SplashUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUsecaseProtocol.swift; sourceTree = "<group>"; };
+		FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUsecase.swift; sourceTree = "<group>"; };
+		FEF6F44E2C510B5200B35A9C /* SplashRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRepositoryProtocol.swift; sourceTree = "<group>"; };
+		FEF6F4502C510B6A00B35A9C /* SplashRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -577,6 +587,7 @@
 				43103D192C2800FA009742BB /* RevaluationDetailView.swift */,
 				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
 				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
+				FEF6F4482C510A0F00B35A9C /* SplashViewModel.swift */,
 				432C095B2BD4F1E100BBFDB1 /* Rank */,
 				432C09892BF4A72700BBFDB1 /* Search */,
 				436351BE2BF4B9BE0078C8C1 /* History */,
@@ -617,6 +628,7 @@
 		FECFE43D2C32B76B00078CDF /* RepositoryProtocol */ = {
 			isa = PBXGroup;
 			children = (
+				FEF6F44E2C510B5200B35A9C /* SplashRepositoryProtocol.swift */,
 				FECFE4472C32B7FE00078CDF /* RankRepositoryProtocol.swift */,
 				FE98264E2C3BFB50006F0C67 /* LoginRepositoryProtocol.swift */,
 			);
@@ -635,6 +647,7 @@
 		FECFE43F2C32B78000078CDF /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
+				FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */,
 				FECFE4452C32B7E400078CDF /* RankUsecase.swift */,
 				FE98264C2C3BFB41006F0C67 /* LoginUsecase.swift */,
 			);
@@ -644,6 +657,7 @@
 		FECFE4402C32B78400078CDF /* UsecaseProtocol */ = {
 			isa = PBXGroup;
 			children = (
+				FEF6F44A2C510A3900B35A9C /* SplashUsecaseProtocol.swift */,
 				FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */,
 				FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */,
 				FE98264A2C3BFB3A006F0C67 /* LoginUsecaseProtocol.swift */,
@@ -654,6 +668,7 @@
 		FECFE4492C32B80B00078CDF /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				FEF6F4502C510B6A00B35A9C /* SplashRepository.swift */,
 				FECFE44A2C32B81300078CDF /* RankRepository.swift */,
 				FE9826502C3BFB5D006F0C67 /* LoginRepository.swift */,
 			);
@@ -850,6 +865,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF6F4512C510B6A00B35A9C /* SplashRepository.swift in Sources */,
 				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
 				FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */,
@@ -879,6 +895,7 @@
 				432C096D2BD4F59600BBFDB1 /* TouchableStackView.swift in Sources */,
 				432C095F2BD4F25000BBFDB1 /* RankViewModel.swift in Sources */,
 				432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */,
+				FEF6F44F2C510B5200B35A9C /* SplashRepositoryProtocol.swift in Sources */,
 				432C09712BE75E8800BBFDB1 /* DailyRankingFooterView.swift in Sources */,
 				432C09752BE7679300BBFDB1 /* RankingItemCell.swift in Sources */,
 				FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */,
@@ -924,6 +941,7 @@
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
 				FE98266D2C3E96E2006F0C67 /* RemoteLoginMapper.swift in Sources */,
 				FECFE4462C32B7E400078CDF /* RankUsecase.swift in Sources */,
+				FEF6F44D2C510AE700B35A9C /* SplashUsecase.swift in Sources */,
 				FECFE4572C32B9A100078CDF /* BannerMapper.swift in Sources */,
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
 				432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */,
@@ -940,6 +958,7 @@
 				432C09432BC6796600BBFDB1 /* LocalDataFetcher.swift in Sources */,
 				FE9826862C437652006F0C67 /* TermsStackView.swift in Sources */,
 				432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */,
+				FEF6F44B2C510A3900B35A9C /* SplashUsecaseProtocol.swift in Sources */,
 				432C09652BD4F41B00BBFDB1 /* TouchableView.swift in Sources */,
 				FECFE45C2C32BC6B00078CDF /* BaseViewModel.swift in Sources */,
 				436351CD2C0C44060078C8C1 /* RevaluationDetailViewController.swift in Sources */,
@@ -953,6 +972,7 @@
 				4364A1472BC6693500F867B6 /* HistoryCoordinator.swift in Sources */,
 				FE9826512C3BFB5D006F0C67 /* LoginRepository.swift in Sources */,
 				432C09732BE7676D00BBFDB1 /* GenreHeaderView.swift in Sources */,
+				FEF6F4492C510A0F00B35A9C /* SplashViewModel.swift in Sources */,
 				4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */,
 				FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */,
 			);
