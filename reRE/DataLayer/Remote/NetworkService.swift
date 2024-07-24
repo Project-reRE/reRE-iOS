@@ -14,6 +14,7 @@ enum NetworkService {
     case rankingBanner
     case kakaoAuth
     case signUp(params: Encodable)
+    case myProfile
 }
 
 extension NetworkService: TargetType {
@@ -37,6 +38,8 @@ extension NetworkService: TargetType {
             return "/auth/kakao"
         case .signUp:
             return "/users"
+        case .myProfile:
+            return "/my/profile"
         }
     }
     
@@ -47,6 +50,7 @@ extension NetworkService: TargetType {
         case .rankingBanner: return .get
         case .kakaoAuth: return .get
         case .signUp: return .post
+        case .myProfile: return .get
         }
     }
     
@@ -62,6 +66,8 @@ extension NetworkService: TargetType {
             return .requestPlain
         case .signUp(let params):
             return .requestJSONEncodable(params)
+        case .myProfile:
+            return .requestPlain
         }
     }
     

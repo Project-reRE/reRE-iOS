@@ -13,7 +13,8 @@ final class MyPageCoordinator: NSObject, MyPageBaseCoordinator {
     var currentFlowManager: CurrentFlowManager?
     
     func start() -> UIViewController {
-        let myPageVC = MyPageViewController()
+        let viewModel: ProfileViewModel = ProfileViewModel(usecase: Injector.shared.resolve(ProfileUsecaseProtocol.self)!)
+        let myPageVC = MyPageViewController(viewModel: viewModel)
         myPageVC.coordinator = self
         rootViewController = UINavigationController(rootViewController: myPageVC)
         return rootViewController

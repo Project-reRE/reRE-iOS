@@ -144,6 +144,16 @@
 		FEF6F44D2C510AE700B35A9C /* SplashUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */; };
 		FEF6F44F2C510B5200B35A9C /* SplashRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F44E2C510B5200B35A9C /* SplashRepositoryProtocol.swift */; };
 		FEF6F4512C510B6A00B35A9C /* SplashRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4502C510B6A00B35A9C /* SplashRepository.swift */; };
+		FEF6F4532C51150100B35A9C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4522C51150100B35A9C /* ProfileViewModel.swift */; };
+		FEF6F4552C51151700B35A9C /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4542C51151700B35A9C /* ProfileRepository.swift */; };
+		FEF6F4572C51152600B35A9C /* ProfileUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4562C51152600B35A9C /* ProfileUsecaseProtocol.swift */; };
+		FEF6F4592C51153000B35A9C /* ProfileUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4582C51153000B35A9C /* ProfileUsecase.swift */; };
+		FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F45C2C51157D00B35A9C /* MyProfileResponseModel.swift */; };
+		FEF6F45F2C51159100B35A9C /* RemoteMyProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */; };
+		FEF6F4612C51161300B35A9C /* MyProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */; };
+		FEF6F4632C51162500B35A9C /* ProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4622C51162500B35A9C /* ProfileMapper.swift */; };
+		FEF6F4652C5116D500B35A9C /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4642C5116D500B35A9C /* ProfileRepositoryProtocol.swift */; };
+		FEF6F4672C5118A500B35A9C /* RemoteProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -272,6 +282,16 @@
 		FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUsecase.swift; sourceTree = "<group>"; };
 		FEF6F44E2C510B5200B35A9C /* SplashRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRepositoryProtocol.swift; sourceTree = "<group>"; };
 		FEF6F4502C510B6A00B35A9C /* SplashRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRepository.swift; sourceTree = "<group>"; };
+		FEF6F4522C51150100B35A9C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		FEF6F4542C51151700B35A9C /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		FEF6F4562C51152600B35A9C /* ProfileUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUsecaseProtocol.swift; sourceTree = "<group>"; };
+		FEF6F4582C51153000B35A9C /* ProfileUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUsecase.swift; sourceTree = "<group>"; };
+		FEF6F45C2C51157D00B35A9C /* MyProfileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileResponseModel.swift; sourceTree = "<group>"; };
+		FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMyProfileItem.swift; sourceTree = "<group>"; };
+		FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEntity.swift; sourceTree = "<group>"; };
+		FEF6F4622C51162500B35A9C /* ProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMapper.swift; sourceTree = "<group>"; };
+		FEF6F4642C5116D500B35A9C /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
+		FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteProfileMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				4364A15A2BC6726600F867B6 /* MyPageViewController.swift */,
+				FEF6F4522C51150100B35A9C /* ProfileViewModel.swift */,
 				436351C22BF4BFE60078C8C1 /* MyPageGuestView.swift */,
 				FE9F9D7F2C4FBBAB00E6FB13 /* MyPageUserView.swift */,
 				FE9F9D812C4FC2E400E6FB13 /* MyPageMenuView.swift */,
@@ -631,6 +652,7 @@
 				FEF6F44E2C510B5200B35A9C /* SplashRepositoryProtocol.swift */,
 				FECFE4472C32B7FE00078CDF /* RankRepositoryProtocol.swift */,
 				FE98264E2C3BFB50006F0C67 /* LoginRepositoryProtocol.swift */,
+				FEF6F4642C5116D500B35A9C /* ProfileRepositoryProtocol.swift */,
 			);
 			path = RepositoryProtocol;
 			sourceTree = "<group>";
@@ -650,6 +672,7 @@
 				FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */,
 				FECFE4452C32B7E400078CDF /* RankUsecase.swift */,
 				FE98264C2C3BFB41006F0C67 /* LoginUsecase.swift */,
+				FEF6F4582C51153000B35A9C /* ProfileUsecase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -661,6 +684,7 @@
 				FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */,
 				FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */,
 				FE98264A2C3BFB3A006F0C67 /* LoginUsecaseProtocol.swift */,
+				FEF6F4562C51152600B35A9C /* ProfileUsecaseProtocol.swift */,
 			);
 			path = UsecaseProtocol;
 			sourceTree = "<group>";
@@ -671,6 +695,7 @@
 				FEF6F4502C510B6A00B35A9C /* SplashRepository.swift */,
 				FECFE44A2C32B81300078CDF /* RankRepository.swift */,
 				FE9826502C3BFB5D006F0C67 /* LoginRepository.swift */,
+				FEF6F4542C51151700B35A9C /* ProfileRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -681,6 +706,7 @@
 				FECFE44D2C32B8B400078CDF /* RemoteBannerItem.swift */,
 				FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */,
 				FE9826522C3BFBB3006F0C67 /* RemoteLoginItem.swift */,
+				FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */,
 			);
 			path = RemoteItem;
 			sourceTree = "<group>";
@@ -691,6 +717,7 @@
 				FECFE4532C32B95600078CDF /* BannerResponseModel.swift */,
 				FE98260B2C340CDC006F0C67 /* MovieSetsResponseModel.swift */,
 				FE98266A2C3E96B4006F0C67 /* LoginResponseModel.swift */,
+				FEF6F45C2C51157D00B35A9C /* MyProfileResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -700,6 +727,7 @@
 			children = (
 				FECFE4512C32B94D00078CDF /* BannerEntity.swift */,
 				FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */,
+				FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -708,6 +736,7 @@
 			isa = PBXGroup;
 			children = (
 				FECFE4562C32B9A100078CDF /* BannerMapper.swift */,
+				FEF6F4622C51162500B35A9C /* ProfileMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -717,6 +746,7 @@
 			children = (
 				FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */,
 				FE98266C2C3E96E2006F0C67 /* RemoteLoginMapper.swift */,
+				FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -876,12 +906,14 @@
 				FE9F9D7E2C4FBA8C00E6FB13 /* StaticValues.swift in Sources */,
 				43103D1A2C2800FA009742BB /* RevaluationDetailView.swift in Sources */,
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
+				FEF6F4572C51152600B35A9C /* ProfileUsecaseProtocol.swift in Sources */,
 				FE9826492C3BFB02006F0C67 /* LoginViewModel.swift in Sources */,
 				FE98264F2C3BFB50006F0C67 /* LoginRepositoryProtocol.swift in Sources */,
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */,
 				FE98266B2C3E96B4006F0C67 /* LoginResponseModel.swift in Sources */,
 				FE98264D2C3BFB41006F0C67 /* LoginUsecase.swift in Sources */,
+				FEF6F4612C51161300B35A9C /* MyProfileEntity.swift in Sources */,
 				4376DAC52C11AE710060E618 /* String+Extension.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
 				FECFE44B2C32B81300078CDF /* RankRepository.swift in Sources */,
@@ -916,6 +948,8 @@
 				432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */,
 				43103D1C2C28031F009742BB /* UIImageView+Extension.swift in Sources */,
 				436475CD2C118F0E0096F15F /* ReValuationDetailViewModel.swift in Sources */,
+				FEF6F4552C51151700B35A9C /* ProfileRepository.swift in Sources */,
+				FEF6F4672C5118A500B35A9C /* RemoteProfileMapper.swift in Sources */,
 				436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */,
 				432C096B2BD4F52100BBFDB1 /* TouchableImageView.swift in Sources */,
 				436351CB2C0C43200078C8C1 /* SearchViewController.swift in Sources */,
@@ -924,13 +958,18 @@
 				432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */,
 				FE9826452C3BF260006F0C67 /* BaseBottomSheetViewController.swift in Sources */,
 				432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */,
+				FEF6F4652C5116D500B35A9C /* ProfileRepositoryProtocol.swift in Sources */,
 				FECFE45A2C32B9B400078CDF /* RemoteBannerMapper.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
 				43263F582C1187B7004804BF /* BaseNavigationViewController.swift in Sources */,
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
+				FEF6F45F2C51159100B35A9C /* RemoteMyProfileItem.swift in Sources */,
+				FEF6F4532C51150100B35A9C /* ProfileViewModel.swift in Sources */,
+				FEF6F4632C51162500B35A9C /* ProfileMapper.swift in Sources */,
 				FECFE43B2C32B71800078CDF /* Injector.swift in Sources */,
 				4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */,
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
+				FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */,
 				FE9826532C3BFBB3006F0C67 /* RemoteLoginItem.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
@@ -951,6 +990,7 @@
 				432C09412BC6795D00BBFDB1 /* RemoteDataFetcher.swift in Sources */,
 				436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */,
 				FE98264B2C3BFB3A006F0C67 /* LoginUsecaseProtocol.swift in Sources */,
+				FEF6F4592C51153000B35A9C /* ProfileUsecase.swift in Sources */,
 				4376DAC32C11AD3E0060E618 /* Date+Extension.swift in Sources */,
 				436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */,
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,

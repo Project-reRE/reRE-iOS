@@ -28,6 +28,17 @@ final class MyPageViewController: BaseViewController {
     private lazy var guestView = MyPageGuestView()
     private lazy var userView = MyPageUserView()
     
+    private let viewModel: ProfileViewModel
+    
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,9 +86,17 @@ final class MyPageViewController: BaseViewController {
     }
     
     private func bind() {
+        viewModel.getMyProfilePublisher()
+            .droppedSink { myProfile in
+                print("myProfile: \(myProfile)")
+            }.store(in: &cancelBag)
+        
         StaticValues.isLoggedIn
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoggedIn in
+                if isLoggedIn {
+                    self?.viewModel.getMyProfile()
+                }
                 self?.guestView.isHidden = isLoggedIn
                 self?.userView.isHidden = !isLoggedIn
             }.store(in: &cancelBag)

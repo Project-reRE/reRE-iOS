@@ -17,6 +17,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     private let networkManager: NetworkManager = NetworkManager.shared
     private let remoteBannerMapper = RemoteBannerMapper()
     private let remoteLoginMapper = RemoteLoginMapper()
+    private let remoteProfileMapper = RemoteProfileMapper()
     
     private enum HTTPError: LocalizedError {
         case typeMismatch
@@ -109,6 +110,29 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         UserDefaultsManager.shared.setLoginType(loginType: param.provider)
                         
                         promise(.success(.success(userId)))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func getMyProfile() -> AnyPublisher<Result<MyProfileEntity, Error>, Never> {
+        return Future<Result<MyProfileEntity, Error>, Never> { [weak self] promise in
+            guard let self = self else { return }
+            
+            self.networkManager.fetchService(.myProfile) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteMyProfileItem.self, data: response.data) {
+                        promise(.success(.success(self.remoteProfileMapper.remoteMyProfileItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)
                         promise(.success(.failure(HTTPError.typeMismatch)))

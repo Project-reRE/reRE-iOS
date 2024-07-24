@@ -60,7 +60,7 @@ extension NetworkManager {
         }
     }
     
-    func fetchService(withHeader headers: HTTPHeaders?, _ service: NetworkService, _ completion: @escaping (Result<Response, Error>) -> Void) {
+    func fetchService(withHeader headers: HTTPHeaders? = nil, _ service: NetworkService, _ completion: @escaping (Result<Response, Error>) -> Void) {
         provider(token, customHeader: headers)
             .request(service) { result in
                 switch result {

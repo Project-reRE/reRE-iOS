@@ -13,4 +13,5 @@ protocol RemoteDataFetchable: AnyObject {
     func getMovieSets() -> AnyPublisher<Result<[MovieSetsEntity], Error>, Never>
     func snsLogin(withModel model: LoginRequestModel) -> AnyPublisher<Result<String, Error>, Never>
     func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<Result<String, Error>, Never>
+    func getMyProfile() -> AnyPublisher<Result<MyProfileEntity, Error>, Never>
 }
