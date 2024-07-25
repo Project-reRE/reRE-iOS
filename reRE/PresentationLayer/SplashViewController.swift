@@ -36,18 +36,31 @@ final class SplashViewController: BaseViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                LogDebug(error)
+            }.store(in: &cancelBag)
+        
         viewModel.getLoginTypePublisher()
             .droppedSink { [weak self] loginType in
                 if let loginType = loginType {
                     switch loginType {
                     case .kakao:
-                        guard AuthApi.hasToken(),
-                              let token = TokenManager.manager.getToken()?.accessToken else {
+                        guard AuthApi.hasToken() else {
                             self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
                             return
                         }
                         
-                        self?.viewModel.snsLogin(withToken: token, loginType: .kakao)
+                        AuthApi.shared.refreshToken { [weak self] oAuthToken, error in
+                            guard let token = oAuthToken?.accessToken, error == nil else {
+                                LogDebug(error)
+                                return
+                            }
+                            
+                            print("oAuthToken: \(oAuthToken)")
+                            self?.viewModel.snsLogin(withToken: token, loginType: .kakao)
+                        }
                     case .apple:
                         self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
                     }
