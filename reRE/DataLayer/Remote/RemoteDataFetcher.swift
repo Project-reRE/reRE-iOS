@@ -71,11 +71,13 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                 case .success(let response):
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
+                        
                         self?.accessToken = model.accessToken
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
                         LogDebug(response.data)
                         if let jwtToken = remoteItem.jwt, !jwtToken.isEmpty {
+                            UserDefaultsManager.shared.setLoginType(loginType: model.loginType.rawValue)
                             StaticValues.isLoggedIn.send(true)
                             self?.networkManager.setHeaderToken(token: jwtToken)
                         } else {
@@ -108,7 +110,6 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         promise(.success(.failure(error)))
                     } else if let userId = DecodeUtil.decode(String.self, data: response.data) {
                         UserDefaultsManager.shared.setLoginType(loginType: param.provider)
-                        
                         promise(.success(.success(userId)))
                     } else {
                         LogDebug(response.data)

@@ -87,8 +87,9 @@ final class MyPageViewController: BaseViewController {
     
     private func bind() {
         viewModel.getMyProfilePublisher()
-            .droppedSink { myProfile in
-                print("myProfile: \(myProfile)")
+            .droppedSink { [weak self] myProfileModel in
+                print("myProfileModel: \(myProfileModel)")
+                self?.userView.updateView(withModel: myProfileModel)
             }.store(in: &cancelBag)
         
         StaticValues.isLoggedIn

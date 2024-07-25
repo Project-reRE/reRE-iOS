@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import Kingfisher
 
 final class MyPageUserView: UIView {
     private lazy var thumbnailImageView = TouchableImageView(frame: .zero).then {
@@ -16,6 +17,7 @@ final class MyPageUserView: UIView {
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.red.cgColor
         $0.layer.masksToBounds = true
+        $0.kf.indicatorType = .activity
     }
     
     private lazy var nicknameView = TouchableStackView().then {
@@ -24,7 +26,6 @@ final class MyPageUserView: UIView {
     }
     
     private lazy var nicknameLabel = UILabel().then {
-        $0.text = "냉혹한재평론가1"
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.title02.font
     }
@@ -40,7 +41,6 @@ final class MyPageUserView: UIView {
     }
     
     private lazy var genderLabel = UILabel().then {
-        $0.text = "남성"
         $0.textColor = ColorSet.gray(.gray50).color
         $0.font = FontSet.subTitle01.font
     }
@@ -221,5 +221,11 @@ final class MyPageUserView: UIView {
             $0.top.equalTo(showSettingButton.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
         }
+    }
+    
+    func updateView(withModel model: MyProfileResponseModel) {
+        nicknameLabel.text = model.nickName
+        genderLabel.text = model.gender ? "남성" : "여성"
+        thumbnailImageView.kf.setImage(with: URL(string: model.profileUrl))
     }
 }
