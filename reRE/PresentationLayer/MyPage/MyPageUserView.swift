@@ -102,7 +102,7 @@ final class MyPageUserView: UIView {
         $0.titleLabel.text = "공지사항 보기"
     }
     
-    lazy var qnaButton = MyPageMenuView().then {
+    lazy var faqButton = MyPageMenuView().then {
         $0.titleLabel.text = "자주 묻는 질문과 답변 보기"
     }
     
@@ -133,7 +133,7 @@ final class MyPageUserView: UIView {
     
     private func addViews() {
         addSubviews([thumbnailImageView, nicknameView, userInfoView, revaluationStackView,
-                     emailTitleLabel, emailContainerView, showNoticeButton, qnaButton, askButton,
+                     emailTitleLabel, emailContainerView, showNoticeButton, faqButton, askButton,
                      showSettingButton, logoutButton])
         
         nicknameView.addArrangedSubviews([nicknameLabel, editImageView])
@@ -202,13 +202,13 @@ final class MyPageUserView: UIView {
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
         }
         
-        qnaButton.snp.makeConstraints {
+        faqButton.snp.makeConstraints {
             $0.top.equalTo(showNoticeButton.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
         }
         
         askButton.snp.makeConstraints {
-            $0.top.equalTo(qnaButton.snp.bottom)
+            $0.top.equalTo(faqButton.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
         }
         

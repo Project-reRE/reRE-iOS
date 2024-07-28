@@ -301,13 +301,15 @@ final class SignUpViewController: BaseNavigationViewController {
         
         serviceAgreementButton.showTermsButton.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                      userData: ["urlString": "https://revaluation.notion.site/61bff9fc064047dbaeec12e2c792b526?pvs=74"])
+                                      userData: ["urlString": StaticValues.serviceAgreementUrlString])
         }
+        
         
         privacyPolicyAgreementButton.showTermsButton.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                      userData: ["urlString": "https://revaluation.notion.site/3e61d87145254fc6b8cf02b7853304d7?pvs=74"])
+                                      userData: ["urlString": StaticValues.privacyPolicyUrlString])
         }
+        
         
         signUpButton.didTapped { [weak self] in
             self?.viewModel.signUp()

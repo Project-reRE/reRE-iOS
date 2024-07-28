@@ -96,6 +96,21 @@ final class MyPageViewController: BaseViewController {
                 print("닉네임 변경")
             }, cancelCompletion: nil)
         }
+        
+        userView.showNoticeButton.containerView.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
+                                      userData: ["urlString": StaticValues.noticeUrlString])
+        }
+        
+        userView.faqButton.containerView.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
+                                      userData: ["urlString": StaticValues.faqUrlString])
+        }
+        
+        userView.askButton.containerView.didTapped { [weak self] in
+            UIPasteboard.general.string = StaticValues.inquiryEmail
+            self?.showToastMessageView(title: "메일 주소가 복사되었어요.")
+        }
     }
     
     private func bind() {
