@@ -20,7 +20,7 @@ final class MyPageUserView: UIView {
         $0.kf.indicatorType = .activity
     }
     
-    private lazy var nicknameView = TouchableStackView().then {
+    lazy var nicknameView = TouchableStackView().then {
         $0.spacing = moderateScale(number: 7)
         $0.alignment = .top
     }
@@ -98,23 +98,23 @@ final class MyPageUserView: UIView {
         $0.font = FontSet.body01.font
     }
     
-    private lazy var showNoticeButton = MyPageMenuView().then {
+    lazy var showNoticeButton = MyPageMenuView().then {
         $0.titleLabel.text = "공지사항 보기"
     }
     
-    private lazy var qnaButton = MyPageMenuView().then {
+    lazy var qnaButton = MyPageMenuView().then {
         $0.titleLabel.text = "자주 묻는 질문과 답변 보기"
     }
     
-    private lazy var askButton = MyPageMenuView().then {
+    lazy var askButton = MyPageMenuView().then {
         $0.titleLabel.text = "이메일로 문의하기"
     }
     
-    private lazy var showSettingButton = MyPageMenuView().then {
+    lazy var showSettingButton = MyPageMenuView().then {
         $0.titleLabel.text = "설정 보기"
     }
     
-    private lazy var logoutButton = MyPageMenuView().then {
+    lazy var logoutButton = MyPageMenuView().then {
         $0.titleLabel.text = "로그아웃하기"
         $0.titleLabel.font = FontSet.button02.font
         $0.titleLabel.textColor = ColorSet.gray(.gray40).color

@@ -83,6 +83,19 @@ final class MyPageViewController: BaseViewController {
         guestView.settingButton.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.myPage(.appSetting(.main)), userData: nil)
         }
+        
+        userView.nicknameView.didTapped {
+            CommonUtil.showAlertView(withType: .textField,
+                                     buttonType: .twoButton,
+                                     title: "닉네임 변경하기",
+                                     description: nil,
+                                     delegate: self,
+                                     submitText: "변경",
+                                     cancelText: "취소",
+                                     submitCompletion: {
+                print("닉네임 변경")
+            }, cancelCompletion: nil)
+        }
     }
     
     private func bind() {
@@ -98,8 +111,17 @@ final class MyPageViewController: BaseViewController {
                 if isLoggedIn {
                     self?.viewModel.getMyProfile()
                 }
+                
                 self?.guestView.isHidden = isLoggedIn
                 self?.userView.isHidden = !isLoggedIn
             }.store(in: &cancelBag)
+    }
+}
+
+// MARK: - AlertViewControllerDelegate
+extension MyPageViewController: AlertViewControllerDelegate {
+    func textFieldDidChange(withText text: String) {
+        guard let alertVC = CommonUtil.topViewController() as? AlertViewController else { return }
+        alertVC.updateTextFieldDescriptionLabel(withText: text)
     }
 }
