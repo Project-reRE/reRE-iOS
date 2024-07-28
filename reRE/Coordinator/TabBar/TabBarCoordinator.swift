@@ -22,8 +22,9 @@ final class TabBarCoordinator: NSObject, TabBarBaseCoordinator {
         let rankVC = rankCoordinator.start()
         rankCoordinator.parentCoordinator = self
         rankVC.tabBarItem = UITabBarItem(title: nil,
-                                         image: UIImage(named: "NormalTabBarIcon"),
-                                         selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+                                         image: UIImage(named: "RankTabBarIcon"),
+                                         selectedImage: UIImage(named: "RankTabBarIcon")?.withTintColor(ColorSet.primary(.orange90).color!,
+                                                                                                        renderingMode: .alwaysOriginal))
         rankVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
                                                           left: 0,
                                                           bottom: -moderateScale(number: 5),
@@ -31,8 +32,9 @@ final class TabBarCoordinator: NSObject, TabBarBaseCoordinator {
         let searchVC = searchCoordinator.start()
         searchCoordinator.parentCoordinator = self
         searchVC.tabBarItem = UITabBarItem(title: nil,
-                                           image: UIImage(named: "NormalTabBarIcon"),
-                                           selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+                                           image: UIImage(named: "SearchTabBarIcon"),
+                                           selectedImage: UIImage(named: "SearchTabBarIcon")?.withTintColor(ColorSet.primary(.orange90).color!,
+                                                                                                            renderingMode: .alwaysOriginal))
         searchVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
                                                             left: 0,
                                                             bottom: -moderateScale(number: 5),
@@ -41,8 +43,9 @@ final class TabBarCoordinator: NSObject, TabBarBaseCoordinator {
         let historyVC = historyCoordinator.start()
         historyCoordinator.parentCoordinator = self
         historyVC.tabBarItem = UITabBarItem(title: nil,
-                                            image: UIImage(named: "NormalTabBarIcon"),
-                                            selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+                                            image: UIImage(named: "HistoryTabBarIcon"),
+                                            selectedImage: UIImage(named: "HistoryTabBarIcon")?.withTintColor(ColorSet.primary(.orange90).color!,
+                                                                                                              renderingMode: .alwaysOriginal))
         historyVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
                                                              left: 0,
                                                              bottom: -moderateScale(number: 5),
@@ -51,8 +54,9 @@ final class TabBarCoordinator: NSObject, TabBarBaseCoordinator {
         let myPageVC = myPageCoordinator.start()
         myPageCoordinator.parentCoordinator = self
         myPageVC.tabBarItem = UITabBarItem(title: nil,
-                                           image: UIImage(named: "NormalTabBarIcon"),
-                                           selectedImage: UIImage(named: "SelectedTabBarIcon")?.withRenderingMode(.alwaysOriginal))
+                                           image: UIImage(named: "MyPageTabBarIcon"),
+                                           selectedImage: UIImage(named: "MyPageTabBarIcon")?.withTintColor(ColorSet.primary(.orange90).color!,
+                                                                                                            renderingMode: .alwaysOriginal))
         myPageVC.tabBarItem.imageInsets = UIEdgeInsets.init(top: moderateScale(number: 5),
                                                             left: 0,
                                                             bottom: -moderateScale(number: 5),
