@@ -111,6 +111,14 @@ final class MyPageViewController: BaseViewController {
             UIPasteboard.general.string = StaticValues.inquiryEmail
             self?.showToastMessageView(title: "메일 주소가 복사되었어요.")
         }
+        
+        userView.showSettingButton.containerView.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.myPage(.appSetting(.main)), userData: nil)
+        }
+        
+        userView.logoutButton.containerView.didTapped {
+            
+        }
     }
     
     private func bind() {

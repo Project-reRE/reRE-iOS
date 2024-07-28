@@ -156,6 +156,7 @@
 		FEF6F4672C5118A500B35A9C /* RemoteProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */; };
 		FEF6F4812C561B1A00B35A9C /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */; };
 		FEF6F4832C5623A900B35A9C /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4822C5623A900B35A9C /* CommonUtil.swift */; };
+		FEF6F4852C56317700B35A9C /* AppSettingMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4842C56317700B35A9C /* AppSettingMenuItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -296,6 +297,7 @@
 		FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteProfileMapper.swift; sourceTree = "<group>"; };
 		FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		FEF6F4822C5623A900B35A9C /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
+		FEF6F4842C56317700B35A9C /* AppSettingMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingMenuItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,6 +502,7 @@
 				FE9F9D7F2C4FBBAB00E6FB13 /* MyPageUserView.swift */,
 				FE9F9D812C4FC2E400E6FB13 /* MyPageMenuView.swift */,
 				436351C42BF4C83B0078C8C1 /* AppSettingViewController.swift */,
+				FEF6F4842C56317700B35A9C /* AppSettingMenuItemCell.swift */,
 				FE9826462C3BF3EC006F0C67 /* LoginViewController.swift */,
 				FE9826482C3BFB02006F0C67 /* LoginViewModel.swift */,
 				FE98266E2C3E9B70006F0C67 /* SignUpViewController.swift */,
@@ -999,6 +1002,7 @@
 				FEF6F44D2C510AE700B35A9C /* SplashUsecase.swift in Sources */,
 				FECFE4572C32B9A100078CDF /* BannerMapper.swift in Sources */,
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
+				FEF6F4852C56317700B35A9C /* AppSettingMenuItemCell.swift in Sources */,
 				432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */,
 				432C09542BD4EFD800BBFDB1 /* Logger.swift in Sources */,
 				4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */,
