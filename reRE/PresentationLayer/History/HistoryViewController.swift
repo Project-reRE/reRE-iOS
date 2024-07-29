@@ -23,8 +23,8 @@ final class HistoryViewController: BaseViewController {
     }
     
     private lazy var movieHistoryView = HistoryCategoryView(category: .movie)
-    private lazy var bookHistoryView = HistoryCategoryView(category: .book)
-    private lazy var musicHistoryView = HistoryCategoryView(category: .music)
+//    private lazy var bookHistoryView = HistoryCategoryView(category: .book)
+//    private lazy var musicHistoryView = HistoryCategoryView(category: .music)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ final class HistoryViewController: BaseViewController {
     }
     
     override func addViews() {
-        view.addSubviews([topContainerView, movieHistoryView, bookHistoryView, musicHistoryView])
+        view.addSubviews([topContainerView, movieHistoryView])
         topContainerView.addSubview(titleLabel)
     }
     
@@ -55,29 +55,21 @@ final class HistoryViewController: BaseViewController {
             $0.height.equalTo(moderateScale(number: 69))
         }
         
-        bookHistoryView.snp.makeConstraints {
-            $0.top.equalTo(movieHistoryView.snp.bottom).offset(moderateScale(number: 8))
-            $0.leading.trailing.equalTo(movieHistoryView)
-            $0.height.equalTo(moderateScale(number: 69))
-        }
-        
-        musicHistoryView.snp.makeConstraints {
-            $0.top.equalTo(bookHistoryView.snp.bottom).offset(moderateScale(number: 8))
-            $0.leading.trailing.equalTo(movieHistoryView)
-            $0.height.equalTo(moderateScale(number: 69))
-        }
+//        bookHistoryView.snp.makeConstraints {
+//            $0.top.equalTo(movieHistoryView.snp.bottom).offset(moderateScale(number: 8))
+//            $0.leading.trailing.equalTo(movieHistoryView)
+//            $0.height.equalTo(moderateScale(number: 69))
+//        }
+//        
+//        musicHistoryView.snp.makeConstraints {
+//            $0.top.equalTo(bookHistoryView.snp.bottom).offset(moderateScale(number: 8))
+//            $0.leading.trailing.equalTo(movieHistoryView)
+//            $0.height.equalTo(moderateScale(number: 69))
+//        }
     }
     
     override func setupIfNeeded() {
         movieHistoryView.containerView.didTapped {
-            
-        }
-        
-        bookHistoryView.containerView.didTapped {
-            
-        }
-        
-        musicHistoryView.containerView.didTapped {
             
         }
     }

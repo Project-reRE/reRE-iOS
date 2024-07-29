@@ -12,8 +12,8 @@ final class SearchMainViewController: BaseViewController {
     var coordinator: SearchBaseCoordinator?
     
     private lazy var searchMovieView = SearchCategoryView(category: .movie)
-    private lazy var searchBookView = SearchCategoryView(category: .book)
-    private lazy var searchMusicView = SearchCategoryView(category: .music)
+//    private lazy var searchBookView = SearchCategoryView(category: .book)
+//    private lazy var searchMusicView = SearchCategoryView(category: .music)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ final class SearchMainViewController: BaseViewController {
     }
     
     override func addViews() {
-        view.addSubviews([searchMovieView, searchBookView, searchMusicView])
+        view.addSubviews([searchMovieView])
     }
     
     override func makeConstraints() {
@@ -32,30 +32,22 @@ final class SearchMainViewController: BaseViewController {
             $0.height.equalTo(moderateScale(number: 69))
         }
         
-        searchBookView.snp.makeConstraints {
-            $0.top.equalTo(searchMovieView.snp.bottom).offset(moderateScale(number: 8))
-            $0.leading.trailing.equalTo(searchMovieView)
-            $0.height.equalTo(moderateScale(number: 69))
-        }
-        
-        searchMusicView.snp.makeConstraints {
-            $0.top.equalTo(searchBookView.snp.bottom).offset(moderateScale(number: 8))
-            $0.leading.trailing.equalTo(searchMovieView)
-            $0.height.equalTo(moderateScale(number: 69))
-        }
+//        searchBookView.snp.makeConstraints {
+//            $0.top.equalTo(searchMovieView.snp.bottom).offset(moderateScale(number: 8))
+//            $0.leading.trailing.equalTo(searchMovieView)
+//            $0.height.equalTo(moderateScale(number: 69))
+//        }
+//        
+//        searchMusicView.snp.makeConstraints {
+//            $0.top.equalTo(searchBookView.snp.bottom).offset(moderateScale(number: 8))
+//            $0.leading.trailing.equalTo(searchMovieView)
+//            $0.height.equalTo(moderateScale(number: 69))
+//        }
     }
     
     override func setupIfNeeded() {
         searchMovieView.containerView.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
-        }
-        
-        searchBookView.containerView.didTapped { [weak self] in
-            self?.showToastMessageView(title: "아직 준비중이에요.")
-        }
-        
-        searchMusicView.containerView.didTapped { [weak self] in
-            self?.showToastMessageView(title: "아직 준비중이에요.")
         }
     }
 }
