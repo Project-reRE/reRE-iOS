@@ -45,6 +45,11 @@ struct Injector {
             return repository
         }
         
+        container.register(SearchRepositoryProtocol.self) { resolver in
+            let repository = SearchRepository(remoteDataFetcher: resolver.resolve(RemoteDataFetchable.self)!)
+            return repository
+        }
+        
         // MARK: - usecase
         container.register(SplashUsecaseProtocol.self) { resolver in
             let usecase = SplashUsecase(repository: resolver.resolve(SplashRepositoryProtocol.self)!)
@@ -63,6 +68,11 @@ struct Injector {
         
         container.register(ProfileUsecaseProtocol.self) { resolver in
             let usecase = ProfileUsecase(repository: resolver.resolve(ProfileRepositoryProtocol.self)!)
+            return usecase
+        }
+        
+        container.register(SearchUsecaseProtocol.self) { resolver in
+            let usecase = SearchUsecase(repository: resolver.resolve(SearchRepositoryProtocol.self)!)
             return usecase
         }
         

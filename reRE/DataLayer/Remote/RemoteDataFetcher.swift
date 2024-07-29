@@ -18,6 +18,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     private let remoteBannerMapper = RemoteBannerMapper()
     private let remoteLoginMapper = RemoteLoginMapper()
     private let remoteProfileMapper = RemoteProfileMapper()
+    private let remoteSearchMapper = RemoteSearchMapper()
     
     private enum HTTPError: LocalizedError {
         case typeMismatch
@@ -134,6 +135,31 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteMyProfileItem.self, data: response.data) {
                         promise(.success(.success(self.remoteProfileMapper.remoteMyProfileItemToEntity(remoteItem: remoteItem))))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func searchMovieList(with model: SearchMovieListRequestModel) -> AnyPublisher<Result<SearchMovieListEntity, Error>, Never> {
+        return Future<Result<SearchMovieListEntity, Error>, Never> { [weak self] promise in
+            guard let self = self else { return }
+            
+            let params: [String: Any] = ["title": model.title, "limit": model.limit]
+            
+            self.networkManager.fetchService(.searchMovieList(params: params)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteSearchMovieListItem.self, data: response.data) {
+                        promise(.success(.success(self.remoteSearchMapper.remoteSearchItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)
                         promise(.success(.failure(HTTPError.typeMismatch)))

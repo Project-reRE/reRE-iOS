@@ -8,33 +8,37 @@
 import Foundation
 import Combine
 
-final class SearchViewModel {
-    private var cancelBag = Set<AnyCancellable>()
+final class SearchViewModel: BaseViewModel {
+    private let shouldSearchMovie = CurrentValueSubject<SearchMovieListRequestModel, Never>(.init())
+    private let searchResult = CurrentValueSubject<[SearchMovieListResultResponseModel], Never>([])
     
-    private let shouldSearchMovie = PassthroughSubject<String, Never>()
-    private let searchResult = CurrentValueSubject<[String], Never>([])
+    private let usecase: SearchUsecaseProtocol
     
-    init() {
+    init(usecase: SearchUsecaseProtocol) {
+        self.usecase = usecase
+        super.init(usecase: usecase)
+        
         bind()
     }
     
     private func bind() {
         shouldSearchMovie
-            .sink { [weak self] title in
-                let mockData: [String] = Array(repeating: "\(Int.random(in: 0...10))", count: Int.random(in: 0...10))
-                self?.searchResult.send(mockData)
+            .dropFirst()
+            .flatMap(usecase.searchMovieList(with:))
+            .sink { [weak self] searchResponse in
+                self?.searchResult.send(searchResponse.results)
             }.store(in: &cancelBag)
     }
     
     func searchMovie(withTitle title: String) {
-        shouldSearchMovie.send(title)
+        shouldSearchMovie.send(SearchMovieListRequestModel(title: title, limit: 25))
     }
     
-    func getSearchResultPublisher() -> AnyPublisher<[String], Never> {
+    func getSearchResultPublisher() -> AnyPublisher<[SearchMovieListResultResponseModel], Never> {
         return searchResult.eraseToAnyPublisher()
     }
     
-    func getSearchResultValue() -> [String] {
+    func getSearchResultValue() -> [SearchMovieListResultResponseModel] {
         return searchResult.value
     }
 }

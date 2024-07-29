@@ -193,6 +193,10 @@ extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(SearchResultItemCell.self, indexPath: indexPath) else { return .init() }
         
+        let searchedMovie = viewModel.getSearchResultValue()[indexPath.item]
+        
+        cell.updateView(with: searchedMovie)
+        
         cell.containerView.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
         }

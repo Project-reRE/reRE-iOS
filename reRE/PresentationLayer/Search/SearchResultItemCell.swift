@@ -14,38 +14,32 @@ final class SearchResultItemCell: UICollectionViewCell {
     
     private lazy var thumbnailImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.red.cgColor
+        $0.kf.indicatorType = .activity
     }
     
     private lazy var titleLabel = UILabel().then {
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.title03.font
-        $0.text = "영화 제목영화 제목영화 제목영화 제목영화 제목영화 제목영화 제목"
     }
     
     private lazy var yearLabel = UILabel().then {
         $0.textColor = ColorSet.gray(.gray60).color
         $0.font = FontSet.body04.font
-        $0.text = "2015"
     }
     
     private lazy var genresLabel = UILabel().then {
         $0.textColor = ColorSet.gray(.gray60).color
         $0.font = FontSet.body04.font
-        $0.text = "장르명 장르명 장르명 장르명 장르명 장르명 장르명 "
     }
     
     private lazy var directorsLabel = UILabel().then {
         $0.textColor = ColorSet.gray(.gray60).color
         $0.font = FontSet.body04.font
-        $0.text = "감독명 감독명 감독명 감독명 감독명 감독명 감독명 "
     }
     
     private lazy var actorsLabel = UILabel().then {
         $0.textColor = ColorSet.gray(.gray60).color
         $0.font = FontSet.body04.font
-        $0.text = "배우명 배우명 배우명 배우명 배우명 배우명 배우명 "
     }
     
     override init(frame: CGRect) {
@@ -66,8 +60,6 @@ final class SearchResultItemCell: UICollectionViewCell {
     }
     
     private func makeConstraints() {
-        containerView.layer.borderColor = UIColor.blue.cgColor
-        containerView.layer.borderWidth = 1
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -102,6 +94,26 @@ final class SearchResultItemCell: UICollectionViewCell {
         actorsLabel.snp.makeConstraints {
             $0.top.equalTo(directorsLabel.snp.bottom).offset(moderateScale(number: 4))
             $0.leading.trailing.equalTo(titleLabel)
+        }
+    }
+    
+    func updateView(with model: SearchMovieListResultResponseModel) {
+        titleLabel.text = model.data.title
+        genresLabel.text = model.data.genre
+        yearLabel.text = model.data.prodYear
+        
+        let directors = model.data.directors.map { $0.directorNm }.joined(separator: ",")
+        directorsLabel.text = directors
+        
+        let actors = model.data.actors.map { $0.actorNm }.joined(separator: ",")
+        actorsLabel.text = actors
+        
+        if let postersURLString = model.data.posters.first, postersURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
+        } else if let stllsURLString = model.data.stlls.first, stllsURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: stllsURLString))
+        } else {
+            thumbnailImageView.image = nil
         }
     }
 }

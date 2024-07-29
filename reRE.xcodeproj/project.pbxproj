@@ -157,6 +157,16 @@
 		FEF6F4812C561B1A00B35A9C /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */; };
 		FEF6F4832C5623A900B35A9C /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4822C5623A900B35A9C /* CommonUtil.swift */; };
 		FEF6F4852C56317700B35A9C /* AppSettingMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4842C56317700B35A9C /* AppSettingMenuItemCell.swift */; };
+		FEF6F4972C57A28A00B35A9C /* SearchUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4962C57A28A00B35A9C /* SearchUsecaseProtocol.swift */; };
+		FEF6F4992C57A2DB00B35A9C /* SearchMovieListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4982C57A2DB00B35A9C /* SearchMovieListEntity.swift */; };
+		FEF6F49B2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F49A2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift */; };
+		FEF6F49D2C57A3D600B35A9C /* SearchMovieListRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F49C2C57A3D600B35A9C /* SearchMovieListRequestModel.swift */; };
+		FEF6F49F2C57A59000B35A9C /* SearchMovieListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F49E2C57A59000B35A9C /* SearchMovieListResponseModel.swift */; };
+		FEF6F4A12C57A65800B35A9C /* RemoteSearchMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A02C57A65800B35A9C /* RemoteSearchMapper.swift */; };
+		FEF6F4A32C57AA1300B35A9C /* SearchMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A22C57AA1300B35A9C /* SearchMapper.swift */; };
+		FEF6F4A52C57AB3300B35A9C /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A42C57AB3300B35A9C /* SearchUsecase.swift */; };
+		FEF6F4A72C57AB6800B35A9C /* SearchRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A62C57AB6800B35A9C /* SearchRepositoryProtocol.swift */; };
+		FEF6F4A92C57AB9300B35A9C /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A82C57AB9300B35A9C /* SearchRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,6 +308,16 @@
 		FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		FEF6F4822C5623A900B35A9C /* CommonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtil.swift; sourceTree = "<group>"; };
 		FEF6F4842C56317700B35A9C /* AppSettingMenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingMenuItemCell.swift; sourceTree = "<group>"; };
+		FEF6F4962C57A28A00B35A9C /* SearchUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecaseProtocol.swift; sourceTree = "<group>"; };
+		FEF6F4982C57A2DB00B35A9C /* SearchMovieListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieListEntity.swift; sourceTree = "<group>"; };
+		FEF6F49A2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSearchMovieListItem.swift; sourceTree = "<group>"; };
+		FEF6F49C2C57A3D600B35A9C /* SearchMovieListRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieListRequestModel.swift; sourceTree = "<group>"; };
+		FEF6F49E2C57A59000B35A9C /* SearchMovieListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieListResponseModel.swift; sourceTree = "<group>"; };
+		FEF6F4A02C57A65800B35A9C /* RemoteSearchMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSearchMapper.swift; sourceTree = "<group>"; };
+		FEF6F4A22C57AA1300B35A9C /* SearchMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapper.swift; sourceTree = "<group>"; };
+		FEF6F4A42C57AB3300B35A9C /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
+		FEF6F4A62C57AB6800B35A9C /* SearchRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryProtocol.swift; sourceTree = "<group>"; };
+		FEF6F4A82C57AB9300B35A9C /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -638,6 +658,7 @@
 			isa = PBXGroup;
 			children = (
 				FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */,
+				FEF6F49C2C57A3D600B35A9C /* SearchMovieListRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -660,6 +681,7 @@
 			children = (
 				FEF6F44E2C510B5200B35A9C /* SplashRepositoryProtocol.swift */,
 				FECFE4472C32B7FE00078CDF /* RankRepositoryProtocol.swift */,
+				FEF6F4A62C57AB6800B35A9C /* SearchRepositoryProtocol.swift */,
 				FE98264E2C3BFB50006F0C67 /* LoginRepositoryProtocol.swift */,
 				FEF6F4642C5116D500B35A9C /* ProfileRepositoryProtocol.swift */,
 			);
@@ -680,6 +702,7 @@
 			children = (
 				FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */,
 				FECFE4452C32B7E400078CDF /* RankUsecase.swift */,
+				FEF6F4A42C57AB3300B35A9C /* SearchUsecase.swift */,
 				FE98264C2C3BFB41006F0C67 /* LoginUsecase.swift */,
 				FEF6F4582C51153000B35A9C /* ProfileUsecase.swift */,
 			);
@@ -689,9 +712,10 @@
 		FECFE4402C32B78400078CDF /* UsecaseProtocol */ = {
 			isa = PBXGroup;
 			children = (
+				FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */,
 				FEF6F44A2C510A3900B35A9C /* SplashUsecaseProtocol.swift */,
 				FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */,
-				FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */,
+				FEF6F4962C57A28A00B35A9C /* SearchUsecaseProtocol.swift */,
 				FE98264A2C3BFB3A006F0C67 /* LoginUsecaseProtocol.swift */,
 				FEF6F4562C51152600B35A9C /* ProfileUsecaseProtocol.swift */,
 			);
@@ -703,6 +727,7 @@
 			children = (
 				FEF6F4502C510B6A00B35A9C /* SplashRepository.swift */,
 				FECFE44A2C32B81300078CDF /* RankRepository.swift */,
+				FEF6F4A82C57AB9300B35A9C /* SearchRepository.swift */,
 				FE9826502C3BFB5D006F0C67 /* LoginRepository.swift */,
 				FEF6F4542C51151700B35A9C /* ProfileRepository.swift */,
 			);
@@ -716,6 +741,7 @@
 				FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */,
 				FE9826522C3BFBB3006F0C67 /* RemoteLoginItem.swift */,
 				FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */,
+				FEF6F49A2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift */,
 			);
 			path = RemoteItem;
 			sourceTree = "<group>";
@@ -727,6 +753,7 @@
 				FE98260B2C340CDC006F0C67 /* MovieSetsResponseModel.swift */,
 				FE98266A2C3E96B4006F0C67 /* LoginResponseModel.swift */,
 				FEF6F45C2C51157D00B35A9C /* MyProfileResponseModel.swift */,
+				FEF6F49E2C57A59000B35A9C /* SearchMovieListResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -737,6 +764,7 @@
 				FECFE4512C32B94D00078CDF /* BannerEntity.swift */,
 				FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */,
 				FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */,
+				FEF6F4982C57A2DB00B35A9C /* SearchMovieListEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -746,6 +774,7 @@
 			children = (
 				FECFE4562C32B9A100078CDF /* BannerMapper.swift */,
 				FEF6F4622C51162500B35A9C /* ProfileMapper.swift */,
+				FEF6F4A22C57AA1300B35A9C /* SearchMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -756,6 +785,7 @@
 				FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */,
 				FE98266C2C3E96E2006F0C67 /* RemoteLoginMapper.swift */,
 				FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */,
+				FEF6F4A02C57A65800B35A9C /* RemoteSearchMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -917,6 +947,7 @@
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
 				FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */,
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
+				FEF6F4A72C57AB6800B35A9C /* SearchRepositoryProtocol.swift in Sources */,
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
 				FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
@@ -929,8 +960,10 @@
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */,
 				FE98266B2C3E96B4006F0C67 /* LoginResponseModel.swift in Sources */,
+				FEF6F4A92C57AB9300B35A9C /* SearchRepository.swift in Sources */,
 				FE98264D2C3BFB41006F0C67 /* LoginUsecase.swift in Sources */,
 				FEF6F4612C51161300B35A9C /* MyProfileEntity.swift in Sources */,
+				FEF6F4A52C57AB3300B35A9C /* SearchUsecase.swift in Sources */,
 				4376DAC52C11AE710060E618 /* String+Extension.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
 				FECFE44B2C32B81300078CDF /* RankRepository.swift in Sources */,
@@ -949,6 +982,7 @@
 				432C09712BE75E8800BBFDB1 /* DailyRankingFooterView.swift in Sources */,
 				432C09752BE7679300BBFDB1 /* RankingItemCell.swift in Sources */,
 				FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */,
+				FEF6F49B2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift in Sources */,
 				436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
 				FE98260C2C340CDC006F0C67 /* MovieSetsResponseModel.swift in Sources */,
@@ -959,14 +993,17 @@
 				FE98266F2C3E9B70006F0C67 /* SignUpViewController.swift in Sources */,
 				4364A1452BC6692100F867B6 /* SearchCoordinator.swift in Sources */,
 				FECFE4482C32B7FE00078CDF /* RankRepositoryProtocol.swift in Sources */,
+				FEF6F49D2C57A3D600B35A9C /* SearchMovieListRequestModel.swift in Sources */,
 				4364A14B2BC6696700F867B6 /* CommonCoordinator.swift in Sources */,
 				430C2DDB2BB9790D00DE5FC2 /* AppDelegate.swift in Sources */,
 				436351C32BF4BFE60078C8C1 /* MyPageGuestView.swift in Sources */,
+				FEF6F4992C57A2DB00B35A9C /* SearchMovieListEntity.swift in Sources */,
 				FEF6F4832C5623A900B35A9C /* CommonUtil.swift in Sources */,
 				432C09612BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift in Sources */,
 				432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */,
 				43103D1C2C28031F009742BB /* UIImageView+Extension.swift in Sources */,
 				436475CD2C118F0E0096F15F /* ReValuationDetailViewModel.swift in Sources */,
+				FEF6F4A32C57AA1300B35A9C /* SearchMapper.swift in Sources */,
 				FEF6F4552C51151700B35A9C /* ProfileRepository.swift in Sources */,
 				FEF6F4672C5118A500B35A9C /* RemoteProfileMapper.swift in Sources */,
 				436351C52BF4C83B0078C8C1 /* AppSettingViewController.swift in Sources */,
@@ -988,6 +1025,7 @@
 				FECFE43B2C32B71800078CDF /* Injector.swift in Sources */,
 				4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */,
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
+				FEF6F4A12C57A65800B35A9C /* RemoteSearchMapper.swift in Sources */,
 				FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */,
 				FE9826532C3BFBB3006F0C67 /* RemoteLoginItem.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
@@ -999,6 +1037,7 @@
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
 				FE98266D2C3E96E2006F0C67 /* RemoteLoginMapper.swift in Sources */,
 				FECFE4462C32B7E400078CDF /* RankUsecase.swift in Sources */,
+				FEF6F4972C57A28A00B35A9C /* SearchUsecaseProtocol.swift in Sources */,
 				FEF6F44D2C510AE700B35A9C /* SplashUsecase.swift in Sources */,
 				FECFE4572C32B9A100078CDF /* BannerMapper.swift in Sources */,
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
@@ -1015,6 +1054,7 @@
 				436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */,
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,
 				432C09582BD4F15F00BBFDB1 /* DecodeUtil.swift in Sources */,
+				FEF6F49F2C57A59000B35A9C /* SearchMovieListResponseModel.swift in Sources */,
 				432C09432BC6796600BBFDB1 /* LocalDataFetcher.swift in Sources */,
 				FE9826862C437652006F0C67 /* TermsStackView.swift in Sources */,
 				432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */,

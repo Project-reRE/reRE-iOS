@@ -38,7 +38,7 @@ final class SearchCoordinator: NSObject, SearchBaseCoordinator {
         case .main:
             rootNavigationController?.popToRootViewController(animated: true)
         case .search:
-            let viewModel = SearchViewModel()
+            let viewModel = SearchViewModel(usecase: Injector.shared.resolve(SearchUsecaseProtocol.self)!)
             let searchVC = SearchViewController(viewModel: viewModel)
             searchVC.hidesBottomBarWhenPushed = true
             searchVC.coordinator = self
