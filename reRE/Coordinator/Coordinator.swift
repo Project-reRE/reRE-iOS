@@ -45,7 +45,7 @@ enum AppFlow: Flow {
 enum TabBarFlow: Flow {
     case rank
     case search(SearchFlow)
-    case history
+    case history(HistoryFlow)
     case myPage(MyPageFlow)
     case common(CommonFlow)
 }
@@ -54,6 +54,10 @@ enum SearchFlow: Flow {
     case main
     case search
     case searchDetail
+}
+
+enum HistoryFlow: Flow {
+    case main
 }
 
 enum MyPageFlow: Flow {

@@ -69,8 +69,8 @@ final class HistoryViewController: BaseViewController {
     }
     
     override func setupIfNeeded() {
-        movieHistoryView.containerView.didTapped {
-            
+        movieHistoryView.containerView.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.history(.main), userData: nil)
         }
     }
 }
