@@ -6,14 +6,33 @@
 //
 
 import UIKit
+import Combine
 import Then
 import SnapKit
 
 final class HistoryListViewController: BaseNavigationViewController {
+    private var cancelBag = Set<AnyCancellable>()
+    
     var coordinator: HistoryBaseCoordinator?
+    
+    private lazy var dateLabel = UILabel().then {
+        $0.font = FontSet.title02.font
+        $0.textColor = ColorSet.gray(.white).color
+    }
+    
+    private lazy var leftArrowButton = TouchableImageView(frame: .zero).then {
+        $0.image = UIImage(named: "LeftArrow")
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    private lazy var rightArrowButton = TouchableImageView(frame: .zero).then {
+        $0.image = UIImage(named: "RightArrow")
+        $0.contentMode = .scaleAspectFit
+    }
     
     private lazy var historyListView = UICollectionView(frame: .zero, collectionViewLayout: StaggeredLayout()).then {
         $0.contentInsetAdjustmentBehavior = .never
+        $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.dataSource = self
         $0.registerCell(HistoryItemCell.self)
@@ -26,14 +45,36 @@ final class HistoryListViewController: BaseNavigationViewController {
         super.init()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
+    }
+    
     override func addViews() {
         super.addViews()
         
-        view.addSubviews([historyListView])
+        view.addSubviews([leftArrowButton, dateLabel, rightArrowButton, historyListView])
     }
     
     override func makeConstraints() {
         super.makeConstraints()
+        
+        leftArrowButton.snp.makeConstraints {
+            $0.top.equalTo(topContainerView.snp.bottom).offset(moderateScale(number: 16))
+            $0.leading.equalToSuperview().inset(moderateScale(number: 20))
+            $0.size.equalTo(moderateScale(number: 18))
+        }
+        
+        dateLabel.snp.makeConstraints {
+            $0.centerY.equalTo(leftArrowButton)
+            $0.leading.equalTo(leftArrowButton.snp.trailing).offset(moderateScale(number: 8))
+        }
+        
+        rightArrowButton.snp.makeConstraints {
+            $0.centerY.equalTo(dateLabel)
+            $0.leading.equalTo(dateLabel.snp.trailing).offset(moderateScale(number: 8))
+            $0.size.equalTo(moderateScale(number: 18))
+        }
         
         historyListView.snp.makeConstraints {
             $0.top.equalTo(topContainerView.snp.bottom).offset(moderateScale(number: 42))
@@ -46,13 +87,34 @@ final class HistoryListViewController: BaseNavigationViewController {
         super.setupIfNeeded()
         
         setNavigationTitle(with: "재평가한 영화 목록 보기")
+        
+        leftArrowButton.didTapped { [weak self] in
+            self?.viewModel.getPrevMonthHistoryList()
+        }
+        
+        rightArrowButton.didTapped { [weak self] in
+            self?.viewModel.getNextMonthHistoryList()
+        }
+    }
+    
+    private func bind() {
+        viewModel.getHistoryListPublisher()
+            .droppedSink { [weak self] _ in
+                self?.historyListView.reloadData()
+            }.store(in: &cancelBag)
+        
+        viewModel.getShowingDateValue()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] dateString in
+                self?.dateLabel.text = dateString
+            }.store(in: &cancelBag)
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension HistoryListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return viewModel.getHistoryListValue().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
