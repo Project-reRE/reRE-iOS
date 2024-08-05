@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import Then
 import SnapKit
+import KakaoSDKUser
 
 final class MyPageViewController: BaseViewController {
     private var cancelBag = Set<AnyCancellable>()
@@ -117,7 +118,20 @@ final class MyPageViewController: BaseViewController {
         }
         
         userView.logoutButton.containerView.didTapped {
-            
+            UserApi.shared.logout { [weak self] error in
+                guard error == nil else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: "로그아웃에 실패 했습니다.",
+                                             description: error?.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                    
+                    return
+                }
+                
+                self?.viewModel.logout()
+            }
         }
     }
     

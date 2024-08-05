@@ -10,4 +10,5 @@ import Combine
 
 protocol ProfileUsecaseProtocol: BaseUsecaseProtocol {
     func getMyProfile() -> AnyPublisher<MyProfileResponseModel, Never>
+    func logout()
 }

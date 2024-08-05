@@ -22,7 +22,7 @@ struct UserDefaultsManager {
         return defaults.value(forKey: UserDefaultKey.loginType.rawValue) as? String
     }
     
-    func setLoginType(loginType: String) {
+    func setLoginType(loginType: String?) {
         defaults.setValue(loginType, forKey: UserDefaultKey.loginType.rawValue)
     }
 }

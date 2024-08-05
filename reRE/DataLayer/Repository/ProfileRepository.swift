@@ -20,4 +20,8 @@ extension ProfileRepository: ProfileRepositoryProtocol {
     func getMyProfile() -> AnyPublisher<Result<MyProfileEntity, Error>, Never> {
         return remoteDataFetcher.getMyProfile()
     }
+    
+    func logout() {
+        return remoteDataFetcher.logout()
+    }
 }

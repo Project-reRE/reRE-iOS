@@ -10,4 +10,5 @@ import Combine
 
 protocol ProfileRepositoryProtocol: AnyObject {
     func getMyProfile() -> AnyPublisher<Result<MyProfileEntity, Error>, Never>
+    func logout()
 }

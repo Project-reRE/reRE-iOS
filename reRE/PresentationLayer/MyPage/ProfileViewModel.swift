@@ -41,4 +41,8 @@ final class ProfileViewModel: BaseViewModel {
     func getMyProfileValue() -> MyProfileResponseModel {
         return myProfile.value
     }
+    
+    func logout() {
+        usecase.logout()
+    }
 }

@@ -34,6 +34,10 @@ extension ProfileUsecase: ProfileUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
+    func logout() {
+        repository.logout()
+    }
+    
     func getErrorSubject() -> AnyPublisher<Error, Never> {
         return errorSubject.eraseToAnyPublisher()
     }

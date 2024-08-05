@@ -15,4 +15,5 @@ protocol RemoteDataFetchable: AnyObject {
     func signUp(withParams param: SignUpRequestModel) -> AnyPublisher<Result<String, Error>, Never>
     func getMyProfile() -> AnyPublisher<Result<MyProfileEntity, Error>, Never>
     func searchMovieList(with model: SearchMovieListRequestModel) -> AnyPublisher<Result<SearchMovieListEntity, Error>, Never>
+    func logout()
 }

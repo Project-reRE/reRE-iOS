@@ -170,4 +170,10 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             }
         }.eraseToAnyPublisher()
     }
+    
+    func logout() {
+        UserDefaultsManager.shared.setLoginType(loginType: nil)
+        StaticValues.isLoggedIn.send(false)
+        networkManager.setHeaderToken(token: nil)
+    }
 }
