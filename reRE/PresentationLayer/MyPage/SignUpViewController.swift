@@ -301,13 +301,13 @@ final class SignUpViewController: BaseNavigationViewController {
         
         serviceAgreementButton.showTermsButton.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                      userData: ["urlString": StaticValues.serviceAgreementUrlString])
+                                      userData: ["webViewType": WebViewType.serviceAgreement])
         }
         
         
         privacyPolicyAgreementButton.showTermsButton.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                      userData: ["urlString": StaticValues.privacyPolicyUrlString])
+                                      userData: ["webViewType": WebViewType.privacyPolicy])
         }
         
         

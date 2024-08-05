@@ -10,6 +10,49 @@ import WebKit
 import Then
 import SnapKit
 
+enum WebViewType {
+    case privacyPolicy
+    case serviceAgreement
+    case notice
+    case faq
+    case termsPolicy
+    case openAPI
+    
+    var titleText: String {
+        switch self {
+        case .privacyPolicy:
+            return "개인정보 처리방침 보기"
+        case .serviceAgreement:
+            return "서비스 이용약관 보기"
+        case .notice:
+            return "공지사항 보기"
+        case .faq:
+            return "자주 묻는 질문과 답변 보기"
+        case .termsPolicy:
+            return "운영 정책 보기"
+        case .openAPI:
+            return "사용한 오픈 API 보기"
+        }
+    }
+    
+    var urlString: String {
+        switch self {
+        case .privacyPolicy:
+            return StaticValues.privacyPolicyUrlString
+        case .serviceAgreement:
+            return StaticValues.serviceAgreementUrlString
+        case .notice:
+            return StaticValues.noticeUrlString
+        case .faq:
+            return StaticValues.faqUrlString
+        case .termsPolicy:
+            return StaticValues.termsPolicyUrlString
+        case .openAPI:
+            return StaticValues.openAPIUrlString
+        }
+    }
+}
+
 final class BaseWebViewController: BaseNavigationViewController {
     var coordinator: CommonBaseCoordinator?
     
@@ -19,10 +62,10 @@ final class BaseWebViewController: BaseNavigationViewController {
         $0.scrollView.showsVerticalScrollIndicator = false
     }
     
-    private let url: URL
+    private let webViewType: WebViewType
     
-    init(url: URL) {
-        self.url = url
+    init(webViewType: WebViewType) {
+        self.webViewType = webViewType
         super.init()
         
         hidesBottomBarWhenPushed = true
@@ -55,7 +98,15 @@ final class BaseWebViewController: BaseNavigationViewController {
         }
     }
     
+    override func setupIfNeeded() {
+        super.setupIfNeeded()
+        
+        setNavigationTitle(with: webViewType.titleText)
+    }
+    
     private func openWebView() {
+        guard let url = URL(string: webViewType.urlString) else { return }
+        
         let urlRequest = URLRequest(url: url)
         
         DispatchMain.async { [weak self] in

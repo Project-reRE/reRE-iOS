@@ -126,18 +126,18 @@ extension AppSettingViewController: UICollectionViewDelegate {
             switch menu {
             case .servicePolicy:
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                          userData: ["urlString": StaticValues.serviceAgreementUrlString])
+                                          userData: ["webViewType": WebViewType.serviceAgreement])
             case .privacyPolicy:
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                          userData: ["urlString": StaticValues.privacyPolicyUrlString])
+                                          userData: ["webViewType": WebViewType.privacyPolicy])
             case .termsPolicy:
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                          userData: ["urlString": StaticValues.termsPolicyUrlString])
+                                          userData: ["webViewType": WebViewType.termsPolicy])
             case .openSourceLicense:
                 break
             case .openAPI:
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                          userData: ["urlString": StaticValues.openAPIUrlString])
+                                          userData: ["webViewType": WebViewType.openAPI])
             }
             
             cell.resetCellAttibute()

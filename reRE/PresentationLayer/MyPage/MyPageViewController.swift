@@ -99,12 +99,12 @@ final class MyPageViewController: BaseViewController {
         
         userView.showNoticeButton.containerView.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                      userData: ["urlString": StaticValues.noticeUrlString])
+                                      userData: ["webViewType": WebViewType.notice])
         }
         
         userView.faqButton.containerView.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
-                                      userData: ["urlString": StaticValues.faqUrlString])
+                                      userData: ["webViewType": WebViewType.faq])
         }
         
         userView.askButton.containerView.didTapped { [weak self] in
