@@ -119,6 +119,7 @@ extension HistoryListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(HistoryItemCell.self, indexPath: indexPath) else { return .init() }
+        cell.updateView(text: "\(indexPath.item)")
         return cell
     }
 }

@@ -136,7 +136,8 @@ extension AppSettingViewController: UICollectionViewDelegate {
             case .openSourceLicense:
                 break
             case .openAPI:
-                break
+                self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
+                                          userData: ["urlString": StaticValues.openAPIUrlString])
             }
             
             cell.resetCellAttibute()

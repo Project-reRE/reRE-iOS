@@ -16,5 +16,6 @@ struct StaticValues {
     static let noticeUrlString = "https://revaluation.notion.site/b458446df3b943749fb5b603f7155448?pvs=4"
     static let faqUrlString = "https://revaluation.notion.site/cafff7657cd44b4991c7ce27cf39b384?pvs=4"
     static let termsPolicyUrlString = "https://revaluation.notion.site/72ff79808476490aa5feb170caa59652"
+    static let openAPIUrlString = "rerevaluation@gmail.com"
     static let inquiryEmail = "rerevaluation@gmail.com"
 }

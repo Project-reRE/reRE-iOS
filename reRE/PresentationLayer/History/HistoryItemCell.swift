@@ -107,4 +107,8 @@ final class HistoryItemCell: UICollectionViewCell {
             $0.trailing.equalToSuperview().inset(moderateScale(number: 12))
         }
     }
+    
+    func updateView(text: String) {
+        ratingLabel.text = text
+    }
 }
