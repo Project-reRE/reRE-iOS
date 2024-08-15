@@ -243,6 +243,10 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         rightArrowButton.didTapped { [weak self] in
             self?.viewModel.getNextMonthRevaluation()
         }
+        
+        revaluateButton.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate), userData: nil)
+        }
     }
     
     private func bind() {

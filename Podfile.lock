@@ -2,6 +2,7 @@ PODS:
   - CocoaLumberjack/Core (3.7.4)
   - CocoaLumberjack/Swift (3.7.4):
     - CocoaLumberjack/Core
+  - Cosmos (25.0.1)
   - DGCharts (5.1.0):
     - DGCharts/Core (= 5.1.0)
   - DGCharts/Core (5.1.0)
@@ -13,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - CocoaLumberjack/Swift (~> 3.7.2)
+  - Cosmos
   - DGCharts
   - FLEX (~> 4.6.0)
   - Kingfisher (= 7.6.1)
@@ -23,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - CocoaLumberjack
+    - Cosmos
     - DGCharts
     - FLEX
     - Kingfisher
@@ -32,6 +35,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
   DGCharts: 1c6daf585b6cfc78807af44ea690d357c410627f
   FLEX: bbc55d197f87d7cde2454c3981aa47069b694144
   Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
@@ -39,6 +43,6 @@ SPEC CHECKSUMS:
   Swinject: 79eb1aba4cd25e1b649492e3600c878af2484bfc
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: f834d5e3944145191b696aac39d0b253b6d8ac4a
+PODFILE CHECKSUM: e1d1ea550856047c4d105a7c3726ca7e826dab41
 
 COCOAPODS: 1.13.0

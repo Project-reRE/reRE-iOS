@@ -59,6 +59,13 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             
             signUpVC.hidesBottomBarWhenPushed = true
             currentNavigationViewController?.pushViewController(signUpVC, animated: true)
+        case .revaluate:
+            let viewModel: RevaluateViewModel = RevaluateViewModel()
+            let revaluateVC = RevaluateViewController(viewModel: viewModel)
+            revaluateVC.coordinator = self
+            
+            revaluateVC.hidesBottomBarWhenPushed = true
+            currentNavigationViewController?.pushViewController(revaluateVC, animated: true)
         }
     }
 }

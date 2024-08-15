@@ -67,6 +67,7 @@ enum MyPageFlow: Flow {
 enum CommonFlow: Flow {
     case web
     case revaluationDetail
+    case revaluate
     case login
     case signUp
 }

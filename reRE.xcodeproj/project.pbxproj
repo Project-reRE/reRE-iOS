@@ -100,6 +100,13 @@
 		43E496C42C2AEB150086E6A2 /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C32C2AEB150086E6A2 /* KakaoSDKTemplate */; };
 		43E496C62C2AEB150086E6A2 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C52C2AEB150086E6A2 /* KakaoSDKUser */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
+		FE5B95B62C6DF48600B7D0DB /* RevaluationCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */; };
+		FE5B95B82C6DF79200B7D0DB /* RevaluateSpecialPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */; };
+		FE5B95BA2C6E044200B7D0DB /* RevaluateFeelingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */; };
+		FE5B95C02C6E0A2E00B7D0DB /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95BF2C6E0A2E00B7D0DB /* UIViewController+Extension.swift */; };
+		FE5B95C22C6E0A7800B7D0DB /* UIResponder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95C12C6E0A7800B7D0DB /* UIResponder+Extension.swift */; };
+		FE89FC222C6DE92E00FB01FB /* RevaluateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89FC212C6DE92E00FB01FB /* RevaluateViewController.swift */; };
+		FE89FC242C6DE9E900FB01FB /* RevaluateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89FC232C6DE9E900FB01FB /* RevaluateViewModel.swift */; };
 		FE9826062C340923006F0C67 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826052C340923006F0C67 /* UIColor+Extension.swift */; };
 		FE9826082C340A01006F0C67 /* RemoteMovieSetsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */; };
 		FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */; };
@@ -258,7 +265,14 @@
 		4376DAC42C11AE710060E618 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCategoryView.swift; sourceTree = "<group>"; };
+		FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateSpecialPointView.swift; sourceTree = "<group>"; };
+		FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateFeelingsView.swift; sourceTree = "<group>"; };
+		FE5B95BF2C6E0A2E00B7D0DB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		FE5B95C12C6E0A7800B7D0DB /* UIResponder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extension.swift"; sourceTree = "<group>"; };
 		FE8108B98035D765B0474EAA /* Pods-reRE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.debug.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.debug.xcconfig"; sourceTree = "<group>"; };
+		FE89FC212C6DE92E00FB01FB /* RevaluateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateViewController.swift; sourceTree = "<group>"; };
+		FE89FC232C6DE9E900FB01FB /* RevaluateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateViewModel.swift; sourceTree = "<group>"; };
 		FE9826052C340923006F0C67 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieSetsItem.swift; sourceTree = "<group>"; };
 		FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSetsEntity.swift; sourceTree = "<group>"; };
@@ -441,6 +455,8 @@
 			isa = PBXGroup;
 			children = (
 				432C094B2BD4EF0C00BBFDB1 /* UIView+Extension.swift */,
+				FE5B95BF2C6E0A2E00B7D0DB /* UIViewController+Extension.swift */,
+				FE5B95C12C6E0A7800B7D0DB /* UIResponder+Extension.swift */,
 				432C094D2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift */,
 				432C094F2BD4EF6600BBFDB1 /* UIScrollView+Extension.swift */,
 				432C09512BD4EF8800BBFDB1 /* UIStackView+Extension.swift */,
@@ -644,12 +660,8 @@
 				432C09682BD4F4C800BBFDB1 /* TouchableLabel.swift */,
 				432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */,
 				432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */,
-				436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */,
-				436475CE2C1198940096F15F /* NoRevaluationView.swift */,
-				43103D192C2800FA009742BB /* RevaluationDetailView.swift */,
-				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
-				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
-				FEF6F4482C510A0F00B35A9C /* SplashViewModel.swift */,
+				FE89FC202C6DE86400FB01FB /* Splash */,
+				FE89FC1F2C6DE84700FB01FB /* Revaluation */,
 				432C095B2BD4F1E100BBFDB1 /* Rank */,
 				432C09892BF4A72700BBFDB1 /* Search */,
 				436351BE2BF4B9BE0078C8C1 /* History */,
@@ -664,6 +676,31 @@
 				7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE89FC1F2C6DE84700FB01FB /* Revaluation */ = {
+			isa = PBXGroup;
+			children = (
+				436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */,
+				436475CE2C1198940096F15F /* NoRevaluationView.swift */,
+				43103D192C2800FA009742BB /* RevaluationDetailView.swift */,
+				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
+				FE89FC212C6DE92E00FB01FB /* RevaluateViewController.swift */,
+				FE89FC232C6DE9E900FB01FB /* RevaluateViewModel.swift */,
+				FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */,
+				FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */,
+				FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */,
+			);
+			path = Revaluation;
+			sourceTree = "<group>";
+		};
+		FE89FC202C6DE86400FB01FB /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				4364A1522BC66F1900F867B6 /* SplashViewController.swift */,
+				FEF6F4482C510A0F00B35A9C /* SplashViewModel.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		FE9826722C3EA06D006F0C67 /* RequestModel */ = {
@@ -955,6 +992,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEF6F4512C510B6A00B35A9C /* SplashRepository.swift in Sources */,
+				FE5B95C02C6E0A2E00B7D0DB /* UIViewController+Extension.swift in Sources */,
 				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
 				FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */,
@@ -967,12 +1005,14 @@
 				43103D1A2C2800FA009742BB /* RevaluationDetailView.swift in Sources */,
 				432C09492BD4EB5100BBFDB1 /* ColorSet.swift in Sources */,
 				FEF6F4572C51152600B35A9C /* ProfileUsecaseProtocol.swift in Sources */,
+				FE5B95C22C6E0A7800B7D0DB /* UIResponder+Extension.swift in Sources */,
 				FE9826492C3BFB02006F0C67 /* LoginViewModel.swift in Sources */,
 				FE98264F2C3BFB50006F0C67 /* LoginRepositoryProtocol.swift in Sources */,
 				4364A1412BC6686B00F867B6 /* TabBarCoordinator.swift in Sources */,
 				436351D32C0C49A50078C8C1 /* SearchDescriptionView.swift in Sources */,
 				FE98266B2C3E96B4006F0C67 /* LoginResponseModel.swift in Sources */,
 				FEF6F4A92C57AB9300B35A9C /* SearchRepository.swift in Sources */,
+				FE5B95B82C6DF79200B7D0DB /* RevaluateSpecialPointView.swift in Sources */,
 				FE98264D2C3BFB41006F0C67 /* LoginUsecase.swift in Sources */,
 				FEF6F4612C51161300B35A9C /* MyProfileEntity.swift in Sources */,
 				FEF6F4A52C57AB3300B35A9C /* SearchUsecase.swift in Sources */,
@@ -1030,6 +1070,7 @@
 				FEF6F4652C5116D500B35A9C /* ProfileRepositoryProtocol.swift in Sources */,
 				FECFE45A2C32B9B400078CDF /* RemoteBannerMapper.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
+				FE89FC242C6DE9E900FB01FB /* RevaluateViewModel.swift in Sources */,
 				43263F582C1187B7004804BF /* BaseNavigationViewController.swift in Sources */,
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
 				FEA1F7612C58F4DE007F76D0 /* HistoryListViewController.swift in Sources */,
@@ -1043,6 +1084,7 @@
 				FEF6F4A12C57A65800B35A9C /* RemoteSearchMapper.swift in Sources */,
 				FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */,
 				FE9826532C3BFBB3006F0C67 /* RemoteLoginItem.swift in Sources */,
+				FE5B95BA2C6E044200B7D0DB /* RevaluateFeelingsView.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
 				FECFE4522C32B94D00078CDF /* BannerEntity.swift in Sources */,
@@ -1052,9 +1094,11 @@
 				FEA1F7632C58F5A6007F76D0 /* HistoryListViewModel.swift in Sources */,
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
 				FE98266D2C3E96E2006F0C67 /* RemoteLoginMapper.swift in Sources */,
+				FE89FC222C6DE92E00FB01FB /* RevaluateViewController.swift in Sources */,
 				FECFE4462C32B7E400078CDF /* RankUsecase.swift in Sources */,
 				FEF6F4972C57A28A00B35A9C /* SearchUsecaseProtocol.swift in Sources */,
 				FEF6F44D2C510AE700B35A9C /* SplashUsecase.swift in Sources */,
+				FE5B95B62C6DF48600B7D0DB /* RevaluationCategoryView.swift in Sources */,
 				FECFE4572C32B9A100078CDF /* BannerMapper.swift in Sources */,
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
 				FEF6F4852C56317700B35A9C /* AppSettingMenuItemCell.swift in Sources */,
