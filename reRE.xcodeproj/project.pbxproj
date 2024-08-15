@@ -1280,7 +1280,7 @@
 				BUNDLE_DISPLAY_NAME = "reRE Dev";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7ZW95Z6WF9;
+				DEVELOPMENT_TEAM = 82S5Y38V5F;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reRE/Info.plist;
@@ -1296,8 +1296,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.revaluation.rereDev;
+				MARKETING_VERSION = 0.9.9;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.revaluation.rereDev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1317,7 +1317,7 @@
 				BUNDLE_DISPLAY_NAME = reRE;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7ZW95Z6WF9;
+				DEVELOPMENT_TEAM = 82S5Y38V5F;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = reRE/Info.plist;
@@ -1333,8 +1333,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.revaluation.rere;
+				MARKETING_VERSION = 0.9.9;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.revaluation.rere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

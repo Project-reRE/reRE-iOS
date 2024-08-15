@@ -13,7 +13,7 @@ pod 'CocoaLumberjack/Swift', '~> 3.7.2'
 # pod 'Moya'
 pod 'Kingfisher', '7.6.1'
 pod 'Swinject'
-pod 'FLEX', '~> 4.6.0', :configurations => ['Debug']
+# pod 'FLEX', '~> 4.6.0', :configurations => ['Debug']
 pod 'DGCharts'
 pod 'Cosmos'
 end

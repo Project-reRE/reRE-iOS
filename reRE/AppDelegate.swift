@@ -7,9 +7,6 @@
 
 import UIKit
 import KakaoSDKCommon
-#if DEBUG
-import FLEX
-#endif
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
