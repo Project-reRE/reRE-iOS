@@ -19,6 +19,7 @@ final class RevaluateViewController: BaseNavigationViewController {
     
     private lazy var scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
+        $0.delaysContentTouches = false
     }
     
     private lazy var containerView = UIView().then {
@@ -105,6 +106,7 @@ final class RevaluateViewController: BaseNavigationViewController {
         settings.filledImage = UIImage(named: "GradedStar")
         settings.emptyImage = UIImage(named: "GradeStar")
         settings.minTouchRating = 0.5
+        settings.updateOnTouch = true
         
         let view = CosmosView(settings: settings)
         view.rating = 0

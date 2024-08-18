@@ -6,15 +6,17 @@ PODS:
   - DGCharts (5.1.0):
     - DGCharts/Core (= 5.1.0)
   - DGCharts/Core (5.1.0)
+  - FLEX (5.22.10)
   - Kingfisher (7.6.1)
-  - SnapKit (5.6.0)
-  - Swinject (2.8.5)
+  - SnapKit (5.7.1)
+  - Swinject (2.9.1)
   - Then (3.0.0)
 
 DEPENDENCIES:
   - CocoaLumberjack/Swift (~> 3.7.2)
   - Cosmos
   - DGCharts
+  - FLEX
   - Kingfisher (= 7.6.1)
   - SnapKit
   - Swinject
@@ -25,6 +27,7 @@ SPEC REPOS:
     - CocoaLumberjack
     - Cosmos
     - DGCharts
+    - FLEX
     - Kingfisher
     - SnapKit
     - Swinject
@@ -34,11 +37,12 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
   Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
   DGCharts: 1c6daf585b6cfc78807af44ea690d357c410627f
+  FLEX: f21ee4f498eed3f8a1eded66b21939fd3b7a22ce
   Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  Swinject: 79eb1aba4cd25e1b649492e3600c878af2484bfc
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  Swinject: a827d508c6270da03ec74e558e728917a888fa9b
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 97db3c657510f4bc7e9d172c30b4cdcca92bb577
+PODFILE CHECKSUM: 61adc5c1bc010d56bceaa61bded8e2fbe9ff453d
 
 COCOAPODS: 1.15.2
