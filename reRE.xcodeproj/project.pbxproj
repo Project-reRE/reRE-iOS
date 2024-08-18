@@ -135,6 +135,10 @@
 		FEA1F7672C58F789007F76D0 /* HistoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA1F7662C58F789007F76D0 /* HistoryItemCell.swift */; };
 		FEB374712C71D81F005B0286 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374702C71D81F005B0286 /* ChartView.swift */; };
 		FEB374732C71D95F005B0286 /* RevaluationDetailRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */; };
+		FEB374752C71DC58005B0286 /* HistoryUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374742C71DC58005B0286 /* HistoryUsecaseProtocol.swift */; };
+		FEB374772C71DC6F005B0286 /* HistoryUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374762C71DC6F005B0286 /* HistoryUsecase.swift */; };
+		FEB374792C71DC95005B0286 /* HistoryRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374782C71DC95005B0286 /* HistoryRepositoryProtocol.swift */; };
+		FEB3747B2C71DCAA005B0286 /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3747A2C71DCAA005B0286 /* HistoryRepository.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -303,6 +307,10 @@
 		FEA1F7662C58F789007F76D0 /* HistoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemCell.swift; sourceTree = "<group>"; };
 		FEB374702C71D81F005B0286 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationDetailRequestModel.swift; sourceTree = "<group>"; };
+		FEB374742C71DC58005B0286 /* HistoryUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUsecaseProtocol.swift; sourceTree = "<group>"; };
+		FEB374762C71DC6F005B0286 /* HistoryUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUsecase.swift; sourceTree = "<group>"; };
+		FEB374782C71DC95005B0286 /* HistoryRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryProtocol.swift; sourceTree = "<group>"; };
+		FEB3747A2C71DCAA005B0286 /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -739,6 +747,7 @@
 				FEF6F4A62C57AB6800B35A9C /* SearchRepositoryProtocol.swift */,
 				FE98264E2C3BFB50006F0C67 /* LoginRepositoryProtocol.swift */,
 				FEF6F4642C5116D500B35A9C /* ProfileRepositoryProtocol.swift */,
+				FEB374782C71DC95005B0286 /* HistoryRepositoryProtocol.swift */,
 			);
 			path = RepositoryProtocol;
 			sourceTree = "<group>";
@@ -760,6 +769,7 @@
 				FEF6F4A42C57AB3300B35A9C /* SearchUsecase.swift */,
 				FE98264C2C3BFB41006F0C67 /* LoginUsecase.swift */,
 				FEF6F4582C51153000B35A9C /* ProfileUsecase.swift */,
+				FEB374762C71DC6F005B0286 /* HistoryUsecase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -773,6 +783,7 @@
 				FEF6F4962C57A28A00B35A9C /* SearchUsecaseProtocol.swift */,
 				FE98264A2C3BFB3A006F0C67 /* LoginUsecaseProtocol.swift */,
 				FEF6F4562C51152600B35A9C /* ProfileUsecaseProtocol.swift */,
+				FEB374742C71DC58005B0286 /* HistoryUsecaseProtocol.swift */,
 			);
 			path = UsecaseProtocol;
 			sourceTree = "<group>";
@@ -785,6 +796,7 @@
 				FEF6F4A82C57AB9300B35A9C /* SearchRepository.swift */,
 				FE9826502C3BFB5D006F0C67 /* LoginRepository.swift */,
 				FEF6F4542C51151700B35A9C /* ProfileRepository.swift */,
+				FEB3747A2C71DCAA005B0286 /* HistoryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -999,6 +1011,7 @@
 			files = (
 				FEF6F4512C510B6A00B35A9C /* SplashRepository.swift in Sources */,
 				FE5B95C02C6E0A2E00B7D0DB /* UIViewController+Extension.swift in Sources */,
+				FEB374772C71DC6F005B0286 /* HistoryUsecase.swift in Sources */,
 				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
 				FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */,
@@ -1048,9 +1061,11 @@
 				FE9826472C3BF3EC006F0C67 /* LoginViewController.swift in Sources */,
 				FE9F9D802C4FBBAB00E6FB13 /* MyPageUserView.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
+				FEB3747B2C71DCAA005B0286 /* HistoryRepository.swift in Sources */,
 				4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */,
 				FE98266F2C3E9B70006F0C67 /* SignUpViewController.swift in Sources */,
 				4364A1452BC6692100F867B6 /* SearchCoordinator.swift in Sources */,
+				FEB374792C71DC95005B0286 /* HistoryRepositoryProtocol.swift in Sources */,
 				FECFE4482C32B7FE00078CDF /* RankRepositoryProtocol.swift in Sources */,
 				FEF6F49D2C57A3D600B35A9C /* SearchMovieListRequestModel.swift in Sources */,
 				FEA1F7652C58F72D007F76D0 /* StaggeredLayout.swift in Sources */,
@@ -1143,6 +1158,7 @@
 				FEF6F4492C510A0F00B35A9C /* SplashViewModel.swift in Sources */,
 				4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */,
 				FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */,
+				FEB374752C71DC58005B0286 /* HistoryUsecaseProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
