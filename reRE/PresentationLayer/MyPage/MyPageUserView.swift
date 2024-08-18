@@ -52,7 +52,6 @@ final class MyPageUserView: UIView {
     }
     
     private lazy var birthLabel = UILabel().then {
-        $0.text = "1985년생"
         $0.textColor = ColorSet.gray(.gray50).color
         $0.font = FontSet.subTitle01.font
     }
@@ -93,7 +92,6 @@ final class MyPageUserView: UIView {
     }
     
     private lazy var emailLabel = UILabel().then {
-        $0.text = "rere@gmail.com"
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.body01.font
     }
@@ -226,6 +224,12 @@ final class MyPageUserView: UIView {
     func updateView(withModel model: MyProfileResponseModel) {
         nicknameLabel.text = model.nickName
         genderLabel.text = model.gender ? "남성" : "여성"
+        
+        if let birthYear = model.birthDate.toDate(with: "yyyy-MM-dd")?.dateToString(with: "yyyy") {
+            birthLabel.text = "\(birthYear)년생"
+        }
+        
+        emailLabel.text = model.email
         thumbnailImageView.kf.setImage(with: URL(string: model.profileUrl))
     }
 }

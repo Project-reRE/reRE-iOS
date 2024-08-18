@@ -146,6 +146,7 @@ final class MyPageViewController: BaseViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoggedIn in
                 if isLoggedIn {
+                    print("??")
                     self?.viewModel.getMyProfile()
                 }
                 
