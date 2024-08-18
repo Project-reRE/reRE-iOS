@@ -21,36 +21,24 @@ struct RemoteMovieSetsData: Decodable {
 }
 
 struct RemoteMovieSetData: Decodable {
-    let DOCID: String?
-    let movieId: String?
-    let movieSeq: String?
-    let title: String?
-    let prodYear: String?
-    let directors: RemoteMovieDirectorData?
-    let actors: RemoteMovieActorData?
-    let nation: String?
-    let company: String?
-    let runtime: String?
-    let rating: String?
-    let genre: String?
-    let repRatDate: String?
-    let repRlsDate: String?
-    let posters: String?
-    let stlls: String?
+    let id: String?
+    let data: RemoteMovieData?
 }
 
-struct RemoteMovieDirectorData: Decodable {
-    let director: [RemoteMovieDirectorDetailData]?
+struct RemoteMovieData: Decodable {
+    let title: String?
+    let genre: String?
+    let repRlsDate: String?
+    let directors: [RemoteMovieDirectorDetailData]?
+    let actors: [RemoteMovieActorDetailData]?
+    let posters: [String]?
+    let stlls: [String]?
 }
 
 struct RemoteMovieDirectorDetailData: Decodable {
     let directorNm: String?
     let directorEnNm: String?
     let directorId: String?
-}
-
-struct RemoteMovieActorData: Decodable {
-    let actor: [RemoteMovieActorDetailData]?
 }
 
 struct RemoteMovieActorDetailData: Decodable {

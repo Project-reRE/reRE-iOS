@@ -16,36 +16,24 @@ struct MovieSetsEntity {
 }
 
 struct MovieSetEntity {
-    let DOCID: String
-    let movieId: String
-    let movieSeq: String
-    let title: String
-    let prodYear: String
-    let directors: MovieDirectorEntity
-    let actors: MovieActorEntity
-    let nation: String
-    let company: String
-    let runtime: String
-    let rating: String
-    let genre: String
-    let repRatDate: String
-    let repRlsDate: String
-    let posters: String
-    let stlls: String
+    let id: String
+    let data: MovieEntity
 }
 
-struct MovieDirectorEntity {
-    let director: [MovieDirectorDetailEntity]
+struct MovieEntity {
+    let title: String
+    let genre: String
+    let repRlsDate: String
+    let directors: [MovieDirectorDetailEntity]
+    let actors: [MovieActorDetailEntity]
+    let posters: [String]
+    let stlls: [String]
 }
 
 struct MovieDirectorDetailEntity {
     let directorNm: String
     let directorEnNm: String
     let directorId: String
-}
-
-struct MovieActorEntity {
-    let actor: [MovieActorDetailEntity]
 }
 
 struct MovieActorDetailEntity {

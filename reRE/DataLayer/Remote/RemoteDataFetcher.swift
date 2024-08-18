@@ -51,10 +51,11 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                 
                 switch result {
                 case .success(let response):
+                    LogDebug(response.data)
                     if let remoteItem = DecodeUtil.decode(RemoteBannerItem.self, data: response.data) {
                         promise(.success(.success(self.remoteBannerMapper.remoteBannerItemToEntity(remoteItem: remoteItem))))
                     } else {
-                        LogDebug(response.data)
+                        
                         promise(.success(.failure(HTTPError.typeMismatch)))
                     }
                 case .failure(let error):

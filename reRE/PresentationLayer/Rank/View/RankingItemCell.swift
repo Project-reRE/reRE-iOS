@@ -136,14 +136,13 @@ final class RankingItemCell: UICollectionViewCell {
     }
     
     func updateView(withModel model: MovieSetResponseModel) {
-        movieTitleLabel.text = model.title
-        yearLabel.text = model.prodYear
+        movieTitleLabel.text = model.data.title
+        yearLabel.text = model.data.repRlsDate
         
         var directorText: String = ""
         
-        for (index, director) in model.directors.director.enumerated() {
-            
-            if index == model.directors.director.count - 1 {
+        for (index, director) in model.data.directors.enumerated() {
+            if index == model.data.directors.count - 1 {
                 directorText += "\(director.directorNm)"
             } else {
                 directorText += "\(director.directorNm), "
@@ -154,9 +153,8 @@ final class RankingItemCell: UICollectionViewCell {
         
         var actorText: String = ""
         
-        for (index, actor) in model.actors.actor.enumerated() {
-            
-            if index == model.actors.actor.count - 1 {
+        for (index, actor) in model.data.actors.enumerated() {
+            if index == model.data.actors.count - 1 {
                 actorText += "\(actor.actorNm)"
             } else {
                 actorText += "\(actor.actorNm), "
@@ -164,6 +162,6 @@ final class RankingItemCell: UICollectionViewCell {
         }
         
         actorLabel.text = actorText
-        genreLabel.text = model.genre
+        genreLabel.text = model.data.genre
     }
 }

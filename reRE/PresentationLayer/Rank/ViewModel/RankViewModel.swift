@@ -37,7 +37,7 @@ final class RankViewModel: BaseViewModel {
         shouldGetBannerList
             .flatMap(usecase.getBannerList)
             .sink { [weak self] bannerList in
-                var shouldDisplayBannerList = bannerList.filter { $0.display }
+                var shouldDisplayBannerList = bannerList
                 
                 guard shouldDisplayBannerList.count > 1 else {
                     self?.bannerList.send(shouldDisplayBannerList)

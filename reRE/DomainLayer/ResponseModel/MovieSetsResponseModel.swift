@@ -16,36 +16,24 @@ struct MovieSetsResponseModel {
 }
 
 struct MovieSetResponseModel {
-    let DOCID: String
-    let movieId: String
-    let movieSeq: String
-    let title: String
-    let prodYear: String
-    let directors: MovieDirectorResponseModel
-    let actors: MovieActorResponseModel
-    let nation: String
-    let company: String
-    let runtime: String
-    let rating: String
-    let genre: String
-    let repRatDate: String
-    let repRlsDate: String
-    let posters: String
-    let stlls: String
+    let id: String
+    let data: MovieResponseModel
 }
 
-struct MovieDirectorResponseModel {
-    let director: [MovieDirectorDetailResponseModel]
+struct MovieResponseModel {
+    let title: String
+    let genre: String
+    let repRlsDate: String
+    let directors: [MovieDirectorDetailResponseModel]
+    let actors: [MovieActorDetailResponseModel]
+    let posters: [String]
+    let stlls: [String]
 }
 
 struct MovieDirectorDetailResponseModel {
     let directorNm: String
     let directorEnNm: String
     let directorId: String
-}
-
-struct MovieActorResponseModel {
-    let actor: [MovieActorDetailResponseModel]
 }
 
 struct MovieActorDetailResponseModel {

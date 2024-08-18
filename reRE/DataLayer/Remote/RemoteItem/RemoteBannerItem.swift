@@ -13,12 +13,7 @@ struct RemoteBannerItem: Decodable {
 }
 
 struct RemoteBannerData: Decodable {
-    let title: String?
-    let body: String?
-    let template: String?
-    let route: String?
-    let boxHexCode: String?
     let displayOrder: Int?
     let imageUrl: String?
-    let display: Bool?
+    let route: String?
 }
