@@ -134,6 +134,7 @@
 		FEA1F7652C58F72D007F76D0 /* StaggeredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA1F7642C58F72D007F76D0 /* StaggeredLayout.swift */; };
 		FEA1F7672C58F789007F76D0 /* HistoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA1F7662C58F789007F76D0 /* HistoryItemCell.swift */; };
 		FEB374712C71D81F005B0286 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374702C71D81F005B0286 /* ChartView.swift */; };
+		FEB374732C71D95F005B0286 /* RevaluationDetailRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -301,6 +302,7 @@
 		FEA1F7642C58F72D007F76D0 /* StaggeredLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredLayout.swift; sourceTree = "<group>"; };
 		FEA1F7662C58F789007F76D0 /* HistoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItemCell.swift; sourceTree = "<group>"; };
 		FEB374702C71D81F005B0286 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationDetailRequestModel.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -711,6 +713,7 @@
 			children = (
 				FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */,
 				FEF6F49C2C57A3D600B35A9C /* SearchMovieListRequestModel.swift */,
+				FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -1041,6 +1044,7 @@
 				436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
 				FE98260C2C340CDC006F0C67 /* MovieSetsResponseModel.swift in Sources */,
+				FEB374732C71D95F005B0286 /* RevaluationDetailRequestModel.swift in Sources */,
 				FE9826472C3BF3EC006F0C67 /* LoginViewController.swift in Sources */,
 				FE9F9D802C4FBBAB00E6FB13 /* MyPageUserView.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,

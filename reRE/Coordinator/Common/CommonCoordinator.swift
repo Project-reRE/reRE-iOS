@@ -39,7 +39,9 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             webVC.coordinator = self
             currentNavigationViewController?.pushViewController(webVC, animated: true)
         case .revaluationDetail:
-            let viewModel = ReValuationDetailViewModel()
+            guard let movieId = userData?["movieId"] as? String else { return }
+            
+            let viewModel = ReValuationDetailViewModel(movieId: movieId)
             let revaluationVC = RevaluationDetailViewController(viewModel: viewModel)
             revaluationVC.coordinator = self
             revaluationVC.hidesBottomBarWhenPushed = true

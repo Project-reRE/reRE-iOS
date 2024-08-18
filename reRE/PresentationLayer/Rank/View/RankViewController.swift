@@ -250,7 +250,8 @@ extension RankViewController: UICollectionViewDataSource {
             cell.updateView(withModel: model)
             
             cell.containerView.didTapped { [weak self] in
-                self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
+                self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail),
+                                          userData: ["movieId": model.id])
             }
             
             return cell

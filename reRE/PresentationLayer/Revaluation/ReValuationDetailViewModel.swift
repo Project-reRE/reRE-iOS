@@ -14,7 +14,10 @@ final class ReValuationDetailViewModel {
     private let shouldLoadRevaluation = CurrentValueSubject<String, Never>(Date().dateToString(with: "yyyy.MM"))
     private let revaluationData = CurrentValueSubject<String, Never>("")
     
-    init() {
+    private let movieId: String
+    
+    init(movieId: String) {
+        self.movieId = movieId
         bind()
     }
     
