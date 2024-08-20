@@ -108,7 +108,15 @@ final class HistoryItemCell: UICollectionViewCell {
         }
     }
     
-    func updateView(text: String) {
-        ratingLabel.text = text
+    func updateView(with data: MyHistoryEntityData) {
+        if let posterUrl = data.movie.data.posters.first {
+            posterImageView.kf.setImage(with: URL(string: posterUrl))
+        } else if let stillUrl = data.movie.data.stlls.first {
+            posterImageView.kf.setImage(with: URL(string: stillUrl))
+        } else {
+            posterImageView.image = nil
+        }
+        
+        ratingLabel.text = data.numStars
     }
 }

@@ -105,8 +105,10 @@ final class HistoryListViewController: BaseNavigationViewController {
         
         viewModel.getShowingDateValue()
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] dateString in
-                self?.dateLabel.text = dateString
+            .sink { [weak self] requestModel in
+                let startDate = requestModel.startDate.toDate(with: "yyyy-MM-dd")
+                let showingDate = startDate?.dateToString(with: "yyyy. MM")
+                self?.dateLabel.text = showingDate
             }.store(in: &cancelBag)
     }
 }
@@ -114,12 +116,13 @@ final class HistoryListViewController: BaseNavigationViewController {
 // MARK: - UICollectionViewDataSource
 extension HistoryListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.getHistoryListValue().count
+        return viewModel.getHistoryListValue().results.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(HistoryItemCell.self, indexPath: indexPath) else { return .init() }
-        cell.updateView(text: "\(indexPath.item)")
+        let historyData = viewModel.getHistoryListValue().results[indexPath.item]
+        cell.updateView(with: historyData)
         return cell
     }
 }

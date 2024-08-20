@@ -139,6 +139,10 @@
 		FEB374772C71DC6F005B0286 /* HistoryUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374762C71DC6F005B0286 /* HistoryUsecase.swift */; };
 		FEB374792C71DC95005B0286 /* HistoryRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374782C71DC95005B0286 /* HistoryRepositoryProtocol.swift */; };
 		FEB3747B2C71DCAA005B0286 /* HistoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3747A2C71DCAA005B0286 /* HistoryRepository.swift */; };
+		FEB3747D2C74B710005B0286 /* RemoteMyHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3747C2C74B710005B0286 /* RemoteMyHistoryItem.swift */; };
+		FEB3747F2C74B890005B0286 /* MyHistoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3747E2C74B890005B0286 /* MyHistoryEntity.swift */; };
+		FEB374832C74B8F9005B0286 /* RemoteHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374822C74B8F9005B0286 /* RemoteHistoryMapper.swift */; };
+		FEB374852C74BACD005B0286 /* MyHistoryRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374842C74BACD005B0286 /* MyHistoryRequestModel.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -311,6 +315,10 @@
 		FEB374762C71DC6F005B0286 /* HistoryUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryUsecase.swift; sourceTree = "<group>"; };
 		FEB374782C71DC95005B0286 /* HistoryRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepositoryProtocol.swift; sourceTree = "<group>"; };
 		FEB3747A2C71DCAA005B0286 /* HistoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRepository.swift; sourceTree = "<group>"; };
+		FEB3747C2C74B710005B0286 /* RemoteMyHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMyHistoryItem.swift; sourceTree = "<group>"; };
+		FEB3747E2C74B890005B0286 /* MyHistoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHistoryEntity.swift; sourceTree = "<group>"; };
+		FEB374822C74B8F9005B0286 /* RemoteHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteHistoryMapper.swift; sourceTree = "<group>"; };
+		FEB374842C74BACD005B0286 /* MyHistoryRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHistoryRequestModel.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -722,6 +730,7 @@
 				FE9826732C3EA078006F0C67 /* SignUpRequestModel.swift */,
 				FEF6F49C2C57A3D600B35A9C /* SearchMovieListRequestModel.swift */,
 				FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */,
+				FEB374842C74BACD005B0286 /* MyHistoryRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -809,6 +818,7 @@
 				FE9826522C3BFBB3006F0C67 /* RemoteLoginItem.swift */,
 				FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */,
 				FEF6F49A2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift */,
+				FEB3747C2C74B710005B0286 /* RemoteMyHistoryItem.swift */,
 			);
 			path = RemoteItem;
 			sourceTree = "<group>";
@@ -832,6 +842,7 @@
 				FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */,
 				FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */,
 				FEF6F4982C57A2DB00B35A9C /* SearchMovieListEntity.swift */,
+				FEB3747E2C74B890005B0286 /* MyHistoryEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -853,6 +864,7 @@
 				FE98266C2C3E96E2006F0C67 /* RemoteLoginMapper.swift */,
 				FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */,
 				FEF6F4A02C57A65800B35A9C /* RemoteSearchMapper.swift */,
+				FEB374822C74B8F9005B0286 /* RemoteHistoryMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -1018,6 +1030,7 @@
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
 				FEF6F4A72C57AB6800B35A9C /* SearchRepositoryProtocol.swift in Sources */,
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
+				FEB374852C74BACD005B0286 /* MyHistoryRequestModel.swift in Sources */,
 				FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
 				FE9F9D7E2C4FBA8C00E6FB13 /* StaticValues.swift in Sources */,
@@ -1048,6 +1061,7 @@
 				FEF6F4812C561B1A00B35A9C /* AlertViewController.swift in Sources */,
 				432C096D2BD4F59600BBFDB1 /* TouchableStackView.swift in Sources */,
 				432C095F2BD4F25000BBFDB1 /* RankViewModel.swift in Sources */,
+				FEB3747D2C74B710005B0286 /* RemoteMyHistoryItem.swift in Sources */,
 				432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */,
 				FEF6F44F2C510B5200B35A9C /* SplashRepositoryProtocol.swift in Sources */,
 				432C09712BE75E8800BBFDB1 /* DailyRankingFooterView.swift in Sources */,
@@ -1106,6 +1120,7 @@
 				FEF6F4A12C57A65800B35A9C /* RemoteSearchMapper.swift in Sources */,
 				FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */,
 				FE9826532C3BFBB3006F0C67 /* RemoteLoginItem.swift in Sources */,
+				FEB374832C74B8F9005B0286 /* RemoteHistoryMapper.swift in Sources */,
 				FEB374712C71D81F005B0286 /* ChartView.swift in Sources */,
 				FE5B95BA2C6E044200B7D0DB /* RevaluateFeelingsView.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
@@ -1133,6 +1148,7 @@
 				436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */,
 				FE98264B2C3BFB3A006F0C67 /* LoginUsecaseProtocol.swift in Sources */,
 				FEF6F4592C51153000B35A9C /* ProfileUsecase.swift in Sources */,
+				FEB3747F2C74B890005B0286 /* MyHistoryEntity.swift in Sources */,
 				4376DAC32C11AD3E0060E618 /* Date+Extension.swift in Sources */,
 				436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */,
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,

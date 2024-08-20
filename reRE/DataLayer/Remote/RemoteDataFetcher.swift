@@ -19,6 +19,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     private let remoteLoginMapper = RemoteLoginMapper()
     private let remoteProfileMapper = RemoteProfileMapper()
     private let remoteSearchMapper = RemoteSearchMapper()
+    private let remoteHistoryMapper = RemoteHistoryMapper()
     
     private enum HTTPError: LocalizedError {
         case typeMismatch
@@ -160,6 +161,34 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteSearchMovieListItem.self, data: response.data) {
                         promise(.success(.success(self.remoteSearchMapper.remoteSearchItemToEntity(remoteItem: remoteItem))))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<Result<MyHistoryEntity, Error>, Never> {
+        return Future<Result<MyHistoryEntity, Error>, Never> { [weak self] promise in
+            guard let self = self else { return }
+            
+            let params: [String: Any] = ["startDate": model.startDate,
+                                         "endDate": model.endDate,
+                                         "page": model.page,
+                                         "limit": model.limit]
+            
+            self.networkManager.fetchService(.myRevaluations(params: params)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteMyHistoryItem.self, data: response.data) {
+                        promise(.success(.success(self.remoteHistoryMapper.remoteMyHistoryItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)
                         promise(.success(.failure(HTTPError.typeMismatch)))

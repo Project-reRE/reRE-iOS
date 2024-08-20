@@ -8,48 +8,69 @@
 import Foundation
 import Combine
 
-final class HistoryListViewModel {
-    private var cancelBag = Set<AnyCancellable>()
+final class HistoryListViewModel: BaseViewModel {
+    private let shouldLoadRevaluationHistory = CurrentValueSubject<MyHistoryRequestModel, Never>(.init(startDate: Date().startDayOfMonthString(),
+                                                                                                       endDate: Date().endDayOfMonthString(),
+                                                                                                       limit: 25,
+                                                                                                       page: 1))
+    private let historyList = CurrentValueSubject<MyHistoryEntity, Never>(.init())
     
-    private let shouldLoadRevaluationHistory = CurrentValueSubject<String, Never>(Date().dateToString(with: "yyyy.MM"))
-    private let historyList = CurrentValueSubject<[String], Never>([])
+    private let usecase: HistoryUsecaseProtocol
     
-    init() {
+    init(usecase: HistoryUsecaseProtocol) {
+        self.usecase = usecase
+        super.init(usecase: usecase)
+        
         bind()
     }
     
     private func bind() {
         shouldLoadRevaluationHistory
-            .sink { [weak self] _ in
-                self?.historyList.send(Array(repeating: "test", count: Int.random(in: 0...50)))
+            .flatMap(usecase.getMyHistory(with:))
+            .sink { [weak self] historyEntity in
+                self?.historyList.send(historyEntity)
             }.store(in: &cancelBag)
     }
     
     func getPrevMonthHistoryList() {
         let showingDate = shouldLoadRevaluationHistory.value
-        let prevMonth = showingDate.toDate(with: "yyyy.MM")?.oneMonthBefore
+        let prevMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthBefore
         
-        guard let prevMonthString = prevMonth?.dateToString(with: "yyyy.MM") else { return }
-        shouldLoadRevaluationHistory.send(prevMonthString)
+        guard let startDayOfPrevMonthString = prevMonth?.startDayOfMonthString(),
+              let endDayOfPrevMonthString = prevMonth?.endDayOfMonthString() else {
+            return
+        }
+        
+        shouldLoadRevaluationHistory.send(.init(startDate: startDayOfPrevMonthString,
+                                                endDate: endDayOfPrevMonthString,
+                                                limit: 25,
+                                                page: 1))
     }
     
     func getNextMonthHistoryList() {
         let showingDate = shouldLoadRevaluationHistory.value
-        let nextMonth = showingDate.toDate(with: "yyyy.MM")?.oneMonthLater
+        let nextMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthLater
         
-        guard let nextMonthString = nextMonth?.dateToString(with: "yyyy.MM") else { return }
-        shouldLoadRevaluationHistory.send(nextMonthString)
+        guard let startDayOfNextMonthString = nextMonth?.startDayOfMonthString(),
+              let endDayOfNextMonthString = nextMonth?.endDayOfMonthString() else {
+            return
+        }
+        
+        shouldLoadRevaluationHistory.send(.init(startDate: startDayOfNextMonthString,
+                                                endDate: endDayOfNextMonthString,
+                                                limit: 25,
+                                                page: 1))
     }
     
-    func getHistoryListPublisher() -> AnyPublisher<[String], Never> {
+    func getHistoryListPublisher() -> AnyPublisher<MyHistoryEntity, Never> {
         return historyList.eraseToAnyPublisher()
     }
     
-    func getHistoryListValue() -> [String] {
+    func getHistoryListValue() -> MyHistoryEntity {
         return historyList.value
     }
     
-    func getShowingDateValue() -> AnyPublisher<String, Never> {
+    func getShowingDateValue() -> AnyPublisher<MyHistoryRequestModel, Never> {
         return shouldLoadRevaluationHistory.eraseToAnyPublisher()
     }
 }

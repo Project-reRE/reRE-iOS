@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol HistoryRepositoryProtocol: AnyObject {
-    
+    func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<Result<MyHistoryEntity, Error>, Never>
 }

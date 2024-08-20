@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol HistoryUsecaseProtocol: BaseUsecaseProtocol {
-    
+    func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<MyHistoryEntity, Never>
 }

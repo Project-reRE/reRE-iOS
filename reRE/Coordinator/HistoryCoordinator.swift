@@ -36,7 +36,7 @@ final class HistoryCoordinator: NSObject, HistoryBaseCoordinator {
     private func moveToHistoryFlow(_ flow: HistoryFlow, userData: [String: Any]?) {
         switch flow {
         case .main:
-            let viewModel: HistoryListViewModel = HistoryListViewModel()
+            let viewModel: HistoryListViewModel = HistoryListViewModel(usecase: Injector.shared.resolve(HistoryUsecaseProtocol.self)!)
             let historyListVC = HistoryListViewController(viewModel: viewModel)
             historyListVC.coordinator = self
             historyListVC.hidesBottomBarWhenPushed = true

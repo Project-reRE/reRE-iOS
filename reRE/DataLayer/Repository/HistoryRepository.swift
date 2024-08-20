@@ -17,5 +17,7 @@ final class HistoryRepository {
 }
 
 extension HistoryRepository: HistoryRepositoryProtocol {
-    
+    func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<Result<MyHistoryEntity, any Error>, Never> {
+        return remoteDataFetcher.getMyHistory(with: model)
+    }
 }
