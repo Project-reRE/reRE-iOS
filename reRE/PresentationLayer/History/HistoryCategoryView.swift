@@ -67,7 +67,7 @@ final class HistoryCategoryView: UIView {
         switch category {
         case .movie:
             containerView.backgroundColor = ColorSet.primary(.orange20).color
-            imageView.image = UIImage(named: "MovieSearchIcon")
+            imageView.image = UIImage(named: "SearchMovieIcon")
         case .book:
             containerView.backgroundColor = ColorSet.primary(.darkGreen20).color
             imageView.image = UIImage(named: "BookSearchIcon")
