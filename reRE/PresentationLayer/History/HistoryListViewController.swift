@@ -35,7 +35,12 @@ final class HistoryListViewController: BaseNavigationViewController {
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.dataSource = self
+        $0.isHidden = true
         $0.registerCell(HistoryItemCell.self)
+    }
+    
+    private lazy var noHistoryListView = NoHistoryListView().then {
+        $0.isHidden = false
     }
     
     private let viewModel: HistoryListViewModel
@@ -53,7 +58,8 @@ final class HistoryListViewController: BaseNavigationViewController {
     override func addViews() {
         super.addViews()
         
-        view.addSubviews([leftArrowButton, dateLabel, rightArrowButton, historyListView])
+        view.addSubviews([leftArrowButton, dateLabel, rightArrowButton,
+                          historyListView, noHistoryListView])
     }
     
     override func makeConstraints() {
@@ -81,6 +87,10 @@ final class HistoryListViewController: BaseNavigationViewController {
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.bottom.equalToSuperview().inset(getSafeAreaBottom())
         }
+        
+        noHistoryListView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
     
     override func setupIfNeeded() {
@@ -95,12 +105,24 @@ final class HistoryListViewController: BaseNavigationViewController {
         rightArrowButton.didTapped { [weak self] in
             self?.viewModel.getNextMonthHistoryList()
         }
+        
+        noHistoryListView.doRevaluateButton.didTapped { [weak self] in
+            self?.navigationController?.popViewController(animated: false)
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
+        }
     }
     
     private func bind() {
         viewModel.getHistoryListPublisher()
-            .droppedSink { [weak self] _ in
-                self?.historyListView.reloadData()
+            .droppedSink { [weak self] historyList in
+                if historyList.results.isEmpty {
+                    self?.noHistoryListView.isHidden = false
+                    self?.historyListView.isHidden = true
+                } else {
+                    self?.noHistoryListView.isHidden = true
+                    self?.historyListView.isHidden = false
+                    self?.historyListView.reloadData()
+                }
             }.store(in: &cancelBag)
         
         viewModel.getShowingDateValue()
