@@ -79,8 +79,8 @@ final class AppSettingViewController: BaseNavigationViewController {
         
         setNavigationTitle(with: "설정 보기")
         
-        deleteAccountButton.didTapped {
-            
+        deleteAccountButton.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.myPage(.appSetting(.deleteAccount)), userData: nil)
         }
     }
     

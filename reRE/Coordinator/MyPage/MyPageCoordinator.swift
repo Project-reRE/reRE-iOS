@@ -60,7 +60,10 @@ final class MyPageCoordinator: NSObject, MyPageBaseCoordinator {
         case .openAPI:
             break
         case .deleteAccount:
-            break
+            let viewModel = DeleteAccountViewModel(usecase: Injector.shared.resolve(ProfileUsecaseProtocol.self)!)
+            let deleteAccountVC = DeleteAccountViewController(viewModel: viewModel)
+            deleteAccountVC.coordinator = self
+            currentNavigationViewController?.pushViewController(deleteAccountVC, animated: true)
         }
     }
 }

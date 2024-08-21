@@ -38,6 +38,19 @@ extension ProfileUsecase: ProfileUsecaseProtocol {
         repository.logout()
     }
     
+    func deleteAccount() -> AnyPublisher<String, Never> {
+        return repository.deleteAccount()
+            .compactMap { [weak self] result in
+                switch result {
+                case .success(let userId):
+                    return userId
+                case .failure(let error):
+                    self?.errorSubject.send(error)
+                    return nil
+                }
+            }.eraseToAnyPublisher()
+    }
+    
     func getErrorSubject() -> AnyPublisher<Error, Never> {
         return errorSubject.eraseToAnyPublisher()
     }

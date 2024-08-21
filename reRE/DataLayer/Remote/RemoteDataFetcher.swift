@@ -205,4 +205,28 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         StaticValues.isLoggedIn.send(false)
         networkManager.setHeaderToken(token: nil)
     }
+    
+    func deleteAccount() -> AnyPublisher<Result<String, Error>, Never> {
+        return Future<Result<String, Error>, Never> { [weak self] promise in
+            guard let self = self else { return }
+            
+            self.networkManager.fetchService(.deleteAccount) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let userId = DecodeUtil.decode(String.self, data: response.data) {
+                        self.logout()
+                        promise(.success(.success(userId)))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
 }

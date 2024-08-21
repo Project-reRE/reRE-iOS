@@ -24,4 +24,8 @@ extension ProfileRepository: ProfileRepositoryProtocol {
     func logout() {
         return remoteDataFetcher.logout()
     }
+    
+    func deleteAccount() -> AnyPublisher<Result<String, any Error>, Never> {
+        return remoteDataFetcher.deleteAccount()
+    }
 }

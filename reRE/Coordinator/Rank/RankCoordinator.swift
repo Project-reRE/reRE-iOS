@@ -28,7 +28,7 @@ final class RankCoordinator: NSObject, RankBaseCoordinator {
         
         switch tabBarFlow {
         case .rank:
-            break
+            rootNavigationController?.popToRootViewController(animated: true)
         default:
             parentCoordinator?.moveTo(appFlow: appFlow, userData: userData)
         }
