@@ -74,6 +74,11 @@ final class TabBarCoordinator: NSObject, TabBarBaseCoordinator {
         appearance.backgroundImage = UIImage()
         appearance.backgroundColor = .clear
         appearance.shadowColor = .clear
+        appearance.stackedItemPositioning = .centered
+        
+        let tabBarWidth: CGFloat = UIScreen.main.bounds.width - moderateScale(number: 32)
+        appearance.stackedItemWidth = tabBarWidth / 4
+        appearance.stackedItemSpacing = 1
         
         UITabBar.appearance().standardAppearance = appearance
         
