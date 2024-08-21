@@ -71,6 +71,7 @@ final class SearchMainViewController: BaseViewController {
     }
 }
 
+// MARK: - SearchCategoryViewDelegate
 extension SearchMainViewController: SearchCategoryViewDelegate {
     func didSelectCategory(_ category: SearchCategoryView.SearchCategoryType) {
         switch category {

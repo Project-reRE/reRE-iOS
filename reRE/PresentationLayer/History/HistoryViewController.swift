@@ -22,7 +22,9 @@ final class HistoryViewController: BaseViewController {
         $0.textColor = ColorSet.gray(.white).color
     }
     
-    private lazy var movieHistoryView = HistoryCategoryView(category: .movie)
+    private lazy var movieHistoryView = HistoryCategoryView(category: .movie).then {
+        $0.delegate = self
+    }
 //    private lazy var bookHistoryView = HistoryCategoryView(category: .book)
 //    private lazy var musicHistoryView = HistoryCategoryView(category: .music)
     
@@ -67,10 +69,18 @@ final class HistoryViewController: BaseViewController {
 //            $0.height.equalTo(moderateScale(number: 69))
 //        }
     }
-    
-    override func setupIfNeeded() {
-        movieHistoryView.containerView.didTapped { [weak self] in
-            self?.coordinator?.moveTo(appFlow: TabBarFlow.history(.main), userData: nil)
+}
+
+// MARK: - HistoryCategoryViewDelegate
+extension HistoryViewController: HistoryCategoryViewDelegate {
+    func didSelectCategory(_ category: HistoryCategoryView.HistoryCategoryType) {
+        switch category {
+        case .movie:
+            coordinator?.moveTo(appFlow: TabBarFlow.history(.main), userData: nil)
+        case .book:
+            break
+        case .music:
+            break
         }
     }
 }

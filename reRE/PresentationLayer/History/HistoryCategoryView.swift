@@ -9,8 +9,14 @@ import UIKit
 import Then
 import SnapKit
 
+protocol HistoryCategoryViewDelegate: AnyObject {
+    func didSelectCategory(_ category: HistoryCategoryView.HistoryCategoryType)
+}
+
 final class HistoryCategoryView: UIView {
-    lazy var containerView = TouchableView().then {
+    weak var delegate: HistoryCategoryViewDelegate?
+    
+    private lazy var containerView = TouchableView().then {
         $0.layer.cornerRadius = moderateScale(number: 8)
         $0.layer.masksToBounds = true
     }
@@ -34,6 +40,30 @@ final class HistoryCategoryView: UIView {
         addViews()
         makeConstraints()
         updateViews()
+        
+        containerView.didTapped { [weak self] in
+            guard let self = self else { return }
+            
+            let containerBgColor = self.containerView.backgroundColor
+            self.containerView.backgroundColor = containerBgColor?.withAlphaComponent(0.72)
+            
+            switch category {
+            case .movie:
+                self.imageView.tintColor = ColorSet.primary(.orange40).color
+                self.titleLabel.textColor = ColorSet.primary(.orange80).color
+            case .book:
+                break
+            case .music:
+                break
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.delegate?.didSelectCategory(category)
+                
+                self.imageView.tintColor = ColorSet.primary(.orange60).color
+                self.titleLabel.textColor = ColorSet.gray(.white).color
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -67,7 +97,8 @@ final class HistoryCategoryView: UIView {
         switch category {
         case .movie:
             containerView.backgroundColor = ColorSet.primary(.orange20).color
-            imageView.image = UIImage(named: "SearchMovieIcon")
+            imageView.image = UIImage(named: "SearchMovieIcon")?.withRenderingMode(.alwaysTemplate)
+            imageView.tintColor = ColorSet.primary(.orange60).color
         case .book:
             containerView.backgroundColor = ColorSet.primary(.darkGreen20).color
             imageView.image = UIImage(named: "BookSearchIcon")
