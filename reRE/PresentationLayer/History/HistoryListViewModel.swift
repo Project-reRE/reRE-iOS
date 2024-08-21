@@ -28,15 +28,7 @@ final class HistoryListViewModel: BaseViewModel {
         shouldLoadRevaluationHistory
             .flatMap(usecase.getMyHistory(with:))
             .sink { [weak self] historyEntity in
-                
-                var testResult = historyEntity.results
-                
-                for i in 0..<10 {
-                    testResult.append(contentsOf: historyEntity.results)
-                }
-                
-                let mockData = MyHistoryEntity(totalRecords: testResult.count, results: testResult)
-                self?.historyList.send(mockData)
+                self?.historyList.send(historyEntity)
             }.store(in: &cancelBag)
     }
     
