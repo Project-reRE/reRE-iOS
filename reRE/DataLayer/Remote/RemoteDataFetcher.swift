@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Alamofire
+import Moya
 
 final class RemoteDataFetcher: RemoteDataFetchable {
     private var cancelBag = Set<AnyCancellable>()
@@ -20,6 +21,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     private let remoteProfileMapper = RemoteProfileMapper()
     private let remoteSearchMapper = RemoteSearchMapper()
     private let remoteHistoryMapper = RemoteHistoryMapper()
+    private let remoteRevaluationMapper = RemoteRevaluationMapper()
     
     private enum HTTPError: LocalizedError {
         case typeMismatch
@@ -189,6 +191,29 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteMyHistoryItem.self, data: response.data) {
                         promise(.success(.success(self.remoteHistoryMapper.remoteMyHistoryItemToEntity(remoteItem: remoteItem))))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, any Error>, Never> {
+        return Future<Result<MovieDetailEntity, Error>, Never> { [weak self] promise in
+            guard let self = self else { return }
+            
+            self.networkManager.fetchService(.getMovieDetail(movieId: "F-31201")) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteMovieDetailItem.self, data: response.data) {
+                        promise(.success(.success(self.remoteRevaluationMapper.remoteMovieDetailItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)
                         promise(.success(.failure(HTTPError.typeMismatch)))

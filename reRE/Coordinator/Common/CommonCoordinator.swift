@@ -41,7 +41,8 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
         case .revaluationDetail:
             guard let movieId = userData?["movieId"] as? String else { return }
             
-            let viewModel = ReValuationDetailViewModel(movieId: movieId)
+            let viewModel = ReValuationDetailViewModel(usecase: Injector.shared.resolve(RevaluationUsecaseProtocol.self)!,
+                                                       movieId: movieId)
             let revaluationVC = RevaluationDetailViewController(viewModel: viewModel)
             revaluationVC.coordinator = self
             revaluationVC.hidesBottomBarWhenPushed = true

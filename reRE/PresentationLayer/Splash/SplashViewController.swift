@@ -40,6 +40,13 @@ final class SplashViewController: BaseViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
                 LogDebug(error)
+                
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: error.localizedDescription,
+                                         description: error.localizedDescription,
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
             }.store(in: &cancelBag)
         
         viewModel.getLoginTypePublisher()

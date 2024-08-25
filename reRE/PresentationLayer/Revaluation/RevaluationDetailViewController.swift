@@ -25,14 +25,11 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     
     private lazy var thumbnailImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.red.cgColor
     }
     
     private lazy var yearLabel = UILabel().then {
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
-        $0.text = "2019"
     }
     
     private lazy var titleLabel = UILabel().then {
@@ -40,7 +37,6 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         $0.font = FontSet.title01.font
         $0.numberOfLines = 0
         $0.textAlignment = .center
-        $0.text = "신차원! 짱구는 못말려 더 무비 초능력 대결전 ~날아라 수제김밥~"
     }
     
     private lazy var productDetailView = UIView().then {
@@ -50,19 +46,16 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     }
     
     private lazy var genreLabel = UILabel().then {
-        $0.text = "장르명1, 장르명2, 장르명3, 장르명4"
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
     }
     
     private lazy var directorLabel = UILabel().then {
-        $0.text = "감독명1, 감독명2, 감독명3, 감독명4"
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
     }
     
     private lazy var actorLabel = UILabel().then {
-        $0.text = "배우명1, 배우명2, 배우명3, 배우명4"
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
     }
@@ -118,7 +111,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         bind()
     }
     
@@ -250,23 +243,60 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     }
     
     private func bind() {
-        viewModel.getRevaluationDataPublisher()
+        viewModel.getErrorSubject()
             .receive(on: DispatchQueue.main)
-            .sink { _ in
+            .sink { [weak self] error in
+                LogDebug(error)
                 
+                if let userError = error as? UserError {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: "(userError.statusCode)",
+                                             description: userError.message.first,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                } else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: error.localizedDescription,
+                                             description: error.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                }
+            }.store(in: &cancelBag)
+        
+        viewModel.getRevaluationDataPublisher()
+            .droppedSink { [weak self] movieDetail in
+                if let postersURLString = movieDetail.data.posters.first, postersURLString.isEmpty == false {
+                    self?.thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
+                } else if let stllsURLString = movieDetail.data.stlls.first, stllsURLString.isEmpty == false {
+                    self?.thumbnailImageView.kf.setImage(with: URL(string: stllsURLString))
+                } else {
+                    self?.thumbnailImageView.image = nil
+                }
+                
+                self?.yearLabel.text = movieDetail.data.prodYear
+                self?.titleLabel.text = movieDetail.data.title
+                self?.genreLabel.text = movieDetail.data.genre
+                let directors = movieDetail.data.directors.map { $0.directorNm }.joined(separator: ", ")
+                self?.directorLabel.text = directors
+                
+                let actors = movieDetail.data.actors.map { $0.actorNm }.joined(separator: ", ")
+                self?.actorLabel.text = actors
+                
+                if let numRecentStars = movieDetail.statistics.first?.numRecentStars {
+                    self?.revaluationDetailView.updateGradeTrend(ratingsEntity: numRecentStars)
+                } else {
+                    self?.revaluationDetailView.updateGradeTrend(ratingsEntity: [])
+                }
             }.store(in: &cancelBag)
         
         viewModel.getShowingDateValue()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] dateString in
-                self?.dateLabel.text = dateString
-                self?.revaluationDetailView.updateGradeView(ofDate: dateString,
-                                                            grade: CGFloat.random(in: 0...5))
-                self?.revaluationDetailView.updateGradeTrend(grades: [1.1,
-                                                                      2.2,
-                                                                      3.3,
-                                                                      4.0,
-                                                                      4.7])
+            .droppedSink { [weak self] showingRatingData in
+                self?.dateLabel.text = showingRatingData.targetDate
+                self?.revaluationDetailView.updateGradeView(withModel: showingRatingData)
             }.store(in: &cancelBag)
+        
+        viewModel.getRevaluationDetail()
     }
 }

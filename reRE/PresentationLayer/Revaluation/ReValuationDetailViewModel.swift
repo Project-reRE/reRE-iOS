@@ -8,47 +8,61 @@
 import Foundation
 import Combine
 
-final class ReValuationDetailViewModel {
-    private var cancelBag = Set<AnyCancellable>()
-    
-    private let shouldLoadRevaluation = CurrentValueSubject<String, Never>(Date().dateToString(with: "yyyy.MM"))
-    private let revaluationData = CurrentValueSubject<String, Never>("")
+final class ReValuationDetailViewModel: BaseViewModel {
+    private let revaluationData = CurrentValueSubject<MovieDetailEntity, Never>(.init())
+    private let showingRatingData = CurrentValueSubject<MovieRecentRatingsEntity, Never>(.init())
     
     private let movieId: String
     
-    init(movieId: String) {
+    private let usecase: RevaluationUsecaseProtocol
+    
+    init(usecase: RevaluationUsecaseProtocol, movieId: String) {
+        self.usecase = usecase
         self.movieId = movieId
+        
+        super.init(usecase: usecase)
+        print("movieId: \(movieId)")
         bind()
     }
     
     private func bind() {
-        shouldLoadRevaluation
-            .sink { [weak self] dateString in
-                self?.revaluationData.send(dateString)
+        
+    }
+    
+    func getRevaluationDetail() {
+        usecase.getMovieDetail(withId: movieId)
+            .sink { [weak self] movieDetailEntity in
+                self?.revaluationData.send(movieDetailEntity)
+                
+                if let currentMonthData = movieDetailEntity.statistics.first?.numRecentStars.first(where: { $0.targetDate == Date().dateToString(with: "yyyy-MM") }) {
+                    self?.showingRatingData.send(currentMonthData)
+                }
             }.store(in: &cancelBag)
     }
     
     func getPrevMonthRevaluation() {
-        let showingDate = shouldLoadRevaluation.value
-        let prevMonth = showingDate.toDate(with: "yyyy.MM")?.oneMonthBefore
+        let prevMonth = showingRatingData.value.targetDate.toDate(with: "yyyy-MM")?.oneMonthBefore
         
-        guard let prevMonthString = prevMonth?.dateToString(with: "yyyy.MM") else { return }
-        shouldLoadRevaluation.send(prevMonthString)
+        guard let prevMonthString = prevMonth?.dateToString(with: "yyyy-MM") else { return }
+        guard let prevMonthData = revaluationData.value.statistics.first?.numRecentStars.first(where: { $0.targetDate == prevMonthString }) else { return }
+        
+        showingRatingData.send(prevMonthData)
     }
     
     func getNextMonthRevaluation() {
-        let showingDate = shouldLoadRevaluation.value
-        let nextMonth = showingDate.toDate(with: "yyyy.MM")?.oneMonthLater
+        let nextMonth = showingRatingData.value.targetDate.toDate(with: "yyyy-MM")?.oneMonthLater
         
-        guard let nextMonthString = nextMonth?.dateToString(with: "yyyy.MM") else { return }
-        shouldLoadRevaluation.send(nextMonthString)
+        guard let nextMonthString = nextMonth?.dateToString(with: "yyyy-MM") else { return }
+        guard let nextMonthData = revaluationData.value.statistics.first?.numRecentStars.first(where: { $0.targetDate == nextMonthString }) else { return }
+        
+        showingRatingData.send(nextMonthData)
     }
     
-    func getRevaluationDataPublisher() -> AnyPublisher<String, Never> {
+    func getRevaluationDataPublisher() -> AnyPublisher<MovieDetailEntity, Never> {
         return revaluationData.eraseToAnyPublisher()
     }
     
-    func getShowingDateValue() -> AnyPublisher<String, Never> {
-        return shouldLoadRevaluation.eraseToAnyPublisher()
+    func getShowingDateValue() -> AnyPublisher<MovieRecentRatingsEntity, Never> {
+        return showingRatingData.eraseToAnyPublisher()
     }
 }

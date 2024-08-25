@@ -20,14 +20,8 @@ final class SplashRepository {
 
 extension SplashRepository: SplashRepositoryProtocol {
     func getLoginType() -> SNSLoginType? {
-        guard let loginTypeString = localDataFetcher.getLoginType() else {
-            print("1")
-            return nil
-        }
-        guard let loginType = SNSLoginType(rawValue: loginTypeString) else {
-            print("2")
-            return nil
-        }
+        guard let loginTypeString = localDataFetcher.getLoginType() else { return nil }
+        guard let loginType = SNSLoginType(rawValue: loginTypeString) else { return nil }
         
         return loginType
     }
