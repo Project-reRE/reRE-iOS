@@ -145,6 +145,11 @@ extension HistoryListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(HistoryItemCell.self, indexPath: indexPath) else { return .init() }
         let historyData = viewModel.getHistoryListValue().results[indexPath.item]
         cell.updateView(with: historyData)
+        
+        cell.containerView.didTapped { [weak self] in
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail),
+                                      userData: ["movieId": historyData.id])
+        }
         return cell
     }
 }

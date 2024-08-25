@@ -198,7 +198,8 @@ extension SearchViewController: UICollectionViewDataSource {
         cell.updateView(with: searchedMovie)
         
         cell.containerView.didTapped { [weak self] in
-            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail), userData: nil)
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail),
+                                      userData: ["movieId": searchedMovie.id])
         }
         return cell
     }
