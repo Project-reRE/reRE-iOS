@@ -61,6 +61,6 @@ final class RevaluationSpecialPointDetailView: UIStackView {
     
     func updateView(withModel model: MovieSpecialPointEntity) {
         specialPointLabel.text = RevaluationCategoryView.CategoryType(rawValue: "ACTING_SKILLS")?.titleText
-        participantsNumberLabel.text = "\(model.ACTING_SKILLS.formattedString())명"
+        participantsNumberLabel.text = "(\(model.ACTING_SKILLS.formattedString())명)"
     }
 }

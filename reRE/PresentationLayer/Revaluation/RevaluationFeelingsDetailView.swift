@@ -1,0 +1,86 @@
+//
+//  RevaluationFeelingsDetailView.swift
+//  reRE
+//
+//  Created by 강치훈 on 8/25/24.
+//
+
+import UIKit
+import Then
+import SnapKit
+
+final class RevaluationFeelingsDetailView: UIView {
+    private lazy var iconImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.layer.borderColor = UIColor.red.cgColor
+        $0.layer.borderWidth = 1
+    }
+    
+    private lazy var titleLabel = UILabel().then {
+        $0.text = feelings.titleText
+        $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.body03.font
+        $0.textAlignment = .center
+    }
+    
+    private lazy var ratioLabel = UILabel().then {
+        $0.font = FontSet.label01.font
+        $0.textAlignment = .center
+        
+        switch feelings {
+        case .positive:
+            $0.textColor = ColorSet.secondary(.olive50).color
+        case .negative:
+            $0.textColor = ColorSet.primary(.orange40).color
+        case .notSure:
+            $0.textColor = ColorSet.gray(.gray60).color
+        default:
+            break
+        }
+    }
+    
+    private let feelings: RevaluationCategoryView.CategoryType
+    
+    init(feelings: RevaluationCategoryView.CategoryType) {
+        self.feelings = feelings
+        
+        super.init(frame: .zero)
+        
+        backgroundColor = .clear
+        
+        addSubviews([iconImageView, titleLabel, ratioLabel])
+        
+        iconImageView.snp.makeConstraints {
+            $0.leading.top.trailing.equalToSuperview()
+            $0.size.equalTo(moderateScale(number: 80))
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(iconImageView.snp.bottom).offset(moderateScale(number: 8))
+            $0.centerX.equalTo(iconImageView)
+        }
+        
+        ratioLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(moderateScale(number: 3))
+            $0.centerX.equalTo(iconImageView)
+            $0.bottom.equalToSuperview()
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateView(withModel model: MovieFeelingsEntity) {
+        switch feelings {
+        case .positive:
+            ratioLabel.text = "\(model.POSITIVE)"
+        case .negative:
+            ratioLabel.text = "\(model.NEGATIVE)"
+        case .notSure:
+            ratioLabel.text = "\(model.NOT_SURE)"
+        default:
+            break
+        }
+    }
+}

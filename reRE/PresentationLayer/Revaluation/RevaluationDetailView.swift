@@ -75,6 +75,46 @@ final class RevaluationDetailView: UIStackView {
         $0.layer.cornerRadius = moderateScale(number: 8)
     }
     
+    private lazy var pastFeelingsContainerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    private lazy var pastFeelingsTitleLabel = UILabel().then {
+        $0.text = "개봉 당시, 이 영화에 대해서 사람들은요"
+        $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.title01.font
+    }
+    
+    private lazy var pastFeelingsView = RevaluationFeelingsView()
+    
+    private lazy var currentFeelingsContainerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    private lazy var currentFeelingsTitleLabel = UILabel().then {
+        $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.title01.font
+    }
+    
+    private lazy var currentFeelingsView = RevaluationFeelingsView()
+    
+    private lazy var dividerView = UIView().then {
+        $0.backgroundColor = ColorSet.gray(.gray30).color
+    }
+    
+    private lazy var revaluationParticipantsContainerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    private lazy var revaluationParticipantsTitleLabel = UILabel().then {
+        $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.title01.font
+    }
+    
+    private lazy var participantsCountView = RevaluationParticipantCountView()
+    
+    private lazy var genderRatioView = RevaluationGenderRatioView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -90,10 +130,16 @@ final class RevaluationDetailView: UIStackView {
     }
     
     private func addViews() {
-        addArrangedSubviews([gradeContainerView, chartContainerView, specialPointContainerView])
+        addArrangedSubviews([gradeContainerView, chartContainerView, specialPointContainerView, pastFeelingsContainerView,
+                             currentFeelingsContainerView, dividerView, revaluationParticipantsContainerView])
+        
         gradeContainerView.addSubviews([gradeTitleLabel, gradeLabel, ratingView])
         chartContainerView.addSubviews([chartTitleLabel, chartView])
         specialPointContainerView.addSubviews([specialPointTitleLabel, specialPointView, showMovieButton])
+        pastFeelingsContainerView.addSubviews([pastFeelingsTitleLabel, pastFeelingsView])
+        currentFeelingsContainerView.addSubviews([currentFeelingsTitleLabel, currentFeelingsView])
+        revaluationParticipantsContainerView.addSubviews([revaluationParticipantsTitleLabel, participantsCountView,
+                                                          genderRatioView])
     }
     
     private func makeConstraints() {
@@ -136,12 +182,51 @@ final class RevaluationDetailView: UIStackView {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(moderateScale(number: 44))
         }
+        
+        pastFeelingsTitleLabel.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        
+        pastFeelingsView.snp.makeConstraints {
+            $0.top.equalTo(pastFeelingsTitleLabel.snp.bottom).offset(moderateScale(number: 24))
+            $0.centerX.bottom.equalToSuperview()
+        }
+        
+        currentFeelingsTitleLabel.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        
+        currentFeelingsView.snp.makeConstraints {
+            $0.top.equalTo(currentFeelingsTitleLabel.snp.bottom).offset(moderateScale(number: 24))
+            $0.centerX.bottom.equalToSuperview()
+        }
+        
+        dividerView.snp.makeConstraints {
+            $0.height.equalTo(moderateScale(number: 1))
+        }
+        
+        revaluationParticipantsTitleLabel.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        
+        participantsCountView.snp.makeConstraints {
+            $0.top.equalTo(revaluationParticipantsTitleLabel.snp.bottom).offset(moderateScale(number: 24))
+            $0.centerX.equalToSuperview()
+        }
+        
+        genderRatioView.snp.makeConstraints {
+            $0.top.equalTo(participantsCountView.snp.bottom).offset(moderateScale(number: 48))
+            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+            $0.bottom.equalToSuperview()
+        }
     }
     
     func updateGradeView(withModel model: MovieRecentRatingsEntity) {
         if let monthString = model.targetDate.toDate(with: "yyyy-MM")?.dateToString(with: "MM"),
            let month = Int(monthString) {
             gradeTitleLabel.text = "\(month)월 재평가 평점"
+            currentFeelingsTitleLabel.text = "\(month)월에 이 영화에 대해서 사람들은요"
+            revaluationParticipantsTitleLabel.text = "\(month)월, 재평가에 참여한 사람들"
         }
         
         gradeLabel.text = "\(model.numStars)"
@@ -154,5 +239,12 @@ final class RevaluationDetailView: UIStackView {
     
     func updateSpecialPoint(withModel model: MovieSpecialPointEntity) {
         specialPointView.updateView(withModel: model)
+    }
+    
+    func updateParticipantsView(withModel model: MovieStatisticsEntity) {
+        pastFeelingsView.updateView(withModel: model.numPastValuation)
+        currentFeelingsView.updateView(withModel: model.numPresentValuation)
+        participantsCountView.updateView(withModel: model)
+        genderRatioView.updateGenderRatioView(withModel: model)
     }
 }

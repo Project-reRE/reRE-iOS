@@ -156,6 +156,11 @@
 		FEB374A32C7B10A2005B0286 /* RevaluationSpecialPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374A22C7B10A2005B0286 /* RevaluationSpecialPointView.swift */; };
 		FEB374A52C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374A42C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift */; };
 		FEB374A72C7B19DA005B0286 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374A62C7B19DA005B0286 /* Int+Extension.swift */; };
+		FEB374A92C7B1F1E005B0286 /* RevaluationRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374A82C7B1F1E005B0286 /* RevaluationRatioView.swift */; };
+		FEB374AB2C7B4CBF005B0286 /* RevaluationFeelingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374AA2C7B4CBF005B0286 /* RevaluationFeelingsView.swift */; };
+		FEB374AD2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374AC2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift */; };
+		FEB374AF2C7B4F8F005B0286 /* RevaluationParticipantCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374AE2C7B4F8F005B0286 /* RevaluationParticipantCountView.swift */; };
+		FEB374B12C7B5C7D005B0286 /* RevaluationGenderRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374B02C7B5C7D005B0286 /* RevaluationGenderRatioView.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -345,6 +350,11 @@
 		FEB374A22C7B10A2005B0286 /* RevaluationSpecialPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationSpecialPointView.swift; sourceTree = "<group>"; };
 		FEB374A42C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationSpecialPointDetailView.swift; sourceTree = "<group>"; };
 		FEB374A62C7B19DA005B0286 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		FEB374A82C7B1F1E005B0286 /* RevaluationRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationRatioView.swift; sourceTree = "<group>"; };
+		FEB374AA2C7B4CBF005B0286 /* RevaluationFeelingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationFeelingsView.swift; sourceTree = "<group>"; };
+		FEB374AC2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationFeelingsDetailView.swift; sourceTree = "<group>"; };
+		FEB374AE2C7B4F8F005B0286 /* RevaluationParticipantCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationParticipantCountView.swift; sourceTree = "<group>"; };
+		FEB374B02C7B5C7D005B0286 /* RevaluationGenderRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationGenderRatioView.swift; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -737,6 +747,11 @@
 				43103D192C2800FA009742BB /* RevaluationDetailView.swift */,
 				FEB374A22C7B10A2005B0286 /* RevaluationSpecialPointView.swift */,
 				FEB374A42C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift */,
+				FEB374AA2C7B4CBF005B0286 /* RevaluationFeelingsView.swift */,
+				FEB374AC2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift */,
+				FEB374AE2C7B4F8F005B0286 /* RevaluationParticipantCountView.swift */,
+				FEB374B02C7B5C7D005B0286 /* RevaluationGenderRatioView.swift */,
+				FEB374A82C7B1F1E005B0286 /* RevaluationRatioView.swift */,
 				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
 				FE89FC212C6DE92E00FB01FB /* RevaluateViewController.swift */,
 				FE89FC232C6DE9E900FB01FB /* RevaluateViewModel.swift */,
@@ -1060,6 +1075,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB374A92C7B1F1E005B0286 /* RevaluationRatioView.swift in Sources */,
 				FEF6F4512C510B6A00B35A9C /* SplashRepository.swift in Sources */,
 				FE5B95C02C6E0A2E00B7D0DB /* UIViewController+Extension.swift in Sources */,
 				FEB374772C71DC6F005B0286 /* HistoryUsecase.swift in Sources */,
@@ -1152,6 +1168,7 @@
 				432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */,
 				FE9826452C3BF260006F0C67 /* BaseBottomSheetViewController.swift in Sources */,
 				432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */,
+				FEB374AD2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift in Sources */,
 				FEF6F4652C5116D500B35A9C /* ProfileRepositoryProtocol.swift in Sources */,
 				FECFE45A2C32B9B400078CDF /* RemoteBannerMapper.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
@@ -1170,6 +1187,7 @@
 				FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */,
 				FE9826532C3BFBB3006F0C67 /* RemoteLoginItem.swift in Sources */,
 				FEB374832C74B8F9005B0286 /* RemoteHistoryMapper.swift in Sources */,
+				FEB374B12C7B5C7D005B0286 /* RevaluationGenderRatioView.swift in Sources */,
 				FEB374712C71D81F005B0286 /* ChartView.swift in Sources */,
 				FE5B95BA2C6E044200B7D0DB /* RevaluateFeelingsView.swift in Sources */,
 				436351C92C0C39380078C8C1 /* BaseTabBar.swift in Sources */,
@@ -1179,6 +1197,7 @@
 				FE9F9D822C4FC2E400E6FB13 /* MyPageMenuView.swift in Sources */,
 				436475CF2C1198940096F15F /* NoRevaluationView.swift in Sources */,
 				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
+				FEB374AF2C7B4F8F005B0286 /* RevaluationParticipantCountView.swift in Sources */,
 				FEA1F7632C58F5A6007F76D0 /* HistoryListViewModel.swift in Sources */,
 				FEB374A52C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift in Sources */,
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
@@ -1202,6 +1221,7 @@
 				FEF6F4592C51153000B35A9C /* ProfileUsecase.swift in Sources */,
 				FEB3747F2C74B890005B0286 /* MyHistoryEntity.swift in Sources */,
 				4376DAC32C11AD3E0060E618 /* Date+Extension.swift in Sources */,
+				FEB374AB2C7B4CBF005B0286 /* RevaluationFeelingsView.swift in Sources */,
 				436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */,
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,
 				432C09582BD4F15F00BBFDB1 /* DecodeUtil.swift in Sources */,

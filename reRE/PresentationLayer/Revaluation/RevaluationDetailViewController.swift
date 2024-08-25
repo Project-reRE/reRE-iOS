@@ -272,6 +272,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 if let statistics = movieDetail.statistics.first {
                     self?.revaluationDetailView.updateGradeTrend(ratingsEntity: statistics.numRecentStars)
                     self?.revaluationDetailView.updateSpecialPoint(withModel: statistics.numSpecialPoint)
+                    self?.revaluationDetailView.updateParticipantsView(withModel: statistics)
                 }
             }.store(in: &cancelBag)
         
