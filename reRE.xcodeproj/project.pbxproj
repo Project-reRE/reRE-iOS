@@ -153,6 +153,9 @@
 		FEB3749B2C7AF3C8005B0286 /* RevaluationUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3749A2C7AF3C8005B0286 /* RevaluationUsecase.swift */; };
 		FEB3749D2C7AF3D5005B0286 /* RevaluationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3749C2C7AF3D5005B0286 /* RevaluationRepository.swift */; };
 		FEB3749F2C7AF52B005B0286 /* RemoteRevaluationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3749E2C7AF52B005B0286 /* RemoteRevaluationMapper.swift */; };
+		FEB374A32C7B10A2005B0286 /* RevaluationSpecialPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374A22C7B10A2005B0286 /* RevaluationSpecialPointView.swift */; };
+		FEB374A52C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374A42C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift */; };
+		FEB374A72C7B19DA005B0286 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB374A62C7B19DA005B0286 /* Int+Extension.swift */; };
 		FECFE43B2C32B71800078CDF /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE43A2C32B71800078CDF /* Injector.swift */; };
 		FECFE4422C32B79F00078CDF /* RankUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */; };
 		FECFE4442C32B7B700078CDF /* BaseUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */; };
@@ -339,6 +342,9 @@
 		FEB3749A2C7AF3C8005B0286 /* RevaluationUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationUsecase.swift; sourceTree = "<group>"; };
 		FEB3749C2C7AF3D5005B0286 /* RevaluationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationRepository.swift; sourceTree = "<group>"; };
 		FEB3749E2C7AF52B005B0286 /* RemoteRevaluationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRevaluationMapper.swift; sourceTree = "<group>"; };
+		FEB374A22C7B10A2005B0286 /* RevaluationSpecialPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationSpecialPointView.swift; sourceTree = "<group>"; };
+		FEB374A42C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationSpecialPointDetailView.swift; sourceTree = "<group>"; };
+		FEB374A62C7B19DA005B0286 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		FECFE43A2C32B71800078CDF /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		FECFE4412C32B79F00078CDF /* RankUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FECFE4432C32B7B700078CDF /* BaseUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUsecaseProtocol.swift; sourceTree = "<group>"; };
@@ -505,6 +511,7 @@
 				FE9826052C340923006F0C67 /* UIColor+Extension.swift */,
 				4376DAC22C11AD3E0060E618 /* Date+Extension.swift */,
 				4376DAC42C11AE710060E618 /* String+Extension.swift */,
+				FEB374A62C7B19DA005B0286 /* Int+Extension.swift */,
 				FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */,
 			);
 			path = Extensions;
@@ -728,6 +735,8 @@
 				FEB374702C71D81F005B0286 /* ChartView.swift */,
 				436475CE2C1198940096F15F /* NoRevaluationView.swift */,
 				43103D192C2800FA009742BB /* RevaluationDetailView.swift */,
+				FEB374A22C7B10A2005B0286 /* RevaluationSpecialPointView.swift */,
+				FEB374A42C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift */,
 				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
 				FE89FC212C6DE92E00FB01FB /* RevaluateViewController.swift */,
 				FE89FC232C6DE9E900FB01FB /* RevaluateViewModel.swift */,
@@ -1101,6 +1110,7 @@
 				432C09452BC679D200BBFDB1 /* NetworkService.swift in Sources */,
 				FEF6F44F2C510B5200B35A9C /* SplashRepositoryProtocol.swift in Sources */,
 				432C09712BE75E8800BBFDB1 /* DailyRankingFooterView.swift in Sources */,
+				FEB374A72C7B19DA005B0286 /* Int+Extension.swift in Sources */,
 				432C09752BE7679300BBFDB1 /* RankingItemCell.swift in Sources */,
 				FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */,
 				FEF6F49B2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift in Sources */,
@@ -1170,6 +1180,7 @@
 				436475CF2C1198940096F15F /* NoRevaluationView.swift in Sources */,
 				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
 				FEA1F7632C58F5A6007F76D0 /* HistoryListViewModel.swift in Sources */,
+				FEB374A52C7B10C4005B0286 /* RevaluationSpecialPointDetailView.swift in Sources */,
 				432C098B2BF4A78300BBFDB1 /* SearchCategoryView.swift in Sources */,
 				FE98266D2C3E96E2006F0C67 /* RemoteLoginMapper.swift in Sources */,
 				FE89FC222C6DE92E00FB01FB /* RevaluateViewController.swift in Sources */,
@@ -1187,6 +1198,7 @@
 				432C09412BC6795D00BBFDB1 /* RemoteDataFetcher.swift in Sources */,
 				436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */,
 				FE98264B2C3BFB3A006F0C67 /* LoginUsecaseProtocol.swift in Sources */,
+				FEB374A32C7B10A2005B0286 /* RevaluationSpecialPointView.swift in Sources */,
 				FEF6F4592C51153000B35A9C /* ProfileUsecase.swift in Sources */,
 				FEB3747F2C74B890005B0286 /* MyHistoryEntity.swift in Sources */,
 				4376DAC32C11AD3E0060E618 /* Date+Extension.swift in Sources */,

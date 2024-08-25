@@ -267,27 +267,11 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         
         viewModel.getRevaluationDataPublisher()
             .droppedSink { [weak self] movieDetail in
-                if let postersURLString = movieDetail.data.posters.first, postersURLString.isEmpty == false {
-                    self?.thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
-                } else if let stllsURLString = movieDetail.data.stlls.first, stllsURLString.isEmpty == false {
-                    self?.thumbnailImageView.kf.setImage(with: URL(string: stllsURLString))
-                } else {
-                    self?.thumbnailImageView.image = nil
-                }
+                self?.updateMovieInfo(withModel: movieDetail.data)
                 
-                self?.yearLabel.text = movieDetail.data.prodYear
-                self?.titleLabel.text = movieDetail.data.title
-                self?.genreLabel.text = movieDetail.data.genre
-                let directors = movieDetail.data.directors.map { $0.directorNm }.joined(separator: ", ")
-                self?.directorLabel.text = directors
-                
-                let actors = movieDetail.data.actors.map { $0.actorNm }.joined(separator: ", ")
-                self?.actorLabel.text = actors
-                
-                if let numRecentStars = movieDetail.statistics.first?.numRecentStars {
-                    self?.revaluationDetailView.updateGradeTrend(ratingsEntity: numRecentStars)
-                } else {
-                    self?.revaluationDetailView.updateGradeTrend(ratingsEntity: [])
+                if let statistics = movieDetail.statistics.first {
+                    self?.revaluationDetailView.updateGradeTrend(ratingsEntity: statistics.numRecentStars)
+                    self?.revaluationDetailView.updateSpecialPoint(withModel: statistics.numSpecialPoint)
                 }
             }.store(in: &cancelBag)
         
@@ -298,5 +282,24 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
         
         viewModel.getRevaluationDetail()
+    }
+    
+    private func updateMovieInfo(withModel model: SearchMovieListDataEntity) {
+        if let postersURLString = model.posters.first, postersURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
+        } else if let stllsURLString = model.stlls.first, stllsURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: stllsURLString))
+        } else {
+            thumbnailImageView.image = nil
+        }
+        
+        yearLabel.text = model.prodYear
+        titleLabel.text = model.title
+        genreLabel.text = model.genre
+        let directors = model.directors.map { $0.directorNm }.joined(separator: ", ")
+        directorLabel.text = directors
+        
+        let actors = model.actors.map { $0.actorNm }.joined(separator: ", ")
+        actorLabel.text = actors
     }
 }

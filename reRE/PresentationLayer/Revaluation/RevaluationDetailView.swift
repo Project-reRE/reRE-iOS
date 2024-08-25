@@ -53,6 +53,28 @@ final class RevaluationDetailView: UIStackView {
     
     private lazy var chartView = ChartView()
     
+    private lazy var specialPointContainerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    private lazy var specialPointTitleLabel = UILabel().then {
+        $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.title01.font
+        $0.text = "주목 포인트는?"
+    }
+    
+    private lazy var specialPointView = RevaluationSpecialPointView()
+    
+    private lazy var showMovieButton = TouchableLabel().then {
+        $0.text = "영화 보러가기"
+        $0.font = FontSet.button02.font
+        $0.textColor = ColorSet.gray(.white).color
+        $0.textAlignment = .center
+        $0.backgroundColor = ColorSet.secondary(.olive40).color
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = moderateScale(number: 8)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -68,9 +90,10 @@ final class RevaluationDetailView: UIStackView {
     }
     
     private func addViews() {
-        addArrangedSubviews([gradeContainerView, chartContainerView])
+        addArrangedSubviews([gradeContainerView, chartContainerView, specialPointContainerView])
         gradeContainerView.addSubviews([gradeTitleLabel, gradeLabel, ratingView])
         chartContainerView.addSubviews([chartTitleLabel, chartView])
+        specialPointContainerView.addSubviews([specialPointTitleLabel, specialPointView, showMovieButton])
     }
     
     private func makeConstraints() {
@@ -98,6 +121,21 @@ final class RevaluationDetailView: UIStackView {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(moderateScale(number: 170))
         }
+        
+        specialPointTitleLabel.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        
+        specialPointView.snp.makeConstraints {
+            $0.top.equalTo(specialPointTitleLabel.snp.bottom).offset(moderateScale(number: 16))
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        showMovieButton.snp.makeConstraints {
+            $0.top.equalTo(specialPointView.snp.bottom).offset(moderateScale(number: 16))
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(moderateScale(number: 44))
+        }
     }
     
     func updateGradeView(withModel model: MovieRecentRatingsEntity) {
@@ -112,5 +150,9 @@ final class RevaluationDetailView: UIStackView {
     
     func updateGradeTrend(ratingsEntity: [MovieRecentRatingsEntity]) {
         chartView.ratings = ratingsEntity
+    }
+    
+    func updateSpecialPoint(withModel model: MovieSpecialPointEntity) {
+        specialPointView.updateView(withModel: model)
     }
 }

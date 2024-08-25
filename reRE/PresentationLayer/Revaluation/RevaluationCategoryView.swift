@@ -10,18 +10,18 @@ import Then
 import SnapKit
 
 final class RevaluationCategoryView: TouchableView {
-    enum CategoryType {
-        case planningIntent
-        case directorsDirection
-        case actingSkills
-        case scenario
-        case ost
-        case socialIssues
-        case visualElement
-        case soundElement
-        case positive
-        case negative
-        case notSure
+    enum CategoryType: String {
+        case planningIntent = "PLANNING_INTENT"
+        case directorsDirection = "DIRECTORS_DIRECTION"
+        case actingSkills = "ACTING_SKILLS"
+        case scenario = "SCENARIO"
+        case ost = "OST"
+        case socialIssues = "SOCIAL_ISSUES"
+        case visualElement = "VISUAL_ELEMENT"
+        case soundElement = "SOUND_ELEMENT"
+        case positive = "POSITIVE"
+        case negative = "NEGATIVE"
+        case notSure = "NOT_SURE"
         
         var titleText: String {
             switch self {
@@ -47,33 +47,6 @@ final class RevaluationCategoryView: TouchableView {
                 return "부정적"
             case .notSure:
                 return "잘 모름"
-            }
-        }
-        
-        var stringKey: String {
-            switch self {
-            case .planningIntent:
-                return "PLANNING_INTENT"
-            case .directorsDirection:
-                return "DIRECTORS_DIRECTION"
-            case .actingSkills:
-                return "ACTING_SKILLS"
-            case .scenario:
-                return "SCENARIO"
-            case .visualElement:
-                return "VISUAL_ELEMENT"
-            case .soundElement:
-                return "SOUND_ELEMENT"
-            case .ost:
-                return "OST"
-            case .socialIssues:
-                return "SOCIAL_ISSUES"
-            case .positive:
-                return "POSITIVE"
-            case .negative:
-                return "NEGATIVE"
-            case .notSure:
-                return "NOT_SURE"
             }
         }
     }
