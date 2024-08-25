@@ -20,9 +20,9 @@ final class ChartView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.red.cgColor
-        backgroundColor = .black
+        layer.masksToBounds = true
+        layer.cornerRadius = moderateScale(number: 8)
+        backgroundColor = ColorSet.gray(.gray20).color
     }
     
     required init?(coder: NSCoder) {
@@ -55,8 +55,8 @@ final class ChartView: UIView {
                                           clockwise: true)
             let circleLayer = CAShapeLayer()
             circleLayer.path = circlePath.cgPath
-            circleLayer.fillColor = UIColor.red.cgColor
-            circleLayer.strokeColor = UIColor.red.cgColor
+            circleLayer.fillColor = ColorSet.primary(.orange60).color?.cgColor
+            circleLayer.strokeColor = ColorSet.primary(.orange60).color?.cgColor
             circleLayer.lineWidth = 1
             
             layer.addSublayer(circleLayer)
@@ -74,15 +74,21 @@ final class ChartView: UIView {
                 linePath.addLine(to: CGPoint(x: nextPosX, y: nextPosY))
                 
                 lineLayer.path = linePath.cgPath
-                lineLayer.strokeColor = UIColor.red.cgColor
+                lineLayer.strokeColor = ColorSet.primary(.orange60).color?.cgColor
                 lineLayer.fillColor = UIColor.clear.cgColor
                 lineLayer.lineWidth = 1
                 layer.addSublayer(lineLayer)
             }
             
             let monthLabel = UILabel()
-            monthLabel.text = rating.targetDate
-            monthLabel.textColor = .red
+            
+            if let monthString = rating.targetDate.toDate(with: "yyyy-MM")?.dateToString(with: "MM"),
+               let month = Int(monthString) {
+                monthLabel.text = "\(month)월"
+            }
+            
+            monthLabel.textColor = ColorSet.gray(.gray60).color
+            monthLabel.font = FontSet.label02.font
             addSubview(monthLabel)
             
             monthLabel.snp.makeConstraints {
@@ -92,7 +98,8 @@ final class ChartView: UIView {
             
             let ratingLabel = UILabel()
             ratingLabel.text = "\(rating.numStars)"
-            ratingLabel.textColor = .red
+            ratingLabel.textColor = ColorSet.primary(.orange60).color
+            ratingLabel.font = FontSet.body04.font
             addSubview(ratingLabel)
             
             ratingLabel.snp.makeConstraints {
@@ -105,7 +112,7 @@ final class ChartView: UIView {
         backgroundPath.close()
         
         backgroundLayer.path = backgroundPath.cgPath
-        backgroundLayer.fillColor = UIColor.blue.withAlphaComponent(0.4).cgColor
+        backgroundLayer.fillColor = ColorSet.primary(.orange50).color?.withAlphaComponent(0.4).cgColor
         backgroundLayer.strokeColor = UIColor.clear.cgColor
     }
     
@@ -118,42 +125,15 @@ final class ChartView: UIView {
             
             if index != 0 {
                 lineLayer.lineDashPattern = [4, 4]
+                lineLayer.strokeColor = ColorSet.gray(.gray30).color?.withAlphaComponent(0.6).cgColor
             } else {
                 lineLayer.lineDashPattern = nil
+                lineLayer.strokeColor = ColorSet.gray(.gray30).color?.cgColor
             }
-            
-            lineLayer.strokeColor = UIColor.green.cgColor
             
             let path = UIBezierPath()
             path.move(to: CGPoint(x: sideMargin, y: posY))
             path.addLine(to: CGPoint(x: rect.maxX - sideMargin, y: posY))
-            
-            lineLayer.path = path.cgPath
-            lineLayer.fillColor = UIColor.clear.cgColor
-            lineLayer.lineWidth = moderateScale(number: 1)
-            
-            layer.addSublayer(lineLayer)
-        }
-    }
-    
-    private func drawBaseLines() {
-        let sideMargin: CGFloat = moderateScale(number: 16)
-        
-        for index in 0..<7 {
-            let posY: CGFloat = bounds.maxY - moderateScale(number: 34) - (CGFloat(index) * moderateScale(number: 20))
-            let lineLayer = CAShapeLayer()
-            
-            if index != 0 {
-                lineLayer.lineDashPattern = [4, 4]
-            } else {
-                lineLayer.lineDashPattern = nil
-            }
-            
-            lineLayer.strokeColor = UIColor.green.cgColor
-            
-            let path = UIBezierPath()
-            path.move(to: CGPoint(x: sideMargin, y: posY))
-            path.addLine(to: CGPoint(x: bounds.maxX - sideMargin, y: posY))
             
             lineLayer.path = path.cgPath
             lineLayer.fillColor = UIColor.clear.cgColor

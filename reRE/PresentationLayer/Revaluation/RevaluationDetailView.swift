@@ -71,15 +71,6 @@ final class RevaluationDetailView: UIStackView {
         addArrangedSubviews([gradeContainerView, chartContainerView])
         gradeContainerView.addSubviews([gradeTitleLabel, gradeLabel, ratingView])
         chartContainerView.addSubviews([chartTitleLabel, chartView])
-        
-//        for _ in 0..<5 {
-//            let gradeImageView: UIImageView = UIImageView()
-//            gradeImageView.contentMode = .scaleAspectFit
-//            gradeImageView.image = UIImage(named: "GradeStar")?.withTintColor(ColorSet.gray(.gray40).color!,
-//                                                                              renderingMode: .alwaysTemplate)
-//            
-//            gradeImageStackView.addArrangedSubview(gradeImageView)
-//        }
     }
     
     private func makeConstraints() {
@@ -110,19 +101,13 @@ final class RevaluationDetailView: UIStackView {
     }
     
     func updateGradeView(withModel model: MovieRecentRatingsEntity) {
-        gradeTitleLabel.text = model.targetDate
+        if let monthString = model.targetDate.toDate(with: "yyyy-MM")?.dateToString(with: "MM"),
+           let month = Int(monthString) {
+            gradeTitleLabel.text = "\(month)월 재평가 평점"
+        }
+        
         gradeLabel.text = "\(model.numStars)"
         ratingView.rating = model.numStars
-//        for (index, subView) in gradeImageStackView.arrangedSubviews.enumerated() {
-//            if index < decimalNumber {
-//                (subView as? UIImageView)?.tintColor = ColorSet.primary(.orange60).color
-//            } else if index == decimalNumber {
-//                (subView as? UIImageView)?.fillColor(with: ColorSet.primary(.orange60).color,
-//                                                     percentage: floatingNumber)
-//            } else {
-//                (subView as? UIImageView)?.tintColor = ColorSet.gray(.gray40).color
-//            }
-//        }
     }
     
     func updateGradeTrend(ratingsEntity: [MovieRecentRatingsEntity]) {
