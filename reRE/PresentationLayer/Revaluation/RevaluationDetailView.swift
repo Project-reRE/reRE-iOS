@@ -29,10 +29,9 @@ final class RevaluationDetailView: UIStackView {
         var settings = CosmosSettings()
         settings.starSize = moderateScale(number: 28)
         settings.starMargin = moderateScale(number: 8)
-        settings.fillMode = .half
+        settings.fillMode = .precise
         settings.filledImage = UIImage(named: "GradedStar")
         settings.emptyImage = UIImage(named: "GradeStar")
-        settings.minTouchRating = 0.5
         settings.updateOnTouch = false
         settings.disablePanGestures = true
         
