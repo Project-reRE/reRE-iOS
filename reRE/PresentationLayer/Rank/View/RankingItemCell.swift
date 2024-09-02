@@ -23,7 +23,6 @@ final class RankingItemCell: UICollectionViewCell {
     }
     
     private lazy var rankLabel = UILabel().then {
-        $0.text = "1"
         $0.textColor = ColorSet.gray(.white).color
         $0.textAlignment = .center
         $0.font = FontSet.body02.font
@@ -135,9 +134,10 @@ final class RankingItemCell: UICollectionViewCell {
         }
     }
     
-    func updateView(withModel model: MovieSetResponseModel) {
+    func updateView(withModel model: MovieSetResponseModel, orderText: String) {
         movieTitleLabel.text = model.data.title
         yearLabel.text = model.data.repRlsDate.toDate(with: "yyyyMMdd")?.dateToString(with: "yyyy")
+        rankLabel.text = orderText
         
         var directorText: String = ""
         

@@ -247,7 +247,7 @@ extension RankViewController: UICollectionViewDataSource {
             
             let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
             let model: MovieSetResponseModel = viewModel.getMovieSetsValue()[indexPath.section - bannerSectionIndex].data[indexPath.item]
-            cell.updateView(withModel: model)
+            cell.updateView(withModel: model, orderText: "\(indexPath.item + 1)")
             
             cell.containerView.didTapped { [weak self] in
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail),
