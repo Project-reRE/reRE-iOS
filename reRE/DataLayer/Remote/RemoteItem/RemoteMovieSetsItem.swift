@@ -14,6 +14,7 @@ struct RemoteMovieSetsItem: Decodable {
 
 struct RemoteMovieSetsData: Decodable {
     let title: String?
+    let genre: String?
     let template: String?
     let displayOrder: Int?
     let condition: String?

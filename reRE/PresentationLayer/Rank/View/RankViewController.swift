@@ -289,7 +289,7 @@ extension RankViewController: UICollectionViewDataSource {
             let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
             
             view.updateView(property: genreProperties[order],
-                            genreText: "\(sectionIndex)",
+                            genreText: viewModel.getMovieSetsValue()[sectionIndex].genre,
                             descriptionText: viewModel.getMovieSetsValue()[indexPath.section - bannerSectionIndex].title)
             return view
         }

@@ -33,6 +33,7 @@ struct BannerMapper {
             }
             
             return MovieSetsResponseModel(title: movieSetsEntity.title,
+                                          genre: movieSetsEntity.genre,
                                           template: movieSetsEntity.template,
                                           displayOrder: movieSetsEntity.displayOrder,
                                           condition: movieSetsEntity.condition,

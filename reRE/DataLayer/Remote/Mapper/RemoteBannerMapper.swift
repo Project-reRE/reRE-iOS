@@ -21,7 +21,7 @@ struct RemoteBannerMapper {
         guard let movieSets = remoteItem.results else { return [] }
         
         return movieSets.map { remoteMovieSetsItem -> MovieSetsEntity in
-            guard let data = remoteMovieSetsItem.data else { return .init(title: "", template: "", displayOrder: 0, condition: "", data: []) }
+            guard let data = remoteMovieSetsItem.data else { return .init() }
             
             let movieSetEntity: [MovieSetEntity] = data.map { remoteMovieSetData -> MovieSetEntity in
                 let actorsEntity = remoteMovieActorDataToEntity(remoteData: remoteMovieSetData.data?.actors)
@@ -37,6 +37,7 @@ struct RemoteBannerMapper {
             }
             
             return MovieSetsEntity(title: remoteMovieSetsItem.title ?? "",
+                                   genre: remoteMovieSetsItem.genre ?? "",
                                    template: remoteMovieSetsItem.template ?? "",
                                    displayOrder: remoteMovieSetsItem.displayOrder ?? 0,
                                    condition: remoteMovieSetsItem.condition ?? "",
