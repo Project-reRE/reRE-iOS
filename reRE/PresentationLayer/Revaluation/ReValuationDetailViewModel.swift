@@ -34,7 +34,7 @@ final class ReValuationDetailViewModel: BaseViewModel {
             .sink { [weak self] movieDetailEntity in
                 self?.revaluationData.send(movieDetailEntity)
                 
-                if let currentMonthData = movieDetailEntity.statistics.first?.numRecentStars.first(where: { $0.targetDate == Date().dateToString(with: "yyyy-MM") }) {
+                if let currentMonthData = movieDetailEntity.statistics.first?.numRecentStars.first(where: { $0.targetDate == Date().oneMonthBefore?.dateToString(with: "yyyy-MM") }) {
                     self?.showingRatingData.send(currentMonthData)
                 }
             }.store(in: &cancelBag)
