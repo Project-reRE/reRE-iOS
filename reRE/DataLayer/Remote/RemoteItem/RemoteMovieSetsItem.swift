@@ -33,7 +33,7 @@ struct RemoteMovieData: Decodable {
     let directors: [RemoteMovieDirectorDetailData]?
     let actors: [RemoteMovieActorDetailData]?
     let posters: [String]?
-    let stlls: [String]?
+    let stills: [String]?
 }
 
 struct RemoteMovieDirectorDetailData: Decodable {

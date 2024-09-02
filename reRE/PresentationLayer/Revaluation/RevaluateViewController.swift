@@ -27,9 +27,7 @@ final class RevaluateViewController: BaseNavigationViewController {
     }
     
     private lazy var thumbnailImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.red.cgColor
+        $0.contentMode = .scaleAspectFill
     }
     
     private lazy var yearLabel = UILabel().then {

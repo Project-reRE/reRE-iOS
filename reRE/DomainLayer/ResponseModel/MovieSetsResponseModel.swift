@@ -28,7 +28,7 @@ struct MovieResponseModel {
     let directors: [MovieDirectorDetailResponseModel]
     let actors: [MovieActorDetailResponseModel]
     let posters: [String]
-    let stlls: [String]
+    let stills: [String]
 }
 
 struct MovieDirectorDetailResponseModel {

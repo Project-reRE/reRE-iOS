@@ -31,7 +31,7 @@ struct SearchMapper {
                                                                   rating: entity.data.rating,
                                                                   genre: entity.data.genre,
                                                                   posters: entity.data.posters,
-                                                                  stlls: entity.data.stlls))
+                                                                  stills: entity.data.stills))
         }
         
         return SearchMovieListResponseModel(totalRecords: entity.totalRecords,

@@ -46,7 +46,7 @@ struct SearchMovieListDataEntity {
     let rating: String
     let genre: String
     let posters: [String]
-    let stlls: [String]
+    let stills: [String]
     
     init(title: String,
          prodYear: String,
@@ -56,7 +56,7 @@ struct SearchMovieListDataEntity {
          rating: String,
          genre: String,
          posters: [String],
-         stlls: [String]) {
+         stills: [String]) {
         self.title = title
         self.prodYear = prodYear
         self.titrepRlsDatele = titrepRlsDatele
@@ -65,7 +65,7 @@ struct SearchMovieListDataEntity {
         self.rating = rating
         self.genre = genre
         self.posters = posters
-        self.stlls = stlls
+        self.stills = stills
     }
     
     init() {
@@ -77,6 +77,6 @@ struct SearchMovieListDataEntity {
         rating = ""
         genre = ""
         posters = []
-        stlls = []
+        stills = []
     }
 }

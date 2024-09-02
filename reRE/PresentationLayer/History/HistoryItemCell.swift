@@ -111,10 +111,10 @@ final class HistoryItemCell: UICollectionViewCell {
     func updateView(with data: MyHistoryEntityData) {
         if let posterUrl = data.movie.data.posters.first {
             posterImageView.kf.setImage(with: URL(string: posterUrl))
-        } else if let stillUrl = data.movie.data.stlls.first {
+        } else if let stillUrl = data.movie.data.stills.first {
             posterImageView.kf.setImage(with: URL(string: stillUrl))
         } else {
-            posterImageView.image = nil
+            posterImageView.image = UIImage(named: "DefaultThumbnail")
         }
         
         ratingLabel.text = data.numStars

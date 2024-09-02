@@ -13,8 +13,10 @@ final class SearchResultItemCell: UICollectionViewCell {
     lazy var containerView = TouchableView()
     
     private lazy var thumbnailImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.kf.indicatorType = .activity
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = moderateScale(number: 4)
     }
     
     private lazy var titleLabel = UILabel().then {
@@ -67,7 +69,6 @@ final class SearchResultItemCell: UICollectionViewCell {
         thumbnailImageView.snp.makeConstraints {
             $0.leading.top.bottom.equalToSuperview()
             $0.width.equalTo(moderateScale(number: 74))
-            $0.height.equalTo(moderateScale(number: 111))
         }
         
         titleLabel.snp.makeConstraints {
@@ -110,10 +111,10 @@ final class SearchResultItemCell: UICollectionViewCell {
         
         if let postersURLString = model.data.posters.first, postersURLString.isEmpty == false {
             thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
-        } else if let stllsURLString = model.data.stlls.first, stllsURLString.isEmpty == false {
-            thumbnailImageView.kf.setImage(with: URL(string: stllsURLString))
+        } else if let stillsURLString = model.data.stills.first, stillsURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: stillsURLString))
         } else {
-            thumbnailImageView.image = nil
+            thumbnailImageView.image = UIImage(named: "DefaultThumbnail")
         }
     }
 }

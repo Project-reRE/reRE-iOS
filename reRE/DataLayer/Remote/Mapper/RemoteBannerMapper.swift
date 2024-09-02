@@ -33,7 +33,7 @@ struct RemoteBannerMapper {
                                          directors: directorsEntity,
                                          actors: actorsEntity,
                                          posters: remoteMovieSetData.data?.posters ?? [],
-                                         stlls: remoteMovieSetData.data?.stlls ?? []))
+                                         stills: remoteMovieSetData.data?.stills ?? []))
             }
             
             return MovieSetsEntity(title: remoteMovieSetsItem.title ?? "",

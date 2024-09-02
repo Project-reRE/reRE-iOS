@@ -136,9 +136,9 @@ final class SearchViewController: BaseNavigationViewController {
     private func layout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, _ in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                  heightDimension: .estimated(moderateScale(number: 111)))
+                                                  heightDimension: .absolute(moderateScale(number: 111)))
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .estimated(moderateScale(number: 111)))
+                                                   heightDimension: .absolute(moderateScale(number: 111)))
             
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])

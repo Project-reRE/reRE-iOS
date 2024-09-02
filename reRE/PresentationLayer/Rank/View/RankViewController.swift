@@ -195,9 +195,9 @@ final class RankViewController: BaseViewController {
             } else {
                 let itemWidth: CGFloat = UIScreen.main.bounds.width - moderateScale(number: 106 + 16)
                 let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
-                                                      heightDimension: .estimated(moderateScale(number: 165)))
+                                                      heightDimension: .absolute(moderateScale(number: 165)))
                 let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
-                                                       heightDimension: .estimated(moderateScale(number: 165)))
+                                                       heightDimension: .absolute(moderateScale(number: 165)))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

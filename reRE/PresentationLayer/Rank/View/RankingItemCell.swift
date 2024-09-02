@@ -15,10 +15,8 @@ final class RankingItemCell: UICollectionViewCell {
     }
     
     private lazy var thumbnailView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
         $0.layer.masksToBounds = true
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.red.cgColor
         $0.layer.cornerRadius = moderateScale(number: 4)
     }
     
@@ -150,6 +148,14 @@ final class RankingItemCell: UICollectionViewCell {
         }
         
         directorLabel.text = directorText
+        
+        if let postersURLString = model.data.posters.first, postersURLString.isEmpty == false {
+            thumbnailView.kf.setImage(with: URL(string: postersURLString))
+        } else if let stillsURLString = model.data.stills.first, stillsURLString.isEmpty == false {
+            thumbnailView.kf.setImage(with: URL(string: stillsURLString))
+        } else {
+            thumbnailView.image = UIImage(named: "DefaultThumbnail")
+        }
         
         var actorText: String = ""
         

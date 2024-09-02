@@ -46,7 +46,7 @@ struct MovieEntity {
     let directors: [MovieDirectorDetailEntity]
     let actors: [MovieActorDetailEntity]
     let posters: [String]
-    let stlls: [String]
+    let stills: [String]
 }
 
 struct MovieDirectorDetailEntity {

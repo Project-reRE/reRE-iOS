@@ -13,7 +13,7 @@ struct RemoteHistoryMapper {
         
         let myHistoryEntityData = myHistoryResults.map { remoteData -> MyHistoryEntityData in
             let posters = remoteData.movie?.data?.posters?.compactMap { $0 }
-            let stlls = remoteData.movie?.data?.stlls?.compactMap { $0 }
+            let stills = remoteData.movie?.data?.stills?.compactMap { $0 }
             
             let movie = SearchMovieListResultEntity(id: remoteData.movie?.id ?? "",
                                                     data: SearchMovieListDataEntity(title: remoteData.movie?.data?.title ?? "",
@@ -24,7 +24,7 @@ struct RemoteHistoryMapper {
                                                                                     rating: remoteData.movie?.data?.rating ?? "",
                                                                                     genre: remoteData.movie?.data?.genre ?? "",
                                                                                     posters: posters ?? [],
-                                                                                    stlls: stlls ?? []))
+                                                                                    stills: stills ?? []))
             
             return MyHistoryEntityData(id: remoteData.id ?? "",
                                        numStars: remoteData.numStars ?? "",

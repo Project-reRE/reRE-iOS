@@ -29,7 +29,7 @@ struct BannerMapper {
                                                          directors: directorsResponseModel,
                                                          actors: actorsResponseModel,
                                                          posters: movieSetEntity.data.posters,
-                                                         stlls: movieSetEntity.data.stlls))
+                                                         stills: movieSetEntity.data.stills))
             }
             
             return MovieSetsResponseModel(title: movieSetsEntity.title,

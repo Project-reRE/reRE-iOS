@@ -24,7 +24,9 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     }
     
     private lazy var thumbnailImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = moderateScale(number: 8)
     }
     
     private lazy var yearLabel = UILabel().then {
@@ -288,10 +290,10 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     private func updateMovieInfo(withModel model: SearchMovieListDataEntity) {
         if let postersURLString = model.posters.first, postersURLString.isEmpty == false {
             thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
-        } else if let stllsURLString = model.stlls.first, stllsURLString.isEmpty == false {
-            thumbnailImageView.kf.setImage(with: URL(string: stllsURLString))
+        } else if let stillsURLString = model.stills.first, stillsURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: stillsURLString))
         } else {
-            thumbnailImageView.image = nil
+            thumbnailImageView.image = UIImage(named: "DefaultThumbnail")
         }
         
         yearLabel.text = model.prodYear
