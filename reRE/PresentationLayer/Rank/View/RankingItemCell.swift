@@ -137,7 +137,7 @@ final class RankingItemCell: UICollectionViewCell {
     
     func updateView(withModel model: MovieSetResponseModel) {
         movieTitleLabel.text = model.data.title
-        yearLabel.text = model.data.repRlsDate
+        yearLabel.text = model.data.repRlsDate.toDate(with: "yyyyMMdd")?.dateToString(with: "yyyy")
         
         var directorText: String = ""
         
