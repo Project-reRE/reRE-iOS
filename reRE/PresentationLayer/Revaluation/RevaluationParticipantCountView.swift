@@ -46,5 +46,8 @@ final class RevaluationParticipantCountView: UIView {
     
     func updateView(withModel model: MovieStatisticsEntity) {
         countLabel.text = "\(model.numStarsParticipants.formattedString())명이\n재평가에 참여했어요."
+        countLabel.highLightText(targetString: model.numStarsParticipants.formattedString(),
+                                 color: ColorSet.tertiary(.navy70).color,
+                                 font: FontSet.title02.font)
     }
 }

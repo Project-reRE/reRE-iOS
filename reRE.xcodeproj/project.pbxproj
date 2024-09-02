@@ -100,6 +100,7 @@
 		43E496C42C2AEB150086E6A2 /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C32C2AEB150086E6A2 /* KakaoSDKTemplate */; };
 		43E496C62C2AEB150086E6A2 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C52C2AEB150086E6A2 /* KakaoSDKUser */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
+		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE5B95B62C6DF48600B7D0DB /* RevaluationCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */; };
 		FE5B95B82C6DF79200B7D0DB /* RevaluateSpecialPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */; };
 		FE5B95BA2C6E044200B7D0DB /* RevaluateFeelingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */; };
@@ -293,6 +294,7 @@
 		4376DAC42C11AE710060E618 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCategoryView.swift; sourceTree = "<group>"; };
 		FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateSpecialPointView.swift; sourceTree = "<group>"; };
 		FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateFeelingsView.swift; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 				436351CE2C0C45EA0078C8C1 /* UITextField+Extension.swift */,
 				43103D1B2C28031F009742BB /* UIImageView+Extension.swift */,
 				FE9826052C340923006F0C67 /* UIColor+Extension.swift */,
+				FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */,
 				4376DAC22C11AD3E0060E618 /* Date+Extension.swift */,
 				4376DAC42C11AE710060E618 /* String+Extension.swift */,
 				FEB374A62C7B19DA005B0286 /* Int+Extension.swift */,
@@ -1138,6 +1141,7 @@
 				FE9F9D802C4FBBAB00E6FB13 /* MyPageUserView.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
 				FEB3747B2C71DCAA005B0286 /* HistoryRepository.swift in Sources */,
+				FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */,
 				4364A1362BC6676D00F867B6 /* MyPageBaseCoordinator.swift in Sources */,
 				FEB374952C7AF2C2005B0286 /* MovieDetailEntity.swift in Sources */,
 				FE98266F2C3E9B70006F0C67 /* SignUpViewController.swift in Sources */,
