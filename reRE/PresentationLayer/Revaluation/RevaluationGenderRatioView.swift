@@ -17,46 +17,22 @@ final class RevaluationGenderRatioView: UIView {
         $0.spacing = moderateScale(number: 8)
     }
     
-    private lazy var maleContainerView = UIView()
-    
-    private lazy var maleTextView = UIView().then {
-        $0.backgroundColor = ColorSet.tertiary(.navy50).color
-        $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = moderateScale(number: 4)
-        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    private lazy var maleContainerView = RevaluationCriteriaView().then {
+        $0.textContainerView.backgroundColor = ColorSet.tertiary(.navy50).color
+        $0.titleLabel.text = "남성"
+        $0.titleLabel.textColor = ColorSet.tertiary(.navy90).color
+        $0.titleLabel.font = FontSet.label01.font
+        $0.ratioLabel.textColor = ColorSet.tertiary(.navy70).color
+        $0.ratioLabel.font = FontSet.label01.font
     }
     
-    private lazy var maleTextLabel = UILabel().then {
-        $0.text = "남성"
-        $0.textColor = ColorSet.tertiary(.navy90).color
-        $0.font = FontSet.label01.font
-        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-    }
-    
-    private lazy var maleRatioLabel = UILabel().then {
-        $0.textColor = ColorSet.tertiary(.navy70).color
-        $0.font = FontSet.label01.font
-    }
-    
-    private lazy var femaleContainerView = UIView()
-    
-    private lazy var femaleTextView = UIView().then {
-        $0.backgroundColor = ColorSet.primary(.orange50).color
-        $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = moderateScale(number: 4)
-        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-    }
-    
-    private lazy var femaleTextLabel = UILabel().then {
-        $0.text = "여성"
-        $0.textColor = ColorSet.primary(.orange90).color
-        $0.font = FontSet.label01.font
-        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-    }
-    
-    private lazy var femaleRatioLabel = UILabel().then {
-        $0.textColor = ColorSet.primary(.orange70).color
-        $0.font = FontSet.label01.font
+    private lazy var femaleContainerView = RevaluationCriteriaView().then {
+        $0.textContainerView.backgroundColor = ColorSet.primary(.orange50).color
+        $0.titleLabel.text = "여성"
+        $0.titleLabel.textColor = ColorSet.primary(.orange90).color
+        $0.titleLabel.font = FontSet.label01.font
+        $0.ratioLabel.textColor = ColorSet.primary(.orange70).color
+        $0.ratioLabel.font = FontSet.label01.font
     }
     
     override init(frame: CGRect) {
@@ -75,12 +51,6 @@ final class RevaluationGenderRatioView: UIView {
     private func addViews() {
         addSubviews([ratioView, criteriaContainerView])
         criteriaContainerView.addArrangedSubviews([maleContainerView, femaleContainerView])
-        
-        maleContainerView.addSubviews([maleTextView, maleRatioLabel])
-        maleTextView.addSubview(maleTextLabel)
-        
-        femaleContainerView.addSubviews([femaleTextView, femaleRatioLabel])
-        femaleTextView.addSubview(femaleTextLabel)
     }
     
     private func makeConstraints() {
@@ -92,46 +62,21 @@ final class RevaluationGenderRatioView: UIView {
         criteriaContainerView.snp.makeConstraints {
             $0.centerY.equalTo(ratioView)
             $0.leading.equalTo(ratioView.snp.trailing).offset(moderateScale(number: 16))
-            $0.trailing.equalToSuperview().inset(moderateScale(number: 24))
-        }
-        
-        maleTextView.snp.makeConstraints {
-            $0.top.leading.bottom.equalToSuperview()
-        }
-        
-        maleTextLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(moderateScale(number: 6))
-            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 13))
-        }
-        
-        maleRatioLabel.snp.makeConstraints {
-            $0.centerY.equalTo(maleTextView)
-            $0.leading.equalTo(maleTextView.snp.trailing).offset(moderateScale(number: 6))
-            $0.trailing.equalToSuperview()
-        }
-        
-        femaleTextView.snp.makeConstraints {
-            $0.top.leading.bottom.equalToSuperview()
-        }
-        
-        femaleTextLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(moderateScale(number: 6))
-            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 13))
-        }
-        
-        femaleRatioLabel.snp.makeConstraints {
-            $0.centerY.equalTo(femaleTextView)
-            $0.leading.equalTo(femaleTextView.snp.trailing).offset(moderateScale(number: 6))
             $0.trailing.equalToSuperview()
         }
     }
     
     func updateGenderRatioView(withModel model: MovieStatisticsEntity) {
-        maleRatioLabel.text = "\(model.numGender.MALE)"
-        femaleRatioLabel.text = "\(model.numGender.FEMALE)"
+        guard model.numStarsParticipants > 0 else { return }
         
         let maleRatio: Double = Double(model.numGender.MALE) / Double(model.numStarsParticipants)
         let femaleRatio: Double = Double(model.numGender.FEMALE) / Double(model.numStarsParticipants)
+        
+        let moderatedMaleRatio: Double = round(maleRatio * 10000) / 100
+        let moderatedFemaleRatio: Double = round(femaleRatio * 10000) / 100
+        
+        maleContainerView.updateRatio(withRatioText: "\(moderatedMaleRatio)%")
+        femaleContainerView.updateRatio(withRatioText: "\(moderatedFemaleRatio)%")
         
         ratioView.drawPiChart(withData: [femaleRatio, maleRatio],
                               colorList: [ColorSet.primary(.orange50).color, ColorSet.tertiary(.navy50).color])

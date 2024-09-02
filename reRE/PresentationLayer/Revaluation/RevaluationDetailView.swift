@@ -115,6 +115,8 @@ final class RevaluationDetailView: UIStackView {
     
     private lazy var genderRatioView = RevaluationGenderRatioView()
     
+    private lazy var ageRatioView = RevaluationAgeRatioView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -139,7 +141,7 @@ final class RevaluationDetailView: UIStackView {
         pastFeelingsContainerView.addSubviews([pastFeelingsTitleLabel, pastFeelingsView])
         currentFeelingsContainerView.addSubviews([currentFeelingsTitleLabel, currentFeelingsView])
         revaluationParticipantsContainerView.addSubviews([revaluationParticipantsTitleLabel, participantsCountView,
-                                                          genderRatioView])
+                                                          genderRatioView, ageRatioView])
     }
     
     private func makeConstraints() {
@@ -217,6 +219,11 @@ final class RevaluationDetailView: UIStackView {
         genderRatioView.snp.makeConstraints {
             $0.top.equalTo(participantsCountView.snp.bottom).offset(moderateScale(number: 48))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+        }
+        
+        ageRatioView.snp.makeConstraints {
+            $0.top.equalTo(genderRatioView.snp.bottom).offset(moderateScale(number: 48))
+            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.bottom.equalToSuperview()
         }
     }
@@ -246,5 +253,6 @@ final class RevaluationDetailView: UIStackView {
         currentFeelingsView.updateView(withModel: model.numPresentValuation)
         participantsCountView.updateView(withModel: model)
         genderRatioView.updateGenderRatioView(withModel: model)
+        ageRatioView.updateAgeRatioView(withModel: model)
     }
 }

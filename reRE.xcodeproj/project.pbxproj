@@ -101,6 +101,8 @@
 		43E496C62C2AEB150086E6A2 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C52C2AEB150086E6A2 /* KakaoSDKUser */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
+		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
+		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
 		FE5B95B62C6DF48600B7D0DB /* RevaluationCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */; };
 		FE5B95B82C6DF79200B7D0DB /* RevaluateSpecialPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */; };
 		FE5B95BA2C6E044200B7D0DB /* RevaluateFeelingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */; };
@@ -295,6 +297,8 @@
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
+		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
 		FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCategoryView.swift; sourceTree = "<group>"; };
 		FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateSpecialPointView.swift; sourceTree = "<group>"; };
 		FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateFeelingsView.swift; sourceTree = "<group>"; };
@@ -754,6 +758,8 @@
 				FEB374AC2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift */,
 				FEB374AE2C7B4F8F005B0286 /* RevaluationParticipantCountView.swift */,
 				FEB374B02C7B5C7D005B0286 /* RevaluationGenderRatioView.swift */,
+				FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */,
+				FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */,
 				FEB374A82C7B1F1E005B0286 /* RevaluationRatioView.swift */,
 				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
 				FE89FC212C6DE92E00FB01FB /* RevaluateViewController.swift */,
@@ -1229,8 +1235,10 @@
 				436351D52C0C4C090078C8C1 /* SearchResultItemCell.swift in Sources */,
 				4364A13F2BC667D800F867B6 /* CommonBaseCoordinator.swift in Sources */,
 				432C09582BD4F15F00BBFDB1 /* DecodeUtil.swift in Sources */,
+				FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */,
 				FEF6F49F2C57A59000B35A9C /* SearchMovieListResponseModel.swift in Sources */,
 				432C09432BC6796600BBFDB1 /* LocalDataFetcher.swift in Sources */,
+				FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */,
 				FE9826862C437652006F0C67 /* TermsStackView.swift in Sources */,
 				432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */,
 				FEF6F44B2C510A3900B35A9C /* SplashUsecaseProtocol.swift in Sources */,
