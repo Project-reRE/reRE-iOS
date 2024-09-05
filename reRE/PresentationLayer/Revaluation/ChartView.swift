@@ -82,7 +82,7 @@ final class ChartView: UIView {
             
             let monthLabel = UILabel()
             
-            if let monthString = rating.targetDate.toDate(with: "yyyy-MM")?.dateToString(with: "MM"),
+            if let monthString = rating.currentDate.toDate(with: "yyyy-MM")?.dateToString(with: "MM"),
                let month = Int(monthString) {
                 monthLabel.text = "\(month)월"
             }

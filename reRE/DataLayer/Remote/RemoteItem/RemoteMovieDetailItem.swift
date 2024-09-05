@@ -23,11 +23,11 @@ struct RemoteMovieStatisticsItem: Decodable {
     let numPresentValuation: RemoteMovieFeelingsItem?
     let numGender: RemoteRevaluatedGenderItem?
     let numAge: RemoteRevaluatedAgeItem?
-    let targetDate: String?
+    let currentDate: String?
 }
 
 struct RemoteMovieRecentRatingsItem: Decodable {
-    let targetDate: String?
+    let currentDate: String?
     let numStars: Double?
 }
 

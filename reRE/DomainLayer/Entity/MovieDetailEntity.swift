@@ -35,20 +35,20 @@ struct MovieStatisticsEntity {
     let numPresentValuation: MovieFeelingsEntity
     let numGender: RevaluatedGenderEntity
     let numAge: RevaluatedAgeEntity
-    let targetDate: String
+    let currentDate: String
 }
 
 struct MovieRecentRatingsEntity {
-    let targetDate: String
+    let currentDate: String
     let numStars: Double
     
-    init(targetDate: String, numStars: Double) {
-        self.targetDate = targetDate
+    init(currentDate: String, numStars: Double) {
+        self.currentDate = currentDate
         self.numStars = numStars
     }
     
     init() {
-        targetDate = ""
+        currentDate = ""
         numStars = 0
     }
 }

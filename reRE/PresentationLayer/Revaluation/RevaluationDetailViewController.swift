@@ -280,7 +280,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         
         viewModel.getShowingDateValue()
             .droppedSink { [weak self] showingRatingData in
-                self?.dateLabel.text = showingRatingData.targetDate
+                self?.dateLabel.text = showingRatingData.currentDate
                 self?.revaluationDetailView.updateGradeView(withModel: showingRatingData)
             }.store(in: &cancelBag)
         

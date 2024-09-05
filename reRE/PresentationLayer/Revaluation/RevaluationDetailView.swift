@@ -228,7 +228,7 @@ final class RevaluationDetailView: UIStackView {
     }
     
     func updateGradeView(withModel model: MovieRecentRatingsEntity) {
-        if let monthString = model.targetDate.toDate(with: "yyyy-MM")?.dateToString(with: "MM"),
+        if let monthString = model.currentDate.toDate(with: "yyyy-MM")?.dateToString(with: "MM"),
            let month = Int(monthString) {
             gradeTitleLabel.text = "\(month)월 재평가 평점"
             currentFeelingsTitleLabel.text = "\(month)월에 이 영화에 대해서 사람들은요"
