@@ -22,7 +22,12 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
         $0.updateView(isSelected: false)
     }
     
-    private lazy var otherRevaluationListView = UICollectionView(frame: .zero, collectionViewLayout: layout())
+    private lazy var otherRevaluationListView = UICollectionView(frame: .zero, collectionViewLayout: layout()).then {
+        $0.backgroundColor = .clear
+        $0.dataSource = self
+        $0.showsVerticalScrollIndicator = false
+        $0.registerCell(OtherRevaluationItemCell.self)
+    }
     
     private let viewModel: OtherRevaluationsViewModel
     
@@ -34,7 +39,7 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
     override func addViews() {
         super.addViews()
         
-        view.addSubviews([sortByLikesButton, sortByDateButton])
+        view.addSubviews([sortByLikesButton, sortByDateButton, otherRevaluationListView])
     }
     
     override func makeConstraints() {
@@ -48,6 +53,12 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
         sortByLikesButton.snp.makeConstraints {
             $0.trailing.equalTo(sortByDateButton.snp.leading).offset(-moderateScale(number: 4))
             $0.centerY.equalTo(sortByDateButton)
+        }
+        
+        otherRevaluationListView.snp.makeConstraints {
+            $0.top.equalTo(sortByDateButton.snp.bottom).offset(moderateScale(number: 12))
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(getSafeAreaBottom())
         }
     }
     
@@ -79,7 +90,22 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
             
             let section = NSCollectionLayoutSection(group: group)
             section.interGroupSpacing = moderateScale(number: 12)
+            section.contentInsets = .init(top: 0, leading: moderateScale(number: 16), bottom: 0, trailing: moderateScale(number: 16))
             return section
         }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension OtherRevaluationsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 50
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(OtherRevaluationItemCell.self, indexPath: indexPath) else { return .init() }
+        
+        cell.updateView(isLiked: Bool.random())
+        return cell
     }
 }
