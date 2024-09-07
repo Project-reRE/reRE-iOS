@@ -12,6 +12,6 @@ pod 'SnapKit'
 pod 'CocoaLumberjack/Swift', '~> 3.7.2'
 pod 'Kingfisher', '7.6.1'
 pod 'Swinject'
-pod 'FLEX', :configurations => ['Debug']
+# pod 'FLEX', :configurations => ['Debug']
 pod 'Cosmos'
 end

@@ -3,7 +3,6 @@ PODS:
   - CocoaLumberjack/Swift (3.7.4):
     - CocoaLumberjack/Core
   - Cosmos (25.0.1)
-  - FLEX (5.22.10)
   - Kingfisher (7.6.1)
   - SnapKit (5.7.1)
   - Swinject (2.9.1)
@@ -12,7 +11,6 @@ PODS:
 DEPENDENCIES:
   - CocoaLumberjack/Swift (~> 3.7.2)
   - Cosmos
-  - FLEX
   - Kingfisher (= 7.6.1)
   - SnapKit
   - Swinject
@@ -22,7 +20,6 @@ SPEC REPOS:
   trunk:
     - CocoaLumberjack
     - Cosmos
-    - FLEX
     - Kingfisher
     - SnapKit
     - Swinject
@@ -31,12 +28,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
   Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
-  FLEX: f21ee4f498eed3f8a1eded66b21939fd3b7a22ce
   Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   Swinject: a827d508c6270da03ec74e558e728917a888fa9b
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: e3c2009a6ae3a1a478fc7b1f7418bbf5f180b980
+PODFILE CHECKSUM: ecd2cfdf460760d9387a2ea0f9328bd1a432d5f1
 
 COCOAPODS: 1.15.2
