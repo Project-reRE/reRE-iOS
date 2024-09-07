@@ -93,12 +93,27 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     
     private lazy var revaluationDetailView = RevaluationDetailView()
     
+    private lazy var buttonStackView = UIStackView().then {
+        $0.distribution = .fillEqually
+        $0.spacing = moderateScale(number: 8)
+    }
+    
     private lazy var revaluateButton = TouchableLabel().then {
         $0.text = "재평가하기"
         $0.textAlignment = .center
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.button01.font
         $0.backgroundColor = ColorSet.primary(.orange50).color
+        $0.layer.cornerRadius = moderateScale(number: 12)
+        $0.layer.masksToBounds = true
+    }
+    
+    private lazy var showOtherRevaluationsButton = TouchableLabel().then {
+        $0.text = "다른 평보기"
+        $0.textAlignment = .center
+        $0.textColor = ColorSet.gray(.white).color
+        $0.font = FontSet.button01.font
+        $0.backgroundColor = ColorSet.tertiary(.navy40).color
         $0.layer.cornerRadius = moderateScale(number: 12)
         $0.layer.masksToBounds = true
     }
@@ -126,8 +141,9 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     override func addViews() {
         super.addViews()
         
-        view.addSubviews([scrollView, revaluateButton])
+        view.addSubviews([scrollView, buttonStackView])
         scrollView.addSubview(containerView)
+        buttonStackView.addArrangedSubviews([showOtherRevaluationsButton, revaluateButton])
         containerView.addSubviews([thumbnailImageView, yearLabel, titleLabel, productDetailView,
                                    dividerView, dateLabel, leftArrowButton, rightArrowButton,
                                    noRevaluationView, revaluationDetailView])
@@ -137,7 +153,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     override func makeConstraints() {
         super.makeConstraints()
         
-        revaluateButton.snp.makeConstraints {
+        buttonStackView.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(getSafeAreaBottom())
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 52))
@@ -146,7 +162,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         scrollView.snp.makeConstraints {
             $0.top.equalTo(topContainerView.snp.bottom)
             $0.centerX.width.equalToSuperview()
-            $0.bottom.equalTo(revaluateButton.snp.top)
+            $0.bottom.equalTo(buttonStackView.snp.top).offset(-moderateScale(number: 8))
         }
         
         containerView.snp.makeConstraints {
@@ -250,6 +266,13 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate),
                                      userData: ["movieEntity": self.viewModel.getRevaluationDataValue()])
+        }
+        
+        showOtherRevaluationsButton.didTapped { [weak self] in
+            guard let self = self else { return }
+            
+            self.coordinator?.moveTo(appFlow: TabBarFlow.common(.otherRevaluations),
+                                     userData: ["movieId": self.viewModel.getMovidId()])
         }
     }
     

@@ -72,6 +72,14 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             
             revaluateVC.hidesBottomBarWhenPushed = true
             currentNavigationViewController?.pushViewController(revaluateVC, animated: true)
+        case .otherRevaluations:
+            guard let movieId = userData?["movieId"] as? String else { return }
+            
+            let viewModel = OtherRevaluationsViewModel(usecase: Injector.shared.resolve(RevaluationUsecaseProtocol.self)!,
+                                                       movieId: movieId)
+            let otherRevaluationsVC = OtherRevaluationsViewController(viewModel: viewModel)
+            otherRevaluationsVC.coordinator = self
+            currentNavigationViewController?.pushViewController(otherRevaluationsVC, animated: true)
         }
     }
 }

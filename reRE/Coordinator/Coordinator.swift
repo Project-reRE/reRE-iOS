@@ -68,6 +68,7 @@ enum CommonFlow: Flow {
     case web
     case revaluationDetail
     case revaluate
+    case otherRevaluations
     case login
     case signUp
 }

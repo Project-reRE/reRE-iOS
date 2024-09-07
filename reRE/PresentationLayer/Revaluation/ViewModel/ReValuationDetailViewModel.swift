@@ -27,6 +27,10 @@ final class ReValuationDetailViewModel: BaseViewModel {
         
     }
     
+    func getMovidId() -> String {
+        return movieId
+    }
+    
     func getRevaluationDetail() {
         usecase.getMovieDetail(withId: movieId)
             .sink { [weak self] movieDetailEntity in

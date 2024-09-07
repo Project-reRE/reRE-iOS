@@ -100,6 +100,9 @@
 		43E496C42C2AEB150086E6A2 /* KakaoSDKTemplate in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C32C2AEB150086E6A2 /* KakaoSDKTemplate */; };
 		43E496C62C2AEB150086E6A2 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 43E496C52C2AEB150086E6A2 /* KakaoSDKUser */; };
 		577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */; };
+		FE4B24A72C8C308E00666609 /* OtherRevaluationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B24A62C8C308E00666609 /* OtherRevaluationsViewController.swift */; };
+		FE4B24A92C8C30E200666609 /* OtherRevaluationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B24A82C8C30E200666609 /* OtherRevaluationsViewModel.swift */; };
+		FE4B24AB2C8C32F800666609 /* SortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B24AA2C8C32F800666609 /* SortButton.swift */; };
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
 		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
@@ -297,6 +300,9 @@
 		4376DAC42C11AE710060E618 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7315FEE1193BF90A629F0886 /* Pods-reRE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reRE.release.xcconfig"; path = "Target Support Files/Pods-reRE/Pods-reRE.release.xcconfig"; sourceTree = "<group>"; };
 		7C03BD3281DE04D44848ED6A /* Pods_reRE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_reRE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE4B24A62C8C308E00666609 /* OtherRevaluationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsViewController.swift; sourceTree = "<group>"; };
+		FE4B24A82C8C30E200666609 /* OtherRevaluationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsViewModel.swift; sourceTree = "<group>"; };
+		FE4B24AA2C8C32F800666609 /* SortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortButton.swift; sourceTree = "<group>"; };
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
 		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
@@ -747,10 +753,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FE89FC1F2C6DE84700FB01FB /* Revaluation */ = {
+		FE4B24A32C8C2D5400666609 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */,
+				FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */,
+				FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */,
+				FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */,
 				FEB374702C71D81F005B0286 /* ChartView.swift */,
 				436475CE2C1198940096F15F /* NoRevaluationView.swift */,
 				43103D192C2800FA009742BB /* RevaluationDetailView.swift */,
@@ -763,12 +771,37 @@
 				FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */,
 				FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */,
 				FEB374A82C7B1F1E005B0286 /* RevaluationRatioView.swift */,
-				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
+				FE4B24AA2C8C32F800666609 /* SortButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FE4B24A42C8C2D6600666609 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				436351CC2C0C44060078C8C1 /* RevaluationDetailViewController.swift */,
 				FE89FC212C6DE92E00FB01FB /* RevaluateViewController.swift */,
+				FE4B24A62C8C308E00666609 /* OtherRevaluationsViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		FE4B24A52C8C2D7900666609 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				436475CC2C118F0D0096F15F /* ReValuationDetailViewModel.swift */,
 				FE89FC232C6DE9E900FB01FB /* RevaluateViewModel.swift */,
-				FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */,
-				FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */,
-				FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */,
+				FE4B24A82C8C30E200666609 /* OtherRevaluationsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FE89FC1F2C6DE84700FB01FB /* Revaluation */ = {
+			isa = PBXGroup;
+			children = (
+				FE4B24A32C8C2D5400666609 /* View */,
+				FE4B24A42C8C2D6600666609 /* VC */,
+				FE4B24A52C8C2D7900666609 /* ViewModel */,
 			);
 			path = Revaluation;
 			sourceTree = "<group>";
@@ -1167,6 +1200,7 @@
 				FEF6F4832C5623A900B35A9C /* CommonUtil.swift in Sources */,
 				432C09612BD4F2FD00BBFDB1 /* DailyRankingBannerCell.swift in Sources */,
 				432C093F2BC6794600BBFDB1 /* RemoteDataFetchable.swift in Sources */,
+				FE4B24A72C8C308E00666609 /* OtherRevaluationsViewController.swift in Sources */,
 				43103D1C2C28031F009742BB /* UIImageView+Extension.swift in Sources */,
 				FEB374972C7AF3B1005B0286 /* RevaluationRepositoryProtocol.swift in Sources */,
 				436475CD2C118F0E0096F15F /* ReValuationDetailViewModel.swift in Sources */,
@@ -1198,6 +1232,7 @@
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
 				FEF6F4A12C57A65800B35A9C /* RemoteSearchMapper.swift in Sources */,
 				FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */,
+				FE4B24A92C8C30E200666609 /* OtherRevaluationsViewModel.swift in Sources */,
 				FE9826532C3BFBB3006F0C67 /* RemoteLoginItem.swift in Sources */,
 				FEB374832C74B8F9005B0286 /* RemoteHistoryMapper.swift in Sources */,
 				FEB374B12C7B5C7D005B0286 /* RevaluationGenderRatioView.swift in Sources */,
@@ -1207,6 +1242,7 @@
 				430C2DDD2BB9790D00DE5FC2 /* SceneDelegate.swift in Sources */,
 				FECFE4522C32B94D00078CDF /* BannerEntity.swift in Sources */,
 				FEB3748D2C75F4B2005B0286 /* DeleteAccountViewModel.swift in Sources */,
+				FE4B24AB2C8C32F800666609 /* SortButton.swift in Sources */,
 				FE9F9D822C4FC2E400E6FB13 /* MyPageMenuView.swift in Sources */,
 				436475CF2C1198940096F15F /* NoRevaluationView.swift in Sources */,
 				4364A1432BC668CB00F867B6 /* RankCoordinator.swift in Sources */,
