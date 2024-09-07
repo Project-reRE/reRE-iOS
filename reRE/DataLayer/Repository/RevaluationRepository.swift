@@ -20,4 +20,8 @@ extension RevaluationRepository: RevaluationRepositoryProtocol {
     func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, any Error>, Never> {
         return remoteDataFetcher.getMovieDetail(withId: movieId)
     }
+    
+    func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Result<Void, any Error>, Never> {
+        return remoteDataFetcher.revaluate(with: reqestModel)
+    }
 }

@@ -10,4 +10,5 @@ import Combine
 
 protocol RevaluationUsecaseProtocol: BaseUsecaseProtocol {
     func getMovieDetail(withId movieId: String) -> AnyPublisher<MovieDetailEntity, Never>
+    func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Void, Never>
 }

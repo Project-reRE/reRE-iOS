@@ -103,6 +103,7 @@
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
 		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
+		FE524D762C8C1723003CEA97 /* RevaluateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D752C8C1723003CEA97 /* RevaluateRequestModel.swift */; };
 		FE5B95B62C6DF48600B7D0DB /* RevaluationCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */; };
 		FE5B95B82C6DF79200B7D0DB /* RevaluateSpecialPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */; };
 		FE5B95BA2C6E044200B7D0DB /* RevaluateFeelingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */; };
@@ -299,6 +300,7 @@
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
 		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
+		FE524D752C8C1723003CEA97 /* RevaluateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateRequestModel.swift; sourceTree = "<group>"; };
 		FE5B95B52C6DF48500B7D0DB /* RevaluationCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCategoryView.swift; sourceTree = "<group>"; };
 		FE5B95B72C6DF79200B7D0DB /* RevaluateSpecialPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateSpecialPointView.swift; sourceTree = "<group>"; };
 		FE5B95B92C6E044200B7D0DB /* RevaluateFeelingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluateFeelingsView.swift; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 				FEF6F49C2C57A3D600B35A9C /* SearchMovieListRequestModel.swift */,
 				FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */,
 				FEB374842C74BACD005B0286 /* MyHistoryRequestModel.swift */,
+				FE524D752C8C1723003CEA97 /* RevaluateRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -1221,6 +1224,7 @@
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
 				FEF6F4852C56317700B35A9C /* AppSettingMenuItemCell.swift in Sources */,
 				432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */,
+				FE524D762C8C1723003CEA97 /* RevaluateRequestModel.swift in Sources */,
 				432C09542BD4EFD800BBFDB1 /* Logger.swift in Sources */,
 				4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */,
 				FE9826062C340923006F0C67 /* UIColor+Extension.swift in Sources */,

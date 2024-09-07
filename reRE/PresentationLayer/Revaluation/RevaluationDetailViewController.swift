@@ -117,6 +117,12 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.getRevaluationDetail()
+    }
+    
     override func addViews() {
         super.addViews()
         
@@ -243,7 +249,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             guard let self = self else { return }
             
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate),
-                                     userData: ["movieEntity": self.viewModel.getRevaluationDataValue().data])
+                                     userData: ["movieEntity": self.viewModel.getRevaluationDataValue()])
         }
     }
     
@@ -286,8 +292,6 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 self?.dateLabel.text = showingRatingData.currentDate
                 self?.revaluationDetailView.updateGradeView(withModel: showingRatingData)
             }.store(in: &cancelBag)
-        
-        viewModel.getRevaluationDetail()
     }
     
     private func updateMovieInfo(withModel model: SearchMovieListDataEntity) {

@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Combine
 import Then
 import SnapKit
 import Cosmos
 
 final class RevaluateViewController: BaseNavigationViewController {
+    private var cancelBag = Set<AnyCancellable>()
+    
     var coordinator: CommonBaseCoordinator?
     
     private let commentPlaceholder: String = "작성한 한 줄 평에 부적절한 내용이 있을 경우, 사전 안내 없이 삭제될 수 있어요."
@@ -173,6 +176,11 @@ final class RevaluateViewController: BaseNavigationViewController {
         super.init()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
+    }
+    
     override func addViews() {
         super.addViews()
         
@@ -322,66 +330,110 @@ final class RevaluateViewController: BaseNavigationViewController {
         
         setNavigationTitle(with: "재평가하기")
         
-        updateMovieInfo(withModel: viewModel.getMovieEntity())
+        updateMovieInfo(withModel: viewModel.getMovieEntity().data)
         
         ratingView.didTouchCosmos = { [weak self] rating in
             self?.ratingLabel.text = "\(rating)"
+            self?.viewModel.updateRating(to: rating)
         }
         
         specialPointCategoryView.planningIntentView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .planningIntent)
+            self?.viewModel.updateSpecialPoint(with: .planningIntent)
         }
         
         specialPointCategoryView.directorsDirectionView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .directorsDirection)
+            self?.viewModel.updateSpecialPoint(with: .directorsDirection)
         }
         
         specialPointCategoryView.actingSkillsView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .actingSkills)
+            self?.viewModel.updateSpecialPoint(with: .actingSkills)
         }
         
         specialPointCategoryView.scenarioView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .scenario)
+            self?.viewModel.updateSpecialPoint(with: .scenario)
         }
         
         specialPointCategoryView.visualElementView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .visualElement)
+            self?.viewModel.updateSpecialPoint(with: .visualElement)
         }
         
         specialPointCategoryView.soundElementView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .soundElement)
+            self?.viewModel.updateSpecialPoint(with: .soundElement)
         }
         
         specialPointCategoryView.ostView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .ost)
+            self?.viewModel.updateSpecialPoint(with: .ost)
         }
         
         specialPointCategoryView.socialIssuesView.didTapped { [weak self] in
             self?.updateSpecialCategoryView(to: .socialIssues)
+            self?.viewModel.updateSpecialPoint(with: .socialIssues)
         }
         
         pastFeelingsCategoryView.positiveView.didTapped { [weak self] in
             self?.updatePastFeelingsCategoryView(to: .positive)
+            self?.viewModel.updatePastFeelings(with: .positive)
         }
         
         pastFeelingsCategoryView.negativeView.didTapped { [weak self] in
             self?.updatePastFeelingsCategoryView(to: .negative)
+            self?.viewModel.updatePastFeelings(with: .negative)
         }
         
         pastFeelingsCategoryView.notSureView.didTapped { [weak self] in
             self?.updatePastFeelingsCategoryView(to: .notSure)
+            self?.viewModel.updatePastFeelings(with: .notSure)
         }
         
         currentFeelingsCategoryView.positiveView.didTapped { [weak self] in
             self?.updateCurrentFeelingsCategoryView(to: .positive)
+            self?.viewModel.updateCurrentFeelings(with: .positive)
         }
         
         currentFeelingsCategoryView.negativeView.didTapped { [weak self] in
             self?.updateCurrentFeelingsCategoryView(to: .negative)
+            self?.viewModel.updateCurrentFeelings(with: .negative)
         }
         
         currentFeelingsCategoryView.notSureView.didTapped { [weak self] in
             self?.updateCurrentFeelingsCategoryView(to: .notSure)
+            self?.viewModel.updateCurrentFeelings(with: .notSure)
+        }
+        
+        revaluateButton.didTapped { [weak self] in
+            guard let missingCategory = self?.viewModel.checkMissingCategory() else {
+                self?.viewModel.revaluate()
+                return
+            }
+            
+            let alertText: String
+            
+            switch missingCategory {
+            case .numStars:
+                alertText = "평점은 0.5점부터 등록할 수 있어요."
+            case .specialPoint:
+                alertText = "이 영화의 주목할 포인트는 무엇인가요?"
+            case .pastValuation:
+                alertText = "이 영화, 과거엔 어땠는지 알려주세요.\n긍정적인가요? 부정적인가요?"
+            case .presentValuation:
+                alertText = "이 영화, 지금은 어떤지 알려주세요.\n긍정적인가요? 부정적인가요?"
+            case .comment:
+                alertText = "당신의 의견을 한 줄 평으로 들려주세요."
+            }
+            
+            CommonUtil.showAlertView(withType: .default,
+                                     buttonType: .oneButton,
+                                     title: "재평가 완료하기",
+                                     description: alertText,
+                                     submitCompletion: nil,
+                                     cancelCompletion: nil)
         }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
@@ -404,6 +456,37 @@ final class RevaluateViewController: BaseNavigationViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
+    }
+    
+    private func bind() {
+        viewModel.getErrorSubject()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] error in
+                
+                LogDebug(error)
+                
+                if let userError = error as? UserError {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: userError.message.first,
+                                             description: error.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                } else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: error.localizedDescription,
+                                             description: error.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                }
+            }.store(in: &cancelBag)
+        
+        viewModel.getRevaluationSuccessPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }.store(in: &cancelBag)
     }
     
     private func updateMovieInfo(withModel model: SearchMovieListDataEntity) {
@@ -499,9 +582,21 @@ extension RevaluateViewController: UITextViewDelegate {
         textView.text = commentPlaceholder
         textView.textColor = ColorSet.gray(.gray50).color
         updateCountLabel(characterCount: 0)
+        print(#function)
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        guard let comment = textView.text else { return false }
+        viewModel.updateComment(with: comment)
+        return true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard text.rangeOfCharacter(from: .newlines) == nil else {
+            textView.resignFirstResponder()
+            return false
+        }
+        
         guard let oldText = textView.text,
               let oldRange = Range(range, in: oldText) else {
             return true

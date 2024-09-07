@@ -63,9 +63,10 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             signUpVC.hidesBottomBarWhenPushed = true
             currentNavigationViewController?.pushViewController(signUpVC, animated: true)
         case .revaluate:
-            guard let movieEntity = userData?["movieEntity"] as? SearchMovieListDataEntity else { return }
+            guard let movieEntity = userData?["movieEntity"] as? MovieDetailEntity else { return }
             
-            let viewModel: RevaluateViewModel = RevaluateViewModel(movieEntity: movieEntity)
+            let viewModel: RevaluateViewModel = RevaluateViewModel(usecase: Injector.shared.resolve(RevaluationUsecaseProtocol.self)!,
+                                                                   movieEntity: movieEntity)
             let revaluateVC = RevaluateViewController(viewModel: viewModel)
             revaluateVC.coordinator = self
             

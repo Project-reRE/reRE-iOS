@@ -12,9 +12,8 @@ final class ReValuationDetailViewModel: BaseViewModel {
     private let revaluationData = CurrentValueSubject<MovieDetailEntity, Never>(.init())
     private let showingRatingData = CurrentValueSubject<MovieRecentRatingsEntity, Never>(.init())
     
-    private let movieId: String
-    
     private let usecase: RevaluationUsecaseProtocol
+    private let movieId: String
     
     init(usecase: RevaluationUsecaseProtocol, movieId: String) {
         self.usecase = usecase
