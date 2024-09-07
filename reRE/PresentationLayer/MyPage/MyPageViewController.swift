@@ -138,7 +138,6 @@ final class MyPageViewController: BaseViewController {
     private func bind() {
         viewModel.getMyProfilePublisher()
             .droppedSink { [weak self] myProfileModel in
-                print("myProfileModel: \(myProfileModel)")
                 self?.userView.updateView(withModel: myProfileModel)
             }.store(in: &cancelBag)
         
@@ -146,7 +145,6 @@ final class MyPageViewController: BaseViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] isLoggedIn in
                 if isLoggedIn {
-                    print("??")
                     self?.viewModel.getMyProfile()
                 }
                 

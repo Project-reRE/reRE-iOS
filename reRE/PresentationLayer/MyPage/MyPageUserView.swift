@@ -68,7 +68,6 @@ final class MyPageUserView: UIView {
     }
     
     private lazy var revaluationCountLabel = UILabel().then {
-        $0.text = "999,999,999개"
         $0.textColor = ColorSet.gray(.gray70).color
         $0.font = FontSet.subTitle01.font
     }
@@ -224,6 +223,7 @@ final class MyPageUserView: UIView {
     func updateView(withModel model: MyProfileResponseModel) {
         nicknameLabel.text = model.nickName
         genderLabel.text = model.gender ? "남성" : "여성"
+        revaluationCountLabel.text = "\(model.statistics.numRevaluations.formattedString())개"
         
         if let birthYear = model.birthDate.toDate(with: "yyyy-MM-dd")?.dateToString(with: "yyyy") {
             birthLabel.text = "\(birthYear)년생"

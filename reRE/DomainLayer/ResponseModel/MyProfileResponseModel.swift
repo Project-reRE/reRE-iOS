@@ -21,6 +21,7 @@ struct MyProfileResponseModel {
     let createdAt: String
     let updatedAt: String
     let deletedAt: String
+    let statistics: MyStatisticsResponseModel
     
     init(id: String,
          externalId: String,
@@ -34,7 +35,8 @@ struct MyProfileResponseModel {
          birthDate: String,
          createdAt: String,
          updatedAt: String,
-         deletedAt: String) {
+         deletedAt: String,
+         statistics: MyStatisticsResponseModel) {
         self.id = id
         self.externalId = externalId
         self.nickName = nickName
@@ -48,6 +50,7 @@ struct MyProfileResponseModel {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt
+        self.statistics = statistics
     }
     
     init() {
@@ -64,5 +67,21 @@ struct MyProfileResponseModel {
         createdAt = ""
         updatedAt = ""
         deletedAt = ""
+        statistics = .init()
+    }
+}
+
+struct MyStatisticsResponseModel {
+    let id: String
+    let numRevaluations: Int
+    
+    init(id: String, numRevaluations: Int) {
+        self.id = id
+        self.numRevaluations = numRevaluations
+    }
+    
+    init() {
+        id = ""
+        numRevaluations = 0
     }
 }

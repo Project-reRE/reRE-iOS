@@ -21,4 +21,10 @@ struct RemoteMyProfileItem: Decodable {
     let createdAt: String?
     let updatedAt: String?
     let deletedAt: String?
+    let statistics: RemoteMyStatisticsItem?
+}
+
+struct RemoteMyStatisticsItem: Decodable {
+    let id: String?
+    let numRevaluations: Int?
 }

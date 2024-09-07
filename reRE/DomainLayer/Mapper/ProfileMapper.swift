@@ -21,6 +21,8 @@ struct ProfileMapper {
                                       birthDate: entity.birthDate,
                                       createdAt: entity.createdAt,
                                       updatedAt: entity.updatedAt,
-                                      deletedAt: entity.deletedAt)
+                                      deletedAt: entity.deletedAt,
+                                      statistics: .init(id: entity.statistics.id,
+                                                        numRevaluations: entity.statistics.numRevaluations))
     }
 }

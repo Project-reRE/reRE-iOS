@@ -21,6 +21,8 @@ struct RemoteProfileMapper {
                                birthDate: remoteItem.birthDate ?? "",
                                createdAt: remoteItem.createdAt ?? "",
                                updatedAt: remoteItem.updatedAt ?? "",
-                               deletedAt: remoteItem.deletedAt ?? "")
+                               deletedAt: remoteItem.deletedAt ?? "",
+                               statistics: .init(id: remoteItem.statistics?.id ?? "",
+                                                 numRevaluations: remoteItem.statistics?.numRevaluations ?? 0))
     }
 }

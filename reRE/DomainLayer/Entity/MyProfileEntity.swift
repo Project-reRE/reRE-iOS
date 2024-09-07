@@ -21,4 +21,10 @@ struct MyProfileEntity {
     let createdAt: String
     let updatedAt: String
     let deletedAt: String
+    let statistics: MyStatisticsEntity
+}
+
+struct MyStatisticsEntity {
+    let id: String
+    let numRevaluations: Int
 }
