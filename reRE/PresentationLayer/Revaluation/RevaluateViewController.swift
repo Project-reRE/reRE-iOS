@@ -33,7 +33,6 @@ final class RevaluateViewController: BaseNavigationViewController {
     private lazy var yearLabel = UILabel().then {
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
-        $0.text = "2019"
     }
     
     private lazy var titleLabel = UILabel().then {
@@ -41,7 +40,6 @@ final class RevaluateViewController: BaseNavigationViewController {
         $0.font = FontSet.title01.font
         $0.numberOfLines = 0
         $0.textAlignment = .center
-        $0.text = "신차원! 짱구는 못말려 더 무비 초능력 대결전 ~날아라 수제김밥~"
     }
     
     private lazy var productDetailView = UIView().then {
@@ -51,19 +49,16 @@ final class RevaluateViewController: BaseNavigationViewController {
     }
     
     private lazy var genreLabel = UILabel().then {
-        $0.text = "장르명1, 장르명2, 장르명3, 장르명4"
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
     }
     
     private lazy var directorLabel = UILabel().then {
-        $0.text = "감독명1, 감독명2, 감독명3, 감독명4"
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
     }
     
     private lazy var actorLabel = UILabel().then {
-        $0.text = "배우명1, 배우명2, 배우명3, 배우명4"
         $0.font = FontSet.body04.font
         $0.textColor = ColorSet.gray(.gray60).color
     }
@@ -134,7 +129,14 @@ final class RevaluateViewController: BaseNavigationViewController {
     private lazy var pastFeelingsCategoryView = RevaluateFeelingsView()
     
     private lazy var currentFeelingsTitleLabel = UILabel().then {
-        $0.text = "7월에 이 영화는 어땠나요?"
+        let currentMonthString = Date().dateToString(with: "MM")
+        
+        if let currentMonth = Int(currentMonthString) {
+            $0.text = "\(currentMonth)월에 이 영화는 어땠나요?"
+        } else {
+            $0.text = "이 영화는 어땠나요?"
+        }
+        
         $0.font = FontSet.title01.font
         $0.textColor = ColorSet.gray(.white).color
     }
@@ -320,6 +322,8 @@ final class RevaluateViewController: BaseNavigationViewController {
         
         setNavigationTitle(with: "재평가하기")
         
+        updateMovieInfo(withModel: viewModel.getMovieEntity())
+        
         ratingView.didTouchCosmos = { [weak self] rating in
             self?.ratingLabel.text = "\(rating)"
         }
@@ -400,6 +404,25 @@ final class RevaluateViewController: BaseNavigationViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
+    }
+    
+    private func updateMovieInfo(withModel model: SearchMovieListDataEntity) {
+        if let postersURLString = model.posters.first, postersURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
+        } else if let stillsURLString = model.stills.first, stillsURLString.isEmpty == false {
+            thumbnailImageView.kf.setImage(with: URL(string: stillsURLString))
+        } else {
+            thumbnailImageView.image = UIImage(named: "DefaultThumbnail")
+        }
+        
+        yearLabel.text = model.prodYear
+        titleLabel.text = model.title
+        genreLabel.text = model.genre
+        let directors = model.directors.map { $0.directorNm }.joined(separator: ", ")
+        directorLabel.text = directors
+        
+        let actors = model.actors.map { $0.actorNm }.joined(separator: ", ")
+        actorLabel.text = actors
     }
     
     private func updateCountLabel(characterCount: Int) {

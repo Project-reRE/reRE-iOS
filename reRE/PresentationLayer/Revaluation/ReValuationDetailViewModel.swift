@@ -21,7 +21,6 @@ final class ReValuationDetailViewModel: BaseViewModel {
         self.movieId = movieId
         
         super.init(usecase: usecase)
-        print("movieId: \(movieId)")
         bind()
     }
     
@@ -33,7 +32,7 @@ final class ReValuationDetailViewModel: BaseViewModel {
         usecase.getMovieDetail(withId: movieId)
             .sink { [weak self] movieDetailEntity in
                 self?.revaluationData.send(movieDetailEntity)
-                print("movieDetailEntity.statistics.first?.numRecentStars: \(movieDetailEntity.statistics.first?.numRecentStars)")
+                
                 if let currentMonthData = movieDetailEntity.statistics.first?.numRecentStars.first(where: { $0.currentDate == Date().oneMonthBefore?.dateToString(with: "yyyy-MM") }) {
                     self?.showingRatingData.send(currentMonthData)
                 }
@@ -60,6 +59,10 @@ final class ReValuationDetailViewModel: BaseViewModel {
     
     func getRevaluationDataPublisher() -> AnyPublisher<MovieDetailEntity, Never> {
         return revaluationData.eraseToAnyPublisher()
+    }
+    
+    func getRevaluationDataValue() -> MovieDetailEntity {
+        return revaluationData.value
     }
     
     func getShowingDateValue() -> AnyPublisher<MovieRecentRatingsEntity, Never> {

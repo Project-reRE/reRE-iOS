@@ -8,5 +8,13 @@
 import Foundation
 
 final class RevaluateViewModel {
+    private let movieEntity: SearchMovieListDataEntity
     
+    init(movieEntity: SearchMovieListDataEntity) {
+        self.movieEntity = movieEntity
+    }
+    
+    func getMovieEntity() -> SearchMovieListDataEntity {
+        return movieEntity
+    }
 }

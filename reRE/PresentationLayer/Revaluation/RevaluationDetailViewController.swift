@@ -240,7 +240,10 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         }
         
         revaluateButton.didTapped { [weak self] in
-            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate), userData: nil)
+            guard let self = self else { return }
+            
+            self.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate),
+                                     userData: ["movieEntity": self.viewModel.getRevaluationDataValue().data])
         }
     }
     

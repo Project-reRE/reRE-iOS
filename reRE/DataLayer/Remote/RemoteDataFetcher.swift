@@ -206,7 +206,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         return Future<Result<MovieDetailEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
             
-            self.networkManager.fetchService(.getMovieDetail(movieId: "F-31201")) { result in
+            self.networkManager.fetchService(.getMovieDetail(movieId: movieId)) { result in
                 switch result {
                 case .success(let response):
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
