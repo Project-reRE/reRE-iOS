@@ -58,6 +58,7 @@ enum SearchFlow: Flow {
 
 enum HistoryFlow: Flow {
     case main
+    case revaluationHistory
 }
 
 enum MyPageFlow: Flow {

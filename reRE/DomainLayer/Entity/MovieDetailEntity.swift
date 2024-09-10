@@ -28,7 +28,7 @@ struct MovieDetailEntity {
 struct MovieStatisticsEntity {
     let id: String
     let numRecentStars: [MovieRecentRatingsEntity]
-    let numStars: Double
+    let numStars: String
     let numStarsParticipants: Int
     let numSpecialPoint: MovieSpecialPointEntity
     let numPastValuation: MovieFeelingsEntity

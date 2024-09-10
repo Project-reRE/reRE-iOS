@@ -25,6 +25,6 @@ struct RemoteSearchMovieListData: Decodable {
     let actors: [RemoteMovieActorDetailData]?
     let rating: String?
     let genre: String?
-    let posters: [String?]?
-    let stills: [String?]?
+    let posters: [String]?
+    let stills: [String]?
 }

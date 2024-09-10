@@ -12,9 +12,6 @@ struct RemoteHistoryMapper {
         guard let myHistoryResults = remoteItem.results else { return .init() }
         
         let myHistoryEntityData = myHistoryResults.map { remoteData -> MyHistoryEntityData in
-            let posters = remoteData.movie?.data?.posters?.compactMap { $0 }
-            let stills = remoteData.movie?.data?.stills?.compactMap { $0 }
-            
             let movie = SearchMovieListResultEntity(id: remoteData.movie?.id ?? "",
                                                     data: SearchMovieListDataEntity(title: remoteData.movie?.data?.title ?? "",
                                                                                     prodYear: remoteData.movie?.data?.prodYear ?? "",
@@ -23,13 +20,14 @@ struct RemoteHistoryMapper {
                                                                                     actors: [],
                                                                                     rating: remoteData.movie?.data?.rating ?? "",
                                                                                     genre: remoteData.movie?.data?.genre ?? "",
-                                                                                    posters: posters ?? [],
-                                                                                    stills: stills ?? []))
+                                                                                    posters: remoteData.movie?.data?.posters ?? [],
+                                                                                    stills: remoteData.movie?.data?.stills ?? []))
             
             return MyHistoryEntityData(id: remoteData.id ?? "",
                                        numStars: remoteData.numStars ?? "",
                                        specialPoint: remoteData.specialPoint ?? "",
                                        pastValuation: remoteData.pastValuation ?? "",
+                                       presentValuation: remoteData.presentValuation ?? "",
                                        comment: remoteData.comment ?? "",
                                        createdAt: remoteData.createdAt ?? "",
                                        updatedAt: remoteData.updatedAt ?? "",

@@ -21,9 +21,6 @@ struct RemoteRevaluationMapper {
                                           actorId: $0.actorId ?? "")
         }
         
-        let posters: [String]? = remoteItem.data?.posters?.compactMap { $0 }
-        let stills: [String]? = remoteItem.data?.stills?.compactMap { $0 }
-        
         let statistics = remoteItem.statistics?.compactMap { remoteStatisticsItem -> MovieStatisticsEntity in
             let numRecentStars = remoteStatisticsItem.numRecentStars?.compactMap { remoteRecentRatingsItem -> MovieRecentRatingsEntity in
                 return .init(currentDate: remoteRecentRatingsItem.currentDate ?? "",
@@ -32,7 +29,7 @@ struct RemoteRevaluationMapper {
             
             return .init(id: remoteStatisticsItem.id ?? "",
                          numRecentStars: numRecentStars ?? [],
-                         numStars: remoteStatisticsItem.numStars ?? 0,
+                         numStars: remoteStatisticsItem.numStars ?? "",
                          numStarsParticipants: remoteStatisticsItem.numStarsParticipants ?? 0,
                          numSpecialPoint: .init(PLANNING_INTENT: remoteStatisticsItem.numSpecialPoint?.PLANNING_INTENT ?? 0,
                                                 DIRECTORS_DIRECTION: remoteStatisticsItem.numSpecialPoint?.DIRECTORS_DIRECTION ?? 0,
@@ -66,8 +63,8 @@ struct RemoteRevaluationMapper {
                                  actors: movieActorsEntity ?? [],
                                  rating: remoteItem.data?.rating ?? "",
                                  genre: remoteItem.data?.genre ?? "",
-                                 posters: posters ?? [],
-                                 stills: stills ?? []),
+                                 posters: remoteItem.data?.posters ?? [],
+                                 stills: remoteItem.data?.stills ?? []),
                      statistics: statistics ?? [])
     }
 }

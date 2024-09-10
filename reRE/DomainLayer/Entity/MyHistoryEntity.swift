@@ -27,6 +27,7 @@ struct MyHistoryEntityData {
     let numStars: String
     let specialPoint: String
     let pastValuation: String
+    let presentValuation: String
     let comment: String
     let createdAt: String
     let updatedAt: String

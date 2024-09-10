@@ -41,6 +41,12 @@ final class HistoryCoordinator: NSObject, HistoryBaseCoordinator {
             historyListVC.coordinator = self
             historyListVC.hidesBottomBarWhenPushed = true
             currentNavigationViewController?.pushViewController(historyListVC, animated: true)
+        case .revaluationHistory:
+            guard let historyEntity = userData?["historyEntity"] as? MyHistoryEntityData else { return }
+            
+            let revaluationHistoryVC = RevaluationHistoryViewController(historyEntity: historyEntity)
+            revaluationHistoryVC.coordinator = self
+            currentNavigationViewController?.pushViewController(revaluationHistoryVC, animated: true)
         }
     }
 }

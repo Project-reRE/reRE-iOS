@@ -53,7 +53,6 @@ final class RevaluateViewModel: BaseViewModel {
     }
     
     func revaluate() {
-        print("revaluateRequestModel: \(revaluateRequestModel)")
         usecase.revaluate(with: revaluateRequestModel)
             .sink { [weak self] _ in
                 self?.revaluationSuccess.send(())
