@@ -113,9 +113,21 @@ final class HistoryListViewController: BaseNavigationViewController {
     }
     
     private func bind() {
-        viewModel.getHistoryListPublisher()
-            .droppedSink { [weak self] historyList in
+        let showingDatePublisher = viewModel.getShowingDateValue()
+        let historyListPublisher = viewModel.getHistoryListPublisher().dropFirst()
+        
+        showingDatePublisher
+            .zip(historyListPublisher)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] requestModel, historyList in
+                let startDate: Date = requestModel.startDate.toDate(with: "yyyy-MM-dd") ?? Date()
+                let showingDate: String = startDate.dateToString(with: "yyyy. MM")
+                self?.dateLabel.text = showingDate
+                
+                
                 if historyList.results.isEmpty {
+                    let endDate: Date = requestModel.endDate.toDate(with: "yyyy-MM-dd") ?? Date()
+                    self?.noHistoryListView.updateView(canRevaluateMonth: endDate >= Date())
                     self?.noHistoryListView.isHidden = false
                     self?.historyListView.isHidden = true
                 } else {
@@ -123,14 +135,6 @@ final class HistoryListViewController: BaseNavigationViewController {
                     self?.historyListView.isHidden = false
                     self?.historyListView.reloadData()
                 }
-            }.store(in: &cancelBag)
-        
-        viewModel.getShowingDateValue()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] requestModel in
-                let startDate = requestModel.startDate.toDate(with: "yyyy-MM-dd")
-                let showingDate = startDate?.dateToString(with: "yyyy. MM")
-                self?.dateLabel.text = showingDate
             }.store(in: &cancelBag)
     }
 }

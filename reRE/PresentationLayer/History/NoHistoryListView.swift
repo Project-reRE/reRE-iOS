@@ -64,4 +64,14 @@ final class NoHistoryListView: UIStackView {
             $0.width.equalTo(moderateScale(number: 176))
         }
     }
+    
+    func updateView(canRevaluateMonth: Bool) {
+        if canRevaluateMonth {
+            doRevaluateButton.isHidden = false
+            descriptionLabel.text = "이번 달, 당신이 재평가할 영화는\n어떤 영화인가요?"
+        } else {
+            doRevaluateButton.isHidden = true
+            descriptionLabel.text = "이 달은 재평가를 한 영화가 없네요."
+        }
+    }
 }

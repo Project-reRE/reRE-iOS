@@ -34,12 +34,14 @@ final class HistoryListViewModel: BaseViewModel {
     
     func getPrevMonthHistoryList() {
         let showingDate = shouldLoadRevaluationHistory.value
-        let prevMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthBefore
         
-        guard let startDayOfPrevMonthString = prevMonth?.startDayOfMonthString(),
-              let endDayOfPrevMonthString = prevMonth?.endDayOfMonthString() else {
+        guard let prevMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthBefore,
+              StaticValues.openedMonth <= prevMonth else {
             return
         }
+        
+        let startDayOfPrevMonthString = prevMonth.startDayOfMonthString()
+        let endDayOfPrevMonthString = prevMonth.endDayOfMonthString()
         
         shouldLoadRevaluationHistory.send(.init(startDate: startDayOfPrevMonthString,
                                                 endDate: endDayOfPrevMonthString,
@@ -49,12 +51,14 @@ final class HistoryListViewModel: BaseViewModel {
     
     func getNextMonthHistoryList() {
         let showingDate = shouldLoadRevaluationHistory.value
-        let nextMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthLater
         
-        guard let startDayOfNextMonthString = nextMonth?.startDayOfMonthString(),
-              let endDayOfNextMonthString = nextMonth?.endDayOfMonthString() else {
+        guard let nextMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthLater,
+              Date() > nextMonth else {
             return
         }
+        
+        let startDayOfNextMonthString = nextMonth.startDayOfMonthString()
+        let endDayOfNextMonthString = nextMonth.endDayOfMonthString()
         
         shouldLoadRevaluationHistory.send(.init(startDate: startDayOfNextMonthString,
                                                 endDate: endDayOfNextMonthString,

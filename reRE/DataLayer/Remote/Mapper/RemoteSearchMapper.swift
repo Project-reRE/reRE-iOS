@@ -24,6 +24,9 @@ struct RemoteSearchMapper {
                                               actorId: $0.actorId ?? "")
             }
             
+            let posters = remoteResultItem.data?.posters?.compactMap { $0 }
+            let stills = remoteResultItem.data?.stills?.compactMap { $0 }
+            
             let searchMovieListDataEntity = SearchMovieListDataEntity(title: remoteResultItem.data?.title ?? "",
                                                                       prodYear: remoteResultItem.data?.prodYear ?? "",
                                                                       titrepRlsDatele: remoteResultItem.data?.titrepRlsDatele ?? "",
@@ -31,8 +34,8 @@ struct RemoteSearchMapper {
                                                                       actors: movieActorsEntity ?? [],
                                                                       rating: remoteResultItem.data?.rating ?? "",
                                                                       genre: remoteResultItem.data?.genre ?? "",
-                                                                      posters: remoteResultItem.data?.posters ?? [],
-                                                                      stills: remoteResultItem.data?.stills ?? [])
+                                                                      posters: posters ?? [],
+                                                                      stills: stills ?? [])
             
             return SearchMovieListResultEntity(id: remoteResultItem.id ?? "", data: searchMovieListDataEntity)
         }
