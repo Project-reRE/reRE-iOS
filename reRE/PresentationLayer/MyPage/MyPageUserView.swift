@@ -86,8 +86,6 @@ final class MyPageUserView: UIView {
     
     private lazy var snsImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.layer.borderColor = UIColor.red.cgColor
-        $0.layer.borderWidth = 1
     }
     
     private lazy var emailLabel = UILabel().then {
@@ -231,5 +229,14 @@ final class MyPageUserView: UIView {
         
         emailLabel.text = model.email
         thumbnailImageView.kf.setImage(with: URL(string: model.profileUrl))
+        
+        if let loginType = SNSLoginType(rawValue: model.provider) {
+            switch loginType {
+            case .kakao:
+                snsImageView.image = UIImage(named: "MyPageKakaoIcon")
+            case .apple:
+                snsImageView.image = UIImage(named: "MyPageAppleIcon")
+            }
+        }
     }
 }
