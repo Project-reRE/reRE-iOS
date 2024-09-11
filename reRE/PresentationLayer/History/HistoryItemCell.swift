@@ -117,6 +117,6 @@ final class HistoryItemCell: UICollectionViewCell {
             posterImageView.image = UIImage(named: "DefaultThumbnail")
         }
         
-        ratingLabel.text = data.numStars
+        ratingLabel.text = "\(data.numStars)"
     }
 }

@@ -29,7 +29,7 @@ struct RemoteRevaluationMapper {
             
             return .init(id: remoteStatisticsItem.id ?? "",
                          numRecentStars: numRecentStars ?? [],
-                         numStars: remoteStatisticsItem.numStars ?? "",
+                         numStars: remoteStatisticsItem.numStars ?? 0,
                          numStarsParticipants: remoteStatisticsItem.numStarsParticipants ?? 0,
                          numSpecialPoint: .init(PLANNING_INTENT: remoteStatisticsItem.numSpecialPoint?.PLANNING_INTENT ?? 0,
                                                 DIRECTORS_DIRECTION: remoteStatisticsItem.numSpecialPoint?.DIRECTORS_DIRECTION ?? 0,

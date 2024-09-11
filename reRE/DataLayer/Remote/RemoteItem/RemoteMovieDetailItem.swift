@@ -16,7 +16,7 @@ struct RemoteMovieDetailItem: Decodable {
 struct RemoteMovieStatisticsItem: Decodable {
     let id: String?
     let numRecentStars: [RemoteMovieRecentRatingsItem]?
-    let numStars: String?
+    let numStars: Double?
     let numStarsParticipants: Int?
     let numSpecialPoint: RemoteMovieSpecialPointItem?
     let numPastValuation: RemoteMovieFeelingsItem?

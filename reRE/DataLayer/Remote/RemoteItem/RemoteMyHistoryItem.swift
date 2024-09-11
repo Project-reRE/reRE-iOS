@@ -14,7 +14,7 @@ struct RemoteMyHistoryItem: Decodable {
 
 struct RemoteMyHistoryData: Decodable {
     let id: String?
-    let numStars: String?
+    let numStars: Double?
     let specialPoint: String?
     let pastValuation: String?
     let presentValuation: String?

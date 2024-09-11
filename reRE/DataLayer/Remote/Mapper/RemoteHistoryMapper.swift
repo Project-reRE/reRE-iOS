@@ -24,7 +24,7 @@ struct RemoteHistoryMapper {
                                                                                     stills: remoteData.movie?.data?.stills ?? []))
             
             return MyHistoryEntityData(id: remoteData.id ?? "",
-                                       numStars: remoteData.numStars ?? "",
+                                       numStars: remoteData.numStars ?? 0,
                                        specialPoint: remoteData.specialPoint ?? "",
                                        pastValuation: remoteData.pastValuation ?? "",
                                        presentValuation: remoteData.presentValuation ?? "",

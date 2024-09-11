@@ -24,7 +24,7 @@ struct MyHistoryEntity {
 
 struct MyHistoryEntityData {
     let id: String
-    let numStars: String
+    let numStars: Double
     let specialPoint: String
     let pastValuation: String
     let presentValuation: String
