@@ -40,7 +40,7 @@ final class HistoryListViewController: BaseNavigationViewController {
     }
     
     private lazy var noHistoryListView = NoHistoryListView().then {
-        $0.isHidden = false
+        $0.isHidden = true
     }
     
     private let viewModel: HistoryListViewModel
@@ -123,7 +123,6 @@ final class HistoryListViewController: BaseNavigationViewController {
                 let startDate: Date = requestModel.startDate.toDate(with: "yyyy-MM-dd") ?? Date()
                 let showingDate: String = startDate.dateToString(with: "yyyy. MM")
                 self?.dateLabel.text = showingDate
-                
                 
                 if historyList.results.isEmpty {
                     let endDate: Date = requestModel.endDate.toDate(with: "yyyy-MM-dd") ?? Date()
