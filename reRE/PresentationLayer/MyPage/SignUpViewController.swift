@@ -335,8 +335,20 @@ final class SignUpViewController: BaseNavigationViewController {
                             self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
                         }
                     default:
-                        break
+                        CommonUtil.showAlertView(withType: .default,
+                                                 buttonType: .oneButton,
+                                                 title: "statueCode: \(userError.statusCode)",
+                                                 description: userError.message.first,
+                                                 submitCompletion: nil,
+                                                 cancelCompletion: nil)
                     }
+                } else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: error.localizedDescription,
+                                             description: error.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
                 }
             }.store(in: &cancelBag)
         

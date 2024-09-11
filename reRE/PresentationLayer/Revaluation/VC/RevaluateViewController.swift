@@ -468,8 +468,8 @@ final class RevaluateViewController: BaseNavigationViewController {
                 if let userError = error as? UserError {
                     CommonUtil.showAlertView(withType: .default,
                                              buttonType: .oneButton,
-                                             title: userError.message.first,
-                                             description: error.localizedDescription,
+                                             title: "statueCode: \(userError.statusCode)",
+                                             description: userError.message.first,
                                              submitCompletion: nil,
                                              cancelCompletion: nil)
                 } else {

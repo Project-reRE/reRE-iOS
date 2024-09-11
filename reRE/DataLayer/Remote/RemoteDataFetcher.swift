@@ -205,7 +205,9 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, any Error>, Never> {
         return Future<Result<MovieDetailEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
-            
+            print("############")
+            print("movieId: \(movieId)")
+            print("############")
             self.networkManager.fetchService(.getMovieDetail(movieId: movieId)) { result in
                 switch result {
                 case .success(let response):

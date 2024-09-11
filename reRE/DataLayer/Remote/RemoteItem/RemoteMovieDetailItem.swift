@@ -24,6 +24,11 @@ struct RemoteMovieStatisticsItem: Decodable {
     let numGender: RemoteRevaluatedGenderItem?
     let numAge: RemoteRevaluatedAgeItem?
     let currentDate: String?
+    let numSpecialPointTopThree: [RemoteMovieMostSpecialPointItem]?
+    let numPastValuationPercent: [RemoteMovieStatisticsPercentageItem]?
+    let numPresentValuationPercent: [RemoteMovieStatisticsPercentageItem]?
+    let numGenderPercent: [RemoteMovieStatisticsPercentageItem]?
+    let numAgePercent: [RemoteMovieStatisticsPercentageItem]?
 }
 
 struct RemoteMovieRecentRatingsItem: Decodable {
@@ -59,4 +64,16 @@ struct RemoteRevaluatedAgeItem: Decodable {
     let THIRTIES: Int?
     let FORTIES: Int?
     let FIFTIES_PLUS: Int?
+}
+
+struct RemoteMovieMostSpecialPointItem: Decodable {
+    let rank: Int?
+    let type: String?
+    let value: Int?
+}
+
+struct RemoteMovieStatisticsPercentageItem: Decodable {
+    let rank: Int?
+    let type: String?
+    let value: String?
 }

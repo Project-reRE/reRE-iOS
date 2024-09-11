@@ -92,8 +92,24 @@ final class RankViewController: BaseViewController {
     
     private func bind() {
         viewModel.getErrorSubject()
-            .sink { error in
+            .sink { [weak self] error in
                 LogDebug(error)
+                
+                if let userError = error as? UserError {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: "statueCode: \(userError.statusCode)",
+                                             description: userError.message.first,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                } else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: error.localizedDescription,
+                                             description: error.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                }
             }.store(in: &cancelBag)
         
         viewModel.getTimerPublisher()

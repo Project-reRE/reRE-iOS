@@ -36,6 +36,11 @@ struct MovieStatisticsEntity {
     let numGender: RevaluatedGenderEntity
     let numAge: RevaluatedAgeEntity
     let currentDate: String
+    let numSpecialPointTopThree: [MovieMostSpecialPointEntity]
+    let numPastValuationPercent: [MovieStatisticsPercentageEntity]
+    let numPresentValuationPercent: [MovieStatisticsPercentageEntity]
+    let numGenderPercent: [MovieStatisticsPercentageEntity]
+    let numAgePercent: [MovieStatisticsPercentageEntity]
 }
 
 struct MovieRecentRatingsEntity {
@@ -81,4 +86,16 @@ struct RevaluatedAgeEntity {
     let THIRTIES: Int
     let FORTIES: Int
     let FIFTIES_PLUS: Int
+}
+
+struct MovieMostSpecialPointEntity {
+    let rank: Int
+    let type: String
+    let value: Int
+}
+
+struct MovieStatisticsPercentageEntity {
+    let rank: Int
+    let type: String
+    let value: String
 }

@@ -285,7 +285,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 if let userError = error as? UserError {
                     CommonUtil.showAlertView(withType: .default,
                                              buttonType: .oneButton,
-                                             title: "(userError.statusCode)",
+                                             title: "statueCode: \(userError.statusCode)",
                                              description: userError.message.first,
                                              submitCompletion: nil,
                                              cancelCompletion: nil)
