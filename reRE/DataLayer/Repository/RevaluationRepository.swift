@@ -17,11 +17,15 @@ final class RevaluationRepository {
 }
 
 extension RevaluationRepository: RevaluationRepositoryProtocol {
-    func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, any Error>, Never> {
+    func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never> {
         return remoteDataFetcher.getMovieDetail(withId: movieId)
     }
     
-    func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Result<Void, any Error>, Never> {
+    func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Result<Void, Error>, Never> {
         return remoteDataFetcher.revaluate(with: reqestModel)
+    }
+    
+    func getOtherRevaluations(withId movieId: String) -> AnyPublisher<Result<OtherRevaluationsEntity, Error>, Never> {
+        return remoteDataFetcher.getOtherRevaluations(withId: movieId)
     }
 }

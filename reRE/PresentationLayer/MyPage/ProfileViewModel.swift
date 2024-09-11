@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class ProfileViewModel: BaseViewModel {
-    private let myProfile = CurrentValueSubject<MyProfileResponseModel, Never>(.init())
+    private let myProfile = CurrentValueSubject<UserEntity, Never>(.init())
     private let shouldGetMyProfile = PassthroughSubject<Void, Never>()
     private let loginCompletion = PassthroughSubject<Void, Never>()
     
@@ -34,11 +34,11 @@ final class ProfileViewModel: BaseViewModel {
         shouldGetMyProfile.send(())
     }
     
-    func getMyProfilePublisher() -> AnyPublisher<MyProfileResponseModel, Never> {
+    func getMyProfilePublisher() -> AnyPublisher<UserEntity, Never> {
         return myProfile.eraseToAnyPublisher()
     }
     
-    func getMyProfileValue() -> MyProfileResponseModel {
+    func getMyProfileValue() -> UserEntity {
         return myProfile.value
     }
     

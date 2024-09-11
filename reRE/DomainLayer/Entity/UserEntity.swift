@@ -1,5 +1,5 @@
 //
-//  MyProfileResponseModel.swift
+//  UserEntity.swift
 //  reRE
 //
 //  Created by 강치훈 on 7/24/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MyProfileResponseModel {
+struct UserEntity {
     let id: String
     let externalId: String
     let nickName: String
@@ -21,7 +21,7 @@ struct MyProfileResponseModel {
     let createdAt: String
     let updatedAt: String
     let deletedAt: String
-    let statistics: MyStatisticsResponseModel
+    let statistics: MyStatisticsEntity
     
     init(id: String,
          externalId: String,
@@ -36,7 +36,7 @@ struct MyProfileResponseModel {
          createdAt: String,
          updatedAt: String,
          deletedAt: String,
-         statistics: MyStatisticsResponseModel) {
+         statistics: MyStatisticsEntity) {
         self.id = id
         self.externalId = externalId
         self.nickName = nickName
@@ -71,7 +71,7 @@ struct MyProfileResponseModel {
     }
 }
 
-struct MyStatisticsResponseModel {
+struct MyStatisticsEntity {
     let id: String
     let numRevaluations: Int
     

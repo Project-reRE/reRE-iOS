@@ -102,4 +102,36 @@ struct RemoteRevaluationMapper {
                                  stills: remoteItem.data?.stills ?? []),
                      statistics: statistics ?? [])
     }
+    
+    func remoteOtherRevaluationsItemToEntity(remoteItem: RemoteOtherRevaluationsItem) -> OtherRevaluationsEntity {
+        let otherRevaluationEntity: [OtherRevaluationEntity]? = remoteItem.results?.compactMap {
+            return OtherRevaluationEntity(id: $0.id ?? "",
+                                          numStars: $0.numStars ?? 0,
+                                          specialPoint: $0.specialPoint ?? "",
+                                          pastValuation: $0.pastValuation ?? "",
+                                          presentValuation: $0.presentValuation ?? "",
+                                          comment: $0.comment ?? "",
+                                          createdAt: $0.createdAt ?? "",
+                                          updatedAt: $0.updatedAt ?? "",
+                                          user: .init(id: $0.user?.id ?? "",
+                                                      externalId: $0.user?.externalId ?? "",
+                                                      nickName: $0.user?.nickName ?? "",
+                                                      description: $0.user?.description ?? "",
+                                                      profileUrl: $0.user?.profileUrl ?? "",
+                                                      email: $0.user?.email ?? "",
+                                                      provider: $0.user?.provider ?? "",
+                                                      role: $0.user?.role ?? "",
+                                                      gender: $0.user?.gender ?? true,
+                                                      birthDate: $0.user?.birthDate ?? "",
+                                                      createdAt: $0.user?.createdAt ?? "",
+                                                      updatedAt: $0.user?.updatedAt ?? "",
+                                                      deletedAt: $0.user?.deletedAt ?? "",
+                                                      statistics: .init()),
+                                          statistics: .init(id: $0.statistics?.id ?? "",
+                                                            numCommentLikes: $0.statistics?.numCommentLikes ?? 0),
+                                          isLiked: $0.isLiked ?? false)
+        }
+        
+        return .init(totalRecords: remoteItem.totalRecords ?? 0, results: otherRevaluationEntity ?? [])
+    }
 }

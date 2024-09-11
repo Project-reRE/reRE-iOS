@@ -11,8 +11,6 @@ import Combine
 final class ProfileUsecase {
     private let errorSubject = PassthroughSubject<Error, Never>()
     
-    private let mapper = ProfileMapper()
-    
     private let repository: ProfileRepositoryProtocol
     
     init(repository: ProfileRepositoryProtocol) {
@@ -21,12 +19,12 @@ final class ProfileUsecase {
 }
 
 extension ProfileUsecase: ProfileUsecaseProtocol {
-    func getMyProfile() -> AnyPublisher<MyProfileResponseModel, Never> {
+    func getMyProfile() -> AnyPublisher<UserEntity, Never> {
         return repository.getMyProfile()
             .compactMap { [weak self] result in
                 switch result {
                 case .success(let entity):
-                    return self?.mapper.myProfileEntityToModel(entity: entity)
+                    return entity
                 case .failure(let error):
                     self?.errorSubject.send(error)
                     return nil

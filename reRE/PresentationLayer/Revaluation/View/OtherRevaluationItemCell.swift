@@ -19,7 +19,6 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
     }
     
     private lazy var nicknameLabel = UILabel().then {
-        $0.text = "닉네임 닉네임 유저 닉네임"
         $0.font = FontSet.title03.font
         $0.textColor = ColorSet.gray(.white).color
     }
@@ -29,7 +28,6 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
     }
     
     private lazy var likesCountLabel = UILabel().then {
-        $0.text = "9999"
         $0.font = FontSet.body04.font
         $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
@@ -53,8 +51,7 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
     }
     
     private lazy var commentLabel = UILabel().then {
-        $0.text = "이별의 순간이 왔다고해서 누군가의 마음이 변질되었나!"
-        $0.font = FontSet.body04.font
+        $0.font = FontSet.body03.font
         $0.textColor = ColorSet.gray(.gray80).color
         $0.numberOfLines = 0
     }
@@ -148,8 +145,8 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateView(isLiked: Bool) {
-        if isLiked {
+    func updateView(with model: OtherRevaluationEntity) {
+        if model.isLiked {
             thumbsUpImageView.image = UIImage(named: "LikedThumbUpIcon")
             likesCountLabel.textColor = ColorSet.primary(.orange60).color
         } else {
@@ -157,26 +154,70 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
             likesCountLabel.textColor = ColorSet.gray(.gray60).color
         }
         
-        let rating: Double = 3.0
-        let specialPoint: String = "출연진 연기력"
-        let pastFeelings: String = "긍정적"
-        let currentFeelings: String = "부정적"
+        userThumbnailView.kf.setImage(with: URL(string: model.user.profileUrl))
+        nicknameLabel.text = model.user.nickName
+        likesCountLabel.text = "\(model.statistics.numCommentLikes)"
+        commentLabel.text = model.comment
         
-        revaluationLabel.text = "재평가 평점은 '\(rating)' 주목할 포인트는 '\(specialPoint)'\n과거에는 '\(pastFeelings)' 현재는 '\(currentFeelings)'이라고 평가했어요."
-        revaluationLabel.highLightText(targetString: "'\(rating)'",
-                                       color: ColorSet.tertiary(.navy80).color,
-                                       font: FontSet.title01.font)
         
-        revaluationLabel.highLightText(targetString: "'\(specialPoint)'",
-                                       color: ColorSet.tertiary(.navy80).color,
-                                       font: FontSet.title01.font)
+        if let createdDate = model.createdAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")?.dateToString(with: "yyyy-MM-dd") {
+            revaluatedDateLabel.text = createdDate
+        } else {
+            revaluatedDateLabel.text = nil
+        }
         
-        revaluationLabel.highLightText(targetString: "'\(pastFeelings)'",
-                                       color: ColorSet.secondary(.olive50).color,
-                                       font: FontSet.title01.font)
+        let rating: Double = model.numStars
         
-        revaluationLabel.highLightText(targetString: "'\(currentFeelings)'",
-                                       color: ColorSet.primary(.orange50).color,
-                                       font: FontSet.title01.font)
+        if let specialPoint = RevaluationCategoryView.CategoryType(rawValue: model.specialPoint),
+           let pastFeelings = RevaluationCategoryView.CategoryType(rawValue: model.pastValuation),
+           let currentFeelings = RevaluationCategoryView.CategoryType(rawValue: model.presentValuation) {
+            
+            revaluationLabel.text = "재평가 평점은 '\(rating)' 주목할 포인트는 '\(specialPoint.titleText)'\n과거에는 '\(pastFeelings.titleText)' 현재는 '\(currentFeelings.titleText)'이라고 평가했어요."
+            revaluationLabel.highLightText(targetString: "'\(rating)'",
+                                           color: ColorSet.tertiary(.navy80).color,
+                                           font: FontSet.title03.font)
+            
+            revaluationLabel.highLightText(targetString: "'\(specialPoint.titleText)'",
+                                           color: ColorSet.tertiary(.navy80).color,
+                                           font: FontSet.title03.font)
+            
+            var pastHighlightingColor: UIColor?
+            
+            switch pastFeelings {
+            case .planningIntent, .directorsDirection, .actingSkills,
+                    .scenario, .ost, .socialIssues, .visualElement, .soundElement:
+                break
+            case .positive:
+                pastHighlightingColor = ColorSet.secondary(.olive50).color
+            case .negative:
+                pastHighlightingColor = ColorSet.primary(.orange50).color
+            case .notSure:
+                pastHighlightingColor = ColorSet.secondary(.cyan60).color
+            }
+            
+            revaluationLabel.highLightText(targetString: "'\(pastFeelings.titleText)'",
+                                           color: pastHighlightingColor,
+                                           font: FontSet.title03.font)
+            
+            var currentHighlightingColor: UIColor?
+            
+            switch currentFeelings {
+            case .planningIntent, .directorsDirection, .actingSkills,
+                    .scenario, .ost, .socialIssues, .visualElement, .soundElement:
+                break
+            case .positive:
+                currentHighlightingColor = ColorSet.secondary(.olive50).color
+            case .negative:
+                currentHighlightingColor = ColorSet.primary(.orange50).color
+            case .notSure:
+                currentHighlightingColor = ColorSet.secondary(.cyan60).color
+            }
+            
+            revaluationLabel.highLightText(targetString: "'\(currentFeelings.titleText)'",
+                                           color: currentHighlightingColor,
+                                           font: FontSet.title03.font)
+        } else {
+            revaluationLabel.text = "재평가 평점은 '\(rating)' 주목할 포인트는 '???'\n과거에는 '???' 현재는 '???'이라고 평가했어요."
+        }
     }
 }

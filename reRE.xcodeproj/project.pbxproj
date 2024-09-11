@@ -182,7 +182,6 @@
 		FECFE4572C32B9A100078CDF /* BannerMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4562C32B9A100078CDF /* BannerMapper.swift */; };
 		FECFE45A2C32B9B400078CDF /* RemoteBannerMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */; };
 		FECFE45C2C32BC6B00078CDF /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE45B2C32BC6B00078CDF /* BaseViewModel.swift */; };
-		FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */; };
 		FECFE4612C32C38F00078CDF /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4602C32C38F00078CDF /* CombineMoya */; };
 		FECFE4632C32C38F00078CDF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4622C32C38F00078CDF /* Moya */; };
 		FECFE4652C32C38F00078CDF /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = FECFE4642C32C38F00078CDF /* ReactiveMoya */; };
@@ -196,10 +195,7 @@
 		FEF6F4552C51151700B35A9C /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4542C51151700B35A9C /* ProfileRepository.swift */; };
 		FEF6F4572C51152600B35A9C /* ProfileUsecaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4562C51152600B35A9C /* ProfileUsecaseProtocol.swift */; };
 		FEF6F4592C51153000B35A9C /* ProfileUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4582C51153000B35A9C /* ProfileUsecase.swift */; };
-		FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F45C2C51157D00B35A9C /* MyProfileResponseModel.swift */; };
-		FEF6F45F2C51159100B35A9C /* RemoteMyProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */; };
-		FEF6F4612C51161300B35A9C /* MyProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */; };
-		FEF6F4632C51162500B35A9C /* ProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4622C51162500B35A9C /* ProfileMapper.swift */; };
+		FEF6F4612C51161300B35A9C /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4602C51161300B35A9C /* UserEntity.swift */; };
 		FEF6F4652C5116D500B35A9C /* ProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4642C5116D500B35A9C /* ProfileRepositoryProtocol.swift */; };
 		FEF6F4672C5118A500B35A9C /* RemoteProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */; };
 		FEF6F4812C561B1A00B35A9C /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */; };
@@ -215,6 +211,10 @@
 		FEF6F4A52C57AB3300B35A9C /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A42C57AB3300B35A9C /* SearchUsecase.swift */; };
 		FEF6F4A72C57AB6800B35A9C /* SearchRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A62C57AB6800B35A9C /* SearchRepositoryProtocol.swift */; };
 		FEF6F4A92C57AB9300B35A9C /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF6F4A82C57AB9300B35A9C /* SearchRepository.swift */; };
+		FEF9D6992C91C40700D948F5 /* RemoteUserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6982C91C40700D948F5 /* RemoteUserItem.swift */; };
+		FEF9D69B2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69A2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift */; };
+		FEF9D69D2C91C6B900D948F5 /* OtherRevaluationsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */; };
+		FEF9D69F2C91CAB300D948F5 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -385,7 +385,6 @@
 		FECFE4562C32B9A100078CDF /* BannerMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerMapper.swift; sourceTree = "<group>"; };
 		FECFE4592C32B9B400078CDF /* RemoteBannerMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteBannerMapper.swift; sourceTree = "<group>"; };
 		FECFE45B2C32BC6B00078CDF /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyPublisher+Extension.swift"; sourceTree = "<group>"; };
 		FEF6F4482C510A0F00B35A9C /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		FEF6F44A2C510A3900B35A9C /* SplashUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FEF6F44C2C510AE700B35A9C /* SplashUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUsecase.swift; sourceTree = "<group>"; };
@@ -395,10 +394,7 @@
 		FEF6F4542C51151700B35A9C /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
 		FEF6F4562C51152600B35A9C /* ProfileUsecaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUsecaseProtocol.swift; sourceTree = "<group>"; };
 		FEF6F4582C51153000B35A9C /* ProfileUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUsecase.swift; sourceTree = "<group>"; };
-		FEF6F45C2C51157D00B35A9C /* MyProfileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileResponseModel.swift; sourceTree = "<group>"; };
-		FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMyProfileItem.swift; sourceTree = "<group>"; };
-		FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEntity.swift; sourceTree = "<group>"; };
-		FEF6F4622C51162500B35A9C /* ProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMapper.swift; sourceTree = "<group>"; };
+		FEF6F4602C51161300B35A9C /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		FEF6F4642C5116D500B35A9C /* ProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
 		FEF6F4662C5118A500B35A9C /* RemoteProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteProfileMapper.swift; sourceTree = "<group>"; };
 		FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -414,6 +410,10 @@
 		FEF6F4A42C57AB3300B35A9C /* SearchUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
 		FEF6F4A62C57AB6800B35A9C /* SearchRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryProtocol.swift; sourceTree = "<group>"; };
 		FEF6F4A82C57AB9300B35A9C /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		FEF9D6982C91C40700D948F5 /* RemoteUserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteUserItem.swift; sourceTree = "<group>"; };
+		FEF9D69A2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteOtherRevaluationsItem.swift; sourceTree = "<group>"; };
+		FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsEntity.swift; sourceTree = "<group>"; };
+		FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,7 +541,7 @@
 				4376DAC22C11AD3E0060E618 /* Date+Extension.swift */,
 				4376DAC42C11AE710060E618 /* String+Extension.swift */,
 				FEB374A62C7B19DA005B0286 /* Int+Extension.swift */,
-				FECFE45D2C32BE2C00078CDF /* AnyPublisher+Extension.swift */,
+				FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -918,7 +918,8 @@
 				FECFE44D2C32B8B400078CDF /* RemoteBannerItem.swift */,
 				FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */,
 				FE9826522C3BFBB3006F0C67 /* RemoteLoginItem.swift */,
-				FEF6F45E2C51159100B35A9C /* RemoteMyProfileItem.swift */,
+				FEF9D6982C91C40700D948F5 /* RemoteUserItem.swift */,
+				FEF9D69A2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift */,
 				FEF6F49A2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift */,
 				FEB3747C2C74B710005B0286 /* RemoteMyHistoryItem.swift */,
 				FEB374922C7AEE1F005B0286 /* RemoteMovieDetailItem.swift */,
@@ -932,7 +933,6 @@
 				FECFE4532C32B95600078CDF /* BannerResponseModel.swift */,
 				FE98260B2C340CDC006F0C67 /* MovieSetsResponseModel.swift */,
 				FE98266A2C3E96B4006F0C67 /* LoginResponseModel.swift */,
-				FEF6F45C2C51157D00B35A9C /* MyProfileResponseModel.swift */,
 				FEF6F49E2C57A59000B35A9C /* SearchMovieListResponseModel.swift */,
 			);
 			path = ResponseModel;
@@ -943,10 +943,11 @@
 			children = (
 				FECFE4512C32B94D00078CDF /* BannerEntity.swift */,
 				FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */,
-				FEF6F4602C51161300B35A9C /* MyProfileEntity.swift */,
+				FEF6F4602C51161300B35A9C /* UserEntity.swift */,
 				FEF6F4982C57A2DB00B35A9C /* SearchMovieListEntity.swift */,
 				FEB3747E2C74B890005B0286 /* MyHistoryEntity.swift */,
 				FEB374942C7AF2C2005B0286 /* MovieDetailEntity.swift */,
+				FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -955,7 +956,6 @@
 			isa = PBXGroup;
 			children = (
 				FECFE4562C32B9A100078CDF /* BannerMapper.swift */,
-				FEF6F4622C51162500B35A9C /* ProfileMapper.swift */,
 				FEF6F4A22C57AA1300B35A9C /* SearchMapper.swift */,
 			);
 			path = Mapper;
@@ -1128,6 +1128,7 @@
 			files = (
 				FEB374A92C7B1F1E005B0286 /* RevaluationRatioView.swift in Sources */,
 				FEF6F4512C510B6A00B35A9C /* SplashRepository.swift in Sources */,
+				FEF9D69F2C91CAB300D948F5 /* Publisher+Extension.swift in Sources */,
 				FE5B95C02C6E0A2E00B7D0DB /* UIViewController+Extension.swift in Sources */,
 				FEB374772C71DC6F005B0286 /* HistoryUsecase.swift in Sources */,
 				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
@@ -1135,6 +1136,7 @@
 				FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */,
 				FEB3749D2C7AF3D5005B0286 /* RevaluationRepository.swift in Sources */,
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,
+				FEF9D6992C91C40700D948F5 /* RemoteUserItem.swift in Sources */,
 				FEF6F4A72C57AB6800B35A9C /* SearchRepositoryProtocol.swift in Sources */,
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
 				FEB374852C74BACD005B0286 /* MyHistoryRequestModel.swift in Sources */,
@@ -1157,7 +1159,7 @@
 				FEF6F4A92C57AB9300B35A9C /* SearchRepository.swift in Sources */,
 				FE5B95B82C6DF79200B7D0DB /* RevaluateSpecialPointView.swift in Sources */,
 				FE98264D2C3BFB41006F0C67 /* LoginUsecase.swift in Sources */,
-				FEF6F4612C51161300B35A9C /* MyProfileEntity.swift in Sources */,
+				FEF6F4612C51161300B35A9C /* UserEntity.swift in Sources */,
 				FEF6F4A52C57AB3300B35A9C /* SearchUsecase.swift in Sources */,
 				4376DAC52C11AE710060E618 /* String+Extension.swift in Sources */,
 				432C09522BD4EF8800BBFDB1 /* UIStackView+Extension.swift in Sources */,
@@ -1179,7 +1181,6 @@
 				432C09712BE75E8800BBFDB1 /* DailyRankingFooterView.swift in Sources */,
 				FEB374A72C7B19DA005B0286 /* Int+Extension.swift in Sources */,
 				432C09752BE7679300BBFDB1 /* RankingItemCell.swift in Sources */,
-				FECFE45E2C32BE2C00078CDF /* AnyPublisher+Extension.swift in Sources */,
 				FEF6F49B2C57A2FE00B35A9C /* RemoteSearchMovieListItem.swift in Sources */,
 				436351D12C0C48AC0078C8C1 /* SearchViewModel.swift in Sources */,
 				4364A1342BC6673D00F867B6 /* TabBarBaseCoordinator.swift in Sources */,
@@ -1231,14 +1232,11 @@
 				4364A1492BC6694B00F867B6 /* MyPageCoordinator.swift in Sources */,
 				FEA1F7612C58F4DE007F76D0 /* HistoryListViewController.swift in Sources */,
 				FEA1F7672C58F789007F76D0 /* HistoryItemCell.swift in Sources */,
-				FEF6F45F2C51159100B35A9C /* RemoteMyProfileItem.swift in Sources */,
 				FEF6F4532C51150100B35A9C /* ProfileViewModel.swift in Sources */,
-				FEF6F4632C51162500B35A9C /* ProfileMapper.swift in Sources */,
 				FECFE43B2C32B71800078CDF /* Injector.swift in Sources */,
 				4364A1572BC6725700F867B6 /* SearchMainViewController.swift in Sources */,
 				432C096F2BE75BE100BBFDB1 /* DailyRankingHeaderView.swift in Sources */,
 				FEF6F4A12C57A65800B35A9C /* RemoteSearchMapper.swift in Sources */,
-				FEF6F45D2C51157D00B35A9C /* MyProfileResponseModel.swift in Sources */,
 				FE4B24A92C8C30E200666609 /* OtherRevaluationsViewModel.swift in Sources */,
 				FE9826532C3BFBB3006F0C67 /* RemoteLoginItem.swift in Sources */,
 				FEB374832C74B8F9005B0286 /* RemoteHistoryMapper.swift in Sources */,
@@ -1291,9 +1289,11 @@
 				432C09672BD4F43D00BBFDB1 /* TapGestureRecognizer.swift in Sources */,
 				FEF6F44B2C510A3900B35A9C /* SplashUsecaseProtocol.swift in Sources */,
 				432C09652BD4F41B00BBFDB1 /* TouchableView.swift in Sources */,
+				FEF9D69D2C91C6B900D948F5 /* OtherRevaluationsEntity.swift in Sources */,
 				FECFE45C2C32BC6B00078CDF /* BaseViewModel.swift in Sources */,
 				436351CD2C0C44060078C8C1 /* RevaluationDetailViewController.swift in Sources */,
 				FE9826882C438D69006F0C67 /* BaseWebViewController.swift in Sources */,
+				FEF9D69B2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift in Sources */,
 				432C094C2BD4EF0C00BBFDB1 /* UIView+Extension.swift in Sources */,
 				4364A12C2BC666DE00F867B6 /* MainBaseCoordinator.swift in Sources */,
 				FECFE44E2C32B8B400078CDF /* RemoteBannerItem.swift in Sources */,

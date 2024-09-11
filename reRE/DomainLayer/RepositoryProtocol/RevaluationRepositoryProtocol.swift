@@ -11,4 +11,5 @@ import Combine
 protocol RevaluationRepositoryProtocol: AnyObject {
     func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never>
     func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Result<Void, Error>, Never>
+    func getOtherRevaluations(withId movieId: String) -> AnyPublisher<Result<OtherRevaluationsEntity, Error>, Never>
 }

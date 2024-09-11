@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol ProfileRepositoryProtocol: AnyObject {
-    func getMyProfile() -> AnyPublisher<Result<MyProfileEntity, Error>, Never>
+    func getMyProfile() -> AnyPublisher<Result<UserEntity, Error>, Never>
     func logout()
     func deleteAccount() -> AnyPublisher<Result<String, Error>, Never>
 }

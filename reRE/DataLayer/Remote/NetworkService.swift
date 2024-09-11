@@ -18,7 +18,7 @@ enum NetworkService {
     case myProfile
     case searchMovieList(params: [String: Any])
     case myRevaluations(params: [String: Any])
-    case getRevaluationDetail(params: [String: Any])
+    case getOtherRevaluations(params: [String: Any])
     case getMovieDetail(movieId: String)
     case revaluate(params: Encodable)
 }
@@ -52,7 +52,7 @@ extension NetworkService: TargetType {
             return "/movies"
         case .myRevaluations:
             return "/my/revaluations"
-        case .getRevaluationDetail:
+        case .getOtherRevaluations:
             return "/revaluations"
         case .getMovieDetail(let movieId):
             return "/movies/\(movieId)"
@@ -72,7 +72,7 @@ extension NetworkService: TargetType {
         case .myProfile: return .get
         case .searchMovieList: return .get
         case .myRevaluations: return .get
-        case .getRevaluationDetail: return .get
+        case .getOtherRevaluations: return .get
         case .getMovieDetail: return .get
         case .revaluate: return .post
         }
@@ -98,7 +98,7 @@ extension NetworkService: TargetType {
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         case .myRevaluations(let params):
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
-        case .getRevaluationDetail(let params):
+        case .getOtherRevaluations(let params):
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         case .getMovieDetail:
             return .requestPlain

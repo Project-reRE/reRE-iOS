@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import Combine
 import Then
 import SnapKit
 
 final class OtherRevaluationsViewController: BaseNavigationViewController {
+    private var cancelBag = Set<AnyCancellable>()
     var coordinator: CommonBaseCoordinator?
     
     private lazy var sortByLikesButton = SortButton().then {
@@ -26,6 +28,7 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
         $0.backgroundColor = .clear
         $0.dataSource = self
         $0.showsVerticalScrollIndicator = false
+        $0.isHidden = true
         $0.registerCell(OtherRevaluationItemCell.self)
     }
     
@@ -34,6 +37,11 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
     init(viewModel: OtherRevaluationsViewModel) {
         self.viewModel = viewModel
         super.init()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
     }
     
     override func addViews() {
@@ -78,6 +86,17 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
         }
     }
     
+    private func bind() {
+        viewModel.getOtherRevaluationsPublisher()
+            .droppedSink { [weak self] list in
+                self?.otherRevaluationListView.isHidden = false
+                self?.otherRevaluationListView.reloadData()
+                self?.otherRevaluationListView.layoutIfNeeded()
+            }.store(in: &cancelBag)
+        
+        viewModel.getOtherRevaluations()
+    }
+    
     private func layout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, _ in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -99,13 +118,14 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
 // MARK: - UICollectionViewDataSource
 extension OtherRevaluationsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return viewModel.getOtherRevaluationsValue().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(OtherRevaluationItemCell.self, indexPath: indexPath) else { return .init() }
         
-        cell.updateView(isLiked: Bool.random())
+        let otherRevaluation: OtherRevaluationEntity = viewModel.getOtherRevaluationsValue()[indexPath.item]
+        cell.updateView(with: otherRevaluation)
         return cell
     }
 }

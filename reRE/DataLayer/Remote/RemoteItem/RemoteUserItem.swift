@@ -1,13 +1,13 @@
 //
-//  RemoteMyProfileItem.swift
+//  RemoteUserItem.swift
 //  reRE
 //
-//  Created by 강치훈 on 7/24/24.
+//  Created by 강치훈 on 9/11/24.
 //
 
 import Foundation
 
-struct RemoteMyProfileItem: Decodable {
+struct RemoteUserItem: Decodable {
     let id: String?
     let externalId: String?
     let nickName: String?

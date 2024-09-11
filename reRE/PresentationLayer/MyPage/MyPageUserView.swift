@@ -218,7 +218,7 @@ final class MyPageUserView: UIView {
         }
     }
     
-    func updateView(withModel model: MyProfileResponseModel) {
+    func updateView(withModel model: UserEntity) {
         nicknameLabel.text = model.nickName
         genderLabel.text = model.gender ? "남성" : "여성"
         revaluationCountLabel.text = "\(model.statistics.numRevaluations.formattedString())개"

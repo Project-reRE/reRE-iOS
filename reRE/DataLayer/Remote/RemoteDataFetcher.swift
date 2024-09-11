@@ -126,8 +126,8 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
-    func getMyProfile() -> AnyPublisher<Result<MyProfileEntity, Error>, Never> {
-        return Future<Result<MyProfileEntity, Error>, Never> { [weak self] promise in
+    func getMyProfile() -> AnyPublisher<Result<UserEntity, Error>, Never> {
+        return Future<Result<UserEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
             
             self.networkManager.fetchService(.myProfile) { result in
@@ -136,7 +136,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         promise(.success(.failure(error)))
-                    } else if let remoteItem = DecodeUtil.decode(RemoteMyProfileItem.self, data: response.data) {
+                    } else if let remoteItem = DecodeUtil.decode(RemoteUserItem.self, data: response.data) {
                         promise(.success(.success(self.remoteProfileMapper.remoteMyProfileItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)
@@ -216,6 +216,31 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteMovieDetailItem.self, data: response.data) {
                         promise(.success(.success(self.remoteRevaluationMapper.remoteMovieDetailItemToEntity(remoteItem: remoteItem))))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func getOtherRevaluations(withId movieId: String) -> AnyPublisher<Result<OtherRevaluationsEntity, any Error>, Never> {
+        return Future<Result<OtherRevaluationsEntity, Error>, Never> { [weak self] promise in
+            guard let self = self else { return }
+            
+            let params: [String: String] = ["movieId": "K-34410"]
+            
+            self.networkManager.fetchService(.getOtherRevaluations(params: params)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteOtherRevaluationsItem.self, data: response.data) {
+                        promise(.success(.success(self.remoteRevaluationMapper.remoteOtherRevaluationsItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)
                         promise(.success(.failure(HTTPError.typeMismatch)))

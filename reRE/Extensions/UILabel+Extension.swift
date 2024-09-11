@@ -30,6 +30,16 @@ extension UILabel {
             attributedString.addAttribute(.font, value: font, range: range)
         }
         
+        let backRange = (fullText as NSString).range(of: targetString, options: .backwards)
+        
+        if let color = color {
+            attributedString.addAttribute(.foregroundColor, value: color, range: backRange)
+        }
+        
+        if let font = font {
+            attributedString.addAttribute(.font, value: font, range: backRange)
+        }
+        
         attributedText = attributedString
     }
 }
