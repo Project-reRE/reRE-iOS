@@ -215,6 +215,9 @@
 		FEF9D69B2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69A2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift */; };
 		FEF9D69D2C91C6B900D948F5 /* OtherRevaluationsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */; };
 		FEF9D69F2C91CAB300D948F5 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */; };
+		FEF9D6A12C96C28500D948F5 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */; };
+		FEF9D6A42C96C3AE00D948F5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A32C96C3AE00D948F5 /* GoogleSignIn */; };
+		FEF9D6A62C96C3AE00D948F5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A52C96C3AE00D948F5 /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -414,6 +417,7 @@
 		FEF9D69A2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteOtherRevaluationsItem.swift; sourceTree = "<group>"; };
 		FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsEntity.swift; sourceTree = "<group>"; };
 		FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
+		FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +425,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEF9D6A62C96C3AE00D948F5 /* GoogleSignInSwift in Frameworks */,
 				577554C0C505AE30D031FE7B /* Pods_reRE.framework in Frameworks */,
 				43E496BA2C2AEB150086E6A2 /* KakaoSDKFriend in Frameworks */,
 				43E496B02C2AEB150086E6A2 /* KakaoSDK in Frameworks */,
@@ -438,6 +443,7 @@
 				43E496C02C2AEB150086E6A2 /* KakaoSDKShare in Frameworks */,
 				43E496B82C2AEB150086E6A2 /* KakaoSDKCommon in Frameworks */,
 				43E496B42C2AEB150086E6A2 /* KakaoSDKCert in Frameworks */,
+				FEF9D6A42C96C3AE00D948F5 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +480,7 @@
 		430C2DD92BB9790D00DE5FC2 /* reRE */ = {
 			isa = PBXGroup;
 			children = (
+				FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */,
 				430C2DDA2BB9790D00DE5FC2 /* AppDelegate.swift */,
 				430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */,
 				FECFE43A2C32B71800078CDF /* Injector.swift */,
@@ -1017,6 +1024,8 @@
 				FECFE4622C32C38F00078CDF /* Moya */,
 				FECFE4642C32C38F00078CDF /* ReactiveMoya */,
 				FECFE4662C32C38F00078CDF /* RxMoya */,
+				FEF9D6A32C96C3AE00D948F5 /* GoogleSignIn */,
+				FEF9D6A52C96C3AE00D948F5 /* GoogleSignInSwift */,
 			);
 			productName = reRE;
 			productReference = 430C2DD72BB9790D00DE5FC2 /* reRE.app */;
@@ -1049,6 +1058,7 @@
 			packageReferences = (
 				43E496AE2C2AEB140086E6A2 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */,
+				FEF9D6A22C96C3AE00D948F5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 430C2DD82BB9790D00DE5FC2 /* Products */;
 			projectDirPath = "";
@@ -1073,6 +1083,7 @@
 				432C09822BE7793C00BBFDB1 /* Pretendard-Black.otf in Resources */,
 				432C09862BE7793C00BBFDB1 /* Pretendard-Regular.otf in Resources */,
 				430C2DE42BB9790F00DE5FC2 /* Assets.xcassets in Resources */,
+				FEF9D6A12C96C28500D948F5 /* GoogleService-Info-Dev.plist in Resources */,
 				432C09852BE7793C00BBFDB1 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1558,6 +1569,14 @@
 				minimumVersion = 15.0.3;
 			};
 		};
+		FEF9D6A22C96C3AE00D948F5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1640,6 +1659,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FECFE45F2C32C38F00078CDF /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		FEF9D6A32C96C3AE00D948F5 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEF9D6A22C96C3AE00D948F5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		FEF9D6A52C96C3AE00D948F5 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FEF9D6A22C96C3AE00D948F5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,7 +16,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array/>
+			<array>
+				<string>com.googleusercontent.apps.56958772101-f752a73km04gl11b9c661e5t0orc8lco</string>
+			</array>
 		</dict>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>

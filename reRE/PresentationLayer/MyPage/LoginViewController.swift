@@ -10,6 +10,7 @@ import Combine
 import Then
 import SnapKit
 import KakaoSDKUser
+import GoogleSignIn
 
 final class LoginViewController: BaseBottomSheetViewController {
     private var cancelBag = Set<AnyCancellable>()
@@ -28,15 +29,17 @@ final class LoginViewController: BaseBottomSheetViewController {
     }
     
     private lazy var kakaoTitleLabel = UILabel().then {
-        $0.text = "카카오 로그인"
+        $0.text = "카카오로 계속하기"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.gray(.black).color
     }
     
     private lazy var appleLoginButton = TouchableView().then {
-        $0.backgroundColor = ColorSet.gray(.white).color
+        $0.backgroundColor = ColorSet.gray(.black).color
         $0.layer.cornerRadius = moderateScale(number: 12)
         $0.layer.masksToBounds = true
+        $0.layer.borderColor = ColorSet.gray(.white).color?.cgColor
+        $0.layer.borderWidth = moderateScale(number: 1)
     }
     
     private lazy var appleIcon = UIImageView().then {
@@ -45,7 +48,24 @@ final class LoginViewController: BaseBottomSheetViewController {
     }
     
     private lazy var appleTitleLabel = UILabel().then {
-        $0.text = "Apple 로그인"
+        $0.text = "Apple로 로그인하기"
+        $0.font = FontSet.button02.font
+        $0.textColor = ColorSet.gray(.white).color
+    }
+    
+    private lazy var googleLoginButton = TouchableView().then {
+        $0.backgroundColor = ColorSet.gray(.white).color
+        $0.layer.cornerRadius = moderateScale(number: 12)
+        $0.layer.masksToBounds = true
+    }
+    
+    private lazy var googleIcon = UIImageView().then {
+        $0.image = UIImage(named: "GoogleIcon")
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    private lazy var googleTitleLabel = UILabel().then {
+        $0.text = "Google로 로그인하기"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.gray(.black).color
     }
@@ -70,9 +90,10 @@ final class LoginViewController: BaseBottomSheetViewController {
     override func addViews() {
         super.addViews()
         
-        bottomSheetContainerView.addSubviews([kakaoLoginButton, appleLoginButton])
+        bottomSheetContainerView.addSubviews([kakaoLoginButton, appleLoginButton, googleLoginButton])
         kakaoLoginButton.addSubviews([kakaoIcon, kakaoTitleLabel])
         appleLoginButton.addSubviews([appleIcon, appleTitleLabel])
+        googleLoginButton.addSubviews([googleIcon, googleTitleLabel])
     }
     
     override func makeConstraints() {
@@ -93,10 +114,16 @@ final class LoginViewController: BaseBottomSheetViewController {
             $0.top.equalTo(kakaoLoginButton.snp.bottom).offset(moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 56))
+        }
+        
+        googleLoginButton.snp.makeConstraints {
+            $0.top.equalTo(appleLoginButton.snp.bottom).offset(moderateScale(number: 8))
+            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+            $0.height.equalTo(moderateScale(number: 56))
             $0.bottom.equalToSuperview().inset(getSafeAreaBottom())
         }
         
-        [kakaoIcon, appleIcon].forEach { subView in
+        [kakaoIcon, appleIcon, googleIcon].forEach { subView in
             subView.snp.makeConstraints {
                 $0.leading.equalToSuperview().inset(moderateScale(number: 16))
                 $0.top.equalToSuperview().inset(moderateScale(number: 14))
@@ -105,7 +132,7 @@ final class LoginViewController: BaseBottomSheetViewController {
             }
         }
         
-        [kakaoTitleLabel, appleTitleLabel].forEach { subView in
+        [kakaoTitleLabel, appleTitleLabel, googleTitleLabel].forEach { subView in
             subView.snp.makeConstraints {
                 $0.center.equalToSuperview()
             }
@@ -131,6 +158,12 @@ final class LoginViewController: BaseBottomSheetViewController {
         appleLoginButton.didTapped {
             
         }
+        
+        googleLoginButton.didTapped { [weak self] in
+            self?.googleLogin { _, _ in
+                print("good")
+            }
+        }
     }
     
     private func kakaoLogin(_ completion: @escaping (String?, Error?) -> Void) {
@@ -142,6 +175,40 @@ final class LoginViewController: BaseBottomSheetViewController {
             UserApi.shared.loginWithKakaoAccount { oauthToken, error in
                 completion(oauthToken?.accessToken, error)
             }
+        }
+    }
+    
+    private func googleLogin(_ completion: @escaping (String?, Error?) -> Void) {
+        let clientID: String = StaticValues.googleClientId
+        // 구글 인증
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+//        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
+//            guard error == nil else { return }
+//            
+//            // 인증을 해도 계정은 따로 등록을 해주어야 한다.
+//            // 구글 인증 토큰 받아서 -> 사용자 정보 토큰 생성 -> 파이어베이스 인증에 등록
+//            guard
+//                let authentication = user?.authentication,
+//                let idToken = authentication.idToken
+//            else {
+//                return
+//            }
+//            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+//                                                           accessToken: authentication.accessToken)
+//            
+//            // 사용자 정보 등록
+//            Auth.auth().signIn(with: credential) { _, _ in
+//                // 사용자 등록 후에 처리할 코드
+//            }
+//            // If sign in succeeded, display the app's main content View.
+//        }
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+            print("result?.user.idToken?.tokenString: \(result?.user.idToken?.tokenString)")
+            print("result?.user.accessToken.tokenString: \(result?.user.accessToken.tokenString)")
+            
+            completion(result?.user.accessToken.tokenString, error)
         }
     }
     

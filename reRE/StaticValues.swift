@@ -28,4 +28,13 @@ struct StaticValues {
     static let termsPolicyUrlString = "https://revaluation.notion.site/72ff79808476490aa5feb170caa59652"
     static let openAPIUrlString = "rerevaluation@gmail.com"
     static let inquiryEmail = "rerevaluation@gmail.com"
+    
+#if DEBUG
+    static let googleClientId: String = "56958772101-f752a73km04gl11b9c661e5t0orc8lco.apps.googleusercontent.com"
+    static let kakaoAppKey: String = "cd6a4d45774e3c2ce7409abcaaf1b0f8"
+#else
+    static let googleClientId: String = "56958772101-f752a73km04gl11b9c661e5t0orc8lco.apps.googleusercontent.com"
+    static let kakaoAppKey: String = "cd6a4d45774e3c2ce7409abcaaf1b0f8"
+#endif
+    
 }
