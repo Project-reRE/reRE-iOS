@@ -22,8 +22,8 @@ struct OtherRevaluationEntity {
     let createdAt: String
     let updatedAt: String
     let user: UserEntity
-    let statistics: OtherRevaluationStatisticsEntity
-    let isLiked: Bool
+    var statistics: OtherRevaluationStatisticsEntity
+    var isLiked: Bool
     
     init(id: String,
          numStars: Double,
@@ -66,7 +66,7 @@ struct OtherRevaluationEntity {
 
 struct OtherRevaluationStatisticsEntity {
     let id: String
-    let numCommentLikes: Int
+    var numCommentLikes: Int
     
     init(id: String, numCommentLikes: Int) {
         self.id = id

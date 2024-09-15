@@ -35,4 +35,23 @@ final class OtherRevaluationsViewModel: BaseViewModel {
     func getOtherRevaluationsValue() -> [OtherRevaluationEntity] {
         return otherRevaluations.value
     }
+    
+    func updateRevaluationLikes(withId revaluationId: String, isLiked: Bool) {
+        usecase.updateRevaluationLikes(withId: revaluationId, isLiked: isLiked)
+            .mainSink { [weak self] _ in
+                guard let self = self else { return }
+                guard let index = self.otherRevaluations.value.firstIndex(where: { $0.id == revaluationId }) else { return }
+                
+                var updatedRevaluation: OtherRevaluationEntity = self.otherRevaluations.value[index]
+                updatedRevaluation.isLiked = isLiked
+                
+                if isLiked {
+                    updatedRevaluation.statistics.numCommentLikes += 1
+                } else {
+                    updatedRevaluation.statistics.numCommentLikes -= 1
+                }
+                
+                self.otherRevaluations.value[index] = updatedRevaluation
+            }.store(in: &cancelBag)
+    }
 }

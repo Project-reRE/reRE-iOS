@@ -460,8 +460,7 @@ final class RevaluateViewController: BaseNavigationViewController {
     
     private func bind() {
         viewModel.getErrorSubject()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
+            .mainSink { [weak self] error in
                 
                 LogDebug(error)
                 
@@ -483,8 +482,7 @@ final class RevaluateViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
         
         viewModel.getRevaluationSuccessPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .mainSink { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             }.store(in: &cancelBag)
     }

@@ -58,6 +58,19 @@ extension RevaluationUsecase: RevaluationUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
+    func updateRevaluationLikes(withId revaluationId: String, isLiked: Bool) -> AnyPublisher<String, Never> {
+        return repository.updateRevaluationLikes(withId: revaluationId, isLiked: isLiked)
+            .compactMap { [weak self] result in
+                switch result {
+                case .success(let entity):
+                    return entity
+                case .failure(let error):
+                    self?.errorSubject.send(error)
+                    return nil
+                }
+            }.eraseToAnyPublisher()
+    }
+    
     func getErrorSubject() -> AnyPublisher<Error, Never> {
         return errorSubject.eraseToAnyPublisher()
     }

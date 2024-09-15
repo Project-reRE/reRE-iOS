@@ -87,6 +87,28 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .mainSink { [weak self] error in
+                
+                LogDebug(error)
+                
+                if let userError = error as? UserError {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: "statueCode: \(userError.statusCode)",
+                                             description: userError.message.first,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                } else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: error.localizedDescription,
+                                             description: error.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                }
+            }.store(in: &cancelBag)
+        
         viewModel.getOtherRevaluationsPublisher()
             .droppedSink { [weak self] list in
                 self?.otherRevaluationListView.isHidden = false
@@ -126,6 +148,11 @@ extension OtherRevaluationsViewController: UICollectionViewDataSource {
         
         let otherRevaluation: OtherRevaluationEntity = viewModel.getOtherRevaluationsValue()[indexPath.item]
         cell.updateView(with: otherRevaluation)
+        
+        cell.likeStackView.didTapped { [weak self] in
+            self?.viewModel.updateRevaluationLikes(withId: otherRevaluation.id, isLiked: !otherRevaluation.isLiked)
+        }
+        
         return cell
     }
 }

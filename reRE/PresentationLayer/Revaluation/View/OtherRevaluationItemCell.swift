@@ -23,6 +23,11 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
         $0.textColor = ColorSet.gray(.white).color
     }
     
+    lazy var likeStackView = TouchableStackView().then {
+        $0.spacing = moderateScale(number: 8)
+        $0.alignment = .center
+    }
+    
     private lazy var thumbsUpImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
     }
@@ -79,9 +84,10 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
     }
     
     private func addViews() {
-        addSubviews([userThumbnailView, nicknameLabel, thumbsUpImageView,
-                     likesCountLabel, revaluationLabel, commentTitleView,
+        addSubviews([userThumbnailView, nicknameLabel, likeStackView,
+                     revaluationLabel, commentTitleView,
                      commentLabel, reportButton, revaluatedDateLabel])
+        likeStackView.addArrangedSubviews([thumbsUpImageView, likesCountLabel])
         commentTitleView.addSubview(commentTitleLabel)
     }
     
@@ -91,14 +97,12 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
             $0.size.equalTo(moderateScale(number: 40))
         }
         
-        likesCountLabel.snp.makeConstraints {
+        likeStackView.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.centerY.equalTo(userThumbnailView)
         }
         
         thumbsUpImageView.snp.makeConstraints {
-            $0.trailing.equalTo(likesCountLabel.snp.leading).offset(-moderateScale(number: 8))
-            $0.centerY.equalTo(userThumbnailView)
             $0.size.equalTo(moderateScale(number: 16))
         }
         

@@ -238,7 +238,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         return Future<Result<OtherRevaluationsEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
             
-            let params: [String: String] = ["movieId": "K-34410"]
+            let params: [String: String] = ["movieId": movieId]
             
             self.networkManager.fetchService(.getOtherRevaluations(params: params)) { result in
                 switch result {
@@ -251,6 +251,24 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                     } else {
                         LogDebug(response.data)
                         promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func updateRevaluationLikes(withId revaluationId: String, isLiked: Bool) -> AnyPublisher<Result<String, Error>, Never> {
+        return Future<Result<String, Error>, Never> { [weak self] promise in
+            self?.networkManager.fetchService(.updateRevaluationLikes(isLiked: isLiked, revaluationId: revaluationId)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else {
+                        promise(.success(.success(revaluationId)))
                     }
                 case .failure(let error):
                     promise(.success(.failure(error)))

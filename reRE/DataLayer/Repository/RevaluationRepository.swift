@@ -28,4 +28,8 @@ extension RevaluationRepository: RevaluationRepositoryProtocol {
     func getOtherRevaluations(withId movieId: String) -> AnyPublisher<Result<OtherRevaluationsEntity, Error>, Never> {
         return remoteDataFetcher.getOtherRevaluations(withId: movieId)
     }
+    
+    func updateRevaluationLikes(withId revaluationId: String, isLiked: Bool) -> AnyPublisher<Result<String, Error>, Never> {
+        return remoteDataFetcher.updateRevaluationLikes(withId: revaluationId, isLiked: isLiked)
+    }
 }
