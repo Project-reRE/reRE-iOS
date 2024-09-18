@@ -42,6 +42,15 @@ final class ProfileViewModel: BaseViewModel {
         return myProfile.value
     }
     
+    func updateNickname(with nickname: String) {
+        usecase.updateUserInfo(withId: myProfile.value.id,
+                               requestModel: .init(profileUrl: myProfile.value.profileUrl,
+                                                   nickName: nickname))
+        .sink { [weak self] userEntity in
+            self?.myProfile.value.nickName = nickname
+        }.store(in: &cancelBag)
+    }
+    
     func logout() {
         usecase.logout()
     }

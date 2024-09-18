@@ -16,4 +16,10 @@ extension String {
         
         return dateFormatter.date(from: self)
     }
+    
+    func isValidNickname() -> Bool {
+        let regex = "^[A-Za-z가-힣0-9]{2,15}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: self)
+    }
 }

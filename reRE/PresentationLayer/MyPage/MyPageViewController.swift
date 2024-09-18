@@ -14,6 +14,8 @@ import KakaoSDKUser
 final class MyPageViewController: BaseViewController {
     private var cancelBag = Set<AnyCancellable>()
     
+    private var updatedNickname: String?
+    
     var coordinator: MyPageBaseCoordinator?
     
     private lazy var topContainerView = UIView().then {
@@ -93,8 +95,9 @@ final class MyPageViewController: BaseViewController {
                                      delegate: self,
                                      submitText: "변경",
                                      cancelText: "취소",
-                                     submitCompletion: {
-                print("닉네임 변경")
+                                     submitCompletion: { [weak self] in
+                guard let nickname = self?.updatedNickname else { return }
+                self?.viewModel.updateNickname(with: nickname)
             }, cancelCompletion: nil)
         }
         
@@ -136,14 +139,45 @@ final class MyPageViewController: BaseViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .mainSink { [weak self] error in
+                LogDebug(error)
+                
+                if let userError = error as? UserError {
+                    switch userError.statusCode {
+                    case 409:
+                        guard let alertVC = CommonUtil.topViewController() as? AlertViewController else { return }
+                        alertVC.updateTextFieldDescriptionLabel(withText: "이미 등록된 닉네임이에요.",
+                                                                isErrorOccured: true)
+                    default:
+                        CommonUtil.showAlertView(withType: .default,
+                                                 buttonType: .oneButton,
+                                                 title: "statueCode: \(userError.statusCode)",
+                                                 description: userError.message.first,
+                                                 submitCompletion: nil,
+                                                 cancelCompletion: nil)
+                    }
+                } else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: error.localizedDescription,
+                                             description: error.localizedDescription,
+                                             submitCompletion: nil,
+                                             cancelCompletion: nil)
+                }
+            }.store(in: &cancelBag)
+        
         viewModel.getMyProfilePublisher()
             .droppedSink { [weak self] myProfileModel in
+                if let alertVC = CommonUtil.topViewController() as? AlertViewController {
+                    alertVC.dismiss(animated: false)
+                }
+                
                 self?.userView.updateView(withModel: myProfileModel)
             }.store(in: &cancelBag)
         
         StaticValues.isLoggedIn
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isLoggedIn in
+            .mainSink { [weak self] isLoggedIn in
                 if isLoggedIn {
                     self?.viewModel.getMyProfile()
                 }
@@ -158,6 +192,27 @@ final class MyPageViewController: BaseViewController {
 extension MyPageViewController: AlertViewControllerDelegate {
     func textFieldDidChange(withText text: String) {
         guard let alertVC = CommonUtil.topViewController() as? AlertViewController else { return }
-        alertVC.updateTextFieldDescriptionLabel(withText: text)
+        
+        updatedNickname = text
+        
+        guard !text.isEmpty else {
+            alertVC.updateTextFieldDescriptionLabel(withText: "", isErrorOccured: false)
+            return
+        }
+        
+        if text.isValidNickname() {
+            alertVC.updateTextFieldDescriptionLabel(withText: "", isErrorOccured: false)
+            
+            alertVC.confirmButton.isUserInteractionEnabled = true
+            alertVC.confirmButton.textColor = ColorSet.gray(.white).color
+            alertVC.confirmButton.backgroundColor = ColorSet.primary(.orange50).color
+        } else {
+            alertVC.updateTextFieldDescriptionLabel(withText: "2자 이상 15자 이하, 특수문자 없이 입력할 수 있어요.",
+                                                    isErrorOccured: true)
+            
+            alertVC.confirmButton.isUserInteractionEnabled = false
+            alertVC.confirmButton.textColor = ColorSet.gray(.gray60).color
+            alertVC.confirmButton.backgroundColor = ColorSet.gray(.gray30).color
+        }
     }
 }

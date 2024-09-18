@@ -16,6 +16,7 @@ enum NetworkService {
     case signUp(params: Encodable)
     case deleteAccount
     case myProfile
+    case updateUserInfo(userId: String, params: Encodable)
     case searchMovieList(params: [String: Any])
     case myRevaluations(params: [String: Any])
     case getOtherRevaluations(params: [String: Any])
@@ -49,6 +50,8 @@ extension NetworkService: TargetType {
             return "/my/users"
         case .myProfile:
             return "/my/profile"
+        case .updateUserInfo(let userId, _):
+            return "/users/\(userId)"
         case .searchMovieList:
             return "/movies"
         case .myRevaluations:
@@ -73,6 +76,7 @@ extension NetworkService: TargetType {
         case .signUp: return .post
         case .deleteAccount: return .delete
         case .myProfile: return .get
+        case .updateUserInfo: return .put
         case .searchMovieList: return .get
         case .myRevaluations: return .get
         case .getOtherRevaluations: return .get
@@ -103,6 +107,8 @@ extension NetworkService: TargetType {
             return .requestPlain
         case .myProfile:
             return .requestPlain
+        case .updateUserInfo(_, let params):
+            return .requestJSONEncodable(params)
         case .searchMovieList(let params):
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         case .myRevaluations(let params):

@@ -41,7 +41,7 @@ final class AlertViewController: UIViewController {
         $0.distribution = .fillEqually
     }
     
-    private lazy var confirmButton = TouchableLabel().then {
+    private(set) lazy var confirmButton = TouchableLabel().then {
         $0.text = "확인"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.gray(.white).color
@@ -88,7 +88,7 @@ final class AlertViewController: UIViewController {
     
     private lazy var textFieldStackView = UIStackView().then {
         $0.axis = .vertical
-        $0.alignment = .center
+        $0.alignment = .leading
         $0.spacing = moderateScale(number: 8)
         $0.isHidden = true
     }
@@ -99,6 +99,7 @@ final class AlertViewController: UIViewController {
         $0.addLeftPadding(moderateScale(number: 8))
         $0.addRightPadding(moderateScale(number: 8 + 20 + 8))
         $0.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        $0.delegate = self
         $0.font = FontSet.body03.font
         $0.textColor = ColorSet.gray(.white).color
         $0.setCustomPlaceholder(placeholder: "변경할 닉네임을 입력해 주세요. (2~15자)",
@@ -114,6 +115,7 @@ final class AlertViewController: UIViewController {
     
     private lazy var textFieldDescriptionLabel = UILabel().then {
         $0.font = FontSet.subTitle01.font
+        $0.numberOfLines = 0
     }
     
     private let alertButtonType: AlertButtonType
@@ -153,6 +155,11 @@ final class AlertViewController: UIViewController {
             titleStackView.addArrangedSubview(textFieldStackView)
             textFieldStackView.addArrangedSubviews([textField, textFieldDescriptionLabel])
             textField.addSubview(clearButton)
+            clearButton.snp.makeConstraints {
+                $0.top.trailing.bottom.equalToSuperview().inset(moderateScale(number: 8))
+                $0.size.equalTo(moderateScale(number: 20))
+            }
+            
             textFieldStackView.isHidden = false
             
             confirmButton.isUserInteractionEnabled = false
@@ -248,25 +255,37 @@ final class AlertViewController: UIViewController {
         }
         
         self.delegate = delegate
+        
+        clearButton.didTapped { [weak self] in
+            self?.textField.text = ""
+            self?.clearButton.isHidden = true
+            self?.delegate?.textFieldDidChange(withText: "")
+        }
     }
     
-    func updateTextFieldDescriptionLabel(withText text: String) {
+    func updateTextFieldDescriptionLabel(withText text: String, isErrorOccured: Bool) {
         textFieldDescriptionLabel.text = text
+        
+        if isErrorOccured {
+            textFieldDescriptionLabel.textColor = ColorSet.primary(.orange60).color
+        } else {
+            textFieldDescriptionLabel.textColor = ColorSet.primary(.darkGreen60).color
+        }
     }
     
     @objc
     private func textFieldDidChange(_ sender: UITextField) {
         guard let text = sender.text else { return }
         
-        if text.isEmpty {
-            clearButton.isHidden = true
-            confirmButton.isUserInteractionEnabled = false
-            confirmButton.textColor = ColorSet.gray(.gray60).color
-            confirmButton.backgroundColor = ColorSet.gray(.gray30).color
-        } else {
-            clearButton.isHidden = false
-        }
-        
+        clearButton.isHidden = text.isEmpty
         delegate?.textFieldDidChange(withText: text)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension AlertViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

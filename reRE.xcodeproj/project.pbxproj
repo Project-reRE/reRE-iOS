@@ -218,6 +218,7 @@
 		FEF9D6A12C96C28500D948F5 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */; };
 		FEF9D6A42C96C3AE00D948F5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A32C96C3AE00D948F5 /* GoogleSignIn */; };
 		FEF9D6A62C96C3AE00D948F5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A52C96C3AE00D948F5 /* GoogleSignInSwift */; };
+		FEF9D6A82C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -418,6 +419,7 @@
 		FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsEntity.swift; sourceTree = "<group>"; };
 		FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 		FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
+		FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -836,6 +838,7 @@
 				FEB374722C71D95F005B0286 /* RevaluationDetailRequestModel.swift */,
 				FEB374842C74BACD005B0286 /* MyHistoryRequestModel.swift */,
 				FE524D752C8C1723003CEA97 /* RevaluateRequestModel.swift */,
+				FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -1315,6 +1318,7 @@
 				FE9826512C3BFB5D006F0C67 /* LoginRepository.swift in Sources */,
 				432C09732BE7676D00BBFDB1 /* GenreHeaderView.swift in Sources */,
 				FEF6F4492C510A0F00B35A9C /* SplashViewModel.swift in Sources */,
+				FEF9D6A82C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift in Sources */,
 				4364A1532BC66F1900F867B6 /* SplashViewController.swift in Sources */,
 				FE9826742C3EA078006F0C67 /* SignUpRequestModel.swift in Sources */,
 				FEB374752C71DC58005B0286 /* HistoryUsecaseProtocol.swift in Sources */,

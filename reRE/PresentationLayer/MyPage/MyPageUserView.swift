@@ -222,10 +222,7 @@ final class MyPageUserView: UIView {
         nicknameLabel.text = model.nickName
         genderLabel.text = model.gender ? "남성" : "여성"
         revaluationCountLabel.text = "\(model.statistics.numRevaluations.formattedString())개"
-        
-        if let birthYear = model.birthDate.toDate(with: "yyyy-MM-dd")?.dateToString(with: "yyyy") {
-            birthLabel.text = "\(birthYear)년생"
-        }
+        birthLabel.text = "\(model.birthDate)년생"
         
         emailLabel.text = model.email
         thumbnailImageView.kf.setImage(with: URL(string: model.profileUrl))

@@ -10,7 +10,7 @@ import Foundation
 struct UserEntity {
     let id: String
     let externalId: String
-    let nickName: String
+    var nickName: String
     let description: String
     let profileUrl: String
     let email: String

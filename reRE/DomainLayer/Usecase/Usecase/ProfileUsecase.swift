@@ -32,6 +32,19 @@ extension ProfileUsecase: ProfileUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
+    func updateUserInfo(withId id: String, requestModel: UpdateUserInfoRequestModel) -> AnyPublisher<UserEntity, Never> {
+        return repository.updateUserInfo(withId: id, requestModel: requestModel)
+            .compactMap { [weak self] result in
+                switch result {
+                case .success(let entity):
+                    return entity
+                case .failure(let error):
+                    self?.errorSubject.send(error)
+                    return nil
+                }
+            }.eraseToAnyPublisher()
+    }
+    
     func logout() {
         repository.logout()
     }

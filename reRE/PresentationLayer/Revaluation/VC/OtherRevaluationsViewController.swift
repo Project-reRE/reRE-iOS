@@ -153,6 +153,10 @@ extension OtherRevaluationsViewController: UICollectionViewDataSource {
             self?.viewModel.updateRevaluationLikes(withId: otherRevaluation.id, isLiked: !otherRevaluation.isLiked)
         }
         
+        cell.reportButton.didTapped {
+            
+        }
+        
         return cell
     }
 }

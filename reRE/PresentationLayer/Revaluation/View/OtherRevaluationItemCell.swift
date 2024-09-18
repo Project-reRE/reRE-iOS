@@ -61,7 +61,7 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
         $0.numberOfLines = 0
     }
     
-    private lazy var reportButton = TouchableImageView(frame: .zero).then {
+    private(set) lazy var reportButton = TouchableImageView(frame: .zero).then {
         $0.contentMode = .scaleAspectFit
         $0.image = UIImage(named: "ReportIcon")
     }

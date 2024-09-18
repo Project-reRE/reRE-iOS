@@ -21,6 +21,10 @@ extension ProfileRepository: ProfileRepositoryProtocol {
         return remoteDataFetcher.getMyProfile()
     }
     
+    func updateUserInfo(withId id: String, requestModel: UpdateUserInfoRequestModel) -> AnyPublisher<Result<UserEntity, any Error>, Never> {
+        return remoteDataFetcher.updateUserInfo(withId: id, requestModel: requestModel)
+    }
+    
     func logout() {
         return remoteDataFetcher.logout()
     }

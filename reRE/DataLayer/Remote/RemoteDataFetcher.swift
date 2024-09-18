@@ -149,6 +149,29 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
+    func updateUserInfo(withId id: String, requestModel: UpdateUserInfoRequestModel) -> AnyPublisher<Result<UserEntity, Error>, Never> {
+        return Future<Result<UserEntity, Error>, Never> { [weak self] promise in
+            guard let self = self else { return }
+            
+            self.networkManager.fetchService(.updateUserInfo(userId: id, params: requestModel)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteUserItem.self, data: response.data) {
+                        promise(.success(.success(self.remoteProfileMapper.remoteMyProfileItemToEntity(remoteItem: remoteItem))))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     func searchMovieList(with model: SearchMovieListRequestModel) -> AnyPublisher<Result<SearchMovieListEntity, Error>, Never> {
         return Future<Result<SearchMovieListEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
