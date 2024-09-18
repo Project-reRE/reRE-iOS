@@ -24,6 +24,7 @@ final class RevaluationGenderRatioView: UIView {
         $0.titleLabel.font = FontSet.label01.font
         $0.ratioLabel.textColor = ColorSet.tertiary(.navy70).color
         $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
     }
     
     private lazy var femaleContainerView = RevaluationCriteriaView().then {
@@ -33,6 +34,7 @@ final class RevaluationGenderRatioView: UIView {
         $0.titleLabel.font = FontSet.label01.font
         $0.ratioLabel.textColor = ColorSet.primary(.orange70).color
         $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
     }
     
     override init(frame: CGRect) {
@@ -66,19 +68,30 @@ final class RevaluationGenderRatioView: UIView {
         }
     }
     
-    func updateGenderRatioView(withModel model: MovieStatisticsEntity) {
-        guard model.numStarsParticipants > 0 else { return }
+    func updateGenderRatioView(withModel model: [MovieStatisticsPercentageEntity]) {
+        guard !model.isEmpty else { return }
         
-        let maleRatio: Double = Double(model.numGender.MALE) / Double(model.numStarsParticipants)
-        let femaleRatio: Double = Double(model.numGender.FEMALE) / Double(model.numStarsParticipants)
+        var ratioData: [Double] = []
         
-        let moderatedMaleRatio: Double = round(maleRatio * 10000) / 100
-        let moderatedFemaleRatio: Double = round(femaleRatio * 10000) / 100
+        if let female = model.first(where: { $0.type == "FEMALE" }) {
+            femaleContainerView.updateRatio(withRatioText: "\(female.value)%")
+            
+            let ratio: Double = Double(female.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
         
-        maleContainerView.updateRatio(withRatioText: "\(moderatedMaleRatio)%")
-        femaleContainerView.updateRatio(withRatioText: "\(moderatedFemaleRatio)%")
+        if let male = model.first(where: { $0.type == "MALE" }) {
+            maleContainerView.updateRatio(withRatioText: "\(male.value)%")
+            
+            let ratio: Double = Double(male.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
         
-        ratioView.drawPiChart(withData: [femaleRatio, maleRatio],
+        ratioView.drawPiChart(withData: ratioData,
                               colorList: [ColorSet.primary(.orange50).color, ColorSet.tertiary(.navy50).color])
     }
 }

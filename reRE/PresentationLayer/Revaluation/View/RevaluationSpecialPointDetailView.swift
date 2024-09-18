@@ -59,8 +59,8 @@ final class RevaluationSpecialPointDetailView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateView(withModel model: MovieSpecialPointEntity) {
-        specialPointLabel.text = RevaluationCategoryView.CategoryType(rawValue: "ACTING_SKILLS")?.titleText
-        participantsNumberLabel.text = "(\(model.ACTING_SKILLS.formattedString())명)"
+    func updateView(withModel model: MovieMostSpecialPointEntity) {
+        specialPointLabel.text = RevaluationCategoryView.CategoryType(rawValue: model.type)?.titleText
+        participantsNumberLabel.text = "(\(model.value.formattedString())명)"
     }
 }

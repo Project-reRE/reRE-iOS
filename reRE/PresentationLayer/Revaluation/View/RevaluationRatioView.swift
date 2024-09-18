@@ -16,7 +16,7 @@ final class RevaluationRatioView: UIView {
         
         for (index, percent) in percentList.enumerated() {
             endAngle = Double.pi * 2 * percent
-            
+            guard endAngle > 0.0 else { continue }
             let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
             let circlePath = UIBezierPath()
             circlePath.move(to: center)

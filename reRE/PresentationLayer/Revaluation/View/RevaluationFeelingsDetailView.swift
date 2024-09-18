@@ -23,7 +23,8 @@ final class RevaluationFeelingsDetailView: UIView {
         $0.textAlignment = .center
     }
     
-    private lazy var ratioLabel = UILabel().then {
+    private(set) lazy var ratioLabel = UILabel().then {
+        $0.text = "0.00%"
         $0.font = FontSet.label01.font
         $0.textAlignment = .center
         
@@ -69,18 +70,5 @@ final class RevaluationFeelingsDetailView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func updateView(withModel model: MovieFeelingsEntity) {
-        switch feelings {
-        case .positive:
-            ratioLabel.text = "\(model.POSITIVE)"
-        case .negative:
-            ratioLabel.text = "\(model.NEGATIVE)"
-        case .notSure:
-            ratioLabel.text = "\(model.NOT_SURE)"
-        default:
-            break
-        }
     }
 }

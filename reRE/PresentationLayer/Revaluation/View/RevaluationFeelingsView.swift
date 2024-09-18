@@ -27,9 +27,17 @@ final class RevaluationFeelingsView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateView(withModel model: MovieFeelingsEntity) {
-        positiveFeelingsView.updateView(withModel: model)
-        nagativeFeelingsView.updateView(withModel: model)
-        notSureFeelingsView.updateView(withModel: model)
+    func updateView(withModel model: [MovieStatisticsPercentageEntity]) {
+        if let positiveModel = model.first(where: { $0.type == "POSITIVE" }) {
+            positiveFeelingsView.ratioLabel.text = "\(positiveModel.value)%"
+        }
+        
+        if let negativeModel = model.first(where: { $0.type == "NEGATIVE" }) {
+            nagativeFeelingsView.ratioLabel.text = "\(negativeModel.value)%"
+        }
+        
+        if let notSureModel = model.first(where: { $0.type == "NOT_SURE" }) {
+            notSureFeelingsView.ratioLabel.text = "\(notSureModel.value)%"
+        }
     }
 }

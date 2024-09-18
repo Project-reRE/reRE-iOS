@@ -243,15 +243,15 @@ final class RevaluationDetailView: UIStackView {
         chartView.ratings = ratingsEntity
     }
     
-    func updateSpecialPoint(withModel model: MovieSpecialPointEntity) {
+    func updateSpecialPoint(withModel model: [MovieMostSpecialPointEntity]) {
         specialPointView.updateView(withModel: model)
     }
     
     func updateParticipantsView(withModel model: MovieStatisticsEntity) {
-        pastFeelingsView.updateView(withModel: model.numPastValuation)
-        currentFeelingsView.updateView(withModel: model.numPresentValuation)
+        pastFeelingsView.updateView(withModel: model.numPastValuationPercent)
+        currentFeelingsView.updateView(withModel: model.numPresentValuationPercent)
         participantsCountView.updateView(withModel: model)
-        genderRatioView.updateGenderRatioView(withModel: model)
-        ageRatioView.updateAgeRatioView(withModel: model)
+        genderRatioView.updateGenderRatioView(withModel: model.numGenderPercent)
+        ageRatioView.updateAgeRatioView(withModel: model.numAgePercent)
     }
 }

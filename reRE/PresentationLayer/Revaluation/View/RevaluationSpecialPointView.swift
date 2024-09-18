@@ -10,6 +10,11 @@ import Then
 import SnapKit
 
 final class RevaluationSpecialPointView: UIView {
+    private lazy var stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = moderateScale(number: 9)
+    }
+    
     private lazy var firstSpeicialPointView = RevaluationSpecialPointDetailView().then {
         $0.rankView.backgroundColor = ColorSet.primary(.orange40).color
         $0.rankLabel.text = "1st"
@@ -32,29 +37,38 @@ final class RevaluationSpecialPointView: UIView {
         layer.cornerRadius = moderateScale(number: 8)
         backgroundColor = ColorSet.gray(.gray20).color
         
-        addSubviews([firstSpeicialPointView, secondSpeicialPointView, thirdSpeicialPointView])
-        firstSpeicialPointView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+        addSubview(stackView)
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(moderateScale(number: 16))
         }
         
-        secondSpeicialPointView.snp.makeConstraints {
-            $0.top.equalTo(firstSpeicialPointView.snp.bottom).offset(moderateScale(number: 9))
-            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
-        }
-        
-        thirdSpeicialPointView.snp.makeConstraints {
-            $0.top.equalTo(secondSpeicialPointView.snp.bottom).offset(moderateScale(number: 9))
-            $0.leading.trailing.bottom.equalToSuperview().inset(moderateScale(number: 16))
-        }
+        stackView.addArrangedSubviews([firstSpeicialPointView, secondSpeicialPointView, thirdSpeicialPointView])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateView(withModel model: MovieSpecialPointEntity) {
-        firstSpeicialPointView.updateView(withModel: model)
-        secondSpeicialPointView.updateView(withModel: model)
-        thirdSpeicialPointView.updateView(withModel: model)
+    func updateView(withModel model: [MovieMostSpecialPointEntity]) {
+        if let firstSpecialPoint = model.first(where: { $0.rank == 1 }) {
+            firstSpeicialPointView.isHidden = false
+            firstSpeicialPointView.updateView(withModel: firstSpecialPoint)
+        } else {
+            firstSpeicialPointView.isHidden = true
+        }
+        
+        if let secondSpecialPoint = model.first(where: { $0.rank == 2 }) {
+            secondSpeicialPointView.isHidden = false
+            secondSpeicialPointView.updateView(withModel: secondSpecialPoint)
+        } else {
+            secondSpeicialPointView.isHidden = true
+        }
+        
+        if let thirdSpecialPoint = model.first(where: { $0.rank == 3 }) {
+            thirdSpeicialPointView.isHidden = false
+            thirdSpeicialPointView.updateView(withModel: thirdSpecialPoint)
+        } else {
+            thirdSpeicialPointView.isHidden = true
+        }
     }
 }

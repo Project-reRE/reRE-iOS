@@ -214,7 +214,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             if let currentDate = Date().startDayOfMonth()?.dateToString(with: "yyyy-MM") {
                 params.updateValue(currentDate, forKey: "currentDate")
             }
-            print("params: \(params)")
+            
             self.networkManager.fetchService(.getMovieDetail(movieId: movieId, params: params)) { result in
                 switch result {
                 case .success(let response):

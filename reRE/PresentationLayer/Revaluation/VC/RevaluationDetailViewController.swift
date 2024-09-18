@@ -91,7 +91,9 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         $0.isHidden = true
     }
     
-    private lazy var revaluationDetailView = RevaluationDetailView()
+    private lazy var revaluationDetailView = RevaluationDetailView().then {
+        $0.isHidden = true
+    }
     
     private lazy var buttonStackView = UIStackView().then {
         $0.distribution = .fillEqually
@@ -301,19 +303,55 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         
         viewModel.getRevaluationDataPublisher()
             .droppedSink { [weak self] movieDetail in
-                self?.updateMovieInfo(withModel: movieDetail.data)
+                guard let self = self else { return }
                 
-                if let statistics = movieDetail.statistics.first {
-                    self?.revaluationDetailView.updateGradeTrend(ratingsEntity: statistics.numRecentStars)
-                    self?.revaluationDetailView.updateSpecialPoint(withModel: statistics.numSpecialPoint)
-                    self?.revaluationDetailView.updateParticipantsView(withModel: statistics)
+                self.updateMovieInfo(withModel: movieDetail.data)
+                
+                if movieDetail.statistics.isEmpty || movieDetail.statistics.first?.numStarsParticipants == 0 {
+                    self.noRevaluationView.isHidden = false
+                    self.revaluationDetailView.isHidden = true
+                    self.showOtherRevaluationsButton.isHidden = true
+                    
+                    self.revaluationDetailView.snp.removeConstraints()
+                    
+                    self.noRevaluationView.snp.remakeConstraints {
+                        $0.top.equalTo(self.dateLabel.snp.bottom).offset(moderateScale(number: 24))
+                        $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+                        $0.bottom.equalToSuperview().inset(moderateScale(number: 64))
+                    }
+                } else if let statistics = movieDetail.statistics.first {
+                    self.noRevaluationView.isHidden = true
+                    self.revaluationDetailView.isHidden = false
+                    self.showOtherRevaluationsButton.isHidden = false
+                    
+                    self.noRevaluationView.snp.removeConstraints()
+                    
+                    self.revaluationDetailView.snp.remakeConstraints {
+                        $0.top.equalTo(self.dateLabel.snp.bottom).offset(moderateScale(number: 24))
+                        $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+                        $0.bottom.equalToSuperview().inset(moderateScale(number: 64))
+                    }
+                    
+                    self.revaluationDetailView.updateGradeTrend(ratingsEntity: statistics.numRecentStars)
+                    self.revaluationDetailView.updateSpecialPoint(withModel: statistics.numSpecialPointTopThree)
+                    self.revaluationDetailView.updateParticipantsView(withModel: statistics)
                 }
             }.store(in: &cancelBag)
         
         viewModel.getShowingDateValue()
             .droppedSink { [weak self] showingRatingData in
-                self?.dateLabel.text = showingRatingData.currentDate
-                self?.revaluationDetailView.updateGradeView(withModel: showingRatingData)
+                guard let self = self else { return }
+                
+                let currentDate: String? = showingRatingData.currentDate.toDate(with: "yyyy-MM")?.dateToString(with: "yyyy. MM")
+                self.dateLabel.text = currentDate
+                
+                let statistics: [MovieStatisticsEntity] = self.viewModel.getRevaluationDataValue().statistics
+                
+                if statistics.isEmpty || statistics.first?.numStarsParticipants == 0 {
+                    self.noRevaluationView.updateView(withModel: showingRatingData)
+                } else {
+                    self.revaluationDetailView.updateGradeView(withModel: showingRatingData)
+                }
             }.store(in: &cancelBag)
     }
     

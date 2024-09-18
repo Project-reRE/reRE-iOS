@@ -51,4 +51,10 @@ final class NoRevaluationView: UIView {
             $0.bottom.equalToSuperview()
         }
     }
+    
+    func updateView(withModel model: MovieRecentRatingsEntity) {
+        if let monthString = model.currentDate.toDate(with: "yyyy-MM")?.dateToString(with: "yyyy년 MM월") {
+            descriptionLabel.text = "\(monthString)에는\n등록된 재평가가 없어요."
+        }
+    }
 }

@@ -24,6 +24,7 @@ final class RevaluationAgeRatioView: UIView {
         $0.titleLabel.font = FontSet.label01.font
         $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
         $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
     }
     
     private lazy var twentiesContainerView = RevaluationCriteriaView().then {
@@ -33,6 +34,7 @@ final class RevaluationAgeRatioView: UIView {
         $0.titleLabel.font = FontSet.label01.font
         $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
         $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
     }
     
     private lazy var thirtiesContainerView = RevaluationCriteriaView().then {
@@ -42,6 +44,7 @@ final class RevaluationAgeRatioView: UIView {
         $0.titleLabel.font = FontSet.label01.font
         $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
         $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
     }
     
     private lazy var fortiesContainerView = RevaluationCriteriaView().then {
@@ -51,6 +54,7 @@ final class RevaluationAgeRatioView: UIView {
         $0.titleLabel.font = FontSet.label01.font
         $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
         $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
     }
     
     private lazy var fiftiesPlusContainerView = RevaluationCriteriaView().then {
@@ -60,6 +64,7 @@ final class RevaluationAgeRatioView: UIView {
         $0.titleLabel.font = FontSet.label01.font
         $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
         $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
     }
     
     override init(frame: CGRect) {
@@ -95,30 +100,57 @@ final class RevaluationAgeRatioView: UIView {
         }
     }
     
-    func updateAgeRatioView(withModel model: MovieStatisticsEntity) {
-        guard model.numStarsParticipants > 0 else { return }
+    func updateAgeRatioView(withModel model: [MovieStatisticsPercentageEntity]) {
+        guard !model.isEmpty else { return }
         
-        let teensRatio: Double = Double(model.numAge.TEENS) / Double(model.numStarsParticipants)
-        let moderatedTeensRatio: Double = round(teensRatio * 10000) / 100
-        teensContainerView.updateRatio(withRatioText: "\(moderatedTeensRatio)%")
+        var ratioData: [Double] = []
         
-        let twentiesRatio: Double = Double(model.numAge.TWENTIES) / Double(model.numStarsParticipants)
-        let moderatedTwentiesRatio: Double = round(twentiesRatio * 10000) / 100
-        twentiesContainerView.updateRatio(withRatioText: "\(moderatedTwentiesRatio)%")
+        if let teens = model.first(where: { $0.type == "TEENS" }) {
+            teensContainerView.updateRatio(withRatioText: "\(teens.value)%")
+            
+            let ratio: Double = Double(teens.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
         
-        let thirtiesRatio: Double = Double(model.numAge.THIRTIES) / Double(model.numStarsParticipants)
-        let moderatedThirtiesRatio: Double = round(thirtiesRatio * 10000) / 100
-        thirtiesContainerView.updateRatio(withRatioText: "\(moderatedThirtiesRatio)%")
+        if let twenties = model.first(where: { $0.type == "TWENTIES" }) {
+            twentiesContainerView.updateRatio(withRatioText: "\(twenties.value)%")
+            
+            let ratio: Double = Double(twenties.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
         
-        let fortiesRatio: Double = Double(model.numAge.FORTIES) / Double(model.numStarsParticipants)
-        let moderatedFourtiesRatio: Double = round(fortiesRatio * 10000) / 100
-        fortiesContainerView.updateRatio(withRatioText: "\(moderatedFourtiesRatio)%")
+        if let thirties = model.first(where: { $0.type == "THIRTIES" }) {
+            thirtiesContainerView.updateRatio(withRatioText: "\(thirties.value)%")
+            
+            let ratio: Double = Double(thirties.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
         
-        let fiftiesPlusRatio: Double = Double(model.numAge.FIFTIES_PLUS) / Double(model.numStarsParticipants)
-        let moderatedFiftiesPlusRatio: Double = round(fiftiesPlusRatio * 10000) / 100
-        fiftiesPlusContainerView.updateRatio(withRatioText: "\(moderatedFiftiesPlusRatio)%")
+        if let forties = model.first(where: { $0.type == "FORTIES" }) {
+            fortiesContainerView.updateRatio(withRatioText: "\(forties.value)%")
+            
+            let ratio: Double = Double(forties.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
         
-        ratioView.drawPiChart(withData: [teensRatio, twentiesRatio, thirtiesRatio, fortiesRatio, fiftiesPlusRatio],
+        if let fiftiesPlus = model.first(where: { $0.type == "FIFTIES_PLUS" }) {
+            fiftiesPlusContainerView.updateRatio(withRatioText: "\(fiftiesPlus.value)%")
+            
+            let ratio: Double = Double(fiftiesPlus.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
+        
+        ratioView.drawPiChart(withData: ratioData,
                               colorList: [ColorSet.secondary(.cyan80).color,
                                           ColorSet.secondary(.cyan70).color,
                                           ColorSet.secondary(.cyan60).color,
