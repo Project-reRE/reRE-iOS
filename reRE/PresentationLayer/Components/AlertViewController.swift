@@ -27,7 +27,7 @@ final class AlertViewController: UIViewController {
     weak var delegate: AlertViewControllerDelegate?
     
     private lazy var backgroundView = UIView().then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = ColorSet.gray(.black).color?.withAlphaComponent(0.6)
     }
     
     private lazy var containerView = UIView().then {

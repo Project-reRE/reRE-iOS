@@ -219,6 +219,8 @@
 		FEF9D6A42C96C3AE00D948F5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A32C96C3AE00D948F5 /* GoogleSignIn */; };
 		FEF9D6A62C96C3AE00D948F5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A52C96C3AE00D948F5 /* GoogleSignInSwift */; };
 		FEF9D6A82C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */; };
+		FEF9D6AA2C9ADDB700D948F5 /* ReportAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */; };
+		FEF9D6AC2C9ADF4A00D948F5 /* CheckMarkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -420,6 +422,8 @@
 		FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 		FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoRequestModel.swift; sourceTree = "<group>"; };
+		FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAlertViewController.swift; sourceTree = "<group>"; };
+		FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMarkLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -988,6 +992,8 @@
 			isa = PBXGroup;
 			children = (
 				FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */,
+				FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */,
+				FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1156,6 +1162,7 @@
 				FEB374852C74BACD005B0286 /* MyHistoryRequestModel.swift in Sources */,
 				FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
+				FEF9D6AC2C9ADF4A00D948F5 /* CheckMarkLabel.swift in Sources */,
 				FE9F9D7E2C4FBA8C00E6FB13 /* StaticValues.swift in Sources */,
 				43103D1A2C2800FA009742BB /* RevaluationDetailView.swift in Sources */,
 				FEB374932C7AEE1F005B0286 /* RemoteMovieDetailItem.swift in Sources */,
@@ -1283,6 +1290,7 @@
 				FE524D762C8C1723003CEA97 /* RevaluateRequestModel.swift in Sources */,
 				432C09542BD4EFD800BBFDB1 /* Logger.swift in Sources */,
 				4364A1512BC66EB700F867B6 /* MainCoordinator.swift in Sources */,
+				FEF9D6AA2C9ADDB700D948F5 /* ReportAlertViewController.swift in Sources */,
 				FE9826062C340923006F0C67 /* UIColor+Extension.swift in Sources */,
 				432C09412BC6795D00BBFDB1 /* RemoteDataFetcher.swift in Sources */,
 				436351CF2C0C45EA0078C8C1 /* UITextField+Extension.swift in Sources */,

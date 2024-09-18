@@ -153,8 +153,19 @@ extension OtherRevaluationsViewController: UICollectionViewDataSource {
             self?.viewModel.updateRevaluationLikes(withId: otherRevaluation.id, isLiked: !otherRevaluation.isLiked)
         }
         
-        cell.reportButton.didTapped {
+        cell.reportButton.didTapped { [weak self] in
+            guard let topVC = CommonUtil.topViewController() else { return }
+            guard !(topVC is ReportAlertViewController) else { return }
             
+            CommonUtil.hideLoadingView()
+            
+            let reportVC = ReportAlertViewController()
+            reportVC.configureAlertView { [weak self] in
+                print("report !!!")
+            }
+            
+            reportVC.modalPresentationStyle = .overFullScreen
+            topVC.present(reportVC, animated: false)
         }
         
         return cell
