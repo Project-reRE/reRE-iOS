@@ -424,6 +424,7 @@
 		FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoRequestModel.swift; sourceTree = "<group>"; };
 		FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAlertViewController.swift; sourceTree = "<group>"; };
 		FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMarkLabel.swift; sourceTree = "<group>"; };
+		FEF9D6AD2C9E720800D948F5 /* reRE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = reRE.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +487,7 @@
 		430C2DD92BB9790D00DE5FC2 /* reRE */ = {
 			isa = PBXGroup;
 			children = (
+				FEF9D6AD2C9E720800D948F5 /* reRE.entitlements */,
 				FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */,
 				430C2DDA2BB9790D00DE5FC2 /* AppDelegate.swift */,
 				430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */,
@@ -1473,6 +1475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_DISPLAY_NAME = "reRE Dev";
+				CODE_SIGN_ENTITLEMENTS = reRE/reRE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 82S5Y38V5F;
@@ -1510,6 +1513,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_DISPLAY_NAME = reRE;
+				CODE_SIGN_ENTITLEMENTS = reRE/reRE.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 82S5Y38V5F;
