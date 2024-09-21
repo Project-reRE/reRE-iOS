@@ -9,6 +9,8 @@ import UIKit
 import Combine
 import KakaoSDKUser
 import KakaoSDKAuth
+import GoogleSignIn
+import AuthenticationServices
 
 final class SplashViewController: BaseViewController {
     private var cancelBag = Set<AnyCancellable>()
@@ -62,16 +64,25 @@ final class SplashViewController: BaseViewController {
                         AuthApi.shared.refreshToken { [weak self] oAuthToken, error in
                             guard let token = oAuthToken?.accessToken, error == nil else {
                                 LogDebug(error)
+                                self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
                                 return
                             }
                             
-                            print("oAuthToken: \(oAuthToken)")
                             self?.viewModel.snsLogin(withToken: token, loginType: .kakao)
                         }
                     case .apple:
                         self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
                     case .google:
-                        self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
+                        let clientID: String = StaticValues.googleClientId
+                        let config = GIDConfiguration(clientID: clientID)
+                        GIDSignIn.sharedInstance.configuration = config
+                        
+                        guard let token = GIDSignIn.sharedInstance.currentUser?.refreshToken.tokenString else {
+                            self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
+                            return
+                        }
+                        
+                        self?.viewModel.snsLogin(withToken: token, loginType: .google)
                     }
                 } else {
                     self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
