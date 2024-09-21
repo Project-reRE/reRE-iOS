@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import AuthenticationServices
 import Combine
+import CryptoKit
 import Then
 import SnapKit
 import KakaoSDKUser
+import GoogleSignIn
 
 final class SignUpViewController: BaseNavigationViewController {
     private var cancelBag = Set<AnyCancellable>()
     
+    private var currentNonce: String?
     var coordinator: CommonBaseCoordinator?
     
     private var isAllChecked: Bool = false {
@@ -304,12 +308,10 @@ final class SignUpViewController: BaseNavigationViewController {
                                       userData: ["webViewType": WebViewType.serviceAgreement])
         }
         
-        
         privacyPolicyAgreementButton.showTermsButton.didTapped { [weak self] in
             self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
                                       userData: ["webViewType": WebViewType.privacyPolicy])
         }
-        
         
         signUpButton.didTapped { [weak self] in
             self?.viewModel.signUp()
@@ -320,19 +322,34 @@ final class SignUpViewController: BaseNavigationViewController {
         viewModel.getErrorSubject()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
+                guard let self = self else { return }
                 
                 LogDebug(error)
                 
                 if let userError = error as? UserError {
                     switch userError.statusCode {
                     case 401: // AccessToken Error
-                        self?.kakaoLogin { [weak self] accessToken, error in
-                            guard error == nil,
-                                  let accessToken = accessToken else {
-                                return
+                        switch self.viewModel.currentSNSMethod {
+                        case .kakao:
+                            self.kakaoLogin { [weak self] accessToken, error in
+                                guard error == nil,
+                                      let accessToken = accessToken else {
+                                    return
+                                }
+                                
+                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
                             }
-                            
-                            self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
+                        case .apple:
+                            self.appleLogin()
+                        case .google:
+                            self.googleLogin { [weak self] accessToken, error in
+                                guard error == nil,
+                                      let accessToken = accessToken else {
+                                    return
+                                }
+                                
+                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
+                            }
                         }
                     default:
                         CommonUtil.showAlertView(withType: .default,
@@ -397,6 +414,15 @@ final class SignUpViewController: BaseNavigationViewController {
         }
     }
     
+    private func googleLogin(_ completion: @escaping (String?, Error?) -> Void) {
+        let clientID: String = StaticValues.googleClientId
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+            completion(result?.user.accessToken.tokenString, error)
+        }
+    }
+    
     @objc
     private func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -408,6 +434,106 @@ final class SignUpViewController: BaseNavigationViewController {
         
         clearButton.isHidden = userBirth.isEmpty
         viewModel.setUserBirth(withYear: userBirth)
+    }
+}
+
+extension SignUpViewController: ASAuthorizationControllerPresentationContextProviding, ASAuthorizationControllerDelegate {
+    private func appleLogin() {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    private func decode(jwtToken jwt: String) -> [String: Any] {
+        func base64UrlDecode(_ value: String) -> Data? {
+            var base64 = value
+                .replacingOccurrences(of: "-", with: "+")
+                .replacingOccurrences(of: "_", with: "/")
+            
+            let length = Double(base64.lengthOfBytes(using: String.Encoding.utf8))
+            let requiredLength = 4 * ceil(length / 4.0)
+            let paddingLength = requiredLength - length
+            if paddingLength > 0 {
+                let padding = "".padding(toLength: Int(paddingLength), withPad: "=", startingAt: 0)
+                base64 += padding
+            }
+            return Data(base64Encoded: base64, options: .ignoreUnknownCharacters)
+        }
+        
+        func decodeJWTPart(_ value: String) -> [String: Any]? {
+            guard let bodyData = base64UrlDecode(value),
+                  let json = try? JSONSerialization.jsonObject(with: bodyData, options: []), let payload = json as? [String: Any] else {
+                return nil
+            }
+            
+            return payload
+        }
+        
+        let segments = jwt.components(separatedBy: ".")
+        return decodeJWTPart(segments[1]) ?? [:]
+    }
+    
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError(
+                "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+            )
+        }
+        
+        let charset: [Character] = Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        
+        let nonce = randomBytes.map { byte in
+            // Pick a random character from the set, wrapping around if needed.
+            charset[Int(byte) % charset.count]
+        }
+        
+        return String(nonce)
+    }
+    
+    private func sha256( _ input: String) -> String {
+        let inputData = Data(input.utf8)
+        
+        let hasedData = SHA256.hash(data: inputData)
+        let hashString = hasedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+        return hashString
+    }
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window ?? UIWindow()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let nonce = currentNonce,
+              let appleIDToken = appleIDCredential.identityToken,
+              let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+            CommonUtil.hideLoadingView()
+            return
+        }
+        
+        viewModel.snsLogin(withToken: idTokenString, loginType: .apple)
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // cancel, unknown
+        guard (error as NSError).code != 1001,
+              (error as NSError).code != 1000  else {
+            CommonUtil.hideLoadingView()
+            return
+        }
     }
 }
 

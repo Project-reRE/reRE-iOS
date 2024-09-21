@@ -24,6 +24,8 @@ final class LoginViewModel: BaseViewModel {
     
     private let loginCompletion = PassthroughSubject<Void, Never>()
     
+    private(set) var currentSNSMethod: SNSLoginType = .kakao
+    
     private let usecase: LoginUsecaseProtocol
     
     init(usecase: LoginUsecaseProtocol) {
@@ -68,6 +70,7 @@ final class LoginViewModel: BaseViewModel {
     }
     
     func snsLogin(withToken accessToken: String, loginType: SNSLoginType) {
+        currentSNSMethod = loginType
         shouldSNSLogin.send(.init(accessToken: accessToken, loginType: loginType))
     }
     
@@ -90,7 +93,7 @@ final class LoginViewModel: BaseViewModel {
     func signUp() {
         guard let gender = userGender.value else { return }
         
-        shouldSignUp.send(SignUpRequestModel(provider: "kakao",
+        shouldSignUp.send(SignUpRequestModel(provider: shouldSNSLogin.value.loginType.provider,
                                              gender: gender,
                                              birthDate: userBirth.value))
     }

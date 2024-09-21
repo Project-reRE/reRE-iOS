@@ -12,7 +12,7 @@ enum NetworkService {
     case networkMockService
     case rankingMovieSets
     case rankingBanner
-    case kakaoAuth
+    case snsLogin(loginType: SNSLoginType)
     case signUp(params: Encodable)
     case deleteAccount
     case myProfile
@@ -42,8 +42,15 @@ extension NetworkService: TargetType {
             return "/open-movie-sets"
         case .rankingBanner:
             return "/open-banners"
-        case .kakaoAuth:
-            return "/auth/kakao"
+        case .snsLogin(let loginType):
+            switch loginType {
+            case .kakao:
+                return "/auth/kakao"
+            case .apple:
+                return "/auth/apple"
+            case .google:
+                return "/auth/google"
+            }
         case .signUp:
             return "/users"
         case .deleteAccount:
@@ -72,7 +79,7 @@ extension NetworkService: TargetType {
         case .networkMockService: return .get
         case .rankingMovieSets: return .get
         case .rankingBanner: return .get
-        case .kakaoAuth: return .get
+        case .snsLogin: return .get
         case .signUp: return .post
         case .deleteAccount: return .delete
         case .myProfile: return .get
@@ -99,7 +106,7 @@ extension NetworkService: TargetType {
             return .requestPlain
         case .rankingBanner:
             return .requestPlain
-        case .kakaoAuth:
+        case .snsLogin:
             return .requestPlain
         case .signUp(let params):
             return .requestJSONEncodable(params)

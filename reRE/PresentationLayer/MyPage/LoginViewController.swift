@@ -148,7 +148,7 @@ final class LoginViewController: BaseBottomSheetViewController {
         bottomSheetContainerView.backgroundColor = .clear
         
         kakaoLoginButton.didTapped { [weak self] in
-            self?.kakaoLogin { accessToken, error in
+            self?.kakaoLogin { [weak self] accessToken, error in
                 guard error == nil,
                       let accessToken = accessToken else {
                     return
@@ -163,8 +163,13 @@ final class LoginViewController: BaseBottomSheetViewController {
         }
         
         googleLoginButton.didTapped { [weak self] in
-            self?.googleLogin { _, _ in
-                print("good")
+            self?.googleLogin { [weak self] accessToken, error in
+                guard error == nil,
+                      let accessToken = accessToken else {
+                    return
+                }
+                
+                self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
             }
         }
     }
@@ -183,34 +188,9 @@ final class LoginViewController: BaseBottomSheetViewController {
     
     private func googleLogin(_ completion: @escaping (String?, Error?) -> Void) {
         let clientID: String = StaticValues.googleClientId
-        // 구글 인증
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
-        
-//        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
-//            guard error == nil else { return }
-//            
-//            // 인증을 해도 계정은 따로 등록을 해주어야 한다.
-//            // 구글 인증 토큰 받아서 -> 사용자 정보 토큰 생성 -> 파이어베이스 인증에 등록
-//            guard
-//                let authentication = user?.authentication,
-//                let idToken = authentication.idToken
-//            else {
-//                return
-//            }
-//            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-//                                                           accessToken: authentication.accessToken)
-//            
-//            // 사용자 정보 등록
-//            Auth.auth().signIn(with: credential) { _, _ in
-//                // 사용자 등록 후에 처리할 코드
-//            }
-//            // If sign in succeeded, display the app's main content View.
-//        }
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
-            print("result?.user.idToken?.tokenString: \(result?.user.idToken?.tokenString)")
-            print("result?.user.accessToken.tokenString: \(result?.user.accessToken.tokenString)")
-            
             completion(result?.user.accessToken.tokenString, error)
         }
     }
@@ -219,22 +199,37 @@ final class LoginViewController: BaseBottomSheetViewController {
         viewModel.getErrorSubject()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] error in
+                guard let self = self else { return }
                 
                 LogDebug(error)
                 
                 if let userError = error as? UserError {
                     switch userError.statusCode {
                     case 401: // AccessToken Error
-                        self?.kakaoLogin { [weak self] accessToken, error in
-                            guard error == nil,
-                                  let accessToken = accessToken else {
-                                return
+                        switch self.viewModel.currentSNSMethod {
+                        case .kakao:
+                            self.kakaoLogin { [weak self] accessToken, error in
+                                guard error == nil,
+                                      let accessToken = accessToken else {
+                                    return
+                                }
+                                
+                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
                             }
-                            
-                            self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
+                        case .apple:
+                            self.appleLogin()
+                        case .google:
+                            self.googleLogin { [weak self] accessToken, error in
+                                guard error == nil,
+                                      let accessToken = accessToken else {
+                                    return
+                                }
+                                
+                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
+                            }
                         }
                     case 404: // Should SignUp
-                        self?.dismissBottomSheet { [weak self] in
+                        self.dismissBottomSheet { [weak self] in
                             guard let self = self else { return }
                             
                             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.signUp),
@@ -281,6 +276,35 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
         authorizationController.performRequests()
     }
     
+    private func decode(jwtToken jwt: String) -> [String: Any] {
+        func base64UrlDecode(_ value: String) -> Data? {
+            var base64 = value
+                .replacingOccurrences(of: "-", with: "+")
+                .replacingOccurrences(of: "_", with: "/")
+            
+            let length = Double(base64.lengthOfBytes(using: String.Encoding.utf8))
+            let requiredLength = 4 * ceil(length / 4.0)
+            let paddingLength = requiredLength - length
+            if paddingLength > 0 {
+                let padding = "".padding(toLength: Int(paddingLength), withPad: "=", startingAt: 0)
+                base64 += padding
+            }
+            return Data(base64Encoded: base64, options: .ignoreUnknownCharacters)
+        }
+        
+        func decodeJWTPart(_ value: String) -> [String: Any]? {
+            guard let bodyData = base64UrlDecode(value),
+                  let json = try? JSONSerialization.jsonObject(with: bodyData, options: []), let payload = json as? [String: Any] else {
+                return nil
+            }
+            
+            return payload
+        }
+        
+        let segments = jwt.components(separatedBy: ".")
+        return decodeJWTPart(segments[1]) ?? [:]
+    }
+    
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         var randomBytes = [UInt8](repeating: 0, count: length)
@@ -324,7 +348,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
             return
         }
         
-        print("idTokenString: \(idTokenString)")
+        viewModel.snsLogin(withToken: idTokenString, loginType: .apple)
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

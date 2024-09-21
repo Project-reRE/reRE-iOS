@@ -17,6 +17,7 @@ enum TabType: Int {
 enum SNSLoginType: String {
     case kakao
     case apple
+    case google
     
     var headerName: String {
         switch self {
@@ -24,6 +25,19 @@ enum SNSLoginType: String {
             return "kakao-token"
         case .apple:
             return "apple-token"
+        case .google:
+            return "google-token"
+        }
+    }
+    
+    var provider: String {
+        switch self {
+        case .kakao:
+            return "kakao"
+        case .apple:
+            return "apple"
+        case .google:
+            return "google"
         }
     }
 }

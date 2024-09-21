@@ -70,6 +70,8 @@ final class SplashViewController: BaseViewController {
                         }
                     case .apple:
                         self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
+                    case .google:
+                        self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
                     }
                 } else {
                     self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)

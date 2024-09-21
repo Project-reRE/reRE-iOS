@@ -233,6 +233,8 @@ final class MyPageUserView: UIView {
                 snsImageView.image = UIImage(named: "MyPageKakaoIcon")
             case .apple:
                 snsImageView.image = UIImage(named: "MyPageAppleIcon")
+            case .google:
+                snsImageView.image = UIImage(named: "MyPageGoogleIcon")
             }
         }
     }
