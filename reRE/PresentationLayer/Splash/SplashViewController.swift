@@ -39,8 +39,7 @@ final class SplashViewController: BaseViewController {
     
     private func bind() {
         viewModel.getErrorSubject()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
+            .mainSink { [weak self] error in
                 LogDebug(error)
                 
                 CommonUtil.showAlertView(withType: .default,

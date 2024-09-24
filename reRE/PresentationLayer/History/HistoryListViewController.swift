@@ -30,13 +30,31 @@ final class HistoryListViewController: BaseNavigationViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    private lazy var historyListView = UICollectionView(frame: .zero, collectionViewLayout: StaggeredLayout()).then {
+    private lazy var historyListView = UICollectionView(frame: .zero, collectionViewLayout: layout()).then {
         $0.contentInsetAdjustmentBehavior = .never
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.dataSource = self
         $0.isHidden = true
         $0.registerCell(HistoryItemCell.self)
+    }
+    
+    private func layout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { _, _ in
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
+                                                  heightDimension: .absolute(moderateScale(number: 246)))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                   heightDimension: .absolute(moderateScale(number: 246)))
+            
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            group.interItemSpacing = .fixed(moderateScale(number: 15))
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = moderateScale(number: 15)
+            
+            return section
+        }
     }
     
     private lazy var noHistoryListView = NoHistoryListView().then {
@@ -83,7 +101,7 @@ final class HistoryListViewController: BaseNavigationViewController {
         }
         
         historyListView.snp.makeConstraints {
-            $0.top.equalTo(topContainerView.snp.bottom).offset(moderateScale(number: 42))
+            $0.top.equalTo(topContainerView.snp.bottom).offset(moderateScale(number: 59))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.bottom.equalToSuperview().inset(getSafeAreaBottom())
         }
