@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Combine
 import Then
 import SnapKit
 
 final class RevaluationHistoryViewController: BaseNavigationViewController {
+    private var cancelBag = Set<AnyCancellable>()
+    
     var coordinator: HistoryBaseCoordinator?
     
     private lazy var scrollView = UIScrollView().then {
@@ -90,7 +93,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
     }
     
     private lazy var getMovieInfoButton = TouchableLabel().then {
-        $0.text = "영화 정보 보기"
+        $0.text = "재평가 정보 보기"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.secondary(.olive50).color
         $0.textAlignment = .center
@@ -101,8 +104,8 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         $0.backgroundColor = .clear
     }
     
-    private lazy var editCommentButton = TouchableLabel().then {
-        $0.text = "한 줄 평 수정하기"
+    private lazy var editRevaluationButton = TouchableLabel().then {
+        $0.text = "재평가 수정하기"
         $0.font = FontSet.button01.font
         $0.textColor = ColorSet.gray(.white).color
         $0.textAlignment = .center
@@ -119,12 +122,18 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         $0.backgroundColor = .clear
     }
     
-    private let historyEntity: MyHistoryEntityData
+    private let viewModel: RevaluationHistoryViewModel
     
-    init(historyEntity: MyHistoryEntityData) {
-        self.historyEntity = historyEntity
+    init(viewModel: RevaluationHistoryViewModel) {
+        self.viewModel = viewModel
         
         super.init()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        bind()
         updateView()
     }
     
@@ -135,7 +144,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         scrollView.addSubview(containerView)
         containerView.addSubviews([thumbnailImageView, revaluationStackView, titleLabel,
                                    revaluationDetailView, revaluationCommentView,
-                                   getMovieInfoButton, editCommentButton, deleteRevaluationButton])
+                                   getMovieInfoButton, editRevaluationButton, deleteRevaluationButton])
         
         revaluationStackView.addArrangedSubviews([starIcon, ratingLabel, revaluateDateView])
         revaluationStackView.setCustomSpacing(moderateScale(number: 4), after: starIcon)
@@ -215,14 +224,14 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
             $0.height.equalTo(moderateScale(number: 44))
         }
         
-        editCommentButton.snp.makeConstraints {
+        editRevaluationButton.snp.makeConstraints {
             $0.top.equalTo(getMovieInfoButton.snp.bottom).offset(moderateScale(number: 64))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 52))
         }
         
         deleteRevaluationButton.snp.makeConstraints {
-            $0.top.equalTo(editCommentButton.snp.bottom).offset(moderateScale(number: 8))
+            $0.top.equalTo(editRevaluationButton.snp.bottom).offset(moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 44))
             
@@ -238,9 +247,56 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         super.setupIfNeeded()
         
         setNavigationTitle(with: "재평가한 내용 상세 보기")
+        
+        getMovieInfoButton.didTapped { [weak self] in
+            guard let self = self else { return }
+            self.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail),
+                                     userData: ["movieId": self.viewModel.getHistoryEntityValue().movie.id])
+        }
+        
+        editRevaluationButton.didTapped { [weak self] in
+            guard let updatedDate = self?.viewModel.getHistoryEntityValue().updatedAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+                  let endDayOfMonth = updatedDate.endDayOfMonth() else {
+                return
+            }
+            
+            guard endDayOfMonth >= Date() else {
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: "재평가 수정하기",
+                                         description: "지난 달의 재평가는 수정할 수 없어요.",
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+                return
+            }
+            
+//            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate), userData: <#T##[String : Any]?#>)
+        }
+        
+        deleteRevaluationButton.didTapped { [weak self] in
+            CommonUtil.showAlertView(withType: .default,
+                                     buttonType: .twoButton,
+                                     title: "재평가 삭제하기",
+                                     description: "영화 재평가 내역을 삭제하시겠어요?\n삭제하면 다시 복구할 수 없어요.",
+                                     submitText: "삭제",
+                                     cancelText: "취소",
+                                     submitCompletion: { [weak self] in
+                self?.viewModel.deleteHistory()
+            }, cancelCompletion: nil)
+        }
+    }
+    
+    private func bind() {
+        viewModel.deletedHistoryPublisher
+            .mainSink { [weak self] _ in
+                NotificationCenter.default.post(name: .revaluationDeleted, object: nil)
+                self?.navigationController?.popViewController(animated: true)
+            }.store(in: &cancelBag)
     }
     
     private func updateView() {
+        let historyEntity: MyHistoryEntityData = viewModel.getHistoryEntityValue()
+        
         if let postersURLString = historyEntity.movie.data.posters.first, postersURLString.isEmpty == false {
             thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
         } else if let stillsURLString = historyEntity.movie.data.stills.first, stillsURLString.isEmpty == false {

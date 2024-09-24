@@ -110,6 +110,22 @@ final class HistoryListViewController: BaseNavigationViewController {
             self?.navigationController?.popViewController(animated: false)
             self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
         }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didDeleteRevaluation),
+                                               name: .revaluationDeleted,
+                                               object: nil)
+    }
+    
+    override func deinitialize() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .revaluationDeleted,
+                                                  object: nil)
+    }
+    
+    @objc
+    private func didDeleteRevaluation() {
+        viewModel.fetchRevaluationHistories()
     }
     
     private func bind() {
@@ -117,9 +133,8 @@ final class HistoryListViewController: BaseNavigationViewController {
         let historyListPublisher = viewModel.getHistoryListPublisher().dropFirst()
         
         showingDatePublisher
-            .zip(historyListPublisher)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] requestModel, historyList in
+            .combineLatest(historyListPublisher)
+            .mainSink { [weak self] requestModel, historyList in
                 let startDate: Date = requestModel.startDate.toDate(with: "yyyy-MM-dd") ?? Date()
                 let showingDate: String = startDate.dateToString(with: "yyyy. MM")
                 self?.dateLabel.text = showingDate
@@ -135,6 +150,8 @@ final class HistoryListViewController: BaseNavigationViewController {
                     self?.historyListView.reloadData()
                 }
             }.store(in: &cancelBag)
+        
+        viewModel.fetchRevaluationHistories()
     }
 }
 

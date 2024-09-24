@@ -10,4 +10,5 @@ import Combine
 
 protocol HistoryRepositoryProtocol: AnyObject {
     func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<Result<MyHistoryEntity, Error>, Never>
+    func deleteRevaluation(withId revaluationId: String) -> AnyPublisher<Result<Void, Error>, Never>
 }

@@ -203,21 +203,31 @@ final class AlertViewController: UIViewController {
                             submitCompletion: (() -> Void)?,
                             cancelCompletion: (() -> Void)?) {
         confirmButton.didTapped { [weak self] in
-            guard let submitCompletion = submitCompletion else {
+            if self?.alertType == .default {
                 self?.dismiss(animated: false)
-                return
+                submitCompletion?()
+            } else {
+                guard let submitCompletion = submitCompletion else {
+                    self?.dismiss(animated: false)
+                    return
+                }
+                
+                submitCompletion()
             }
-            
-            submitCompletion()
         }
         
         cancelButton.didTapped { [weak self] in
-            guard let cancelCompletion = cancelCompletion else {
+            if self?.alertType == .default {
                 self?.dismiss(animated: false)
-                return
+                cancelCompletion?()
+            } else {
+                guard let cancelCompletion = cancelCompletion else {
+                    self?.dismiss(animated: false)
+                    return
+                }
+                
+                cancelCompletion()
             }
-            
-            cancelCompletion()
         }
         
         titleLabel.text = title

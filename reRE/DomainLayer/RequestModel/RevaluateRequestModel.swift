@@ -8,14 +8,14 @@
 import Foundation
 
 struct RevaluateRequestModel: Encodable {
-    var movieId: String
+    var movieId: String?
     var numStars: Double
     var specialPoint: String
     var pastValuation: String
     var presentValuation: String
     var comment: String
     
-    init(movieId: String,
+    init(movieId: String?,
          numStars: Double,
          specialPoint: String,
          pastValuation: String,
@@ -30,7 +30,7 @@ struct RevaluateRequestModel: Encodable {
     }
     
     init() {
-        movieId = ""
+        movieId = nil
         numStars = 0
         specialPoint = ""
         pastValuation = ""

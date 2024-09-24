@@ -10,4 +10,5 @@ import Combine
 
 protocol HistoryUsecaseProtocol: BaseUsecaseProtocol {
     func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<MyHistoryEntity, Never>
+    func deleteRevaluation(withId revaluationId: String) -> AnyPublisher<Void, Never>
 }

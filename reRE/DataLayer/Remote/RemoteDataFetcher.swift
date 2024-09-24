@@ -113,9 +113,9 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         promise(.success(.failure(error)))
-                    } else if let userId = DecodeUtil.decode(String.self, data: response.data) {
+                    } else if let remoteItem = DecodeUtil.decode(RemoteUserItem.self, data: response.data) {
                         UserDefaultsManager.shared.setLoginType(loginType: param.provider)
-                        promise(.success(.success(userId)))
+                        promise(.success(.success(remoteItem.id ?? "")))
                     } else {
                         LogDebug(response.data)
                         promise(.success(.failure(HTTPError.typeMismatch)))
@@ -304,6 +304,47 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Result<Void, Error>, Never> {
         return Future<Result<Void, Error>, Never> { [weak self] promise in
             self?.networkManager.fetchService(.revaluate(params: reqestModel)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else {
+                        promise(.success(.success(())))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func updateRevaluation(withId revaluationId: String, updatedModel: RevaluateRequestModel) -> AnyPublisher<Result<MyHistoryEntityData, Error>, Never> {
+        return Future<Result<MyHistoryEntityData, Error>, Never> { [weak self] promise in
+            self?.networkManager.fetchService(.updateRevaluation(revaluationId: revaluationId, params: updatedModel)) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteMyHistoryData.self, data: response.data) {
+                        promise(.success(.success(self.remoteHistoryMapper.remoteMyHistoryDataToEntity(remoteItem: remoteItem))))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    func deleteRevaluation(withId revaluationId: String) -> AnyPublisher<Result<Void, Error>, Never> {
+        return Future<Result<Void, Error>, Never> { [weak self] promise in
+            self?.networkManager.fetchService(.deleteRevaluation(revaluationId: revaluationId)) { result in
                 switch result {
                 case .success(let response):
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {

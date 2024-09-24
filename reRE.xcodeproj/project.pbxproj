@@ -221,6 +221,8 @@
 		FEF9D6A82C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */; };
 		FEF9D6AA2C9ADDB700D948F5 /* ReportAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */; };
 		FEF9D6AC2C9ADF4A00D948F5 /* CheckMarkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */; };
+		FEF9D6AF2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6AE2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift */; };
+		FEF9D6B12CA2E52A00D948F5 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6B02CA2E52A00D948F5 /* Notification+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -425,6 +427,8 @@
 		FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAlertViewController.swift; sourceTree = "<group>"; };
 		FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMarkLabel.swift; sourceTree = "<group>"; };
 		FEF9D6AD2C9E720800D948F5 /* reRE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = reRE.entitlements; sourceTree = "<group>"; };
+		FEF9D6AE2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationHistoryViewModel.swift; sourceTree = "<group>"; };
+		FEF9D6B02CA2E52A00D948F5 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +561,7 @@
 				4376DAC42C11AE710060E618 /* String+Extension.swift */,
 				FEB374A62C7B19DA005B0286 /* Int+Extension.swift */,
 				FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */,
+				FEF9D6B02CA2E52A00D948F5 /* Notification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -625,6 +630,7 @@
 				4364A1582BC6725F00F867B6 /* HistoryViewController.swift */,
 				FEA1F7602C58F4DE007F76D0 /* HistoryListViewController.swift */,
 				FE4B24AE2C90781D00666609 /* RevaluationHistoryViewController.swift */,
+				FEF9D6AE2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift */,
 				FEB3748E2C7604F3005B0286 /* NoHistoryListView.swift */,
 				FEA1F7662C58F789007F76D0 /* HistoryItemCell.swift */,
 				FEA1F7622C58F5A6007F76D0 /* HistoryListViewModel.swift */,
@@ -1180,6 +1186,7 @@
 				FEB3748F2C7604F3005B0286 /* NoHistoryListView.swift in Sources */,
 				FE98266B2C3E96B4006F0C67 /* LoginResponseModel.swift in Sources */,
 				FEF6F4A92C57AB9300B35A9C /* SearchRepository.swift in Sources */,
+				FEF9D6B12CA2E52A00D948F5 /* Notification+Extension.swift in Sources */,
 				FE5B95B82C6DF79200B7D0DB /* RevaluateSpecialPointView.swift in Sources */,
 				FE98264D2C3BFB41006F0C67 /* LoginUsecase.swift in Sources */,
 				FEF6F4612C51161300B35A9C /* UserEntity.swift in Sources */,
@@ -1249,6 +1256,7 @@
 				FEB374AD2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift in Sources */,
 				FEF6F4652C5116D500B35A9C /* ProfileRepositoryProtocol.swift in Sources */,
 				FECFE45A2C32B9B400078CDF /* RemoteBannerMapper.swift in Sources */,
+				FEF9D6AF2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift in Sources */,
 				432C094E2BD4EF4600BBFDB1 /* UICollectionView+Extension.swift in Sources */,
 				FE89FC242C6DE9E900FB01FB /* RevaluateViewModel.swift in Sources */,
 				43263F582C1187B7004804BF /* BaseNavigationViewController.swift in Sources */,

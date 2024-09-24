@@ -32,6 +32,19 @@ extension HistoryUsecase: HistoryUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
+    func deleteRevaluation(withId revaluationId: String) -> AnyPublisher<Void, Never> {
+        return repository.deleteRevaluation(withId: revaluationId)
+            .compactMap { [weak self] result in
+                switch result {
+                case .success(let entity):
+                    return entity
+                case .failure(let error):
+                    self?.errorSubject.send(error)
+                    return nil
+                }
+            }.eraseToAnyPublisher()
+    }
+    
     func getErrorSubject() -> AnyPublisher<Error, Never> {
         return errorSubject.eraseToAnyPublisher()
     }

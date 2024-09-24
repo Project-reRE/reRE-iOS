@@ -17,7 +17,11 @@ final class HistoryRepository {
 }
 
 extension HistoryRepository: HistoryRepositoryProtocol {
-    func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<Result<MyHistoryEntity, any Error>, Never> {
+    func getMyHistory(with model: MyHistoryRequestModel) -> AnyPublisher<Result<MyHistoryEntity, Error>, Never> {
         return remoteDataFetcher.getMyHistory(with: model)
+    }
+    
+    func deleteRevaluation(withId revaluationId: String) -> AnyPublisher<Result<Void, Error>, Never> {
+        return remoteDataFetcher.deleteRevaluation(withId: revaluationId)
     }
 }

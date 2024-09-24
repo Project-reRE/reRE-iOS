@@ -23,6 +23,8 @@ enum NetworkService {
     case getMovieDetail(movieId: String, params: [String: String])
     case revaluate(params: Encodable)
     case updateRevaluationLikes(isLiked: Bool, revaluationId: String)
+    case updateRevaluation(revaluationId: String, params: Encodable)
+    case deleteRevaluation(revaluationId: String)
 }
 
 extension NetworkService: TargetType {
@@ -71,6 +73,10 @@ extension NetworkService: TargetType {
             return "/revaluations"
         case .updateRevaluationLikes(_, let revaluationId):
             return "/revaluations/\(revaluationId)/likes"
+        case .updateRevaluation(let revaluationId, _):
+            return "/revaluations/\(revaluationId)"
+        case .deleteRevaluation(let revaluationId):
+            return "/revaluations/\(revaluationId)"
         }
     }
     
@@ -95,6 +101,8 @@ extension NetworkService: TargetType {
             } else {
                 return .delete
             }
+        case .updateRevaluation: return .put
+        case .deleteRevaluation: return .delete
         }
     }
     
@@ -127,6 +135,10 @@ extension NetworkService: TargetType {
         case .revaluate(let params):
             return .requestJSONEncodable(params)
         case .updateRevaluationLikes:
+            return .requestPlain
+        case .updateRevaluation(_, let params):
+            return .requestJSONEncodable(params)
+        case .deleteRevaluation(revaluationId: let revaluationId):
             return .requestPlain
         }
     }

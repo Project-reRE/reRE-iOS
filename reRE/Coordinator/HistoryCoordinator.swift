@@ -44,7 +44,9 @@ final class HistoryCoordinator: NSObject, HistoryBaseCoordinator {
         case .revaluationHistory:
             guard let historyEntity = userData?["historyEntity"] as? MyHistoryEntityData else { return }
             
-            let revaluationHistoryVC = RevaluationHistoryViewController(historyEntity: historyEntity)
+            let viewModel = RevaluationHistoryViewModel(usecase: Injector.shared.resolve(HistoryUsecaseProtocol.self)!,
+                                                        historyEntity: historyEntity)
+            let revaluationHistoryVC = RevaluationHistoryViewController(viewModel: viewModel)
             revaluationHistoryVC.coordinator = self
             currentNavigationViewController?.pushViewController(revaluationHistoryVC, animated: true)
         }

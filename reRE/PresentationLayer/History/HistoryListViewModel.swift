@@ -26,10 +26,15 @@ final class HistoryListViewModel: BaseViewModel {
     
     private func bind() {
         shouldLoadRevaluationHistory
+            .dropFirst()
             .flatMap(usecase.getMyHistory(with:))
             .sink { [weak self] historyEntity in
                 self?.historyList.send(historyEntity)
             }.store(in: &cancelBag)
+    }
+    
+    func fetchRevaluationHistories() {
+        shouldLoadRevaluationHistory.send(shouldLoadRevaluationHistory.value)
     }
     
     func getPrevMonthHistoryList() {
