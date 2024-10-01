@@ -12,8 +12,6 @@ import Then
 final class SearchDescriptionView: UIStackView {
     private lazy var imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.layer.borderColor = UIColor.red.cgColor
-        $0.layer.borderWidth = 1
     }
     
     private lazy var descriptionLabel = UILabel().then {
@@ -49,7 +47,14 @@ final class SearchDescriptionView: UIStackView {
     }
     
     func updateView(withDescriptionType type: DescriptionType) {
-        descriptionLabel.text = type.descriptionText
+        switch type {
+        case .default:
+            imageView.image = UIImage(named: "SearchDescriptionIcon")
+            descriptionLabel.text = "재평가할 영화를 검색해 보세요.\n개봉한지 5년이 지난 영화만 검색할 수 있어요."
+        case .emptyList(let searchedText):
+            imageView.image = UIImage(named: "NoSearchResultIcon")
+            descriptionLabel.text = "'\(searchedText)'에 대한 검색 결과가 없어요.\n개봉연도로부터 5년이 지나지 않은 영화 같아요."
+        }
     }
 }
 
@@ -57,14 +62,5 @@ extension SearchDescriptionView {
     enum DescriptionType {
         case `default`
         case emptyList(searchedText: String)
-        
-        var descriptionText: String {
-            switch self {
-            case .default:
-                return "재평가할 영화를 검색해 보세요.\n개봉한지 5년이 지난 영화만 검색할 수 있어요."
-            case .emptyList(let searchedText):
-                return "'\(searchedText)'에 대한 검색 결과가 없어요.\n개봉연도로부터 5년이 지나지 않은 영화 같아요."
-            }
-        }
     }
 }
