@@ -43,6 +43,7 @@ final class RankViewController: BaseViewController {
         $0.contentInsetAdjustmentBehavior = .never
         $0.dataSource = self
         $0.showsVerticalScrollIndicator = false
+        $0.isHidden = true
     }
     
     private let viewModel: RankViewModel
@@ -135,6 +136,7 @@ final class RankViewController: BaseViewController {
             .zip(bannerListPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] movieSets, bannerList in
+                self?.rankingView.isHidden = false
                 self?.rankingView.reloadData()
                 self?.rankingView.layoutIfNeeded()
                 
