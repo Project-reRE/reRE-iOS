@@ -36,8 +36,8 @@ final class SignUpViewController: BaseNavigationViewController {
     }
     
     private lazy var imageView = UIImageView().then {
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.red.cgColor
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(named: "SignUpIcon")
     }
     
     private lazy var titleLabel = UILabel().then {
