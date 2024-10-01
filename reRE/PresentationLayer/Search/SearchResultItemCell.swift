@@ -103,10 +103,10 @@ final class SearchResultItemCell: UICollectionViewCell {
         genresLabel.text = model.data.genre
         yearLabel.text = model.data.prodYear
         
-        let directors = model.data.directors.map { $0.directorNm }.joined(separator: ",")
+        let directors = model.data.directors.map { $0.directorNm }.joined(separator: ", ")
         directorsLabel.text = directors
         
-        let actors = model.data.actors.map { $0.actorNm }.joined(separator: ",")
+        let actors = model.data.actors.map { $0.actorNm }.joined(separator: ", ")
         actorsLabel.text = actors
         
         if let postersURLString = model.data.posters.first, postersURLString.isEmpty == false {
