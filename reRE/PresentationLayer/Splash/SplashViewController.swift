@@ -11,11 +11,18 @@ import KakaoSDKUser
 import KakaoSDKAuth
 import GoogleSignIn
 import AuthenticationServices
+import Then
+import SnapKit
 
 final class SplashViewController: BaseViewController {
     private var cancelBag = Set<AnyCancellable>()
     
     var coordinator: MainBaseCoordinator?
+    
+    private lazy var splashBGImageView = UIImageView().then {
+        $0.image = UIImage(named: "SplashImage")
+        $0.contentMode = .scaleAspectFit
+    }
     
     private let viewModel: SplashViewModel
     
@@ -32,7 +39,12 @@ final class SplashViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .blue
+        view.backgroundColor = .clear
+        
+        view.addSubview(splashBGImageView)
+        splashBGImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
         bind()
     }
@@ -62,7 +74,6 @@ final class SplashViewController: BaseViewController {
                         
                         AuthApi.shared.refreshToken { [weak self] oAuthToken, error in
                             guard let token = oAuthToken?.accessToken, error == nil else {
-                                LogDebug(error)
                                 self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
                                 return
                             }
