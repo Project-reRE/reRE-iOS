@@ -10,7 +10,7 @@ import Combine
 
 final class RankViewModel: BaseViewModel {
     private var timer: Timer?
-    private let timerPublisher = PassthroughSubject<Void, Never>()
+    private let timerSubject = PassthroughSubject<Void, Never>()
     
     private let shouldGetMovieSets = PassthroughSubject<Void, Never>()
     private let movieSets = CurrentValueSubject<[MovieSetsResponseModel], Never>([])
@@ -61,7 +61,7 @@ final class RankViewModel: BaseViewModel {
         timer?.invalidate()
         
         timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
-            self?.timerPublisher.send(())
+            self?.timerSubject.send(())
         }
     }
     
@@ -70,19 +70,19 @@ final class RankViewModel: BaseViewModel {
         timer = nil
     }
     
-    func getTimerPublisher() -> AnyPublisher<Void, Never> {
-        return timerPublisher.eraseToAnyPublisher()
+    var timerPublisher: AnyPublisher<Void, Never> {
+        return timerSubject.eraseToAnyPublisher()
     }
     
     func getMovieSets() {
         shouldGetMovieSets.send(())
     }
     
-    func getMovieSetsPublisher() -> AnyPublisher<[MovieSetsResponseModel], Never> {
+    var movieSetsPublisher: AnyPublisher<[MovieSetsResponseModel], Never> {
         return movieSets.eraseToAnyPublisher()
     }
     
-    func getMovieSetsValue() -> [MovieSetsResponseModel] {
+    var movieSetsValue: [MovieSetsResponseModel] {
         return movieSets.value
     }
     
@@ -90,11 +90,11 @@ final class RankViewModel: BaseViewModel {
         shouldGetBannerList.send(())
     }
     
-    func getBannerListPublisher() -> AnyPublisher<[BannerResponseModel], Never> {
+    var bannerListPublisher: AnyPublisher<[BannerResponseModel], Never> {
         return bannerList.eraseToAnyPublisher()
     }
     
-    func getBannerListValue() -> [BannerResponseModel] {
+    var bannerListValue: [BannerResponseModel] {
         return bannerList.value
     }
 }

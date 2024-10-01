@@ -223,6 +223,7 @@
 		FEF9D6AC2C9ADF4A00D948F5 /* CheckMarkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */; };
 		FEF9D6AF2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6AE2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift */; };
 		FEF9D6B12CA2E52A00D948F5 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6B02CA2E52A00D948F5 /* Notification+Extension.swift */; };
+		FEF9D6B32CABB24D00D948F5 /* NoDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6B22CABB24D00D948F5 /* NoDataCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -429,6 +430,7 @@
 		FEF9D6AD2C9E720800D948F5 /* reRE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = reRE.entitlements; sourceTree = "<group>"; };
 		FEF9D6AE2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationHistoryViewModel.swift; sourceTree = "<group>"; };
 		FEF9D6B02CA2E52A00D948F5 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
+		FEF9D6B22CABB24D00D948F5 /* NoDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1002,6 +1004,7 @@
 				FEF6F4802C561B1A00B35A9C /* AlertViewController.swift */,
 				FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */,
 				FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */,
+				FEF9D6B22CABB24D00D948F5 /* NoDataCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1161,6 +1164,7 @@
 				FEB374772C71DC6F005B0286 /* HistoryUsecase.swift in Sources */,
 				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
+				FEF9D6B32CABB24D00D948F5 /* NoDataCell.swift in Sources */,
 				FE9F9D7C2C4FB96E00E6FB13 /* UserDefaultsManager.swift in Sources */,
 				FEB3749D2C7AF3D5005B0286 /* RevaluationRepository.swift in Sources */,
 				4364A1592BC6725F00F867B6 /* HistoryViewController.swift in Sources */,

@@ -38,11 +38,11 @@ final class RankViewController: BaseViewController {
         $0.registerSupplimentaryView(DailyRankingFooterView.self, supplementaryViewOfKind: .footer)
         $0.registerSupplimentaryView(GenreHeaderView.self, supplementaryViewOfKind: .header)
         $0.registerCell(RankingItemCell.self)
+        $0.registerCell(NoDataCell.self)
         $0.backgroundColor = .clear
         $0.contentInsetAdjustmentBehavior = .never
         $0.dataSource = self
         $0.showsVerticalScrollIndicator = false
-        $0.contentInset = .init(top: 0, left: 0, bottom: moderateScale(number: 48), right: 0)
     }
     
     private let viewModel: RankViewModel
@@ -74,7 +74,7 @@ final class RankViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        guard viewModel.getBannerListValue().count > 1 else { return }
+        guard viewModel.bannerListValue.count > 1 else { return }
         viewModel.startTimer()
     }
     
@@ -86,7 +86,7 @@ final class RankViewController: BaseViewController {
         rankingView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(getSafeAreaTop())
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(moderateScale(number: 56) + getDefaultSafeAreaBottom())
         }
     }
     
@@ -112,14 +112,14 @@ final class RankViewController: BaseViewController {
                 }
             }.store(in: &cancelBag)
         
-        viewModel.getTimerPublisher()
+        viewModel.timerPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 
                 self.currentAutoScrollIndex += 1
                 
-                if self.currentAutoScrollIndex == self.viewModel.getBannerListValue().count - 1 {
+                if self.currentAutoScrollIndex == self.viewModel.bannerListValue.count - 1 {
                     self.currentAutoScrollIndex = 1
                 }
                 
@@ -128,8 +128,8 @@ final class RankViewController: BaseViewController {
                                               animated: true)
             }.store(in: &cancelBag)
         
-        let bannerListPublisher = viewModel.getBannerListPublisher().dropFirst()
-        let movieSetsPublisher = viewModel.getMovieSetsPublisher().dropFirst()
+        let bannerListPublisher = viewModel.bannerListPublisher.dropFirst()
+        let movieSetsPublisher = viewModel.movieSetsPublisher.dropFirst()
         
         movieSetsPublisher
             .zip(bannerListPublisher)
@@ -153,89 +153,131 @@ final class RankViewController: BaseViewController {
     }
     
     private func layout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { sectionIndex, _ in
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard let self = self else { return nil }
+            
             if sectionIndex == 0 {
-                let sectionMargin: CGFloat = moderateScale(number: 48)
-                
-                let itemWidth: CGFloat = UIScreen.main.bounds.width - sectionMargin * 2
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
-                                                      heightDimension: .absolute(moderateScale(number: 141)))
-                let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
-                                                       heightDimension: .absolute(moderateScale(number: 141)))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.contentInsets = .zero
-                
-                let section = NSCollectionLayoutSection(group: group)
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                        heightDimension: .estimated(moderateScale(number: 82)))
-                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                         elementKind: UICollectionView.elementKindSectionHeader,
-                                                                         alignment: .top)
-                
-                let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                        heightDimension: .estimated(moderateScale(number: 54)))
-                let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
-                                                                         elementKind: UICollectionView.elementKindSectionFooter,
-                                                                         alignment: .bottom)
-                section.boundarySupplementaryItems = [header, footer]
-                section.orthogonalScrollingBehavior = .groupPagingCentered
-                section.visibleItemsInvalidationHandler = { [weak self] _, point, _ in
-                    guard let self = self else { return }
-                    guard let maxIndex = self.viewModel.getBannerListValue().indices.max() else { return }
-                    
-                    let page: Int = Int(round(point.x / itemWidth))
-                    
-                    self.currentAutoScrollIndex = page
-                    
-                    if page == maxIndex {
-                        self.currentAutoScrollIndex = 1
-                        self.rankingView.scrollToItem(at: IndexPath(item: self.currentAutoScrollIndex, section: 0),
-                                                      at: .left,
-                                                      animated: false)
-                    }  else if page == 0 {
-                        self.currentAutoScrollIndex = maxIndex - 1
-                        self.rankingView.scrollToItem(at: IndexPath(item: self.currentAutoScrollIndex, section: 0),
-                                                      at: .left,
-                                                      animated: false)
+                return generateBannerLayout()
+            } else {
+                if viewModel.movieSetsValue.isEmpty {
+                    return generateNoDataLayout(shouldDisplayHeader: false)
+                } else {
+                    if viewModel.movieSetsValue[sectionIndex - 1].data.isEmpty {
+                        return generateNoDataLayout(shouldDisplayHeader: true)
+                    } else {
+                        return generateMovieSetLayout()
                     }
                 }
-                
-                section.interGroupSpacing = moderateScale(number: 8)
-                section.contentInsets = .init(top: 0,
-                                              leading: 0,
-                                              bottom: moderateScale(number: 56),
-                                              trailing: 0)
-                return section
-            } else {
-                let itemWidth: CGFloat = UIScreen.main.bounds.width - moderateScale(number: 106 + 16)
-                let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
-                                                      heightDimension: .absolute(moderateScale(number: 165)))
-                let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
-                                                       heightDimension: .absolute(moderateScale(number: 165)))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                group.contentInsets = .zero
-                
-                let section = NSCollectionLayoutSection(group: group)
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                        heightDimension: .estimated(moderateScale(number: 49)))
-                let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
-                                                                         elementKind: UICollectionView.elementKindSectionHeader,
-                                                                         alignment: .top)
-                
-                section.boundarySupplementaryItems = [header]
-                section.orthogonalScrollingBehavior = .continuous
-                section.interGroupSpacing = moderateScale(number: 12)
-                section.contentInsets = .init(top: moderateScale(number: 11),
-                                              leading: moderateScale(number: 16),
-                                              bottom: moderateScale(number: 48),
-                                              trailing: 0)
-                return section
             }
         }
+    }
+    
+    private func generateBannerLayout()  -> NSCollectionLayoutSection {
+        let sectionMargin: CGFloat = moderateScale(number: 48)
+        
+        let itemWidth: CGFloat = UIScreen.main.bounds.width - sectionMargin * 2
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
+                                              heightDimension: .absolute(moderateScale(number: 141)))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+        group.contentInsets = .zero
+        
+        let section = NSCollectionLayoutSection(group: group)
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .estimated(moderateScale(number: 82)))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .top)
+        
+        let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .estimated(moderateScale(number: 54)))
+        let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionFooter,
+                                                                 alignment: .bottom)
+        section.boundarySupplementaryItems = [header, footer]
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.visibleItemsInvalidationHandler = { [weak self] _, point, _ in
+            guard let self = self else { return }
+            guard let maxIndex = self.viewModel.bannerListValue.indices.max() else { return }
+            
+            let page: Int = Int(round(point.x / itemWidth))
+            
+            self.currentAutoScrollIndex = page
+            
+            if page == maxIndex {
+                self.currentAutoScrollIndex = 1
+                self.rankingView.scrollToItem(at: IndexPath(item: self.currentAutoScrollIndex, section: 0),
+                                              at: .left,
+                                              animated: false)
+            }  else if page == 0 {
+                self.currentAutoScrollIndex = maxIndex - 1
+                self.rankingView.scrollToItem(at: IndexPath(item: self.currentAutoScrollIndex, section: 0),
+                                              at: .left,
+                                              animated: false)
+            }
+        }
+        
+        section.interGroupSpacing = moderateScale(number: 8)
+        section.contentInsets = .init(top: 0,
+                                      leading: 0,
+                                      bottom: moderateScale(number: 56),
+                                      trailing: 0)
+        return section
+    }
+    
+    private func generateMovieSetLayout()  -> NSCollectionLayoutSection {
+        let itemWidth: CGFloat = UIScreen.main.bounds.width - moderateScale(number: 106 + 16)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth),
+                                              heightDimension: .absolute(moderateScale(number: 165)))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .estimated(moderateScale(number: 49)))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .top)
+        
+        section.boundarySupplementaryItems = [header]
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = moderateScale(number: 12)
+        section.contentInsets = .init(top: moderateScale(number: 11),
+                                      leading: moderateScale(number: 16),
+                                      bottom: moderateScale(number: 48),
+                                      trailing: 0)
+        return section
+    }
+    
+    private func generateNoDataLayout(shouldDisplayHeader: Bool) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .estimated(moderateScale(number: 290)))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        
+        if shouldDisplayHeader {
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                    heightDimension: .estimated(moderateScale(number: 49)))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                     elementKind: UICollectionView.elementKindSectionHeader,
+                                                                     alignment: .top)
+            section.boundarySupplementaryItems = [header]
+            section.contentInsets = .init(top: moderateScale(number: 35),
+                                          leading: 0,
+                                          bottom: moderateScale(number: 48),
+                                          trailing: 0)
+        }
+        
+        section.contentInsets = .init(top: moderateScale(number: 6),
+                                      leading: 0,
+                                      bottom: moderateScale(number: 48),
+                                      trailing: 0)
+        
+        return section
     }
 }
 
@@ -243,44 +285,73 @@ final class RankViewController: BaseViewController {
 extension RankViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return viewModel.getBannerListValue().count
+            return viewModel.bannerListValue.count
         } else {
-            let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
-            let sectionIndex: Int = section - bannerSectionIndex
-            return viewModel.getMovieSetsValue()[sectionIndex].data.count
+            if viewModel.movieSetsValue.isEmpty {
+                return 1
+            } else {
+                if viewModel.movieSetsValue[section - 1].data.isEmpty {
+                    return 1
+                } else {
+                    return viewModel.movieSetsValue[section - 1].data.count
+                }
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            guard let cell = collectionView.dequeueReusableCell(DailyRankingBannerCell.self, indexPath: indexPath) else { return .init() }
-            
-            let bannerModel: BannerResponseModel = viewModel.getBannerListValue()[indexPath.item]
-            cell.updateView(withModel: bannerModel)
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(RankingItemCell.self, indexPath: indexPath) else { return .init() }
-            
-            let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
-            let model: MovieSetResponseModel = viewModel.getMovieSetsValue()[indexPath.section - bannerSectionIndex].data[indexPath.item]
-            cell.updateView(withModel: model, orderText: "\(indexPath.item + 1)")
-            
-            cell.containerView.didTapped { [weak self] in
-                self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail),
-                                          userData: ["movieId": model.id])
+            if viewModel.bannerListValue.isEmpty {
+                guard let cell = collectionView.dequeueReusableCell(DailyRankingBannerCell.self, indexPath: indexPath) else { return .init() }
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(DailyRankingBannerCell.self, indexPath: indexPath) else { return .init() }
+                
+                let bannerModel: BannerResponseModel = viewModel.bannerListValue[indexPath.item]
+                cell.updateView(withModel: bannerModel)
+                return cell
             }
-            
-            return cell
+        } else {
+            if viewModel.movieSetsValue.isEmpty {
+                guard let cell = collectionView.dequeueReusableCell(NoDataCell.self, indexPath: indexPath) else { return .init() }
+                
+                cell.updateView(with: .noYesterDayRevaluations, isButtonHidden: false)
+                cell.actionButton.didTapped { [weak self] in
+                    self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
+                }
+                
+                return cell
+            } else if viewModel.movieSetsValue[indexPath.section - 1].data.isEmpty {
+                guard let cell = collectionView.dequeueReusableCell(NoDataCell.self, indexPath: indexPath) else { return .init() }
+                
+                let genre = viewModel.movieSetsValue[indexPath.section - 1].genre
+                
+                cell.updateView(with: .noYesterDayRevaluations, isButtonHidden: false, genre: genre)
+                cell.actionButton.didTapped { [weak self] in
+                    self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
+                }
+                
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(RankingItemCell.self, indexPath: indexPath) else { return .init() }
+                
+                let model: MovieSetResponseModel = viewModel.movieSetsValue[indexPath.section - 1].data[indexPath.item]
+                cell.updateView(withModel: model, orderText: "\(indexPath.item + 1)")
+                
+                cell.containerView.didTapped { [weak self] in
+                    self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluationDetail),
+                                              userData: ["movieId": model.id])
+                }
+                
+                return cell
+            }
         }
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if viewModel.getBannerListValue().isEmpty && viewModel.getMovieSetsValue().isEmpty {
-            return 0
-        } else {
-            let bannerSection: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
-            return viewModel.getMovieSetsValue().count + bannerSection
-        }
+        let bannerSection: Int = 1
+        let movieSetsSection: Int = viewModel.movieSetsValue.isEmpty ? 1 : viewModel.movieSetsValue.count
+        return bannerSection + movieSetsSection
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -302,11 +373,10 @@ extension RankViewController: UICollectionViewDataSource {
             
             let sectionIndex: Int = indexPath.section - 1
             let order: Int = sectionIndex % genreProperties.count
-            let bannerSectionIndex: Int = viewModel.getBannerListValue().isEmpty ? 0 : 1
             
             view.updateView(property: genreProperties[order],
-                            genreText: viewModel.getMovieSetsValue()[sectionIndex].genre,
-                            descriptionText: viewModel.getMovieSetsValue()[indexPath.section - bannerSectionIndex].title)
+                            genreText: viewModel.movieSetsValue[sectionIndex].genre,
+                            descriptionText: viewModel.movieSetsValue[indexPath.section - 1].title)
             return view
         }
     }
