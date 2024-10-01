@@ -32,8 +32,7 @@ final class DeleteAccountViewController: BaseNavigationViewController {
     
     private lazy var imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.layer.borderColor = UIColor.red.cgColor
-        $0.layer.borderWidth = 1
+        $0.image = UIImage(named: "SignOutIcon")
     }
     
     private lazy var holeUserDescriptionLabel = UILabel().then {
