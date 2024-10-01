@@ -36,11 +36,13 @@ final class RevaluationCriteriaView: UIView {
         
         textContainerView.snp.makeConstraints {
             $0.top.leading.bottom.equalToSuperview()
+            $0.width.equalTo(moderateScale(number: 50))
         }
         
         titleLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(moderateScale(number: 6))
-            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 13))
+            $0.centerX.equalToSuperview()
+//            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 13))
         }
         
         ratioLabel.snp.makeConstraints {

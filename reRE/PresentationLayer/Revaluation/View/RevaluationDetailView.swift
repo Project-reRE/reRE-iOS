@@ -212,11 +212,11 @@ final class RevaluationDetailView: UIStackView {
         
         participantsCountView.snp.makeConstraints {
             $0.top.equalTo(revaluationParticipantsTitleLabel.snp.bottom).offset(moderateScale(number: 24))
-            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
         }
         
         genderRatioView.snp.makeConstraints {
-            $0.top.equalTo(participantsCountView.snp.bottom).offset(moderateScale(number: 48))
+            $0.top.equalTo(participantsCountView.snp.bottom).offset(moderateScale(number: 40))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
         }
         

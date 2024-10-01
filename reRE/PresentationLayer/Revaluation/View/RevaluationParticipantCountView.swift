@@ -10,14 +10,14 @@ import Then
 import SnapKit
 
 final class RevaluationParticipantCountView: UIView {
-    private lazy var iconImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
-        $0.layer.borderColor = UIColor.red.cgColor
-        $0.layer.borderWidth = 1
+    private lazy var titleLabel = UILabel().then {
+        $0.text = "평가자 수"
+        $0.font = FontSet.body01.font
+        $0.textColor = ColorSet.gray(.gray60).color
     }
     
     private lazy var countLabel = UILabel().then {
-        $0.font = FontSet.body01.font
+        $0.font = FontSet.display02.font
         $0.textColor = ColorSet.gray(.white).color
         $0.numberOfLines = 0
         $0.textAlignment = .center
@@ -26,17 +26,21 @@ final class RevaluationParticipantCountView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .clear
+        backgroundColor = ColorSet.gray(.gray20).color
+        layer.masksToBounds = true
+        layer.cornerRadius = moderateScale(number: 8)
         
-        addSubviews([iconImageView, countLabel])
-        iconImageView.snp.makeConstraints {
-            $0.top.centerX.equalToSuperview()
-            $0.size.equalTo(moderateScale(number: 120))
+        addSubviews([titleLabel, countLabel])
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(moderateScale(number: 24))
+            $0.centerX.equalToSuperview()
         }
         
         countLabel.snp.makeConstraints {
-            $0.top.equalTo(iconImageView.snp.bottom).offset(moderateScale(number: 16))
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom).offset(moderateScale(number: 8))
+            $0.centerX.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 10))
+            $0.bottom.equalToSuperview().inset(moderateScale(number: 24))
         }
     }
     
@@ -45,9 +49,6 @@ final class RevaluationParticipantCountView: UIView {
     }
     
     func updateView(withModel model: MovieStatisticsEntity) {
-        countLabel.text = "\(model.numStarsParticipants.formattedString())명이\n재평가에 참여했어요."
-        countLabel.highLightText(targetString: model.numStarsParticipants.formattedString(),
-                                 color: ColorSet.tertiary(.navy70).color,
-                                 font: FontSet.title02.font)
+        countLabel.text = "\(model.numStarsParticipants.formattedString())명"
     }
 }

@@ -18,21 +18,21 @@ final class RevaluationAgeRatioView: UIView {
     }
     
     private lazy var teensContainerView = RevaluationCriteriaView().then {
-        $0.textContainerView.backgroundColor = ColorSet.secondary(.cyan80).color
+        $0.textContainerView.backgroundColor = ColorSet.primary(.orange60).color
         $0.titleLabel.text = "10대"
         $0.titleLabel.textColor = ColorSet.secondary(.cyan20).color
         $0.titleLabel.font = FontSet.label01.font
-        $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
+        $0.ratioLabel.textColor = ColorSet.primary(.orange60).color
         $0.ratioLabel.font = FontSet.label01.font
         $0.ratioLabel.text = "0.0%"
     }
     
     private lazy var twentiesContainerView = RevaluationCriteriaView().then {
-        $0.textContainerView.backgroundColor = ColorSet.secondary(.cyan70).color
+        $0.textContainerView.backgroundColor = ColorSet.secondary(.olive60).color
         $0.titleLabel.text = "20대"
         $0.titleLabel.textColor = ColorSet.secondary(.cyan20).color
         $0.titleLabel.font = FontSet.label01.font
-        $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
+        $0.ratioLabel.textColor = ColorSet.secondary(.olive60).color
         $0.ratioLabel.font = FontSet.label01.font
         $0.ratioLabel.text = "0.0%"
     }
@@ -52,17 +52,17 @@ final class RevaluationAgeRatioView: UIView {
         $0.titleLabel.text = "40대"
         $0.titleLabel.textColor = ColorSet.secondary(.cyan100).color
         $0.titleLabel.font = FontSet.label01.font
-        $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
+        $0.ratioLabel.textColor = ColorSet.secondary(.cyan50).color
         $0.ratioLabel.font = FontSet.label01.font
         $0.ratioLabel.text = "0.0%"
     }
     
     private lazy var fiftiesPlusContainerView = RevaluationCriteriaView().then {
-        $0.textContainerView.backgroundColor = ColorSet.secondary(.cyan30).color
+        $0.textContainerView.backgroundColor = ColorSet.tertiary(.navy40).color
         $0.titleLabel.text = "50대+"
         $0.titleLabel.textColor = ColorSet.secondary(.cyan100).color
         $0.titleLabel.font = FontSet.label01.font
-        $0.ratioLabel.textColor = ColorSet.secondary(.cyan60).color
+        $0.ratioLabel.textColor = ColorSet.tertiary(.navy70).color
         $0.ratioLabel.font = FontSet.label01.font
         $0.ratioLabel.text = "0.0%"
     }
@@ -151,10 +151,10 @@ final class RevaluationAgeRatioView: UIView {
         }
         
         ratioView.drawPiChart(withData: ratioData,
-                              colorList: [ColorSet.secondary(.cyan80).color,
-                                          ColorSet.secondary(.cyan70).color,
+                              colorList: [ColorSet.primary(.orange60).color,
+                                          ColorSet.secondary(.olive60).color,
                                           ColorSet.secondary(.cyan60).color,
-                                          ColorSet.secondary(.cyan50).color,
-                                          ColorSet.secondary(.cyan40).color])
+                                          ColorSet.secondary(.cyan40).color,
+                                          ColorSet.tertiary(.navy40).color])
     }
 }
