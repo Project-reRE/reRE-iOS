@@ -95,6 +95,7 @@ final class SearchViewController: BaseNavigationViewController {
         
         searchDescriptionView.snp.makeConstraints {
             $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 10))
         }
         
         searchListView.snp.makeConstraints {
