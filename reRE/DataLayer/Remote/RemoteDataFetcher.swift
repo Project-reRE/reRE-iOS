@@ -229,15 +229,17 @@ final class RemoteDataFetcher: RemoteDataFetchable {
     func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, any Error>, Never> {
         return Future<Result<MovieDetailEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
-            print("############")
-            print("movieId: \(movieId)")
-            print("############")
             
             var params: [String: String] = [:]
             
             if let currentDate = Date().startDayOfMonth()?.dateToString(with: "yyyy-MM") {
                 params.updateValue(currentDate, forKey: "currentDate")
             }
+            
+            print("############")
+            print("movieId: \(movieId)")
+            print("params: \(params)")
+            print("############")
             
             self.networkManager.fetchService(.getMovieDetail(movieId: movieId, params: params)) { result in
                 switch result {

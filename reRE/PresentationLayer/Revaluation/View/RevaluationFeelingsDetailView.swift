@@ -12,8 +12,17 @@ import SnapKit
 final class RevaluationFeelingsDetailView: UIView {
     private lazy var iconImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
-        $0.layer.borderColor = UIColor.red.cgColor
-        $0.layer.borderWidth = 1
+        
+        switch feelings {
+        case .positive:
+            $0.image = UIImage(named: "PositiveIcon")
+        case .negative:
+            $0.image = UIImage(named: "NegativeIcon")
+        case .notSure:
+            $0.image = UIImage(named: "NotSureIcon")
+        default:
+            break
+        }
     }
     
     private lazy var titleLabel = UILabel().then {
