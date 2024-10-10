@@ -37,14 +37,6 @@ final class NetworkManager {
     }
     
     func setHeaderToken(token: String?) {
-        guard let token = token,
-              !token.isEmpty else {
-            print("<<<<<<<<<<<<<<<<<<<<")
-            print("Empty Token !!!")
-            print("<<<<<<<<<<<<<<<<<<<<")
-            return
-        }
-        
         self.token = token
     }
 }
