@@ -49,7 +49,7 @@ extension ProfileUsecase: ProfileUsecaseProtocol {
         repository.logout()
     }
     
-    func deleteAccount() -> AnyPublisher<String, Never> {
+    func deleteAccount() -> AnyPublisher<Void, Never> {
         return repository.deleteAccount()
             .compactMap { [weak self] result in
                 switch result {

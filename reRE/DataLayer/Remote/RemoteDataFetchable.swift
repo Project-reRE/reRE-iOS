@@ -25,5 +25,5 @@ protocol RemoteDataFetchable: AnyObject {
     func deleteRevaluation(withId revaluationId: String) -> AnyPublisher<Result<Void, Error>, Never>
     
     func logout()
-    func deleteAccount() -> AnyPublisher<Result<String, Error>, Never>
+    func deleteAccount() -> AnyPublisher<Result<Void, Error>, Never>
 }

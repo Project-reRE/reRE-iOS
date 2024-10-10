@@ -21,7 +21,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
         return remoteDataFetcher.getMyProfile()
     }
     
-    func updateUserInfo(withId id: String, requestModel: UpdateUserInfoRequestModel) -> AnyPublisher<Result<UserEntity, any Error>, Never> {
+    func updateUserInfo(withId id: String, requestModel: UpdateUserInfoRequestModel) -> AnyPublisher<Result<UserEntity, Error>, Never> {
         return remoteDataFetcher.updateUserInfo(withId: id, requestModel: requestModel)
     }
     
@@ -29,7 +29,7 @@ extension ProfileRepository: ProfileRepositoryProtocol {
         return remoteDataFetcher.logout()
     }
     
-    func deleteAccount() -> AnyPublisher<Result<String, any Error>, Never> {
+    func deleteAccount() -> AnyPublisher<Result<Void, Error>, Never> {
         return remoteDataFetcher.deleteAccount()
     }
 }

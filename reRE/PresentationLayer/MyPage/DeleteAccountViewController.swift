@@ -319,6 +319,7 @@ final class DeleteAccountViewController: BaseNavigationViewController {
                                          description: "회원 탈퇴가 완료되었어요.\n언제든 돌아오세요.",
                                          submitCompletion: { [weak self] in
                     CommonUtil.topViewController()?.dismiss(animated: false)
+                    self?.navigationController?.popToRootViewController(animated: false)
                     self?.coordinator?.moveTo(appFlow: TabBarFlow.rank, userData: nil)
                 }, cancelCompletion: nil)
             }.store(in: &cancelBag)

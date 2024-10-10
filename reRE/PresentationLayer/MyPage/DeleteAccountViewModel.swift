@@ -24,8 +24,7 @@ final class DeleteAccountViewModel: BaseViewModel {
     private func bind() {
         shouldDeleteAccount
             .flatMap(usecase.deleteAccount)
-            .sink { [weak self] userId in
-                print("deleted userId: \(userId)")
+            .sink { [weak self] _ in
                 self?.deleteAccountCompleted.send(())
             }.store(in: &cancelBag)
     }
