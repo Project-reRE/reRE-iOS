@@ -30,6 +30,7 @@ final class AppSettingViewController: BaseNavigationViewController {
     
     private lazy var deleteAccountButton = TouchableView().then {
         $0.backgroundColor = .clear
+        $0.isHidden = !StaticValues.isLoggedIn.value
     }
     
     private lazy var deleteAccountLabel = UILabel().then {
