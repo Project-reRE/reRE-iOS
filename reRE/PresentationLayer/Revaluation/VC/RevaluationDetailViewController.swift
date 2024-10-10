@@ -265,6 +265,10 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         
         revaluateButton.didTapped { [weak self] in
             guard let self = self else { return }
+            guard StaticValues.isLoggedIn.value else {
+                self.coordinator?.moveTo(appFlow: TabBarFlow.common(.login), userData: nil)
+                return
+            }
             
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate),
                                      userData: ["movieEntity": self.viewModel.getRevaluationDataValue()])
@@ -272,6 +276,10 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         
         showOtherRevaluationsButton.didTapped { [weak self] in
             guard let self = self else { return }
+            guard StaticValues.isLoggedIn.value else {
+                self.coordinator?.moveTo(appFlow: TabBarFlow.common(.login), userData: nil)
+                return
+            }
             
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.otherRevaluations),
                                      userData: ["movieId": self.viewModel.getMovidId()])

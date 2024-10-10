@@ -76,6 +76,11 @@ extension HistoryViewController: HistoryCategoryViewDelegate {
     func didSelectCategory(_ category: HistoryCategoryView.HistoryCategoryType) {
         switch category {
         case .movie:
+            guard StaticValues.isLoggedIn.value else {
+                coordinator?.moveTo(appFlow: TabBarFlow.common(.login), userData: nil)
+                return
+            }
+            
             coordinator?.moveTo(appFlow: TabBarFlow.history(.main), userData: nil)
         case .book:
             break
