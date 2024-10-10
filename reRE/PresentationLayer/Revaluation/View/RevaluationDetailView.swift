@@ -243,6 +243,7 @@ final class RevaluationDetailView: UIStackView {
     }
     
     func updateGradeTrend(ratingsEntity: [MovieRecentRatingsEntity]) {
+        print(#function)
         chartView.ratings = ratingsEntity
     }
     

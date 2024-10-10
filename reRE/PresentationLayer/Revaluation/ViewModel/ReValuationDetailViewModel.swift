@@ -12,6 +12,8 @@ final class ReValuationDetailViewModel: BaseViewModel {
     private let revaluationData = CurrentValueSubject<MovieDetailEntity, Never>(.init())
     private let showingRatingData = CurrentValueSubject<MovieRecentRatingsEntity, Never>(.init())
     
+    private(set) var currentDate: String = Date().dateToString(with: "MM")
+    
     private let usecase: RevaluationUsecaseProtocol
     private let movieId: String
     
@@ -25,6 +27,10 @@ final class ReValuationDetailViewModel: BaseViewModel {
     
     private func bind() {
         
+    }
+    
+    var isOverDate: Bool {
+        return Date().dateToString(with: "yyyy-MM") != revaluationData.value.statistics.first?.currentDate
     }
     
     func getMovidId() -> String {

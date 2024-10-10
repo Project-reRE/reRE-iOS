@@ -101,7 +101,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     }
     
     private lazy var revaluateButton = TouchableLabel().then {
-        $0.text = "재평가하기"
+        $0.text = "\(viewModel.currentDate)월 재평가하기"
         $0.textAlignment = .center
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.button01.font
@@ -267,6 +267,16 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             guard let self = self else { return }
             guard StaticValues.isLoggedIn.value else {
                 self.coordinator?.moveTo(appFlow: TabBarFlow.common(.login), userData: nil)
+                return
+            }
+            
+            guard !self.viewModel.isOverDate else {
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: "재평가하기",
+                                         description: "지난 달의 재평가엔 참여할 수 없어요.",
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
                 return
             }
             

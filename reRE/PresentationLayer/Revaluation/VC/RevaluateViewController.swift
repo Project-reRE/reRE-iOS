@@ -408,8 +408,18 @@ final class RevaluateViewController: BaseNavigationViewController {
         }
         
         revaluateButton.didTapped { [weak self] in
-            guard let missingCategory = self?.viewModel.checkMissingCategory() else {
-                self?.viewModel.revaluate()
+            guard let self = self else { return }
+            guard !self.viewModel.isOverDate else {
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: "재평가하기",
+                                         description: "지난 달의 재평가엔 참여할 수 없어요.",
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+                return
+            }
+            guard let missingCategory = self.viewModel.checkMissingCategory() else {
+                self.viewModel.revaluate()
                 return
             }
             
@@ -580,7 +590,6 @@ extension RevaluateViewController: UITextViewDelegate {
         textView.text = commentPlaceholder
         textView.textColor = ColorSet.gray(.gray50).color
         updateCountLabel(characterCount: 0)
-        print(#function)
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {

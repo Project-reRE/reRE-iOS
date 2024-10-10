@@ -24,6 +24,10 @@ final class RevaluateViewModel: BaseViewModel {
         revaluateRequestModel.movieId = movieEntity.id
     }
     
+    var isOverDate: Bool {
+        return Date().dateToString(with: "yyyy-MM") != movieEntity.statistics.first?.currentDate
+    }
+    
     func getMovieEntity() -> MovieDetailEntity {
         return movieEntity
     }
