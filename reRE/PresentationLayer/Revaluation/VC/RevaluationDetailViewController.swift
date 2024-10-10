@@ -342,6 +342,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                         $0.bottom.equalToSuperview().inset(moderateScale(number: 64))
                     }
                     
+                    self.revaluationDetailView.layoutIfNeeded()
                     self.revaluationDetailView.updateGradeTrend(ratingsEntity: statistics.numRecentStars)
                     self.revaluationDetailView.updateSpecialPoint(withModel: statistics.numSpecialPointTopThree)
                     self.revaluationDetailView.updateParticipantsView(withModel: statistics)

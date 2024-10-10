@@ -212,7 +212,7 @@ final class RevaluationDetailView: UIStackView {
         
         participantsCountView.snp.makeConstraints {
             $0.top.equalTo(revaluationParticipantsTitleLabel.snp.bottom).offset(moderateScale(number: 24))
-            $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
+            $0.leading.trailing.equalToSuperview()
         }
         
         genderRatioView.snp.makeConstraints {
@@ -243,7 +243,6 @@ final class RevaluationDetailView: UIStackView {
     }
     
     func updateGradeTrend(ratingsEntity: [MovieRecentRatingsEntity]) {
-        print(#function)
         chartView.ratings = ratingsEntity
     }
     
