@@ -215,7 +215,6 @@
 		FEF9D69B2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69A2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift */; };
 		FEF9D69D2C91C6B900D948F5 /* OtherRevaluationsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */; };
 		FEF9D69F2C91CAB300D948F5 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */; };
-		FEF9D6A12C96C28500D948F5 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */; };
 		FEF9D6A42C96C3AE00D948F5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A32C96C3AE00D948F5 /* GoogleSignIn */; };
 		FEF9D6A62C96C3AE00D948F5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FEF9D6A52C96C3AE00D948F5 /* GoogleSignInSwift */; };
 		FEF9D6A82C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */; };
@@ -224,6 +223,7 @@
 		FEF9D6AF2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6AE2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift */; };
 		FEF9D6B12CA2E52A00D948F5 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6B02CA2E52A00D948F5 /* Notification+Extension.swift */; };
 		FEF9D6B32CABB24D00D948F5 /* NoDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF9D6B22CABB24D00D948F5 /* NoDataCell.swift */; };
+		FEF9D6B52CB810D100D948F5 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF9D6B42CB810D100D948F5 /* GoogleService-Info-Dev.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -423,7 +423,6 @@
 		FEF9D69A2C91C4CC00D948F5 /* RemoteOtherRevaluationsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteOtherRevaluationsItem.swift; sourceTree = "<group>"; };
 		FEF9D69C2C91C6B900D948F5 /* OtherRevaluationsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsEntity.swift; sourceTree = "<group>"; };
 		FEF9D69E2C91CAB300D948F5 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
-		FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoRequestModel.swift; sourceTree = "<group>"; };
 		FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAlertViewController.swift; sourceTree = "<group>"; };
 		FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMarkLabel.swift; sourceTree = "<group>"; };
@@ -431,6 +430,7 @@
 		FEF9D6AE2CA2E26F00D948F5 /* RevaluationHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationHistoryViewModel.swift; sourceTree = "<group>"; };
 		FEF9D6B02CA2E52A00D948F5 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		FEF9D6B22CABB24D00D948F5 /* NoDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataCell.swift; sourceTree = "<group>"; };
+		FEF9D6B42CB810D100D948F5 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,7 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				FEF9D6AD2C9E720800D948F5 /* reRE.entitlements */,
-				FEF9D6A02C96C28500D948F5 /* GoogleService-Info-Dev.plist */,
+				FEF9D6B42CB810D100D948F5 /* GoogleService-Info-Dev.plist */,
 				430C2DDA2BB9790D00DE5FC2 /* AppDelegate.swift */,
 				430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */,
 				FECFE43A2C32B71800078CDF /* Injector.swift */,
@@ -1103,7 +1103,7 @@
 				432C09822BE7793C00BBFDB1 /* Pretendard-Black.otf in Resources */,
 				432C09862BE7793C00BBFDB1 /* Pretendard-Regular.otf in Resources */,
 				430C2DE42BB9790F00DE5FC2 /* Assets.xcassets in Resources */,
-				FEF9D6A12C96C28500D948F5 /* GoogleService-Info-Dev.plist in Resources */,
+				FEF9D6B52CB810D100D948F5 /* GoogleService-Info-Dev.plist in Resources */,
 				432C09852BE7793C00BBFDB1 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1507,7 +1507,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.9.9;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.revaluation.rereDev;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.reevaluation.rereDev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1545,7 +1545,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.9.9;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.revaluation.rere;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.reevaluation.rere;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

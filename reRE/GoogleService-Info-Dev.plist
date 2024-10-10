@@ -2,12 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>56958772101-f752a73km04gl11b9c661e5t0orc8lco.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.56958772101-f752a73km04gl11b9c661e5t0orc8lco</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>56958772101-2ct7qev46u27h7g00vpv7f3va236e818.apps.googleusercontent.com</string>
+	<string>56958772101-itc5s2q4il7ibk5mn8hrt3ac9dpvcqet.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD6erCWVE8NcbwV4-0KY8g2Rq4zs3XOfpI</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +11,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>kr.co.revaluation.rereDev</string>
+	<string>kr.co.reevaluation.rereDev</string>
 	<key>PROJECT_ID</key>
 	<string>rere-f695e</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +27,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:56958772101:ios:1d6958128066fd310e1aec</string>
+	<string>1:56958772101:ios:35dee3f00d9444140e1aec</string>
 </dict>
 </plist>
