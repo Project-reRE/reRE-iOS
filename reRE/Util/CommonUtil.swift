@@ -72,14 +72,14 @@ final class CommonUtil {
         topVC.present(alertVC, animated: false)
     }
     
-    static func hideAlertView() {
+    static func hideAlertView(_ completion: (() -> Void)? = nil) {
         guard let topVC = CommonUtil.topViewController(),
               let alertVC = topVC as? AlertViewController else {
             return
             
         }
         
-        alertVC.dismiss(animated: false)
+        alertVC.dismiss(animated: false, completion: completion)
     }
     
     static func showLoadingView() {

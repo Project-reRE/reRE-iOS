@@ -150,20 +150,24 @@ final class MyPageViewController: BaseViewController {
                         alertVC.updateTextFieldDescriptionLabel(withText: "이미 등록된 닉네임이에요.",
                                                                 isErrorOccured: true)
                     default:
+                        CommonUtil.hideAlertView {
+                            CommonUtil.showAlertView(withType: .default,
+                                                     buttonType: .oneButton,
+                                                     title: "statueCode: \(userError.statusCode)",
+                                                     description: userError.message.first,
+                                                     submitCompletion: nil,
+                                                     cancelCompletion: nil)
+                        }
+                    }
+                } else {
+                    CommonUtil.hideAlertView {
                         CommonUtil.showAlertView(withType: .default,
                                                  buttonType: .oneButton,
-                                                 title: "statueCode: \(userError.statusCode)",
-                                                 description: userError.message.first,
+                                                 title: error.localizedDescription,
+                                                 description: error.localizedDescription,
                                                  submitCompletion: nil,
                                                  cancelCompletion: nil)
                     }
-                } else {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: error.localizedDescription,
-                                             description: error.localizedDescription,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
                 }
             }.store(in: &cancelBag)
         
