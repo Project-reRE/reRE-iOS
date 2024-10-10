@@ -276,11 +276,6 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         
         showOtherRevaluationsButton.didTapped { [weak self] in
             guard let self = self else { return }
-            guard StaticValues.isLoggedIn.value else {
-                self.coordinator?.moveTo(appFlow: TabBarFlow.common(.login), userData: nil)
-                return
-            }
-            
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.otherRevaluations),
                                      userData: ["movieId": self.viewModel.getMovidId()])
         }
@@ -317,7 +312,6 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 if movieDetail.statistics.isEmpty || movieDetail.statistics.first?.numStarsParticipants == 0 {
                     self.noRevaluationView.isHidden = false
                     self.revaluationDetailView.isHidden = true
-                    self.showOtherRevaluationsButton.isHidden = true
                     
                     self.revaluationDetailView.snp.removeConstraints()
                     
@@ -329,7 +323,6 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 } else if let statistics = movieDetail.statistics.first {
                     self.noRevaluationView.isHidden = true
                     self.revaluationDetailView.isHidden = false
-                    self.showOtherRevaluationsButton.isHidden = false
                     
                     self.noRevaluationView.snp.removeConstraints()
                     
