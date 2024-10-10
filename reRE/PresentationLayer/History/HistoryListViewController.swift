@@ -147,6 +147,18 @@ final class HistoryListViewController: BaseNavigationViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .mainSink { [weak self] error in
+                LogDebug(error)
+                
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: error.localizedDescription,
+                                         description: error.localizedDescription,
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+            }.store(in: &cancelBag)
+        
         let showingDatePublisher = viewModel.getShowingDateValue()
         let historyListPublisher = viewModel.getHistoryListPublisher().dropFirst()
         

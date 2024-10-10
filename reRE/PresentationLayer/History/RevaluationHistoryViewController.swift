@@ -287,6 +287,18 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .mainSink { [weak self] error in
+                LogDebug(error)
+                
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: error.localizedDescription,
+                                         description: error.localizedDescription,
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+            }.store(in: &cancelBag)
+        
         viewModel.deletedHistoryPublisher
             .mainSink { [weak self] _ in
                 NotificationCenter.default.post(name: .revaluationDeleted, object: nil)

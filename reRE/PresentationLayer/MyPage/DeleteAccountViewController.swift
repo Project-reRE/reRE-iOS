@@ -286,9 +286,20 @@ final class DeleteAccountViewController: BaseNavigationViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .mainSink { [weak self] error in
+                LogDebug(error)
+                
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: error.localizedDescription,
+                                         description: error.localizedDescription,
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+            }.store(in: &cancelBag)
+        
         checkPrecautionButton.getCheckPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isChecked in
+            .mainSink { [weak self] isChecked in
                 if isChecked {
                     self?.deleteAccountButton.backgroundColor = ColorSet.tertiary(.navy40).color
                     self?.deleteAccountButton.textColor = ColorSet.gray(.white).color
@@ -301,8 +312,7 @@ final class DeleteAccountViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
         
         viewModel.getDeleteAccountCompletedPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
+            .mainSink { _ in
                 CommonUtil.showAlertView(withType: .default,
                                          buttonType: .oneButton,
                                          title: "회원 탈퇴하기",

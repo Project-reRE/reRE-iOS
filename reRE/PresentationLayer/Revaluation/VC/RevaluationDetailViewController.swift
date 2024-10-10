@@ -280,8 +280,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     
     private func bind() {
         viewModel.getErrorSubject()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
+            .mainSink { [weak self] error in
                 LogDebug(error)
                 
                 if let userError = error as? UserError {

@@ -116,10 +116,20 @@ final class SearchViewController: BaseNavigationViewController {
     }
     
     private func bind() {
+        viewModel.getErrorSubject()
+            .mainSink { [weak self] error in
+                LogDebug(error)
+                
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: error.localizedDescription,
+                                         description: error.localizedDescription,
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+            }.store(in: &cancelBag)
+        
         viewModel.getSearchResultPublisher()
-            .dropFirst()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] searchedResult in
+            .droppedSink { [weak self] searchedResult in
                 if searchedResult.isEmpty {
                     guard let searchedText = self?.textField.text else { return }
                     

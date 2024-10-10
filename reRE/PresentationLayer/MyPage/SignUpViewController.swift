@@ -320,8 +320,7 @@ final class SignUpViewController: BaseNavigationViewController {
     
     private func bind() {
         viewModel.getErrorSubject()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
+            .mainSink { [weak self] error in
                 guard let self = self else { return }
                 
                 LogDebug(error)
