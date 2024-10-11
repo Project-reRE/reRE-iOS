@@ -10,6 +10,7 @@ import Combine
 import Then
 import SnapKit
 import KakaoSDKUser
+import GoogleSignIn
 
 final class MyPageViewController: BaseViewController {
     private var cancelBag = Set<AnyCancellable>()
@@ -120,19 +121,37 @@ final class MyPageViewController: BaseViewController {
             self?.coordinator?.moveTo(appFlow: TabBarFlow.myPage(.appSetting(.main)), userData: nil)
         }
         
-        userView.logoutButton.containerView.didTapped {
-            UserApi.shared.logout { [weak self] error in
-                guard error == nil else {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: "로그아웃에 실패 했습니다.",
-                                             description: error?.localizedDescription,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
+        userView.logoutButton.containerView.didTapped { [weak self] in
+            guard let loginType = self?.viewModel.getLoginType() else {
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: "로그아웃에 실패 했습니다.",
+                                         description: "로그인 되어 있지 않은 유저입니다.",
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+                return
+            }
+            
+            switch loginType {
+            case .kakao:
+                UserApi.shared.logout { [weak self] error in
+                    guard error == nil else {
+                        CommonUtil.showAlertView(withType: .default,
+                                                 buttonType: .oneButton,
+                                                 title: "로그아웃에 실패 했습니다.",
+                                                 description: error?.localizedDescription,
+                                                 submitCompletion: nil,
+                                                 cancelCompletion: nil)
+                        
+                        return
+                    }
                     
-                    return
+                    self?.viewModel.logout()
                 }
-                
+            case .apple:
+                self?.viewModel.logout()
+            case .google:
+                GIDSignIn.sharedInstance.signOut()
                 self?.viewModel.logout()
             }
         }

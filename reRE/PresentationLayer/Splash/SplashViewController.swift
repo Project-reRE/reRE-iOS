@@ -87,12 +87,35 @@ final class SplashViewController: BaseViewController {
                         let config = GIDConfiguration(clientID: clientID)
                         GIDSignIn.sharedInstance.configuration = config
                         
-                        guard let token = GIDSignIn.sharedInstance.currentUser?.refreshToken.tokenString else {
-                            self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
-                            return
+                        GIDSignIn.sharedInstance.restorePreviousSignIn { [weak self] user, error in
+                            guard error == nil, let token = user?.accessToken.tokenString else {
+                                CommonUtil.showAlertView(withType: .default,
+                                                         buttonType: .oneButton,
+                                                         title: error?.localizedDescription,
+                                                         description: error?.localizedDescription,
+                                                         submitCompletion: { [weak self] in
+                                    self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
+                                }, cancelCompletion: nil)
+                                
+                                return
+                            }
+                            
+                            user?.refreshTokensIfNeeded { refreshedUser, error in
+                                guard error == nil, let token = refreshedUser?.accessToken.tokenString else {
+                                    CommonUtil.showAlertView(withType: .default,
+                                                             buttonType: .oneButton,
+                                                             title: error?.localizedDescription,
+                                                             description: error?.localizedDescription,
+                                                             submitCompletion: { [weak self] in
+                                        self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
+                                    }, cancelCompletion: nil)
+                                    
+                                    return
+                                }
+                                
+                                self?.viewModel.snsLogin(withToken: token, loginType: .google)
+                            }
                         }
-                        
-                        self?.viewModel.snsLogin(withToken: token, loginType: .google)
                     }
                 } else {
                     self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)

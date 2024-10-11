@@ -41,7 +41,8 @@ struct Injector {
         }
         
         container.register(ProfileRepositoryProtocol.self) { resolver in
-            let repository = ProfileRepository(remoteDataFetcher: resolver.resolve(RemoteDataFetchable.self)!)
+            let repository = ProfileRepository(localDataFetcher: resolver.resolve(LocalDataFetchable.self)!,
+                                               remoteDataFetcher: resolver.resolve(RemoteDataFetchable.self)!)
             return repository
         }
         

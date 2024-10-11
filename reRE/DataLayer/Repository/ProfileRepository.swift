@@ -9,9 +9,11 @@ import Foundation
 import Combine
 
 final class ProfileRepository {
+    private let localDataFetcher: LocalDataFetchable
     private let remoteDataFetcher: RemoteDataFetchable
     
-    init(remoteDataFetcher: RemoteDataFetchable) {
+    init(localDataFetcher: LocalDataFetchable, remoteDataFetcher: RemoteDataFetchable) {
+        self.localDataFetcher = localDataFetcher
         self.remoteDataFetcher = remoteDataFetcher
     }
 }
@@ -23,6 +25,13 @@ extension ProfileRepository: ProfileRepositoryProtocol {
     
     func updateUserInfo(withId id: String, requestModel: UpdateUserInfoRequestModel) -> AnyPublisher<Result<UserEntity, Error>, Never> {
         return remoteDataFetcher.updateUserInfo(withId: id, requestModel: requestModel)
+    }
+    
+    func getLoginType() -> SNSLoginType? {
+        guard let loginTypeString = localDataFetcher.getLoginType() else { return nil }
+        guard let loginType = SNSLoginType(rawValue: loginTypeString) else { return nil }
+        
+        return loginType
     }
     
     func logout() {

@@ -45,6 +45,10 @@ extension ProfileUsecase: ProfileUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
+    func getLoginType() -> SNSLoginType? {
+        return repository.getLoginType()
+    }
+    
     func logout() {
         repository.logout()
     }

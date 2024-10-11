@@ -31,7 +31,8 @@ final class SplashViewModel: BaseViewModel {
     }
     
     func getLoginType() {
-        loginType.send(usecase.getLoginType())
+        let loginType: SNSLoginType? = usecase.getLoginType()
+        self.loginType.send(loginType)
     }
     
     func getLoginTypePublisher() -> AnyPublisher<SNSLoginType?, Never> {

@@ -11,6 +11,7 @@ import Combine
 protocol ProfileUsecaseProtocol: BaseUsecaseProtocol {
     func getMyProfile() -> AnyPublisher<UserEntity, Never>
     func updateUserInfo(withId id: String, requestModel: UpdateUserInfoRequestModel) -> AnyPublisher<UserEntity, Never>
+    func getLoginType() -> SNSLoginType?
     func logout()
     func deleteAccount() -> AnyPublisher<Void, Never>
 }

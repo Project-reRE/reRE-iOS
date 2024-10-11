@@ -51,6 +51,10 @@ final class ProfileViewModel: BaseViewModel {
         }.store(in: &cancelBag)
     }
     
+    func getLoginType() -> SNSLoginType? {
+        return usecase.getLoginType()
+    }
+    
     func logout() {
         usecase.logout()
     }

@@ -396,7 +396,6 @@ final class SignUpViewController: BaseNavigationViewController {
         viewModel.getLoginCompletionPublisher()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("login success")
                 self?.navigationController?.popViewController(animated: true)
             }.store(in: &cancelBag)
     }

@@ -63,8 +63,6 @@ final class LoginViewModel: BaseViewModel {
             .flatMap(usecase.signUp(withParams:))
             .sink { [weak self] userId in
                 guard let self = self else { return }
-                print("userId: \(userId)")
-                
                 self.shouldSNSLogin.send(self.shouldSNSLogin.value)
             }.store(in: &cancelBag)
     }
