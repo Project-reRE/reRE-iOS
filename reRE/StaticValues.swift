@@ -30,10 +30,10 @@ struct StaticValues {
     static let inquiryEmail = "rerevaluation@gmail.com"
     
 #if DEBUG
-    static let googleClientId: String = "56958772101-f752a73km04gl11b9c661e5t0orc8lco.apps.googleusercontent.com"
+    static let googleClientId: String = "56958772101-mvd7e443a88vd59pu8k07eeloenttnu0.apps.googleusercontent.com"
     static let kakaoAppKey: String = "cd6a4d45774e3c2ce7409abcaaf1b0f8"
 #else
-    static let googleClientId: String = "56958772101-f752a73km04gl11b9c661e5t0orc8lco.apps.googleusercontent.com"
+    static let googleClientId: String = "56958772101-mvd7e443a88vd59pu8k07eeloenttnu0.apps.googleusercontent.com"
     static let kakaoAppKey: String = "cd6a4d45774e3c2ce7409abcaaf1b0f8"
 #endif
     
