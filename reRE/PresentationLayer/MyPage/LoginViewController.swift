@@ -14,11 +14,16 @@ import SnapKit
 import KakaoSDKUser
 import GoogleSignIn
 
-final class LoginViewController: BaseBottomSheetViewController {
+final class LoginViewController: BaseNavigationViewController {
     private var cancelBag = Set<AnyCancellable>()
     
     private var currentNonce: String?
     var coordinator: CommonBaseCoordinator?
+    
+    private lazy var splashLogoImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(named: "SplashLogoImage")
+    }
     
     private lazy var kakaoLoginButton = TouchableView().then {
         $0.backgroundColor = UIColor(red: 0.996, green: 0.898, blue: 0, alpha: 1)
@@ -51,7 +56,7 @@ final class LoginViewController: BaseBottomSheetViewController {
     }
     
     private lazy var appleTitleLabel = UILabel().then {
-        $0.text = "Apple로 로그인하기"
+        $0.text = "Apple로 계속하기"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.gray(.white).color
     }
@@ -68,7 +73,7 @@ final class LoginViewController: BaseBottomSheetViewController {
     }
     
     private lazy var googleTitleLabel = UILabel().then {
-        $0.text = "Google로 로그인하기"
+        $0.text = "Google로 계속하기"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.gray(.black).color
     }
@@ -78,7 +83,7 @@ final class LoginViewController: BaseBottomSheetViewController {
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -93,7 +98,7 @@ final class LoginViewController: BaseBottomSheetViewController {
     override func addViews() {
         super.addViews()
         
-        bottomSheetContainerView.addSubviews([kakaoLoginButton, appleLoginButton, googleLoginButton])
+        view.addSubviews([splashLogoImageView, kakaoLoginButton, appleLoginButton, googleLoginButton])
         kakaoLoginButton.addSubviews([kakaoIcon, kakaoTitleLabel])
         appleLoginButton.addSubviews([appleIcon, appleTitleLabel])
         googleLoginButton.addSubviews([googleIcon, googleTitleLabel])
@@ -102,19 +107,19 @@ final class LoginViewController: BaseBottomSheetViewController {
     override func makeConstraints() {
         super.makeConstraints()
         
-        bottomSheetContainerView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(view.snp.bottom)
+        splashLogoImageView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(moderateScale(number: 192))
         }
         
         kakaoLoginButton.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.bottom.equalTo(appleLoginButton.snp.top).offset(-moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 56))
         }
         
         appleLoginButton.snp.makeConstraints {
-            $0.top.equalTo(kakaoLoginButton.snp.bottom).offset(moderateScale(number: 8))
+            $0.bottom.equalTo(googleLoginButton.snp.top).offset(-moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 56))
         }
@@ -123,7 +128,7 @@ final class LoginViewController: BaseBottomSheetViewController {
             $0.top.equalTo(appleLoginButton.snp.bottom).offset(moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 56))
-            $0.bottom.equalToSuperview().inset(getSafeAreaBottom())
+            $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom())
         }
         
         [kakaoIcon, appleIcon, googleIcon].forEach { subView in
@@ -144,8 +149,6 @@ final class LoginViewController: BaseBottomSheetViewController {
     
     override func setupIfNeeded() {
         super.setupIfNeeded()
-        
-        bottomSheetContainerView.backgroundColor = .clear
         
         kakaoLoginButton.didTapped { [weak self] in
             self?.kakaoLogin { [weak self] accessToken, error in
@@ -228,12 +231,9 @@ final class LoginViewController: BaseBottomSheetViewController {
                             }
                         }
                     case 404: // Should SignUp
-                        self.dismissBottomSheet { [weak self] in
-                            guard let self = self else { return }
-                            
-                            self.coordinator?.moveTo(appFlow: TabBarFlow.common(.signUp),
-                                                     userData: ["viewModel": self.viewModel])
-                        }
+                        self.navigationController?.popViewController(animated: true)
+                        self.coordinator?.moveTo(appFlow: TabBarFlow.common(.signUp),
+                                                 userData: ["viewModel": self.viewModel])
                     default:
                         CommonUtil.showAlertView(withType: .default,
                                                  buttonType: .oneButton,
@@ -255,7 +255,7 @@ final class LoginViewController: BaseBottomSheetViewController {
         viewModel.getLoginCompletionPublisher()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.dismissBottomSheet()
+                self?.navigationController?.popViewController(animated: true)
             }.store(in: &cancelBag)
     }
 }

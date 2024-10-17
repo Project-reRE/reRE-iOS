@@ -52,8 +52,7 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             let loginVC: LoginViewController = LoginViewController(viewModel: viewModel)
             loginVC.coordinator = self
             
-            loginVC.modalPresentationStyle = .overFullScreen
-            currentNavigationViewController?.present(loginVC, animated: false)
+            currentNavigationViewController?.pushViewController(loginVC, animated: true)
         case .signUp:
             guard let viewModel = userData?["viewModel"] as? LoginViewModel else { return }
             
