@@ -81,7 +81,6 @@ enum AppSettingScene {
     case privacyPolicy
     case servicePolicy
     case teensPolicy
-    case openSourceLicense
     case openAPI
     case deleteAccount
 }

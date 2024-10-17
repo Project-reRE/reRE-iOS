@@ -21,12 +21,12 @@ struct StaticValues {
         return userCalendar.date(from: dateComponents) ?? Date()
     }
     
-    static let privacyPolicyUrlString = "https://revaluation.notion.site/3e61d87145254fc6b8cf02b7853304d7?pvs=74"
-    static let serviceAgreementUrlString = "https://revaluation.notion.site/61bff9fc064047dbaeec12e2c792b526?pvs=74"
-    static let noticeUrlString = "https://revaluation.notion.site/b458446df3b943749fb5b603f7155448?pvs=4"
-    static let faqUrlString = "https://revaluation.notion.site/cafff7657cd44b4991c7ce27cf39b384?pvs=4"
-    static let termsPolicyUrlString = "https://revaluation.notion.site/72ff79808476490aa5feb170caa59652"
-    static let openAPIUrlString = "rerevaluation@gmail.com"
+    static let privacyPolicyUrlString = "https://reevaluation.notion.site/3e61d87145254fc6b8cf02b7853304d7"
+    static let serviceAgreementUrlString = "https://reevaluation.notion.site/61bff9fc064047dbaeec12e2c792b526"
+    static let noticeUrlString = "https://reevaluation.notion.site/b458446df3b943749fb5b603f7155448"
+    static let faqUrlString = "https://reevaluation.notion.site/cafff7657cd44b4991c7ce27cf39b384"
+    static let termsPolicyUrlString = "https://reevaluation.notion.site/72ff79808476490aa5feb170caa59652?pvs=74"
+    static let openAPIUrlString = "https://reevaluation.notion.site/API-e55e49e9c48140e8be8c8a4f6ce13f2f?pvs=74"
     static let inquiryEmail = "rerevaluation@gmail.com"
     
 #if DEBUG

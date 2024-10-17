@@ -134,8 +134,6 @@ extension AppSettingViewController: UICollectionViewDelegate {
             case .termsPolicy:
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
                                           userData: ["webViewType": WebViewType.termsPolicy])
-            case .openSourceLicense:
-                break
             case .openAPI:
                 self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
                                           userData: ["webViewType": WebViewType.openAPI])

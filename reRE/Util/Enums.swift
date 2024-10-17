@@ -46,7 +46,6 @@ enum AppSettingMenu: Int, CaseIterable {
     case servicePolicy
     case privacyPolicy
     case termsPolicy
-    case openSourceLicense
     case openAPI
     
     var titleText: String {
@@ -57,8 +56,6 @@ enum AppSettingMenu: Int, CaseIterable {
             return "개인정보 처리방침 보기"
         case .termsPolicy:
             return "운영 정책 보기"
-        case .openSourceLicense:
-            return "사용한 오픈소스 라이선스 보기"
         case .openAPI:
             return "사용한 오픈 API 보기"
         }

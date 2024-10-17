@@ -55,8 +55,6 @@ final class MyPageCoordinator: NSObject, MyPageBaseCoordinator {
             break
         case .teensPolicy:
             break
-        case .openSourceLicense:
-            break
         case .openAPI:
             break
         case .deleteAccount:
