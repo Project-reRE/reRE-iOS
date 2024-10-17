@@ -129,8 +129,13 @@ final class HistoryListViewController: BaseNavigationViewController {
         }
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didDeleteRevaluation),
+                                               selector: #selector(shouldUpdateRevaluationList),
                                                name: .revaluationDeleted,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(shouldUpdateRevaluationList),
+                                               name: .revaluationAdded,
                                                object: nil)
     }
     
@@ -138,10 +143,14 @@ final class HistoryListViewController: BaseNavigationViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: .revaluationDeleted,
                                                   object: nil)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .revaluationAdded,
+                                                  object: nil)
     }
     
     @objc
-    private func didDeleteRevaluation() {
+    private func shouldUpdateRevaluationList() {
         viewModel.fetchRevaluationHistories()
     }
     

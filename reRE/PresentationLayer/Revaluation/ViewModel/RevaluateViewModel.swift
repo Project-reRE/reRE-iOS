@@ -59,6 +59,7 @@ final class RevaluateViewModel: BaseViewModel {
     func revaluate() {
         usecase.revaluate(with: revaluateRequestModel)
             .sink { [weak self] _ in
+                NotificationCenter.default.post(name: .revaluationAdded, object: nil)
                 self?.revaluationSuccess.send(())
             }.store(in: &cancelBag)
     }
