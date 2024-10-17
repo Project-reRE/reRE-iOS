@@ -76,7 +76,7 @@ extension SearchMainViewController: SearchCategoryViewDelegate {
     func didSelectCategory(_ category: SearchCategoryView.SearchCategoryType) {
         switch category {
         case .movie:
-            coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
+            coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
         case .book:
             break
         case .music:

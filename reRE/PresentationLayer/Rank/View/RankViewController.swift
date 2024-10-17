@@ -319,7 +319,7 @@ extension RankViewController: UICollectionViewDataSource {
                 
                 cell.updateView(with: .noYesterDayRevaluations, isButtonHidden: false)
                 cell.actionButton.didTapped { [weak self] in
-                    self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
+                    self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
                 }
                 
                 return cell
@@ -330,7 +330,7 @@ extension RankViewController: UICollectionViewDataSource {
                 
                 cell.updateView(with: .noYesterDayRevaluations, isButtonHidden: false, genre: genre)
                 cell.actionButton.didTapped { [weak self] in
-                    self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
+                    self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
                 }
                 
                 return cell
