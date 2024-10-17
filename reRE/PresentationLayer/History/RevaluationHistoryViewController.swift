@@ -69,7 +69,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
     }
     
     private lazy var revaluationDetailLabel = UILabel().then {
-        $0.font = FontSet.body01.font
+        $0.font = FontSet.body03.font
         $0.textColor = ColorSet.gray(.gray70).color
         $0.numberOfLines = 0
     }
@@ -325,19 +325,54 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
             revaluateDateLabel.text = "\(createdDate) 평가"
         }
         
-        if let specialPoint = RevaluationCategoryView.CategoryType(rawValue: historyEntity.specialPoint)?.titleText,
-           let pastValuation = RevaluationCategoryView.CategoryType(rawValue: historyEntity.pastValuation)?.titleText,
-           let presentValuation = RevaluationCategoryView.CategoryType(rawValue: historyEntity.presentValuation)?.titleText {
-            revaluationDetailLabel.text = "재평가 평점은 \(historyEntity.numStars), 주목할 포인트는 '\(specialPoint)', 과거에는 '\(pastValuation)', 현재는 '\(presentValuation)'이라고 평가했어요."
+        if let specialPoint = RevaluationCategoryView.CategoryType(rawValue: historyEntity.specialPoint),
+           let pastValuation = RevaluationCategoryView.CategoryType(rawValue: historyEntity.pastValuation),
+           let presentValuation = RevaluationCategoryView.CategoryType(rawValue: historyEntity.presentValuation) {
+            revaluationDetailLabel.text = "재평가 평점은 \(historyEntity.numStars), 주목할 포인트는 '\(specialPoint.titleText)', 과거에는 '\(pastValuation.titleText)', 현재는 '\(presentValuation.titleText)'이라고 평가했어요."
             
             
-            ["\(historyEntity.numStars)", "'\(specialPoint)'",
-             "'\(pastValuation)'", "'\(presentValuation)'"]
+            ["\(historyEntity.numStars)", "'\(specialPoint.titleText)'"]
                 .forEach {
                     revaluationDetailLabel.highLightText(targetString: $0,
-                                                         color: ColorSet.secondary(.olive50).color,
-                                                         font: FontSet.title02.font)
+                                                         color: ColorSet.tertiary(.navy80).color,
+                                                         font: FontSet.body02.font)
                 }
+            
+            var pastHighlightingColor: UIColor?
+            
+            switch pastValuation {
+            case .planningIntent, .directorsDirection, .actingSkills,
+                    .scenario, .ost, .socialIssues, .visualElement, .soundElement:
+                break
+            case .positive:
+                pastHighlightingColor = ColorSet.secondary(.olive50).color
+            case .negative:
+                pastHighlightingColor = ColorSet.primary(.orange50).color
+            case .notSure:
+                pastHighlightingColor = ColorSet.secondary(.cyan60).color
+            }
+            
+            revaluationDetailLabel.highLightText(targetString: "'\(pastValuation.titleText)'",
+                                                 color: pastHighlightingColor,
+                                                 font: FontSet.body02.font)
+            
+            var currentHighlightingColor: UIColor?
+            
+            switch presentValuation {
+            case .planningIntent, .directorsDirection, .actingSkills,
+                    .scenario, .ost, .socialIssues, .visualElement, .soundElement:
+                break
+            case .positive:
+                currentHighlightingColor = ColorSet.secondary(.olive50).color
+            case .negative:
+                currentHighlightingColor = ColorSet.primary(.orange50).color
+            case .notSure:
+                currentHighlightingColor = ColorSet.secondary(.cyan60).color
+            }
+            
+            revaluationDetailLabel.highLightText(targetString: "'\(presentValuation.titleText)'",
+                                                 color: currentHighlightingColor,
+                                                 font: FontSet.body02.font)
         }
     }
 }

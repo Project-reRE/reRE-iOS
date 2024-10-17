@@ -201,7 +201,7 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
             
             revaluationLabel.highLightText(targetString: "'\(pastFeelings.titleText)'",
                                            color: pastHighlightingColor,
-                                           font: FontSet.title03.font)
+                                           font: FontSet.body02.font)
             
             var currentHighlightingColor: UIColor?
             
@@ -219,7 +219,7 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
             
             revaluationLabel.highLightText(targetString: "'\(currentFeelings.titleText)'",
                                            color: currentHighlightingColor,
-                                           font: FontSet.title03.font)
+                                           font: FontSet.body02.font)
         } else {
             revaluationLabel.text = "재평가 평점은 '\(rating)' 주목할 포인트는 '???'\n과거에는 '???' 현재는 '???'이라고 평가했어요."
         }
