@@ -125,8 +125,7 @@ final class HistoryListViewController: BaseNavigationViewController {
         }
         
         noHistoryListView.doRevaluateButton.didTapped { [weak self] in
-            self?.navigationController?.popViewController(animated: false)
-            self?.coordinator?.moveTo(appFlow: TabBarFlow.search(.search), userData: nil)
+            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
         }
         
         NotificationCenter.default.addObserver(self,

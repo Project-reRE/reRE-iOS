@@ -79,6 +79,12 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
             let otherRevaluationsVC = OtherRevaluationsViewController(viewModel: viewModel)
             otherRevaluationsVC.coordinator = self
             currentNavigationViewController?.pushViewController(otherRevaluationsVC, animated: true)
+        case .search:
+            let viewModel = SearchViewModel(usecase: Injector.shared.resolve(SearchUsecaseProtocol.self)!)
+            let searchVC = SearchViewController(viewModel: viewModel)
+            searchVC.hidesBottomBarWhenPushed = true
+            searchVC.coordinator = self
+            currentNavigationViewController?.pushViewController(searchVC, animated: true)
         }
     }
 }

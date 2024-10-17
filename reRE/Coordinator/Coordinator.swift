@@ -72,6 +72,7 @@ enum CommonFlow: Flow {
     case otherRevaluations
     case login
     case signUp
+    case search
 }
 
 enum AppSettingScene {
