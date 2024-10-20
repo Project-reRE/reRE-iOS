@@ -29,7 +29,7 @@ struct SearchMapper {
                                                                   directors: movieDirectorsEntity,
                                                                   actors: movieActorsEntity,
                                                                   rating: entity.data.rating,
-                                                                  genre: entity.data.genre,
+                                                                  genre: entity.data.genre ?? [],
                                                                   posters: entity.data.posters,
                                                                   stills: entity.data.stills))
         }

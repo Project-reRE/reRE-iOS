@@ -30,7 +30,7 @@ struct RemoteSearchMapper {
                                                                       directors: movieDirectorsEntity ?? [],
                                                                       actors: movieActorsEntity ?? [],
                                                                       rating: remoteResultItem.data?.rating ?? "",
-                                                                      genre: remoteResultItem.data?.genre ?? "",
+                                                                      genre: remoteResultItem.data?.genre ?? [],
                                                                       posters: remoteResultItem.data?.posters ?? [],
                                                                       stills: remoteResultItem.data?.stills ?? [])
             

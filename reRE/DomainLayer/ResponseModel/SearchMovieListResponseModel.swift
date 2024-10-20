@@ -24,7 +24,7 @@ struct SearchMovieListDataResponseModel {
     let directors: [MovieDirectorDetailResponseModel]
     let actors: [MovieActorDetailResponseModel]
     let rating: String
-    let genre: String
+    let genre: [String]
     let posters: [String]
     let stills: [String]
 }

@@ -100,14 +100,10 @@ final class SearchResultItemCell: UICollectionViewCell {
     
     func updateView(with model: SearchMovieListResultResponseModel) {
         titleLabel.text = model.data.title
-        genresLabel.text = model.data.genre
+        genresLabel.text = model.data.genre.map { $0 }.joined(separator: ", ")
         yearLabel.text = model.data.prodYear
-        
-        let directors = model.data.directors.map { $0.directorNm }.joined(separator: ", ")
-        directorsLabel.text = directors
-        
-        let actors = model.data.actors.map { $0.actorNm }.joined(separator: ", ")
-        actorsLabel.text = actors
+        directorsLabel.text = model.data.directors.map { $0.directorNm }.joined(separator: ", ")
+        actorsLabel.text = model.data.actors.map { $0.actorNm }.joined(separator: ", ")
         
         if let postersURLString = model.data.posters.first, postersURLString.isEmpty == false {
             thumbnailImageView.kf.setImage(with: URL(string: postersURLString))

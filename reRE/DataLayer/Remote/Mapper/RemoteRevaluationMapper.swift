@@ -97,7 +97,7 @@ struct RemoteRevaluationMapper {
                                  directors: movieDirectorsEntity ?? [],
                                  actors: movieActorsEntity ?? [],
                                  rating: remoteItem.data?.rating ?? "",
-                                 genre: remoteItem.data?.genre ?? "",
+                                 genre: remoteItem.data?.genre ?? [],
                                  posters: remoteItem.data?.posters ?? [],
                                  stills: remoteItem.data?.stills ?? []),
                      statistics: statistics ?? [])

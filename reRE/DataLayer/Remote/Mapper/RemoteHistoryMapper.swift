@@ -31,7 +31,7 @@ struct RemoteHistoryMapper {
                                                                                     directors: movieDirectorsEntity ?? [],
                                                                                     actors: movieActorsEntity ?? [],
                                                                                     rating: remoteData.movie?.data?.rating ?? "",
-                                                                                    genre: remoteData.movie?.data?.genre ?? "",
+                                                                                    genre: remoteData.movie?.data?.genre ?? [],
                                                                                     posters: remoteData.movie?.data?.posters ?? [],
                                                                                     stills: remoteData.movie?.data?.stills ?? []))
             

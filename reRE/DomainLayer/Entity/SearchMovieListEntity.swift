@@ -44,7 +44,7 @@ struct SearchMovieListDataEntity {
     let directors: [MovieDirectorDetailEntity]
     let actors: [MovieActorDetailEntity]
     let rating: String
-    let genre: String
+    let genre: [String]
     let posters: [String]
     let stills: [String]
     
@@ -54,7 +54,7 @@ struct SearchMovieListDataEntity {
          directors: [MovieDirectorDetailEntity],
          actors: [MovieActorDetailEntity],
          rating: String,
-         genre: String,
+         genre: [String],
          posters: [String],
          stills: [String]) {
         self.title = title
@@ -75,7 +75,7 @@ struct SearchMovieListDataEntity {
         directors = []
         actors = []
         rating = ""
-        genre = ""
+        genre = []
         posters = []
         stills = []
     }

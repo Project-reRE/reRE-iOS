@@ -377,11 +377,8 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         
         yearLabel.text = model.prodYear
         titleLabel.text = model.title
-        genreLabel.text = model.genre
-        let directors = model.directors.map { $0.directorNm }.joined(separator: ", ")
-        directorLabel.text = directors
-        
-        let actors = model.actors.map { $0.actorNm }.joined(separator: ", ")
-        actorLabel.text = actors
+        genreLabel.text = model.genre.map { $0 }.joined(separator: ", ")
+        directorLabel.text = model.directors.map { $0.directorNm }.joined(separator: ", ")
+        actorLabel.text = model.actors.map { $0.actorNm }.joined(separator: ", ")
     }
 }
