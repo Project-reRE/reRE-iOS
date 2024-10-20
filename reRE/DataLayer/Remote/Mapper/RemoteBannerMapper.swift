@@ -28,7 +28,7 @@ struct RemoteBannerMapper {
                 let directorsEntity = remoteMovieDirectorDataToEntity(remoteData: remoteMovieSetData.data?.directors)
                 return .init(id: remoteMovieSetData.id ?? "",
                              data: .init(title: remoteMovieSetData.data?.title ?? "",
-                                         genre: remoteMovieSetData.data?.genre ?? "",
+                                         genre: remoteMovieSetData.data?.genre ?? [],
                                          repRlsDate: remoteMovieSetData.data?.repRlsDate ?? "",
                                          directors: directorsEntity,
                                          actors: actorsEntity,

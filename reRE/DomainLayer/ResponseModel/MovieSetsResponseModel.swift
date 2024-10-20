@@ -23,7 +23,7 @@ struct MovieSetResponseModel {
 
 struct MovieResponseModel {
     let title: String
-    let genre: String
+    let genre: [String]
     let repRlsDate: String
     let directors: [MovieDirectorDetailResponseModel]
     let actors: [MovieActorDetailResponseModel]

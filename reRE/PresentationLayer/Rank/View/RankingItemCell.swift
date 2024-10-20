@@ -168,6 +168,17 @@ final class RankingItemCell: UICollectionViewCell {
         }
         
         actorLabel.text = actorText
-        genreLabel.text = model.data.genre
+        
+        var genreText: String = ""
+        
+        for (index, genre) in model.data.genre.enumerated() {
+            if index == model.data.genre.count - 1 {
+                genreText += genre
+            } else {
+                genreText += "\(genre), "
+            }
+        }
+        
+        genreLabel.text = genreText
     }
 }

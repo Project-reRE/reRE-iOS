@@ -41,7 +41,7 @@ struct MovieSetEntity {
 
 struct MovieEntity {
     let title: String
-    let genre: String
+    let genre: [String]
     let repRlsDate: String
     let directors: [MovieDirectorDetailEntity]
     let actors: [MovieActorDetailEntity]

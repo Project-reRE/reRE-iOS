@@ -28,7 +28,7 @@ struct RemoteMovieSetData: Decodable {
 
 struct RemoteMovieData: Decodable {
     let title: String?
-    let genre: String?
+    let genre: [String]?
     let repRlsDate: String?
     let directors: [RemoteMovieDirectorDetailData]?
     let actors: [RemoteMovieActorDetailData]?
