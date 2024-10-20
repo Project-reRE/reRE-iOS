@@ -14,14 +14,20 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
     private var cancelBag = Set<AnyCancellable>()
     var coordinator: CommonBaseCoordinator?
     
+    private lazy var noOtherRevaluationsView = NoOtherRevaluationsView().then {
+        $0.isHidden = true
+    }
+    
     private lazy var sortByLikesButton = SortButton().then {
         $0.titleLabel.text = "인기순"
         $0.updateView(isSelected: true)
+        $0.isHidden = true
     }
     
     private lazy var sortByDateButton = SortButton().then {
         $0.titleLabel.text = "최신순"
         $0.updateView(isSelected: false)
+        $0.isHidden = true
     }
     
     private lazy var otherRevaluationListView = UICollectionView(frame: .zero, collectionViewLayout: layout()).then {
@@ -47,11 +53,16 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
     override func addViews() {
         super.addViews()
         
-        view.addSubviews([sortByLikesButton, sortByDateButton, otherRevaluationListView])
+        view.addSubviews([noOtherRevaluationsView, sortByLikesButton,
+                          sortByDateButton, otherRevaluationListView])
     }
     
     override func makeConstraints() {
         super.makeConstraints()
+        
+        noOtherRevaluationsView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         
         sortByDateButton.snp.makeConstraints {
             $0.top.equalTo(topContainerView.snp.bottom).offset(moderateScale(number: 16))
@@ -111,9 +122,22 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
         
         viewModel.getOtherRevaluationsPublisher()
             .droppedSink { [weak self] list in
-                self?.otherRevaluationListView.isHidden = false
-                self?.otherRevaluationListView.reloadData()
-                self?.otherRevaluationListView.layoutIfNeeded()
+                
+                if list.isEmpty {
+                    self?.noOtherRevaluationsView.isHidden = false
+                    
+                    self?.otherRevaluationListView.isHidden = true
+                    self?.sortByLikesButton.isHidden = true
+                    self?.sortByDateButton.isHidden = true
+                } else {
+                    self?.noOtherRevaluationsView.isHidden = true
+                    
+                    self?.otherRevaluationListView.isHidden = false
+                    self?.otherRevaluationListView.reloadData()
+                    self?.otherRevaluationListView.layoutIfNeeded()
+                    self?.sortByLikesButton.isHidden = false
+                    self?.sortByDateButton.isHidden = false
+                }
             }.store(in: &cancelBag)
         
         viewModel.getOtherRevaluations()

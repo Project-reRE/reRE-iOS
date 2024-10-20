@@ -106,6 +106,7 @@
 		FE4B24AD2C8C376100666609 /* OtherRevaluationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B24AC2C8C376100666609 /* OtherRevaluationItemCell.swift */; };
 		FE4B24AF2C90781D00666609 /* RevaluationHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B24AE2C90781D00666609 /* RevaluationHistoryViewController.swift */; };
 		FE4DCE132CB948E700C68DA3 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE4DCE122CB948E600C68DA3 /* GoogleService-Info-Dev.plist */; };
+		FE4DCE152CC5190100C68DA3 /* NoOtherRevaluationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE142CC5190100C68DA3 /* NoOtherRevaluationsView.swift */; };
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
 		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
@@ -317,6 +318,7 @@
 		FE4B24AC2C8C376100666609 /* OtherRevaluationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationItemCell.swift; sourceTree = "<group>"; };
 		FE4B24AE2C90781D00666609 /* RevaluationHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationHistoryViewController.swift; sourceTree = "<group>"; };
 		FE4DCE122CB948E600C68DA3 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
+		FE4DCE142CC5190100C68DA3 /* NoOtherRevaluationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOtherRevaluationsView.swift; sourceTree = "<group>"; };
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
 		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 				FEB374A82C7B1F1E005B0286 /* RevaluationRatioView.swift */,
 				FE4B24AA2C8C32F800666609 /* SortButton.swift */,
 				FE4B24AC2C8C376100666609 /* OtherRevaluationItemCell.swift */,
+				FE4DCE142CC5190100C68DA3 /* NoOtherRevaluationsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1274,6 +1277,7 @@
 				432C095A2BD4F17C00BBFDB1 /* DispatchMain.swift in Sources */,
 				432C09692BD4F4C800BBFDB1 /* TouchableLabel.swift in Sources */,
 				FE9826452C3BF260006F0C67 /* BaseBottomSheetViewController.swift in Sources */,
+				FE4DCE152CC5190100C68DA3 /* NoOtherRevaluationsView.swift in Sources */,
 				432C09472BC67AAE00BBFDB1 /* NetworkManager.swift in Sources */,
 				FEB374AD2C7B4CD3005B0286 /* RevaluationFeelingsDetailView.swift in Sources */,
 				FEF6F4652C5116D500B35A9C /* ProfileRepositoryProtocol.swift in Sources */,
