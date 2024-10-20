@@ -17,6 +17,7 @@ enum WebViewType {
     case faq
     case termsPolicy
     case openAPI
+    case seriesOn(urlString: String)
     
     var titleText: String {
         switch self {
@@ -32,6 +33,8 @@ enum WebViewType {
             return "운영 정책 보기"
         case .openAPI:
             return "사용한 오픈 API 보기"
+        case .seriesOn:
+            return ""
         }
     }
     
@@ -49,6 +52,8 @@ enum WebViewType {
             return StaticValues.termsPolicyUrlString
         case .openAPI:
             return StaticValues.openAPIUrlString
+        case .seriesOn(let urlString):
+            return urlString
         }
     }
 }

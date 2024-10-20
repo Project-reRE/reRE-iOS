@@ -289,6 +289,12 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.otherRevaluations),
                                      userData: ["movieId": self.viewModel.getMovidId()])
         }
+        
+        revaluationDetailView.showMovieButton.didTapped { [weak self] in
+            guard let self = self else { return }
+            self.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
+                                     userData: ["webViewType": WebViewType.seriesOn(urlString: "https://m.serieson.naver.com/v3/search?query=\(self.viewModel.getRevaluationDataValue().data.title)")])
+        }
     }
     
     private func bind() {

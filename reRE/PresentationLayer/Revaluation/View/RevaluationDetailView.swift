@@ -64,7 +64,7 @@ final class RevaluationDetailView: UIStackView {
     
     private lazy var specialPointView = RevaluationSpecialPointView()
     
-    private lazy var showMovieButton = TouchableLabel().then {
+    private(set) lazy var showMovieButton = TouchableLabel().then {
         $0.text = "영화 보러가기"
         $0.font = FontSet.button02.font
         $0.textColor = ColorSet.gray(.white).color
