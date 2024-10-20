@@ -136,18 +136,9 @@ final class RankingItemCell: UICollectionViewCell {
         movieTitleLabel.text = model.data.title
         yearLabel.text = model.data.repRlsDate.toDate(with: "yyyyMMdd")?.dateToString(with: "yyyy")
         rankLabel.text = orderText
-        
-        var directorText: String = ""
-        
-        for (index, director) in model.data.directors.enumerated() {
-            if index == model.data.directors.count - 1 {
-                directorText += "\(director.directorNm)"
-            } else {
-                directorText += "\(director.directorNm), "
-            }
-        }
-        
-        directorLabel.text = directorText
+        directorLabel.text = model.data.directors.map { $0.directorNm }.joined(separator: ", ")
+        actorLabel.text = model.data.actors.map { $0.actorNm }.joined(separator: ", ")
+        genreLabel.text = model.data.genre.map { $0 }.joined(separator: ", ")
         
         if let postersURLString = model.data.posters.first, postersURLString.isEmpty == false {
             thumbnailView.kf.setImage(with: URL(string: postersURLString))
@@ -156,29 +147,5 @@ final class RankingItemCell: UICollectionViewCell {
         } else {
             thumbnailView.image = UIImage(named: "DefaultThumbnail")
         }
-        
-        var actorText: String = ""
-        
-        for (index, actor) in model.data.actors.enumerated() {
-            if index == model.data.actors.count - 1 {
-                actorText += "\(actor.actorNm)"
-            } else {
-                actorText += "\(actor.actorNm), "
-            }
-        }
-        
-        actorLabel.text = actorText
-        
-        var genreText: String = ""
-        
-        for (index, genre) in model.data.genre.enumerated() {
-            if index == model.data.genre.count - 1 {
-                genreText += genre
-            } else {
-                genreText += "\(genre), "
-            }
-        }
-        
-        genreLabel.text = genreText
     }
 }
