@@ -328,7 +328,13 @@ final class RevaluateViewController: BaseNavigationViewController {
     override func setupIfNeeded() {
         super.setupIfNeeded()
         
-        setNavigationTitle(with: "재평가하기")
+        let currentMonthString = Date().dateToString(with: "MM")
+        
+        if let currentMonth = Int(currentMonthString) {
+            setNavigationTitle(with: "\(currentMonth)월 재평가하기")
+        } else {
+            setNavigationTitle(with: "재평가하기")
+        }
         
         updateMovieInfo(withModel: viewModel.getMovieEntity().data)
         
