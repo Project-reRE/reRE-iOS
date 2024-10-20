@@ -138,7 +138,7 @@ extension NetworkService: TargetType {
             return .requestPlain
         case .updateRevaluation(_, let params):
             return .requestJSONEncodable(params)
-        case .deleteRevaluation(revaluationId: let revaluationId):
+        case .deleteRevaluation:
             return .requestPlain
         }
     }

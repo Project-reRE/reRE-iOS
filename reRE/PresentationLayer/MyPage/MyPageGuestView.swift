@@ -20,7 +20,7 @@ final class MyPageGuestView: UIView {
     }
     
     private lazy var descriptionLabel = UILabel().then {
-        $0.text = "당신도 재평가의 역사에\n동참하세요"
+        $0.text = "당신도 재평가의 역사에 동참하세요"
         $0.textColor = ColorSet.gray(.gray60).color
         $0.numberOfLines = 0
         $0.textAlignment = .center
