@@ -87,13 +87,15 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
         setNavigationTitle(with: "다른 재평가 보기")
         
         sortByLikesButton.didTapped { [weak self] in
-            self?.sortByLikesButton.updateView(isSelected: true)
-            self?.sortByDateButton.updateView(isSelected: false)
+            guard let self = self else { return }
+            guard !self.viewModel.isPopularityOrder else { return }
+            self.changeOrder()
         }
         
         sortByDateButton.didTapped { [weak self] in
-            self?.sortByDateButton.updateView(isSelected: true)
-            self?.sortByLikesButton.updateView(isSelected: false)
+            guard let self = self else { return }
+            guard self.viewModel.isPopularityOrder else { return }
+            self.changeOrder()
         }
     }
     
@@ -158,6 +160,12 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
             section.contentInsets = .init(top: 0, leading: moderateScale(number: 16), bottom: 0, trailing: moderateScale(number: 16))
             return section
         }
+    }
+    
+    private func changeOrder() {
+        viewModel.changeOrder()
+        sortByDateButton.updateView(isSelected: !viewModel.isPopularityOrder)
+        sortByLikesButton.updateView(isSelected: viewModel.isPopularityOrder)
     }
 }
 

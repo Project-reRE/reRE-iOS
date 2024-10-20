@@ -226,7 +226,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
-    func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, any Error>, Never> {
+    func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never> {
         return Future<Result<MovieDetailEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
             
@@ -260,11 +260,15 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
-    func getOtherRevaluations(withId movieId: String) -> AnyPublisher<Result<OtherRevaluationsEntity, any Error>, Never> {
+    func getOtherRevaluations(with model: OtherRevaluationsRequestModel) -> AnyPublisher<Result<OtherRevaluationsEntity, Error>, Never> {
         return Future<Result<OtherRevaluationsEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
             
-            let params: [String: String] = ["movieId": movieId]
+            let order: String = model.isPopularityOrder ? "-statistics.numCommentLikes" : "-createdAt"
+            let params: [String: Any] = ["movieId": model.movieId,
+                                         "order": order,
+                                         "page": model.page,
+                                         "limit": model.limit]
             
             self.networkManager.fetchService(.getOtherRevaluations(params: params)) { result in
                 switch result {

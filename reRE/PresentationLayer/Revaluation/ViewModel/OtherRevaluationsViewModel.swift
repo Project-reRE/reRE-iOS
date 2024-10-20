@@ -10,6 +10,7 @@ import Combine
 
 final class OtherRevaluationsViewModel: BaseViewModel {
     private let otherRevaluations = CurrentValueSubject<[OtherRevaluationEntity], Never>([])
+    private(set) var isPopularityOrder: Bool = true
     
     private let usecase: RevaluationUsecaseProtocol
     private let movieId: String
@@ -22,10 +23,13 @@ final class OtherRevaluationsViewModel: BaseViewModel {
     }
     
     func getOtherRevaluations() {
-        usecase.getOtherRevaluations(withId: movieId)
-            .mainSink { [weak self] otherRevaluations in
-                self?.otherRevaluations.send(otherRevaluations.results)
-            }.store(in: &cancelBag)
+        usecase.getOtherRevaluations(with: .init(movieId: movieId,
+                                                 isPopularityOrder: isPopularityOrder,
+                                                 page: 0,
+                                                 limit: 0))
+        .mainSink { [weak self] otherRevaluations in
+            self?.otherRevaluations.send(otherRevaluations.results)
+        }.store(in: &cancelBag)
     }
     
     func getOtherRevaluationsPublisher() -> AnyPublisher<[OtherRevaluationEntity], Never> {
@@ -53,5 +57,10 @@ final class OtherRevaluationsViewModel: BaseViewModel {
                 
                 self.otherRevaluations.value[index] = updatedRevaluation
             }.store(in: &cancelBag)
+    }
+    
+    func changeOrder() {
+        isPopularityOrder.toggle()
+        getOtherRevaluations()
     }
 }

@@ -45,8 +45,8 @@ extension RevaluationUsecase: RevaluationUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
-    func getOtherRevaluations(withId movieId: String) -> AnyPublisher<OtherRevaluationsEntity, Never> {
-        return repository.getOtherRevaluations(withId: movieId)
+    func getOtherRevaluations(with model: OtherRevaluationsRequestModel) -> AnyPublisher<OtherRevaluationsEntity, Never> {
+        return repository.getOtherRevaluations(with: model)
             .compactMap { [weak self] result in
                 switch result {
                 case .success(let entity):

@@ -10,6 +10,7 @@ import Combine
 
 final class RevaluationRepository {
     private let remoteDataFetcher: RemoteDataFetchable
+    private var paginationModel: PaginationModel = PaginationModel()
     
     init(remoteDataFetcher: RemoteDataFetchable) {
         self.remoteDataFetcher = remoteDataFetcher
@@ -25,8 +26,12 @@ extension RevaluationRepository: RevaluationRepositoryProtocol {
         return remoteDataFetcher.revaluate(with: reqestModel)
     }
     
-    func getOtherRevaluations(withId movieId: String) -> AnyPublisher<Result<OtherRevaluationsEntity, Error>, Never> {
-        return remoteDataFetcher.getOtherRevaluations(withId: movieId)
+    func getOtherRevaluations(with model: OtherRevaluationsRequestModel) -> AnyPublisher<Result<OtherRevaluationsEntity, Error>, Never> {
+        var moderatedModel: OtherRevaluationsRequestModel = model
+        moderatedModel.limit = paginationModel.limit
+        moderatedModel.page = paginationModel.page
+        
+        return remoteDataFetcher.getOtherRevaluations(with: moderatedModel)
     }
     
     func updateRevaluationLikes(withId revaluationId: String, isLiked: Bool) -> AnyPublisher<Result<String, Error>, Never> {

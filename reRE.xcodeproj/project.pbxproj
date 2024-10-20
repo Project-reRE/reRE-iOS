@@ -107,6 +107,8 @@
 		FE4B24AF2C90781D00666609 /* RevaluationHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4B24AE2C90781D00666609 /* RevaluationHistoryViewController.swift */; };
 		FE4DCE132CB948E700C68DA3 /* GoogleService-Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE4DCE122CB948E600C68DA3 /* GoogleService-Info-Dev.plist */; };
 		FE4DCE152CC5190100C68DA3 /* NoOtherRevaluationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE142CC5190100C68DA3 /* NoOtherRevaluationsView.swift */; };
+		FE4DCE172CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE162CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift */; };
+		FE4DCE192CC51C9200C68DA3 /* PaginationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE182CC51C9200C68DA3 /* PaginationModel.swift */; };
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
 		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
@@ -319,6 +321,8 @@
 		FE4B24AE2C90781D00666609 /* RevaluationHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationHistoryViewController.swift; sourceTree = "<group>"; };
 		FE4DCE122CB948E600C68DA3 /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		FE4DCE142CC5190100C68DA3 /* NoOtherRevaluationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOtherRevaluationsView.swift; sourceTree = "<group>"; };
+		FE4DCE162CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsRequestModel.swift; sourceTree = "<group>"; };
+		FE4DCE182CC51C9200C68DA3 /* PaginationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationModel.swift; sourceTree = "<group>"; };
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
 		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
@@ -765,6 +769,7 @@
 				432C09682BD4F4C800BBFDB1 /* TouchableLabel.swift */,
 				432C096A2BD4F52000BBFDB1 /* TouchableImageView.swift */,
 				432C096C2BD4F59600BBFDB1 /* TouchableStackView.swift */,
+				FE4DCE182CC51C9200C68DA3 /* PaginationModel.swift */,
 				FE89FC202C6DE86400FB01FB /* Splash */,
 				FE89FC1F2C6DE84700FB01FB /* Revaluation */,
 				432C095B2BD4F1E100BBFDB1 /* Rank */,
@@ -856,6 +861,7 @@
 				FEB374842C74BACD005B0286 /* MyHistoryRequestModel.swift */,
 				FE524D752C8C1723003CEA97 /* RevaluateRequestModel.swift */,
 				FEF9D6A72C9AB64B00D948F5 /* UpdateUserInfoRequestModel.swift */,
+				FE4DCE162CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -1183,6 +1189,7 @@
 				FEF9D69F2C91CAB300D948F5 /* Publisher+Extension.swift in Sources */,
 				FE5B95C02C6E0A2E00B7D0DB /* UIViewController+Extension.swift in Sources */,
 				FEB374772C71DC6F005B0286 /* HistoryUsecase.swift in Sources */,
+				FE4DCE192CC51C9200C68DA3 /* PaginationModel.swift in Sources */,
 				4364A1382BC6679C00F867B6 /* HistoryBaseCoordinator.swift in Sources */,
 				432C09502BD4EF6600BBFDB1 /* UIScrollView+Extension.swift in Sources */,
 				FEF9D6B32CABB24D00D948F5 /* NoDataCell.swift in Sources */,
@@ -1194,6 +1201,7 @@
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
 				FEB374852C74BACD005B0286 /* MyHistoryRequestModel.swift in Sources */,
 				FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */,
+				FE4DCE172CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
 				FEF9D6AC2C9ADF4A00D948F5 /* CheckMarkLabel.swift in Sources */,
 				FE9F9D7E2C4FBA8C00E6FB13 /* StaticValues.swift in Sources */,
