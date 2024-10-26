@@ -50,4 +50,24 @@ class BaseViewController: UIViewController {
             completion?()
         })
     }
+    
+    func showBaseError(with error: Error?) {
+        LogDebug(error)
+        
+        if let userError = error as? UserError {
+            CommonUtil.showAlertView(withType: .default,
+                                     buttonType: .oneButton,
+                                     title: "statueCode: \(userError.statusCode)",
+                                     description: userError.message.first,
+                                     submitCompletion: nil,
+                                     cancelCompletion: nil)
+        } else {
+            CommonUtil.showAlertView(withType: .default,
+                                     buttonType: .oneButton,
+                                     title: error?.localizedDescription,
+                                     description: error?.localizedDescription,
+                                     submitCompletion: nil,
+                                     cancelCompletion: nil)
+        }
+    }
 }

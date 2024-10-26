@@ -154,7 +154,15 @@ final class LoginViewController: BaseNavigationViewController {
             self?.kakaoLogin { [weak self] accessToken, error in
                 guard error == nil,
                       let accessToken = accessToken else {
+                    self?.showBaseError(with: error)
                     return
+                }
+                
+                UserApi.shared.me { [weak self] user, error in
+                    guard user?.kakaoAccount?.isEmailValid == true else {
+                        self?.showEmailNotExistError()
+                        return
+                    }
                 }
                 
                 self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
@@ -193,7 +201,13 @@ final class LoginViewController: BaseNavigationViewController {
         let clientID: String = StaticValues.googleClientId
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            guard result?.user.profile?.email.isEmpty == false else {
+                self?.showEmailNotExistError()
+                completion(nil, nil)
+                return
+            }
+            
             completion(result?.user.accessToken.tokenString, error)
         }
     }
@@ -213,7 +227,15 @@ final class LoginViewController: BaseNavigationViewController {
                             self.kakaoLogin { [weak self] accessToken, error in
                                 guard error == nil,
                                       let accessToken = accessToken else {
+                                    self?.showBaseError(with: error)
                                     return
+                                }
+                                
+                                UserApi.shared.me { [weak self] user, error in
+                                    guard user?.kakaoAccount?.isEmailValid == true else {
+                                        self?.showEmailNotExistError()
+                                        return
+                                    }
                                 }
                                 
                                 self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
@@ -264,6 +286,15 @@ final class LoginViewController: BaseNavigationViewController {
             .sink { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             }.store(in: &cancelBag)
+    }
+    
+    private func showEmailNotExistError() {
+        CommonUtil.showAlertView(withType: .default,
+                                 buttonType: .oneButton,
+                                 title: "로그인하기",
+                                 description: "이메일 정보가 없는 소셜 계정이예요.\n다른 소셜 계정으로 시도해보세요.",
+                                 submitCompletion: nil,
+                                 cancelCompletion: nil)
     }
 }
 
@@ -351,6 +382,13 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
               let appleIDToken = appleIDCredential.identityToken,
               let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
             CommonUtil.hideLoadingView()
+            return
+        }
+        
+        let email: String? = decode(jwtToken: idTokenString)["email"] as? String
+        
+        guard email?.isEmpty == false else {
+            showEmailNotExistError()
             return
         }
         
