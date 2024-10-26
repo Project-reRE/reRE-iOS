@@ -234,6 +234,13 @@ final class LoginViewController: BaseNavigationViewController {
                         self.navigationController?.popViewController(animated: true)
                         self.coordinator?.moveTo(appFlow: TabBarFlow.common(.signUp),
                                                  userData: ["viewModel": self.viewModel])
+                    case 409:
+                        CommonUtil.showAlertView(withType: .default,
+                                                 buttonType: .oneButton,
+                                                 title: "로그인하기",
+                                                 description: "이미 가입된 이메일을 가진 소셜 계정이예요.\n다른 이메일의 소셜 계정으로 시도해 보세요.",
+                                                 submitCompletion: nil,
+                                                 cancelCompletion: nil)
                     default:
                         CommonUtil.showAlertView(withType: .default,
                                                  buttonType: .oneButton,
