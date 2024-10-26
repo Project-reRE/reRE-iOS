@@ -109,6 +109,8 @@
 		FE4DCE152CC5190100C68DA3 /* NoOtherRevaluationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE142CC5190100C68DA3 /* NoOtherRevaluationsView.swift */; };
 		FE4DCE172CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE162CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift */; };
 		FE4DCE192CC51C9200C68DA3 /* PaginationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE182CC51C9200C68DA3 /* PaginationModel.swift */; };
+		FE4DCE1D2CCD11E800C68DA3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE1C2CCD11E800C68DA3 /* LoadingView.swift */; };
+		FE4DCE1F2CCD12AE00C68DA3 /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FE4DCE1E2CCD12AE00C68DA3 /* Loading.json */; };
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
 		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
@@ -323,6 +325,8 @@
 		FE4DCE142CC5190100C68DA3 /* NoOtherRevaluationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOtherRevaluationsView.swift; sourceTree = "<group>"; };
 		FE4DCE162CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherRevaluationsRequestModel.swift; sourceTree = "<group>"; };
 		FE4DCE182CC51C9200C68DA3 /* PaginationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationModel.swift; sourceTree = "<group>"; };
+		FE4DCE1C2CCD11E800C68DA3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		FE4DCE1E2CCD12AE00C68DA3 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
 		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
@@ -505,6 +509,7 @@
 				430C2DDC2BB9790D00DE5FC2 /* SceneDelegate.swift */,
 				FECFE43A2C32B71800078CDF /* Injector.swift */,
 				FE9F9D7D2C4FBA8C00E6FB13 /* StaticValues.swift */,
+				FE4DCE1E2CCD12AE00C68DA3 /* Loading.json */,
 				4364A1282BC665A500F867B6 /* Coordinator */,
 				4364A15C2BC6728D00F867B6 /* PresentationLayer */,
 				432C09392BC678F400BBFDB1 /* DataLayer */,
@@ -1014,6 +1019,7 @@
 				FEF9D6A92C9ADDB700D948F5 /* ReportAlertViewController.swift */,
 				FEF9D6AB2C9ADF4A00D948F5 /* CheckMarkLabel.swift */,
 				FEF9D6B22CABB24D00D948F5 /* NoDataCell.swift */,
+				FE4DCE1C2CCD11E800C68DA3 /* LoadingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1104,6 +1110,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE4DCE1F2CCD12AE00C68DA3 /* Loading.json in Resources */,
 				432C09832BE7793C00BBFDB1 /* Pretendard-ExtraLight.otf in Resources */,
 				432C09842BE7793C00BBFDB1 /* Pretendard-Bold.otf in Resources */,
 				432C097F2BE7793C00BBFDB1 /* Pretendard-SemiBold.otf in Resources */,
@@ -1251,6 +1258,7 @@
 				FEB374732C71D95F005B0286 /* RevaluationDetailRequestModel.swift in Sources */,
 				FE9826472C3BF3EC006F0C67 /* LoginViewController.swift in Sources */,
 				FE9F9D802C4FBBAB00E6FB13 /* MyPageUserView.swift in Sources */,
+				FE4DCE1D2CCD11E800C68DA3 /* LoadingView.swift in Sources */,
 				4364A15B2BC6726600F867B6 /* MyPageViewController.swift in Sources */,
 				FEB3747B2C71DCAA005B0286 /* HistoryRepository.swift in Sources */,
 				FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */,

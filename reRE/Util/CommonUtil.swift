@@ -83,20 +83,20 @@ final class CommonUtil {
     }
     
     static func showLoadingView() {
-//        guard UIApplication.shared.windows.last?.subviews.contains(where: { $0 is LoadingView }) == false else { return }
-//        
-//        let loadingView = LoadingView()
-//        loadingView.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
-//        UIApplication.shared.windows.last?.addSubview(loadingView)
+        guard UIApplication.shared.windows.last?.subviews.contains(where: { $0 is LoadingView }) == false else { return }
+        
+        let loadingView = LoadingView()
+        loadingView.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
+        UIApplication.shared.windows.last?.addSubview(loadingView)
     }
     
     static func hideLoadingView() {
-//        if let loadingView = UIApplication.shared.windows.last?.subviews.first(where: { $0 is LoadingView }) {
-//            loadingView.removeFromSuperview()
-//        } else if let loadingView = UIApplication.shared.windows.first?.subviews.first(where: { $0 is LoadingView }) {
-//            loadingView.removeFromSuperview()
-//        } else if let topVC = CommonUtil.topViewController(), let loadingView = topVC.view.subviews.first(where: { $0 is LoadingView }) {
-//            loadingView.removeFromSuperview()
-//        }
+        if let loadingView = UIApplication.shared.windows.last?.subviews.first(where: { $0 is LoadingView }) {
+            loadingView.removeFromSuperview()
+        } else if let loadingView = UIApplication.shared.windows.first?.subviews.first(where: { $0 is LoadingView }) {
+            loadingView.removeFromSuperview()
+        } else if let topVC = CommonUtil.topViewController(), let loadingView = topVC.view.subviews.first(where: { $0 is LoadingView }) {
+            loadingView.removeFromSuperview()
+        }
     }
 }

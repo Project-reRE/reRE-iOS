@@ -137,6 +137,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        CommonUtil.showLoadingView()
         viewModel.getRevaluationDetail()
     }
     
@@ -322,6 +323,8 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         viewModel.getRevaluationDataPublisher()
             .droppedSink { [weak self] movieDetail in
                 guard let self = self else { return }
+                
+                CommonUtil.hideLoadingView()
                 
                 self.updateMovieInfo(withModel: movieDetail.data)
                 

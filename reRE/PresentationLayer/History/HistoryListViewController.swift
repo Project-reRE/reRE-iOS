@@ -117,10 +117,22 @@ final class HistoryListViewController: BaseNavigationViewController {
         setNavigationTitle(with: "재평가한 영화 목록 보기")
         
         leftArrowButton.didTapped { [weak self] in
+            guard let prevMonth = self?.viewModel.showingDateValue.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthBefore,
+                  StaticValues.openedMonth <= prevMonth else {
+                return
+            }
+            
+            CommonUtil.showLoadingView()
             self?.viewModel.getPrevMonthHistoryList()
         }
         
         rightArrowButton.didTapped { [weak self] in
+            guard let nextMonth = self?.viewModel.showingDateValue.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthLater,
+                  Date() > nextMonth else {
+                return
+            }
+            
+            CommonUtil.showLoadingView()
             self?.viewModel.getNextMonthHistoryList()
         }
         
@@ -157,22 +169,17 @@ final class HistoryListViewController: BaseNavigationViewController {
     private func bind() {
         viewModel.getErrorSubject()
             .mainSink { [weak self] error in
-                LogDebug(error)
-                
-                CommonUtil.showAlertView(withType: .default,
-                                         buttonType: .oneButton,
-                                         title: error.localizedDescription,
-                                         description: error.localizedDescription,
-                                         submitCompletion: nil,
-                                         cancelCompletion: nil)
+                self?.showBaseError(with: error)
             }.store(in: &cancelBag)
         
-        let showingDatePublisher = viewModel.getShowingDateValue()
-        let historyListPublisher = viewModel.getHistoryListPublisher().dropFirst()
+        let showingDatePublisher = viewModel.showingDatePublisher.dropFirst()
+        let historyListPublisher = viewModel.historyListPublisher.dropFirst()
         
         showingDatePublisher
-            .combineLatest(historyListPublisher)
+            .zip(historyListPublisher)
             .mainSink { [weak self] requestModel, historyList in
+                CommonUtil.hideLoadingView()
+                
                 let startDate: Date = requestModel.startDate.toDate(with: "yyyy-MM-dd") ?? Date()
                 let showingDate: String = startDate.dateToString(with: "yyyy. MM")
                 self?.dateLabel.text = showingDate
@@ -189,6 +196,7 @@ final class HistoryListViewController: BaseNavigationViewController {
                 }
             }.store(in: &cancelBag)
         
+        CommonUtil.showLoadingView()
         viewModel.fetchRevaluationHistories()
     }
 }
@@ -196,13 +204,13 @@ final class HistoryListViewController: BaseNavigationViewController {
 // MARK: - UICollectionViewDataSource
 extension HistoryListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.getHistoryListValue().results.count
+        return viewModel.historyListValue.results.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(HistoryItemCell.self, indexPath: indexPath) else { return .init() }
         
-        let historyData: MyHistoryEntityData = viewModel.getHistoryListValue().results[indexPath.item]
+        let historyData: MyHistoryEntityData = viewModel.historyListValue.results[indexPath.item]
         cell.updateView(with: historyData)
         
         cell.containerView.didTapped { [weak self] in

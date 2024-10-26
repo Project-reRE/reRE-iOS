@@ -165,6 +165,7 @@ final class LoginViewController: BaseNavigationViewController {
                     }
                 }
                 
+                CommonUtil.showLoadingView()
                 self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
             }
         }
@@ -180,6 +181,7 @@ final class LoginViewController: BaseNavigationViewController {
                     return
                 }
                 
+                CommonUtil.showLoadingView()
                 self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
             }
         }
@@ -217,6 +219,7 @@ final class LoginViewController: BaseNavigationViewController {
             .mainSink { [weak self] error in
                 guard let self = self else { return }
                 
+                CommonUtil.hideLoadingView()
                 LogDebug(error)
                 
                 if let userError = error as? UserError {
@@ -238,6 +241,7 @@ final class LoginViewController: BaseNavigationViewController {
                                     }
                                 }
                                 
+                                CommonUtil.showLoadingView()
                                 self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
                             }
                         case .apple:
@@ -249,6 +253,7 @@ final class LoginViewController: BaseNavigationViewController {
                                     return
                                 }
                                 
+                                CommonUtil.showLoadingView()
                                 self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
                             }
                         }
@@ -282,8 +287,8 @@ final class LoginViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
         
         viewModel.getLoginCompletionPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .mainSink { [weak self] _ in
+                CommonUtil.hideLoadingView()
                 self?.navigationController?.popViewController(animated: true)
             }.store(in: &cancelBag)
     }
@@ -392,6 +397,7 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
             return
         }
         
+        CommonUtil.showLoadingView()
         viewModel.snsLogin(withToken: idTokenString, loginType: .apple)
     }
     

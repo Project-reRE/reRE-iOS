@@ -89,12 +89,16 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
         sortByLikesButton.didTapped { [weak self] in
             guard let self = self else { return }
             guard !self.viewModel.isPopularityOrder else { return }
+            
+            CommonUtil.showLoadingView()
             self.changeOrder()
         }
         
         sortByDateButton.didTapped { [weak self] in
             guard let self = self else { return }
             guard self.viewModel.isPopularityOrder else { return }
+            
+            CommonUtil.showLoadingView()
             self.changeOrder()
         }
     }
@@ -102,28 +106,12 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
     private func bind() {
         viewModel.getErrorSubject()
             .mainSink { [weak self] error in
-                
-                LogDebug(error)
-                
-                if let userError = error as? UserError {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: "statueCode: \(userError.statusCode)",
-                                             description: userError.message.first,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                } else {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: error.localizedDescription,
-                                             description: error.localizedDescription,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                }
+                self?.showBaseError(with: error)
             }.store(in: &cancelBag)
         
         viewModel.getOtherRevaluationsPublisher()
             .droppedSink { [weak self] list in
+                CommonUtil.hideLoadingView()
                 
                 if list.isEmpty {
                     self?.noOtherRevaluationsView.isHidden = false
@@ -142,6 +130,7 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
                 }
             }.store(in: &cancelBag)
         
+        CommonUtil.showLoadingView()
         viewModel.getOtherRevaluations()
     }
     

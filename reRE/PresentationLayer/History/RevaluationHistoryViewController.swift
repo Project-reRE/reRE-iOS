@@ -281,6 +281,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
                                      submitText: "삭제",
                                      cancelText: "취소",
                                      submitCompletion: { [weak self] in
+                CommonUtil.showLoadingView()
                 self?.viewModel.deleteHistory()
             }, cancelCompletion: nil)
         }
@@ -289,14 +290,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
     private func bind() {
         viewModel.getErrorSubject()
             .mainSink { [weak self] error in
-                LogDebug(error)
-                
-                CommonUtil.showAlertView(withType: .default,
-                                         buttonType: .oneButton,
-                                         title: error.localizedDescription,
-                                         description: error.localizedDescription,
-                                         submitCompletion: nil,
-                                         cancelCompletion: nil)
+                self?.showBaseError(with: error)
             }.store(in: &cancelBag)
         
         viewModel.deletedHistoryPublisher

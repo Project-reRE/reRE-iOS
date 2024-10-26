@@ -136,6 +136,8 @@ final class RankViewController: BaseViewController {
             .zip(bannerListPublisher)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] movieSets, bannerList in
+                CommonUtil.hideLoadingView()
+                
                 self?.rankingView.isHidden = false
                 self?.rankingView.reloadData()
                 self?.rankingView.layoutIfNeeded()
@@ -150,6 +152,7 @@ final class RankViewController: BaseViewController {
                 }
             }.store(in: &cancelBag)
         
+        CommonUtil.showLoadingView()
         viewModel.getMovieSets()
         viewModel.getBannerList()
     }

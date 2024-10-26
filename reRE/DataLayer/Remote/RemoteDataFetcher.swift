@@ -74,13 +74,14 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             self?.networkManager.fetchService(withHeader: headers, .snsLogin(loginType: model.loginType)) { [weak self] result in
                 switch result {
                 case .success(let response):
+                    LogDebug(response.data)
+                    
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         
                         self?.accessToken = model.accessToken
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
-                        LogDebug(response.data)
                         if let jwtToken = remoteItem.jwt, !jwtToken.isEmpty {
                             UserDefaultsManager.shared.setLoginType(loginType: model.loginType.provider)
                             StaticValues.isLoggedIn.send(true)
@@ -244,6 +245,8 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             self.networkManager.fetchService(.getMovieDetail(movieId: movieId, params: params)) { result in
                 switch result {
                 case .success(let response):
+                    LogDebug(response.data)
+                    
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         promise(.success(.failure(error)))

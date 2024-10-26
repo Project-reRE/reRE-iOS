@@ -130,6 +130,8 @@ final class SearchViewController: BaseNavigationViewController {
         
         viewModel.getSearchResultPublisher()
             .droppedSink { [weak self] searchedResult in
+                CommonUtil.hideLoadingView()
+                
                 if searchedResult.isEmpty {
                     guard let searchedText = self?.textField.text else { return }
                     
@@ -188,6 +190,7 @@ extension SearchViewController: UITextFieldDelegate {
         if text.isEmpty {
             resetListView()
         } else {
+            CommonUtil.showLoadingView()
             viewModel.searchMovie(withTitle: text)
         }
         

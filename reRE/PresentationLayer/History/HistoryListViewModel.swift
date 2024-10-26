@@ -38,9 +38,7 @@ final class HistoryListViewModel: BaseViewModel {
     }
     
     func getPrevMonthHistoryList() {
-        let showingDate = shouldLoadRevaluationHistory.value
-        
-        guard let prevMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthBefore,
+        guard let prevMonth = showingDateValue.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthBefore,
               StaticValues.openedMonth <= prevMonth else {
             return
         }
@@ -55,9 +53,7 @@ final class HistoryListViewModel: BaseViewModel {
     }
     
     func getNextMonthHistoryList() {
-        let showingDate = shouldLoadRevaluationHistory.value
-        
-        guard let nextMonth = showingDate.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthLater,
+        guard let nextMonth = showingDateValue.startDate.toDate(with: "yyyy-MM-dd")?.oneMonthLater,
               Date() > nextMonth else {
             return
         }
@@ -71,15 +67,19 @@ final class HistoryListViewModel: BaseViewModel {
                                                 page: 1))
     }
     
-    func getHistoryListPublisher() -> AnyPublisher<MyHistoryEntity, Never> {
+    var historyListPublisher: AnyPublisher<MyHistoryEntity, Never> {
         return historyList.eraseToAnyPublisher()
     }
     
-    func getHistoryListValue() -> MyHistoryEntity {
+    var historyListValue: MyHistoryEntity {
         return historyList.value
     }
     
-    func getShowingDateValue() -> AnyPublisher<MyHistoryRequestModel, Never> {
+    var showingDatePublisher: AnyPublisher<MyHistoryRequestModel, Never> {
         return shouldLoadRevaluationHistory.eraseToAnyPublisher()
+    }
+    
+    var showingDateValue: MyHistoryRequestModel {
+        return shouldLoadRevaluationHistory.value
     }
 }

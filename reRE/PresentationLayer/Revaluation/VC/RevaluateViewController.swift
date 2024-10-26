@@ -425,6 +425,7 @@ final class RevaluateViewController: BaseNavigationViewController {
                 return
             }
             guard let missingCategory = self.viewModel.checkMissingCategory() else {
+                CommonUtil.showLoadingView()
                 self.viewModel.revaluate()
                 return
             }
@@ -477,24 +478,7 @@ final class RevaluateViewController: BaseNavigationViewController {
     private func bind() {
         viewModel.getErrorSubject()
             .mainSink { [weak self] error in
-                
-                LogDebug(error)
-                
-                if let userError = error as? UserError {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: "statueCode: \(userError.statusCode)",
-                                             description: userError.message.first,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                } else {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: error.localizedDescription,
-                                             description: error.localizedDescription,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                }
+                self?.showBaseError(with: error)
             }.store(in: &cancelBag)
         
         viewModel.getRevaluationSuccessPublisher()
