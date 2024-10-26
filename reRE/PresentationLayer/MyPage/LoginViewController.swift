@@ -274,8 +274,8 @@ final class LoginViewController: BaseNavigationViewController {
                 } else {
                     CommonUtil.showAlertView(withType: .default,
                                              buttonType: .oneButton,
-                                             title: error.localizedDescription,
-                                             description: error.localizedDescription,
+                                             title: "로그인하기",
+                                             description: "무언가 오류가 발생하였어요.\n잠시 후 다시 시도해 주세요.",
                                              submitCompletion: nil,
                                              cancelCompletion: nil)
                 }
