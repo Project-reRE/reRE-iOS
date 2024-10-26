@@ -45,7 +45,7 @@ final class ChartView: UIView {
         backgroundPath.move(to: CGPoint(x: moderateScale(number: 45), y: minRatingPosY))
         
         for (index, rating) in ratings.enumerated() {
-            guard let numStars = Double(rating.numStars) else { continue }
+            let numStars: Double = rating.numStars
             
             let posX: CGFloat = moderateScale(number: 45) + chartMargin * CGFloat(index)
             let posY: CGFloat = chartHeight - ((chartHeight * numStars) / 5) + maxRatingPosY
@@ -66,7 +66,7 @@ final class ChartView: UIView {
             backgroundPath.addLine(to: CGPoint(x: posX, y: posY))
             
             if index < ratings.count - 1 {
-                let nextRating: Double = Double(ratings[index + 1].numStars) ?? 0
+                let nextRating: Double = ratings[index + 1].numStars
                 let nextPosX: CGFloat = moderateScale(number: 45) + chartMargin * CGFloat(index + 1)
                 let nextPosY: CGFloat = chartHeight - ((chartHeight * nextRating) / 5) + maxRatingPosY
                 

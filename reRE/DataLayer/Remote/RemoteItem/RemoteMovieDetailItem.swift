@@ -33,7 +33,7 @@ struct RemoteMovieStatisticsItem: Decodable {
 
 struct RemoteMovieRecentRatingsItem: Decodable {
     let currentDate: String?
-    let numStars: String?
+    let numStars: Double?
 }
 
 struct RemoteMovieSpecialPointItem: Decodable {

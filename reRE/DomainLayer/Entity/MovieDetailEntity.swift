@@ -95,16 +95,16 @@ struct MovieStatisticsEntity {
 
 struct MovieRecentRatingsEntity {
     let currentDate: String
-    let numStars: String
+    let numStars: Double
     
-    init(currentDate: String, numStars: String) {
+    init(currentDate: String, numStars: Double) {
         self.currentDate = currentDate
         self.numStars = numStars
     }
     
     init() {
         currentDate = ""
-        numStars = ""
+        numStars = 0
     }
 }
 
