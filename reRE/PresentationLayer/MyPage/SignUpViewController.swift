@@ -315,7 +315,18 @@ final class SignUpViewController: BaseNavigationViewController {
         }
         
         signUpButton.didTapped { [weak self] in
-            self?.viewModel.signUp()
+            guard let self = self else { return }
+            guard self.viewModel.canSignUpAge() else {
+                CommonUtil.showAlertView(withType: .default,
+                                         buttonType: .oneButton,
+                                         title: "회원 가입하기",
+                                         description: "만 14세 미만은 가입이 불가능해요.",
+                                         submitCompletion: nil,
+                                         cancelCompletion: nil)
+                return
+            }
+            
+            self.viewModel.signUp()
         }
         
         NotificationCenter.default.addObserver(self,

@@ -76,6 +76,12 @@ final class LoginViewModel: BaseViewModel {
         userBirth.send(year)
     }
     
+    func canSignUpAge() -> Bool {
+        guard let birthday = userBirth.value.toDate(with: "yyyy") else { return false }
+        guard let age = Calendar.current.dateComponents([.year], from: birthday, to: Date()).year else { return false }
+        return age >= 14
+    }
+    
     func setUserGender(isMale: Bool) {
         userGender.send(isMale)
     }
