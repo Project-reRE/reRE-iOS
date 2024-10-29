@@ -267,7 +267,8 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         return Future<Result<OtherRevaluationsEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
             
-            let order: String = model.isPopularityOrder ? "-statistics.numCommentLikes" : "-createdAt"
+            let order: String = model.isPopularityOrder ? "-statistics.numCommentLikes,-revaluation.createdAt" : "-createdAt"
+            
             let params: [String: Any] = ["movieId": model.movieId,
                                          "order": order,
                                          "page": model.page,
