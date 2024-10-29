@@ -79,7 +79,7 @@ final class RevaluationDetailView: UIStackView {
     }
     
     private lazy var pastFeelingsTitleLabel = UILabel().then {
-        $0.text = "개봉 당시, 이 영화에 대해서 사람들은요"
+        $0.text = "과거에 이 영화에 대해서 사람들은요"
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.title01.font
     }

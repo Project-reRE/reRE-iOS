@@ -124,7 +124,7 @@ final class RevaluateViewController: BaseNavigationViewController {
     private lazy var specialPointCategoryView = RevaluateSpecialPointView()
     
     private lazy var pastFeelingsTitleLabel = UILabel().then {
-        $0.text = "개봉 당시, 이 영화는 어땠나요?"
+        $0.text = "과거에 이 영화는 어땠나요?"
         $0.font = FontSet.title01.font
         $0.textColor = ColorSet.gray(.white).color
     }
