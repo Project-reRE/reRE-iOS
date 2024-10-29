@@ -19,6 +19,7 @@ final class SignUpViewController: BaseNavigationViewController {
     
     private var currentNonce: String?
     var coordinator: CommonBaseCoordinator?
+    private var buttonBottomConstraints: Constraint?
     
     private var isAllChecked: Bool = false {
         didSet {
@@ -194,13 +195,13 @@ final class SignUpViewController: BaseNavigationViewController {
         scrollView.snp.makeConstraints {
             $0.top.equalTo(topContainerView.snp.bottom)
             $0.centerX.width.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(moderateScale(number: 38 + 52))
+            $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom() + moderateScale(number: 52))
         }
         
         signUpButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(moderateScale(number: 38))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 52))
+            buttonBottomConstraints = $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom()).constraint
         }
         
         containerView.snp.makeConstraints {
@@ -316,6 +317,24 @@ final class SignUpViewController: BaseNavigationViewController {
         signUpButton.didTapped { [weak self] in
             self?.viewModel.signUp()
         }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(_:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(_:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    override func deinitialize() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
     }
     
     private func bind() {
@@ -432,6 +451,31 @@ final class SignUpViewController: BaseNavigationViewController {
         
         clearButton.isHidden = userBirth.isEmpty
         viewModel.setUserBirth(withYear: userBirth)
+    }
+    
+    @objc
+    func keyboardWillShow(_ notification: NSNotification) {
+        animateWithKeyboard(notification: notification) { [weak self] keyboardFrame in
+            guard let self = self else { return }
+//            buttonBottomConstraints = $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom()).constraint
+            buttonBottomConstraints?.update(inset: keyboardFrame.height + moderateScale(number: 12))
+//            guard let currentTextView = UIResponder.currentResponder as? UITextView else { return }
+//            
+//            let currentTextFieldFrame: CGRect = currentTextView.convert(currentTextView.bounds, to: self.view)
+//            
+//            if keyboardFrame.intersects(currentTextFieldFrame) {
+//                let offset: CGFloat = currentTextFieldFrame.maxY - keyboardFrame.minY + 10
+//                self.currentScrollOffsetY = self.scrollView.contentOffset.y
+//                self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentOffset.y + offset), animated: true)
+//            }
+        }
+    }
+    
+    @objc
+    func keyboardWillHide(_ notification: NSNotification) {
+        animateWithKeyboard(notification: notification) { [weak self] _ in
+            self?.buttonBottomConstraints?.update(inset: getDefaultSafeAreaBottom())
+        }
     }
 }
 
