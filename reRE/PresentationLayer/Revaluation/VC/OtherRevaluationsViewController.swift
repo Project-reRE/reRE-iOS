@@ -171,10 +171,20 @@ extension OtherRevaluationsViewController: UICollectionViewDataSource {
         cell.updateView(with: otherRevaluation)
         
         cell.likeStackView.didTapped { [weak self] in
+            guard StaticValues.isLoggedIn.value else {
+                self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.login), userData: nil)
+                return
+            }
+            
             self?.viewModel.updateRevaluationLikes(withId: otherRevaluation.id, isLiked: !otherRevaluation.isLiked)
         }
         
         cell.reportButton.didTapped { [weak self] in
+            guard StaticValues.isLoggedIn.value else {
+                self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.login), userData: nil)
+                return
+            }
+            
             guard let topVC = CommonUtil.topViewController() else { return }
             guard !(topVC is ReportAlertViewController) else { return }
             
