@@ -457,17 +457,7 @@ final class SignUpViewController: BaseNavigationViewController {
     func keyboardWillShow(_ notification: NSNotification) {
         animateWithKeyboard(notification: notification) { [weak self] keyboardFrame in
             guard let self = self else { return }
-//            buttonBottomConstraints = $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom()).constraint
             buttonBottomConstraints?.update(inset: keyboardFrame.height + moderateScale(number: 12))
-//            guard let currentTextView = UIResponder.currentResponder as? UITextView else { return }
-//            
-//            let currentTextFieldFrame: CGRect = currentTextView.convert(currentTextView.bounds, to: self.view)
-//            
-//            if keyboardFrame.intersects(currentTextFieldFrame) {
-//                let offset: CGFloat = currentTextFieldFrame.maxY - keyboardFrame.minY + 10
-//                self.currentScrollOffsetY = self.scrollView.contentOffset.y
-//                self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentOffset.y + offset), animated: true)
-//            }
         }
     }
     
