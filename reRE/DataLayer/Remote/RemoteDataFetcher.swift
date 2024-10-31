@@ -67,6 +67,19 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
+    func refreshToken(with jwtToken: String) {
+        networkManager.fetchService(.refreshToken) { [weak self] result in
+            switch result {
+            case .success(let response):
+                if let remoteItem = DecodeUtil.decode(RemoteLoginItem.self, data: response.data) {
+                    self?.networkManager.setHeaderToken(token: remoteItem.refreshToken)
+                }
+            case .failure(let error):
+                LogDebug(error)
+            }
+        }
+    }
+    
     func snsLogin(withModel model: LoginRequestModel) -> AnyPublisher<Result<String, Error>, Never> {
         return Future<Result<String, Error>, Never> { [weak self] promise in
             let headers: HTTPHeaders = HTTPHeaders([HTTPHeader(name: model.loginType.headerName, value: model.accessToken)])
@@ -86,6 +99,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                             UserDefaultsManager.shared.setLoginType(loginType: model.loginType.provider)
                             StaticValues.isLoggedIn.send(true)
                             self?.networkManager.setHeaderToken(token: jwtToken)
+                            self?.refreshToken(with: jwtToken)
                         } else {
                             self?.accessToken = model.accessToken
                         }

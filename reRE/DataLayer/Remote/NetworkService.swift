@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum NetworkService {
-    case networkMockService
+    case refreshToken
     case rankingMovieSets
     case rankingBanner
     case snsLogin(loginType: SNSLoginType)
@@ -39,8 +39,8 @@ extension NetworkService: TargetType {
     
     var path: String {
         switch self {
-        case .networkMockService:
-            return "/api/v1"
+        case .refreshToken:
+            return "/auth/refresh"
         case .rankingMovieSets:
             return "/open-movie-sets"
         case .rankingBanner:
@@ -85,7 +85,7 @@ extension NetworkService: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .networkMockService: return .get
+        case .refreshToken: return .get
         case .rankingMovieSets: return .get
         case .rankingBanner: return .get
         case .snsLogin: return .get
@@ -112,7 +112,7 @@ extension NetworkService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .networkMockService:
+        case .refreshToken:
             return .requestPlain
         case .rankingMovieSets:
             return .requestPlain

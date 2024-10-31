@@ -9,6 +9,7 @@ import Foundation
 
 struct RemoteLoginItem: Decodable {
     let jwt: String?
+    let refreshToken: String?
 }
 
 struct UserError: Error, Decodable {

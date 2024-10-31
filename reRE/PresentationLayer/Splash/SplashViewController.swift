@@ -58,8 +58,9 @@ final class SplashViewController: BaseViewController {
                                          buttonType: .oneButton,
                                          title: error.localizedDescription,
                                          description: error.localizedDescription,
-                                         submitCompletion: nil,
-                                         cancelCompletion: nil)
+                                         submitCompletion: { [weak self] in
+                    self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
+                }, cancelCompletion: nil)
             }.store(in: &cancelBag)
         
         viewModel.getLoginTypePublisher()
