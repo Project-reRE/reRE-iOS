@@ -227,6 +227,30 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
+    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<Result<MyHistoryEntityData, Error>, Never> {
+        return Future<Result<MyHistoryEntityData, Error>, Never> { [weak self] promise in
+            let params: [String: String] = ["movieId": movieId]
+            
+            self?.networkManager.fetchService(.checkAlreadyRevaluated(params: params)) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let response):
+                    LogDebug(response.data)
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        promise(.success(.failure(error)))
+                    } else if let remoteItem = DecodeUtil.decode(RemoteMyHistoryData.self, data: response.data) {
+                        promise(.success(.success(self.remoteHistoryMapper.remoteMyHistoryDataToEntity(remoteItem: remoteItem))))
+                    } else {
+                        promise(.success(.success(.init())))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never> {
         return Future<Result<MovieDetailEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
@@ -245,8 +269,6 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             self.networkManager.fetchService(.getMovieDetail(movieId: movieId, params: params)) { result in
                 switch result {
                 case .success(let response):
-                    LogDebug(response.data)
-                    
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         promise(.success(.failure(error)))

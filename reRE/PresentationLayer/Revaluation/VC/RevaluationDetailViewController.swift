@@ -301,30 +301,24 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     private func bind() {
         viewModel.getErrorSubject()
             .mainSink { [weak self] error in
-                LogDebug(error)
-                
-                if let userError = error as? UserError {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: "statueCode: \(userError.statusCode)",
-                                             description: userError.message.first,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                } else {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: error.localizedDescription,
-                                             description: error.localizedDescription,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                }
+                self?.showBaseError(with: error)
             }.store(in: &cancelBag)
         
-        viewModel.getRevaluationDataPublisher()
-            .droppedSink { [weak self] movieDetail in
+        let myHistoryPublisher = viewModel.myHistoryPublisher.dropFirst()
+        let revaluationDataPublisher = viewModel.getRevaluationDataPublisher().dropFirst()
+        
+        myHistoryPublisher
+            .combineLatest(revaluationDataPublisher)
+            .mainSink { [weak self] myHistory, movieDetail in
                 guard let self = self else { return }
                 
                 CommonUtil.hideLoadingView()
+                
+                if myHistory.id.isEmpty {
+                    self.revaluateButton.text = "\(self.viewModel.currentDate)월 재평가하기"
+                } else {
+                    self.revaluateButton.text = "\(self.viewModel.currentDate)월 수정하기"
+                }
                 
                 self.updateMovieInfo(withModel: movieDetail.data)
                 
@@ -373,6 +367,8 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                     self.revaluationDetailView.updateGradeView(withModel: showingRatingData)
                 }
             }.store(in: &cancelBag)
+        
+        viewModel.checkAlreadyRevaluated()
     }
     
     private func updateMovieInfo(withModel model: SearchMovieListDataEntity) {

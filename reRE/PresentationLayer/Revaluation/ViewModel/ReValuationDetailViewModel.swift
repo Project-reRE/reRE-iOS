@@ -11,6 +11,11 @@ import Combine
 final class ReValuationDetailViewModel: BaseViewModel {
     private let revaluationData = CurrentValueSubject<MovieDetailEntity, Never>(.init())
     private let showingRatingData = CurrentValueSubject<MovieRecentRatingsEntity, Never>(.init())
+    private let myHistory = CurrentValueSubject<MyHistoryEntityData, Never>(.init())
+    
+    var myHistoryPublisher: AnyPublisher<MyHistoryEntityData, Never> {
+        return myHistory.eraseToAnyPublisher()
+    }
     
     private(set) var currentDate: String = Date().dateToString(with: "MM")
     
@@ -35,6 +40,13 @@ final class ReValuationDetailViewModel: BaseViewModel {
     
     func getMovidId() -> String {
         return movieId
+    }
+    
+    func checkAlreadyRevaluated() {
+        usecase.checkAlreadyRevaluated(withId: movieId)
+            .sink { [weak self] myHistory in
+                self?.myHistory.send(myHistory)
+            }.store(in: &cancelBag)
     }
     
     func getRevaluationDetail() {

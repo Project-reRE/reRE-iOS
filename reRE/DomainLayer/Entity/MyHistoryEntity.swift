@@ -33,4 +33,39 @@ struct MyHistoryEntityData {
     let updatedAt: String
     let deletedAt: String
     let movie: SearchMovieListResultEntity
+    
+    init(id: String,
+         numStars: Double,
+         specialPoint: String,
+         pastValuation: String,
+         presentValuation: String,
+         comment: String,
+         createdAt: String,
+         updatedAt: String,
+         deletedAt: String,
+         movie: SearchMovieListResultEntity) {
+        self.id = id
+        self.numStars = numStars
+        self.specialPoint = specialPoint
+        self.pastValuation = pastValuation
+        self.presentValuation = presentValuation
+        self.comment = comment
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.deletedAt = deletedAt
+        self.movie = movie
+    }
+    
+    init() {
+        id = ""
+        numStars = 0
+        specialPoint = ""
+        pastValuation = ""
+        presentValuation = ""
+        comment = ""
+        createdAt = ""
+        updatedAt = ""
+        deletedAt = ""
+        movie = .init()
+    }
 }

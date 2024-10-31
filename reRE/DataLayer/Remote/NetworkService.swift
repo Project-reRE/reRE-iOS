@@ -20,6 +20,7 @@ enum NetworkService {
     case searchMovieList(params: [String: Any])
     case myRevaluations(params: [String: Any])
     case getOtherRevaluations(params: [String: Any])
+    case checkAlreadyRevaluated(params: [String: String])
     case getMovieDetail(movieId: String, params: [String: String])
     case revaluate(params: Encodable)
     case updateRevaluationLikes(isLiked: Bool, revaluationId: String)
@@ -67,6 +68,8 @@ extension NetworkService: TargetType {
             return "/my/revaluations"
         case .getOtherRevaluations:
             return "/revaluations"
+        case .checkAlreadyRevaluated:
+            return "/my/revaluations/check-in-month"
         case .getMovieDetail(let movieId, _):
             return "/movies/\(movieId)"
         case .revaluate:
@@ -93,6 +96,7 @@ extension NetworkService: TargetType {
         case .searchMovieList: return .get
         case .myRevaluations: return .get
         case .getOtherRevaluations: return .get
+        case .checkAlreadyRevaluated: return .get
         case .getMovieDetail: return .get
         case .revaluate: return .post
         case .updateRevaluationLikes(let isLiked, _):
@@ -129,6 +133,8 @@ extension NetworkService: TargetType {
         case .myRevaluations(let params):
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         case .getOtherRevaluations(let params):
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+        case .checkAlreadyRevaluated(let params):
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         case .getMovieDetail(_, let params):
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
