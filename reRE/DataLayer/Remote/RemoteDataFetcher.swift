@@ -242,8 +242,8 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
-    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<Result<MyHistoryEntityData, Error>, Never> {
-        return Future<Result<MyHistoryEntityData, Error>, Never> { [weak self] promise in
+    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<Result<MyHistoryEntityData?, Error>, Never> {
+        return Future<Result<MyHistoryEntityData?, Error>, Never> { [weak self] promise in
             let params: [String: String] = ["movieId": movieId]
             
             self?.networkManager.fetchService(.checkAlreadyRevaluated(params: params)) { [weak self] result in
@@ -251,13 +251,12 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                 
                 switch result {
                 case .success(let response):
-                    LogDebug(response.data)
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteMyHistoryData.self, data: response.data) {
                         promise(.success(.success(self.remoteHistoryMapper.remoteMyHistoryDataToEntity(remoteItem: remoteItem))))
                     } else {
-                        promise(.success(.success(.init())))
+                        promise(.success(.success(nil)))
                     }
                 case .failure(let error):
                     promise(.success(.failure(error)))

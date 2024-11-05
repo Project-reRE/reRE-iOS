@@ -315,10 +315,10 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 
                 CommonUtil.hideLoadingView()
                 
-                if myHistory?.id.isEmpty == true {
-                    self.revaluateButton.text = "\(self.viewModel.currentDate)월 재평가하기"
+                if let myHistory = myHistory {
+                    self.revaluateButton.text = "\(self.viewModel.currentDate)월 재평가 수정하기"
                 } else {
-                    self.revaluateButton.text = "\(self.viewModel.currentDate)월 수정하기"
+                    self.revaluateButton.text = "\(self.viewModel.currentDate)월 재평가하기"
                 }
                 
                 self.updateMovieInfo(withModel: movieDetail.data)

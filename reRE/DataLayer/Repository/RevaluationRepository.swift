@@ -18,7 +18,7 @@ final class RevaluationRepository {
 }
 
 extension RevaluationRepository: RevaluationRepositoryProtocol {
-    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<Result<MyHistoryEntityData, Error>, Never> {
+    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<Result<MyHistoryEntityData?, Error>, Never> {
         return remoteDataFetcher.checkAlreadyRevaluated(withId: movieId)
     }
     

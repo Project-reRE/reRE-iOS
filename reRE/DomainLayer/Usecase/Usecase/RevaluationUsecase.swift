@@ -19,7 +19,7 @@ final class RevaluationUsecase {
 }
 
 extension RevaluationUsecase: RevaluationUsecaseProtocol {
-    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<MyHistoryEntityData, Never> {
+    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<MyHistoryEntityData?, Never> {
         return repository.checkAlreadyRevaluated(withId: movieId)
             .compactMap { [weak self] result in
                 switch result {

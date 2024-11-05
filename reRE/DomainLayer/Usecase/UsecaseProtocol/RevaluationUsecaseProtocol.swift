@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol RevaluationUsecaseProtocol: BaseUsecaseProtocol {
-    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<MyHistoryEntityData, Never>
+    func checkAlreadyRevaluated(withId movieId: String) -> AnyPublisher<MyHistoryEntityData?, Never>
     func getMovieDetail(withId movieId: String) -> AnyPublisher<MovieDetailEntity, Never>
     func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Void, Never>
     func updateRevaluation(withId revaluationId: String, updatedModel: RevaluateRequestModel) -> AnyPublisher<MyHistoryEntityData, Never>
