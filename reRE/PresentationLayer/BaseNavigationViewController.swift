@@ -66,7 +66,7 @@ class BaseNavigationViewController: BaseViewController {
         }
     }
     
-    func setNavigationTitle(with title: String) {
+    func setNavigationTitle(with title: String?) {
         topTitleLabel.text = title
     }
 }

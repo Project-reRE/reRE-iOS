@@ -33,9 +33,10 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
     private func moveToCommonFlow(_ flow: CommonFlow, userData: [String: Any]?) {
         switch flow {
         case .web:
-            guard let webViewType = userData?["webViewType"] as? WebViewType else { return }
+            let webViewType = userData?["webViewType"] as? WebViewType
+            let url = userData?["url"] as? URL
             
-            let webVC = BaseWebViewController(webViewType: webViewType)
+            let webVC = BaseWebViewController(webViewType: webViewType, url: url)
             webVC.coordinator = self
             currentNavigationViewController?.pushViewController(webVC, animated: true)
         case .revaluationDetail:

@@ -11,7 +11,7 @@ import SnapKit
 import Kingfisher
 
 final class DailyRankingBannerCell: UICollectionViewCell {
-    private lazy var containerView = TouchableImageView(frame: .zero).then {
+    private(set) lazy var containerView = TouchableImageView(frame: .zero).then {
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = moderateScale(number: 16)
         $0.kf.indicatorType = .activity

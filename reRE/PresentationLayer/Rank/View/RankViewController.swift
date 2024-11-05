@@ -314,6 +314,16 @@ extension RankViewController: UICollectionViewDataSource {
                 
                 let bannerModel: BannerResponseModel = viewModel.bannerListValue[indexPath.item]
                 cell.updateView(withModel: bannerModel)
+                
+                cell.containerView.didTapped { [weak self] in
+                    if bannerModel.route == "search" {
+                        self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
+                    } else {
+                        if let url = URL(string: bannerModel.route) {
+                            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.web), userData: ["url": url])
+                        }
+                    }
+                }
                 return cell
             }
         } else {

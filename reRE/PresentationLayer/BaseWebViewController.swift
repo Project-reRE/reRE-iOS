@@ -67,10 +67,12 @@ final class BaseWebViewController: BaseNavigationViewController {
         $0.scrollView.showsVerticalScrollIndicator = false
     }
     
-    private let webViewType: WebViewType
+    private let webViewType: WebViewType?
+    private let url: URL?
     
-    init(webViewType: WebViewType) {
+    init(webViewType: WebViewType?, url: URL?) {
         self.webViewType = webViewType
+        self.url = url
         super.init()
         
         hidesBottomBarWhenPushed = true
@@ -106,16 +108,24 @@ final class BaseWebViewController: BaseNavigationViewController {
     override func setupIfNeeded() {
         super.setupIfNeeded()
         
-        setNavigationTitle(with: webViewType.titleText)
+        setNavigationTitle(with: webViewType?.titleText)
     }
     
     private func openWebView() {
-        guard let url = URL(string: webViewType.urlString) else { return }
-        
-        let urlRequest = URLRequest(url: url)
-        
-        DispatchMain.async { [weak self] in
-            self?.webView.load(urlRequest)
+        if let webViewType = webViewType {
+            guard let url = URL(string: webViewType.urlString) else { return }
+            
+            let urlRequest = URLRequest(url: url)
+            
+            DispatchMain.async { [weak self] in
+                self?.webView.load(urlRequest)
+            }
+        } else if let url = url {
+            let urlRequest = URLRequest(url: url)
+            
+            DispatchMain.async { [weak self] in
+                self?.webView.load(urlRequest)
+            }
         }
     }
 }
