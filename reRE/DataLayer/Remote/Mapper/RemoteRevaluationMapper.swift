@@ -23,8 +23,7 @@ struct RemoteRevaluationMapper {
         
         let statistics = remoteItem.statistics?.compactMap { remoteStatisticsItem -> MovieStatisticsEntity in
             let numRecentStars: [MovieRecentRatingsEntity]? = remoteStatisticsItem.numRecentStars?.compactMap {
-                return .init(currentDate: $0.currentDate ?? "",
-                             numStars: $0.numStars ?? 0)
+                return .init(currentDate: $0.currentDate ?? "", numStars: $0.numStars ?? "")
             }
             
             let numSpecialPointTopThree: [MovieMostSpecialPointEntity]? = remoteStatisticsItem.numSpecialPointTopThree?.compactMap {
@@ -59,7 +58,7 @@ struct RemoteRevaluationMapper {
             
             return .init(id: remoteStatisticsItem.id ?? "",
                          numRecentStars: numRecentStars ?? [],
-                         numStars: remoteStatisticsItem.numStars ?? 0,
+                         numStars: remoteStatisticsItem.numStars ?? "",
                          numStarsParticipants: remoteStatisticsItem.numStarsParticipants ?? 0,
                          numSpecialPoint: .init(PLANNING_INTENT: remoteStatisticsItem.numSpecialPoint?.PLANNING_INTENT ?? 0,
                                                 DIRECTORS_DIRECTION: remoteStatisticsItem.numSpecialPoint?.DIRECTORS_DIRECTION ?? 0,

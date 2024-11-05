@@ -28,7 +28,7 @@ struct MovieDetailEntity {
 struct MovieStatisticsEntity {
     let id: String
     let numRecentStars: [MovieRecentRatingsEntity]
-    let numStars: Double
+    let numStars: String
     let numStarsParticipants: Int
     let numSpecialPoint: MovieSpecialPointEntity
     let numPastValuation: MovieFeelingsEntity
@@ -44,7 +44,7 @@ struct MovieStatisticsEntity {
     
     init(id: String,
          numRecentStars: [MovieRecentRatingsEntity],
-         numStars: Double,
+         numStars: String,
          numStarsParticipants: Int,
          numSpecialPoint: MovieSpecialPointEntity,
          numPastValuation: MovieFeelingsEntity,
@@ -77,7 +77,7 @@ struct MovieStatisticsEntity {
     init() {
         id = ""
         numRecentStars = []
-        numStars = 0
+        numStars = ""
         numStarsParticipants = 0
         numSpecialPoint = .init()
         numPastValuation = .init()
@@ -95,16 +95,16 @@ struct MovieStatisticsEntity {
 
 struct MovieRecentRatingsEntity {
     let currentDate: String
-    let numStars: Double
+    let numStars: String
     
-    init(currentDate: String, numStars: Double) {
+    init(currentDate: String, numStars: String) {
         self.currentDate = currentDate
         self.numStars = numStars
     }
     
     init() {
         currentDate = ""
-        numStars = 0
+        numStars = ""
     }
 }
 

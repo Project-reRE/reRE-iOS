@@ -236,7 +236,10 @@ final class RevaluationDetailView: UIStackView {
         }
         
         gradeLabel.text = "\(model.numStars)"
-        ratingView.rating = model.numStars
+        
+        if let numStars = Double(model.numStars) {
+            ratingView.rating = numStars
+        }
     }
     
     func updateGradeTrend(ratingsEntity: [MovieRecentRatingsEntity]) {

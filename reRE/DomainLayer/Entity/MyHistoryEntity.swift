@@ -24,7 +24,7 @@ struct MyHistoryEntity {
 
 struct MyHistoryEntityData {
     let id: String
-    let numStars: Double
+    let numStars: String
     let specialPoint: String
     let pastValuation: String
     let presentValuation: String
@@ -35,7 +35,7 @@ struct MyHistoryEntityData {
     let movie: SearchMovieListResultEntity
     
     init(id: String,
-         numStars: Double,
+         numStars: String,
          specialPoint: String,
          pastValuation: String,
          presentValuation: String,
@@ -58,7 +58,7 @@ struct MyHistoryEntityData {
     
     init() {
         id = ""
-        numStars = 0
+        numStars = ""
         specialPoint = ""
         pastValuation = ""
         presentValuation = ""

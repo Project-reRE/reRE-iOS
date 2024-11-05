@@ -352,6 +352,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             self?.networkManager.fetchService(.revaluate(params: reqestModel)) { result in
                 switch result {
                 case .success(let response):
+                    LogDebug(response.data)
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         promise(.success(.failure(error)))
