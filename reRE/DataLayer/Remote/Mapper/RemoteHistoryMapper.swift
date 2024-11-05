@@ -36,7 +36,7 @@ struct RemoteHistoryMapper {
                                                                                     stills: remoteData.movie?.data?.stills ?? []))
             
             return MyHistoryEntityData(id: remoteData.id ?? "",
-                                       numStars: remoteData.numStars ?? "",
+                                       numStars: remoteData.numStars ?? 0,
                                        specialPoint: remoteData.specialPoint ?? "",
                                        pastValuation: remoteData.pastValuation ?? "",
                                        presentValuation: remoteData.presentValuation ?? "",
@@ -53,7 +53,7 @@ struct RemoteHistoryMapper {
     
     func remoteMyHistoryDataToEntity(remoteItem: RemoteMyHistoryData) -> MyHistoryEntityData {
         return .init(id: remoteItem.id ?? "",
-                     numStars: remoteItem.numStars ?? "",
+                     numStars: remoteItem.numStars ?? 0,
                      specialPoint: remoteItem.specialPoint ?? "",
                      pastValuation: remoteItem.pastValuation ?? "",
                      presentValuation: remoteItem.presentValuation ?? "",
