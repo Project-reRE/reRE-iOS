@@ -282,7 +282,8 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             }
             
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate),
-                                     userData: ["movieEntity": self.viewModel.getRevaluationDataValue()])
+                                     userData: ["movieEntity": self.viewModel.getRevaluationDataValue(),
+                                                "myHistoryEntity": self.viewModel.myHistoryValue])
         }
         
         showOtherRevaluationsButton.didTapped { [weak self] in
@@ -314,7 +315,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 
                 CommonUtil.hideLoadingView()
                 
-                if myHistory.id.isEmpty {
+                if myHistory?.id.isEmpty == true {
                     self.revaluateButton.text = "\(self.viewModel.currentDate)월 재평가하기"
                 } else {
                     self.revaluateButton.text = "\(self.viewModel.currentDate)월 수정하기"

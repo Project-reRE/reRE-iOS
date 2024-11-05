@@ -15,17 +15,26 @@ final class RevaluateViewModel: BaseViewModel {
     
     private let usecase: RevaluationUsecaseProtocol
     private let movieEntity: MovieDetailEntity
+    private(set) var myHistoryEntity: MyHistoryEntityData?
     
-    init(usecase: RevaluationUsecaseProtocol, movieEntity: MovieDetailEntity) {
+    init(usecase: RevaluationUsecaseProtocol, movieEntity: MovieDetailEntity, myHistoryEntity: MyHistoryEntityData?) {
         self.usecase = usecase
         self.movieEntity = movieEntity
+        self.myHistoryEntity = myHistoryEntity
         super.init(usecase: usecase)
         
         revaluateRequestModel.movieId = movieEntity.id
     }
     
     var isOverDate: Bool {
-        return Date().dateToString(with: "yyyy-MM") != movieEntity.statistics.first?.currentDate
+        if movieEntity.statistics.isEmpty {
+            let updatedDate = myHistoryEntity?.updatedAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            let endDayOfMonth = updatedDate?.endDayOfMonth()
+            
+            return endDayOfMonth ?? Date() < Date()
+        } else {
+            return Date().dateToString(with: "yyyy-MM") != movieEntity.statistics.first?.currentDate
+        }
     }
     
     func getMovieEntity() -> MovieDetailEntity {
@@ -57,11 +66,21 @@ final class RevaluateViewModel: BaseViewModel {
     }
     
     func revaluate() {
-        usecase.revaluate(with: revaluateRequestModel)
-            .sink { [weak self] _ in
-                NotificationCenter.default.post(name: .revaluationAdded, object: nil)
-                self?.revaluationSuccess.send(())
-            }.store(in: &cancelBag)
+        if let myHistoryEntity = myHistoryEntity {
+            usecase.updateRevaluation(withId: myHistoryEntity.id, updatedModel: revaluateRequestModel)
+                .sink { [weak self] updatedHistory in
+                    NotificationCenter.default.post(name: .revaluationUpdated,
+                                                    object: nil,
+                                                    userInfo: ["updatedHistory": updatedHistory])
+                    self?.revaluationSuccess.send(())
+                }.store(in: &cancelBag)
+        } else {
+            usecase.revaluate(with: revaluateRequestModel)
+                .sink { [weak self] _ in
+                    NotificationCenter.default.post(name: .revaluationAdded, object: nil)
+                    self?.revaluationSuccess.send(())
+                }.store(in: &cancelBag)
+        }
     }
     
     func getRevaluationSuccessPublisher() -> AnyPublisher<Void, Never> {

@@ -11,10 +11,14 @@ import Combine
 final class ReValuationDetailViewModel: BaseViewModel {
     private let revaluationData = CurrentValueSubject<MovieDetailEntity, Never>(.init())
     private let showingRatingData = CurrentValueSubject<MovieRecentRatingsEntity, Never>(.init())
-    private let myHistory = CurrentValueSubject<MyHistoryEntityData, Never>(.init())
+    private let myHistory = CurrentValueSubject<MyHistoryEntityData?, Never>(nil)
     
-    var myHistoryPublisher: AnyPublisher<MyHistoryEntityData, Never> {
+    var myHistoryPublisher: AnyPublisher<MyHistoryEntityData?, Never> {
         return myHistory.eraseToAnyPublisher()
+    }
+    
+    var myHistoryValue: MyHistoryEntityData? {
+        return myHistory.value
     }
     
     private(set) var currentDate: String = Date().dateToString(with: "MM")

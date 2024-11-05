@@ -30,6 +30,10 @@ extension RevaluationRepository: RevaluationRepositoryProtocol {
         return remoteDataFetcher.revaluate(with: reqestModel)
     }
     
+    func updateRevaluation(withId revaluationId: String, updatedModel: RevaluateRequestModel) -> AnyPublisher<Result<MyHistoryEntityData, Error>, Never> {
+        return remoteDataFetcher.updateRevaluation(withId: revaluationId, updatedModel: updatedModel)
+    }
+    
     func getOtherRevaluations(with model: OtherRevaluationsRequestModel) -> AnyPublisher<Result<OtherRevaluationsEntity, Error>, Never> {
         var moderatedModel: OtherRevaluationsRequestModel = model
         moderatedModel.limit = paginationModel.limit

@@ -134,7 +134,6 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         super.viewDidLoad()
         
         bind()
-        updateView()
     }
     
     override func addViews() {
@@ -247,6 +246,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         super.setupIfNeeded()
         
         setNavigationTitle(with: "재평가한 내용 상세 보기")
+        updateView(with: viewModel.getHistoryEntityValue())
         
         getMovieInfoButton.didTapped { [weak self] in
             guard let self = self else { return }
@@ -255,7 +255,8 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         }
         
         editRevaluationButton.didTapped { [weak self] in
-            guard let updatedDate = self?.viewModel.getHistoryEntityValue().updatedAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+            guard let self = self else { return }
+            guard let updatedDate = self.viewModel.getHistoryEntityValue().updatedAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
                   let endDayOfMonth = updatedDate.endDayOfMonth() else {
                 return
             }
@@ -270,7 +271,12 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
                 return
             }
             
-//            self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate), userData: <#T##[String : Any]?#>)
+            let movieEntity: MovieDetailEntity = MovieDetailEntity(id: self.viewModel.getHistoryEntityValue().movie.id,
+                                                                   data: self.viewModel.getHistoryEntityValue().movie.data,
+                                                                   statistics: [])
+            self.coordinator?.moveTo(appFlow: TabBarFlow.common(.revaluate),
+                                     userData: ["movieEntity": movieEntity,
+                                                "myHistoryEntity": self.viewModel.getHistoryEntityValue()])
         }
         
         deleteRevaluationButton.didTapped { [weak self] in
@@ -285,6 +291,17 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
                 self?.viewModel.deleteHistory()
             }, cancelCompletion: nil)
         }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(shouldUpdateRevaluation(_:)),
+                                               name: .revaluationUpdated,
+                                               object: nil)
+    }
+    
+    override func deinitialize() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .revaluationUpdated,
+                                                  object: nil)
     }
     
     private func bind() {
@@ -300,32 +317,30 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
     }
     
-    private func updateView() {
-        let historyEntity: MyHistoryEntityData = viewModel.getHistoryEntityValue()
-        
-        if let postersURLString = historyEntity.movie.data.posters.first, postersURLString.isEmpty == false {
+    private func updateView(with history: MyHistoryEntityData) {
+        if let postersURLString = history.movie.data.posters.first, postersURLString.isEmpty == false {
             thumbnailImageView.kf.setImage(with: URL(string: postersURLString))
-        } else if let stillsURLString = historyEntity.movie.data.stills.first, stillsURLString.isEmpty == false {
+        } else if let stillsURLString = history.movie.data.stills.first, stillsURLString.isEmpty == false {
             thumbnailImageView.kf.setImage(with: URL(string: stillsURLString))
         } else {
             thumbnailImageView.image = UIImage(named: "DefaultThumbnail")
         }
         
-        titleLabel.text = historyEntity.movie.data.title
-        ratingLabel.text = "\(historyEntity.numStars)"
-        commentLabel.text = historyEntity.comment
+        titleLabel.text = history.movie.data.title
+        ratingLabel.text = "\(history.numStars)"
+        commentLabel.text = history.comment
         
-        if let createdDate = historyEntity.createdAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")?.dateToString(with: "yyyy-MM-dd") {
+        if let createdDate = history.createdAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")?.dateToString(with: "yyyy-MM-dd") {
             revaluateDateLabel.text = "\(createdDate) 평가"
         }
         
-        if let specialPoint = RevaluationCategoryView.CategoryType(rawValue: historyEntity.specialPoint),
-           let pastValuation = RevaluationCategoryView.CategoryType(rawValue: historyEntity.pastValuation),
-           let presentValuation = RevaluationCategoryView.CategoryType(rawValue: historyEntity.presentValuation) {
-            revaluationDetailLabel.text = "재평가 평점은 \(historyEntity.numStars), 주목할 포인트는 '\(specialPoint.titleText)', 과거에는 '\(pastValuation.titleText)', 현재는 '\(presentValuation.titleText)'이라고 평가했어요."
+        if let specialPoint = RevaluationCategoryView.CategoryType(rawValue: history.specialPoint),
+           let pastValuation = RevaluationCategoryView.CategoryType(rawValue: history.pastValuation),
+           let presentValuation = RevaluationCategoryView.CategoryType(rawValue: history.presentValuation) {
+            revaluationDetailLabel.text = "재평가 평점은 \(history.numStars), 주목할 포인트는 '\(specialPoint.titleText)', 과거에는 '\(pastValuation.titleText)', 현재는 '\(presentValuation.titleText)'이라고 평가했어요."
             
             
-            ["\(historyEntity.numStars)", "'\(specialPoint.titleText)'"]
+            ["\(history.numStars)", "'\(specialPoint.titleText)'"]
                 .forEach {
                     revaluationDetailLabel.highLightText(targetString: $0,
                                                          color: ColorSet.tertiary(.navy80).color,
@@ -368,5 +383,13 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
                                                  color: currentHighlightingColor,
                                                  font: FontSet.body02.font)
         }
+    }
+    
+    @objc
+    private func shouldUpdateRevaluation(_ notification: Notification) {
+        guard let updatedHistory = notification.userInfo?["updatedHistory"] as? MyHistoryEntityData else { return }
+        
+        CommonUtil.hideLoadingView()
+        updateView(with: updatedHistory)
     }
 }

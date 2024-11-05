@@ -64,8 +64,10 @@ final class CommonCoordinator: NSObject, CommonBaseCoordinator {
         case .revaluate:
             guard let movieEntity = userData?["movieEntity"] as? MovieDetailEntity else { return }
             
+            let myHistoryEntity: MyHistoryEntityData? = userData?["myHistoryEntity"] as? MyHistoryEntityData
             let viewModel: RevaluateViewModel = RevaluateViewModel(usecase: Injector.shared.resolve(RevaluationUsecaseProtocol.self)!,
-                                                                   movieEntity: movieEntity)
+                                                                   movieEntity: movieEntity,
+                                                                   myHistoryEntity: myHistoryEntity)
             let revaluateVC = RevaluateViewController(viewModel: viewModel)
             revaluateVC.coordinator = self
             

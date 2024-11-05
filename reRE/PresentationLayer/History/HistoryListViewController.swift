@@ -161,11 +161,6 @@ final class HistoryListViewController: BaseNavigationViewController {
                                                   object: nil)
     }
     
-    @objc
-    private func shouldUpdateRevaluationList() {
-        viewModel.fetchRevaluationHistories()
-    }
-    
     private func bind() {
         viewModel.getErrorSubject()
             .mainSink { [weak self] error in
@@ -197,6 +192,11 @@ final class HistoryListViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
         
         CommonUtil.showLoadingView()
+        viewModel.fetchRevaluationHistories()
+    }
+    
+    @objc
+    private func shouldUpdateRevaluationList() {
         viewModel.fetchRevaluationHistories()
     }
 }

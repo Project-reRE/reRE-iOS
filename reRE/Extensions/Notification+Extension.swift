@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let revaluationDeleted = Notification.Name("revaluationDeleted")
     static let revaluationAdded = Notification.Name("revaluationAdded")
+    static let revaluationUpdated = Notification.Name("revaluationUpdated")
 }

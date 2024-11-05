@@ -73,7 +73,6 @@ final class RevaluateViewController: BaseNavigationViewController {
     }
     
     private lazy var revaluateButton = TouchableLabel().then {
-        $0.text = "재평가 완료하기"
         $0.textAlignment = .center
         $0.textColor = ColorSet.gray(.white).color
         $0.font = FontSet.button01.font
@@ -328,15 +327,49 @@ final class RevaluateViewController: BaseNavigationViewController {
     override func setupIfNeeded() {
         super.setupIfNeeded()
         
-        let currentMonthString = Date().dateToString(with: "MM")
+        let currentMonthString: String = Date().dateToString(with: "MM")
         
         if let currentMonth = Int(currentMonthString) {
             setNavigationTitle(with: "\(currentMonth)월 재평가하기")
+            revaluateButton.text = "\(currentMonth)월 재평가 완료하기"
         } else {
             setNavigationTitle(with: "재평가하기")
+            revaluateButton.text = "재평가 완료하기"
         }
         
         updateMovieInfo(withModel: viewModel.getMovieEntity().data)
+        
+        if let myHistory = viewModel.myHistoryEntity {
+            ratingView.rating = myHistory.numStars
+            ratingLabel.text = "\(myHistory.numStars)"
+            viewModel.updateRating(to: myHistory.numStars)
+            
+            if let specialPoint = RevaluationCategoryView.CategoryType(rawValue: myHistory.specialPoint) {
+                updateSpecialCategoryView(to: specialPoint)
+                viewModel.updateSpecialPoint(with: specialPoint)
+            }
+            
+            if let pastValuation = RevaluationCategoryView.CategoryType(rawValue: myHistory.pastValuation) {
+                updatePastFeelingsCategoryView(to: pastValuation)
+                viewModel.updatePastFeelings(with: pastValuation)
+            }
+            
+            if let presentValuation = RevaluationCategoryView.CategoryType(rawValue: myHistory.presentValuation) {
+                updateCurrentFeelingsCategoryView(to: presentValuation)
+                viewModel.updateCurrentFeelings(with: presentValuation)
+            }
+            
+            commnetTextView.text = myHistory.comment
+            viewModel.updateComment(with: myHistory.comment)
+            updateCountLabel(characterCount: myHistory.comment.count)
+            
+            if let currentMonth = Int(currentMonthString) {
+                revaluateButton.text = "\(currentMonth)월 재평가 수정하기"
+            } else {
+                setNavigationTitle(with: "재평가하기")
+                revaluateButton.text = "재평가 수정하기"
+            }
+        }
         
         ratingView.didTouchCosmos = { [weak self] rating in
             self?.ratingLabel.text = "\(rating)"
