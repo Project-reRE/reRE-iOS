@@ -246,7 +246,7 @@ final class RevaluationDetailView: UIStackView {
         chartView.ratings = ratingsEntity
     }
     
-    func updateSpecialPoint(withModel model: [MovieMostSpecialPointEntity]) {
+    func updateSpecialPoint(withModel model: [MovieStatisticsPercentageEntity]) {
         specialPointView.updateView(withModel: model)
     }
     

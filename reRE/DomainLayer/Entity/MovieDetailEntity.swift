@@ -36,7 +36,7 @@ struct MovieStatisticsEntity {
     let numGender: RevaluatedGenderEntity
     let numAge: RevaluatedAgeEntity
     let currentDate: String
-    let numSpecialPointTopThree: [MovieMostSpecialPointEntity]
+    let numSpecialPointTopThree: [MovieStatisticsPercentageEntity]
     let numPastValuationPercent: [MovieStatisticsPercentageEntity]
     let numPresentValuationPercent: [MovieStatisticsPercentageEntity]
     let numGenderPercent: [MovieStatisticsPercentageEntity]
@@ -52,7 +52,7 @@ struct MovieStatisticsEntity {
          numGender: RevaluatedGenderEntity,
          numAge: RevaluatedAgeEntity,
          currentDate: String,
-         numSpecialPointTopThree: [MovieMostSpecialPointEntity],
+         numSpecialPointTopThree: [MovieStatisticsPercentageEntity],
          numPastValuationPercent: [MovieStatisticsPercentageEntity],
          numPresentValuationPercent: [MovieStatisticsPercentageEntity],
          numGenderPercent: [MovieStatisticsPercentageEntity],
@@ -205,37 +205,19 @@ struct RevaluatedAgeEntity {
     }
 }
 
-struct MovieMostSpecialPointEntity {
-    let rank: Int
-    let type: String
-    let value: Int
-    
-    init(rank: Int, type: String, value: Int) {
-        self.rank = rank
-        self.type = type
-        self.value = value
-    }
-    
-    init() {
-        rank = 0
-        type = ""
-        value = 0
-    }
-}
-
 struct MovieStatisticsPercentageEntity {
-    let rank: Int
+    let rank: String
     let type: String
     let value: String
     
-    init(rank: Int, type: String, value: String) {
+    init(rank: String, type: String, value: String) {
         self.rank = rank
         self.type = type
         self.value = value
     }
     
     init() {
-        rank = 0
+        rank = ""
         type = ""
         value = ""
     }

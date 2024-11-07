@@ -26,32 +26,32 @@ struct RemoteRevaluationMapper {
                 return .init(currentDate: $0.currentDate ?? "", numStars: $0.numStars ?? "")
             }
             
-            let numSpecialPointTopThree: [MovieMostSpecialPointEntity]? = remoteStatisticsItem.numSpecialPointTopThree?.compactMap {
-                return MovieMostSpecialPointEntity(rank: $0.rank ?? 0,
-                                                   type: $0.type ?? "",
-                                                   value: $0.value ?? 0)
+            let numSpecialPointTopThree: [MovieStatisticsPercentageEntity]? = remoteStatisticsItem.numSpecialPointTopThree?.compactMap {
+                return MovieStatisticsPercentageEntity(rank: $0.rank ?? "",
+                                                       type: $0.type ?? "",
+                                                       value: $0.value ?? "")
             }
             
             let numPastValuationPercent: [MovieStatisticsPercentageEntity]? = remoteStatisticsItem.numPastValuationPercent?.compactMap {
-                return MovieStatisticsPercentageEntity(rank: $0.rank ?? 0,
+                return MovieStatisticsPercentageEntity(rank: $0.rank ?? "",
                                                        type: $0.type ?? "",
                                                        value: $0.value ?? "")
             }
             
             let numPresentValuationPercent: [MovieStatisticsPercentageEntity]? = remoteStatisticsItem.numPresentValuationPercent?.compactMap {
-                return MovieStatisticsPercentageEntity(rank: $0.rank ?? 0,
+                return MovieStatisticsPercentageEntity(rank: $0.rank ?? "",
                                                        type: $0.type ?? "",
                                                        value: $0.value ?? "")
             }
             
             let numGenderPercent: [MovieStatisticsPercentageEntity]? = remoteStatisticsItem.numGenderPercent?.compactMap {
-                return MovieStatisticsPercentageEntity(rank: $0.rank ?? 0,
+                return MovieStatisticsPercentageEntity(rank: $0.rank ?? "",
                                                        type: $0.type ?? "",
                                                        value: $0.value ?? "")
             }
             
             let numAgePercent: [MovieStatisticsPercentageEntity]? = remoteStatisticsItem.numAgePercent?.compactMap {
-                return MovieStatisticsPercentageEntity(rank: $0.rank ?? 0,
+                return MovieStatisticsPercentageEntity(rank: $0.rank ?? "",
                                                        type: $0.type ?? "",
                                                        value: $0.value ?? "")
             }

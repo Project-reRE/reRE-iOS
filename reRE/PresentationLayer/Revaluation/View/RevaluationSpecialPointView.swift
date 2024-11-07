@@ -49,22 +49,22 @@ final class RevaluationSpecialPointView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateView(withModel model: [MovieMostSpecialPointEntity]) {
-        if let firstSpecialPoint = model.first(where: { $0.rank == 1 }) {
+    func updateView(withModel model: [MovieStatisticsPercentageEntity]) {
+        if let firstSpecialPoint = model.first(where: { $0.rank == "1" }) {
             firstSpeicialPointView.isHidden = false
             firstSpeicialPointView.updateView(withModel: firstSpecialPoint)
         } else {
             firstSpeicialPointView.isHidden = true
         }
         
-        if let secondSpecialPoint = model.first(where: { $0.rank == 2 }) {
+        if let secondSpecialPoint = model.first(where: { $0.rank == "2" }) {
             secondSpeicialPointView.isHidden = false
             secondSpeicialPointView.updateView(withModel: secondSpecialPoint)
         } else {
             secondSpeicialPointView.isHidden = true
         }
         
-        if let thirdSpecialPoint = model.first(where: { $0.rank == 3 }) {
+        if let thirdSpecialPoint = model.first(where: { $0.rank == "3" }) {
             thirdSpeicialPointView.isHidden = false
             thirdSpeicialPointView.updateView(withModel: thirdSpecialPoint)
         } else {
