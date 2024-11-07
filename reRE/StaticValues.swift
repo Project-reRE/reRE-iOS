@@ -14,7 +14,7 @@ struct StaticValues {
     static var openedMonth: Date {
         var dateComponents = DateComponents()
         dateComponents.year = 2024
-        dateComponents.month = 9
+        dateComponents.month = 11
         dateComponents.timeZone = TimeZone(identifier: "Asia/Seoul")
         
         let userCalendar = Calendar(identifier: .gregorian)
