@@ -34,7 +34,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                 
                 switch result {
                 case .success(let response):
-                    if let remoteItem = DecodeUtil.decode(RemoteMovieSetsItem.self, data: response.data) {
+                    if let remoteItem = DecodeUtil.decode([RemoteMovieSetsItem].self, data: response.data) {
                         promise(.success(.success(self.remoteBannerMapper.remoteMovieSetsItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)

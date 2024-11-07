@@ -17,23 +17,20 @@ struct RemoteBannerMapper {
         }
     }
     
-    func remoteMovieSetsItemToEntity(remoteItem: RemoteMovieSetsItem) -> [MovieSetsEntity] {
-        guard let movieSets = remoteItem.results else { return [] }
-        
-        return movieSets.map { remoteMovieSetsItem -> MovieSetsEntity in
-            guard let data = remoteMovieSetsItem.data else { return .init() }
+    func remoteMovieSetsItemToEntity(remoteItem: [RemoteMovieSetsItem]) -> [MovieSetsEntity] {
+        return remoteItem.map { remoteMovieSetsItem -> MovieSetsEntity in
+            guard let remoteMovieSetsData = remoteMovieSetsItem.data else { return .init() }
             
-            let movieSetEntity: [MovieSetEntity] = data.map { remoteMovieSetData -> MovieSetEntity in
+            let movieSetEntities = remoteMovieSetsData.map { remoteMovieSetData -> MovieSetEntity in
                 let actorsEntity = remoteMovieActorDataToEntity(remoteData: remoteMovieSetData.data?.actors)
                 let directorsEntity = remoteMovieDirectorDataToEntity(remoteData: remoteMovieSetData.data?.directors)
-                return .init(id: remoteMovieSetData.id ?? "",
-                             data: .init(title: remoteMovieSetData.data?.title ?? "",
-                                         genre: remoteMovieSetData.data?.genre ?? [],
-                                         repRlsDate: remoteMovieSetData.data?.repRlsDate ?? "",
-                                         directors: directorsEntity,
-                                         actors: actorsEntity,
-                                         posters: remoteMovieSetData.data?.posters ?? [],
-                                         stills: remoteMovieSetData.data?.stills ?? []))
+                return MovieSetEntity(id: remoteMovieSetData.id ?? "", data: .init(title: remoteMovieSetData.data?.title ?? "",
+                                                                                   genre: remoteMovieSetData.data?.genre ?? [],
+                                                                                   repRlsDate: remoteMovieSetData.data?.repRlsDate ?? "",
+                                                                                   directors: directorsEntity,
+                                                                                   actors: actorsEntity,
+                                                                                   posters: remoteMovieSetData.data?.posters ?? [],
+                                                                                   stills: remoteMovieSetData.data?.stills ?? []))
             }
             
             return MovieSetsEntity(title: remoteMovieSetsItem.title ?? "",
@@ -41,7 +38,7 @@ struct RemoteBannerMapper {
                                    template: remoteMovieSetsItem.template ?? "",
                                    displayOrder: remoteMovieSetsItem.displayOrder ?? 0,
                                    condition: remoteMovieSetsItem.condition ?? "",
-                                   data: movieSetEntity)
+                                   data: movieSetEntities)
         }
     }
     

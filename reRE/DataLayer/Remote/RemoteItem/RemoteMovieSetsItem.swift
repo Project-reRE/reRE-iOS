@@ -8,11 +8,6 @@
 import Foundation
 
 struct RemoteMovieSetsItem: Decodable {
-    let totalRecords: Int?
-    let results: [RemoteMovieSetsData]?
-}
-
-struct RemoteMovieSetsData: Decodable {
     let title: String?
     let genre: String?
     let template: String?

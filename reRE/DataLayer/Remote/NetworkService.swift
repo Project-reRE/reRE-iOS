@@ -42,7 +42,7 @@ extension NetworkService: TargetType {
         case .refreshToken:
             return "/auth/refresh"
         case .rankingMovieSets:
-            return "/open-movie-sets"
+            return "/movies/ranking"
         case .rankingBanner:
             return "/open-banners"
         case .snsLogin(let loginType):
