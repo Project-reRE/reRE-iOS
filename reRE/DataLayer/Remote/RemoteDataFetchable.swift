@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 protocol RemoteDataFetchable: AnyObject {
+    func versionCheck() -> AnyPublisher<Result<VersionEntity, Error>, Never>
     func getBannerList() -> AnyPublisher<Result<[BannerEntity], Error>, Never>
     func getMovieSets() -> AnyPublisher<Result<[MovieSetsEntity], Error>, Never>
     func snsLogin(withModel model: LoginRequestModel) -> AnyPublisher<Result<String, Error>, Never>

@@ -9,6 +9,7 @@ import Foundation
 import Moya
 
 enum NetworkService {
+    case versionCheck(params: [String: String])
     case refreshToken
     case rankingMovieSets
     case rankingBanner
@@ -39,6 +40,8 @@ extension NetworkService: TargetType {
     
     var path: String {
         switch self {
+        case .versionCheck:
+            return "/common/version"
         case .refreshToken:
             return "/auth/refresh"
         case .rankingMovieSets:
@@ -85,6 +88,7 @@ extension NetworkService: TargetType {
     
     var method: Moya.Method {
         switch self {
+        case .versionCheck: return .get
         case .refreshToken: return .get
         case .rankingMovieSets: return .get
         case .rankingBanner: return .get
@@ -112,6 +116,8 @@ extension NetworkService: TargetType {
     
     var task: Moya.Task {
         switch self {
+        case .versionCheck(let params):
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         case .refreshToken:
             return .requestPlain
         case .rankingMovieSets:

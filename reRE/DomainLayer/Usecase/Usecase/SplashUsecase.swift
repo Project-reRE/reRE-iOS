@@ -19,6 +19,19 @@ final class SplashUsecase {
 }
 
 extension SplashUsecase: SplashUsecaseProtocol {
+    func versionCheck() -> AnyPublisher<VersionEntity, Never> {
+        return repository.versionCheck()
+            .compactMap { [weak self] result in
+                switch result {
+                case .success(let versionEntity):
+                    return versionEntity
+                case .failure(let error):
+                    self?.errorSubject.send(error)
+                    return nil
+                }
+            }.eraseToAnyPublisher()
+    }
+    
     func getLoginType() -> SNSLoginType? {
         return repository.getLoginType()
     }

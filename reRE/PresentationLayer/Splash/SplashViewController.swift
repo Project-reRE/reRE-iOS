@@ -63,6 +63,31 @@ final class SplashViewController: BaseViewController {
                 }, cancelCompletion: nil)
             }.store(in: &cancelBag)
         
+        viewModel.versionActionPublisher
+            .mainSink { [weak self] versionAction in
+                switch versionAction {
+                case .forceUpdate:
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: "업데이트",
+                                             description: "보다 원활한 이용을 위해\n업데이트를 진행해주세요.",
+                                             submitCompletion: {
+                        CommonUtil.goToAppStore()
+                    }, cancelCompletion: nil)
+                case .optionalUpdate:
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .twoButton,
+                                             title: "업데이트",
+                                             description: "보다 원활한 이용을 위해\n업데이트를 진행할까요?") {
+                        CommonUtil.goToAppStore()
+                    } cancelCompletion: { [weak self] in
+                        self?.viewModel.getLoginType()
+                    }
+                case .normal:
+                    self?.viewModel.getLoginType()
+                }
+            }.store(in: &cancelBag)
+        
         viewModel.getLoginTypePublisher()
             .droppedSink { [weak self] loginType in
                 if let loginType = loginType {
@@ -129,6 +154,6 @@ final class SplashViewController: BaseViewController {
                 self?.coordinator?.moveTo(appFlow: AppFlow.tabBar(.rank), userData: nil)
             }.store(in: &cancelBag)
         
-        viewModel.getLoginType()
+        viewModel.versionCheck()
     }
 }

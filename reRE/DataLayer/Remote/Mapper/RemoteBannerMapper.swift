@@ -8,6 +8,12 @@
 import Foundation
 
 struct RemoteBannerMapper {
+    func remoteVersionItemToEntity(remoteItem: RemoteVersionItem) -> VersionEntity {
+        return .init(platform: remoteItem.platform ?? "",
+                     stableVersion: remoteItem.stableVersion ?? "",
+                     minimumVersion: remoteItem.minimumVersion ?? "")
+    }
+    
     func remoteBannerItemToEntity(remoteItem: RemoteBannerItem) -> [BannerEntity] {
         guard let bannerList = remoteItem.results else { return [] }
         return bannerList.map { remoteItem -> BannerEntity in

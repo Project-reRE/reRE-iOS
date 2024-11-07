@@ -19,6 +19,10 @@ final class SplashRepository {
 }
 
 extension SplashRepository: SplashRepositoryProtocol {
+    func versionCheck() -> AnyPublisher<Result<VersionEntity, Error>, Never> {
+        return remoteDataFetcher.versionCheck()
+    }
+    
     func getLoginType() -> SNSLoginType? {
         guard let loginTypeString = localDataFetcher.getLoginType() else { return nil }
         guard let loginType = SNSLoginType(rawValue: loginTypeString) else { return nil }

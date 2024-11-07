@@ -27,6 +27,27 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         case typeMismatch
     }
     
+    func versionCheck() -> AnyPublisher<Result<VersionEntity, Error>, Never> {
+        return Future<Result<VersionEntity, Error>, Never> { [weak self] promise in
+            let params: [String: String] = ["platform": "ios"]
+            self?.networkManager.fetchPublicService(.versionCheck(params: params)) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let response):
+                    if let remoteItem = DecodeUtil.decode(RemoteVersionItem.self, data: response.data) {
+                        promise(.success(.success(self.remoteBannerMapper.remoteVersionItemToEntity(remoteItem: remoteItem))))
+                    } else {
+                        LogDebug(response.data)
+                        promise(.success(.failure(HTTPError.typeMismatch)))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     func getMovieSets() -> AnyPublisher<Result<[MovieSetsEntity], Error>, Never> {
         return Future<Result<[MovieSetsEntity], Error>, Never> { [weak self] promise in
             self?.networkManager.fetchPublicService(.rankingMovieSets) { [weak self] result in

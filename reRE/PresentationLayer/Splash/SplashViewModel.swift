@@ -8,7 +8,18 @@
 import Foundation
 import Combine
 
+enum VersionAction {
+    case forceUpdate
+    case optionalUpdate
+    case normal
+}
+
 final class SplashViewModel: BaseViewModel {
+    private let versionAction = PassthroughSubject<VersionAction, Never>()
+    var versionActionPublisher: AnyPublisher<VersionAction, Never> {
+        return versionAction.eraseToAnyPublisher()
+    }
+    
     private let loginType = CurrentValueSubject<SNSLoginType?, Never>(nil)
     private let shouldSNSLogin = PassthroughSubject<LoginRequestModel, Never>()
     private let loginCompletion = PassthroughSubject<Void, Never>()
@@ -27,6 +38,19 @@ final class SplashViewModel: BaseViewModel {
             .flatMap(usecase.snsLogin(withModel:))
             .sink { [weak self] _ in
                 self?.loginCompletion.send(())
+            }.store(in: &cancelBag)
+    }
+    
+    func versionCheck() {
+        usecase.versionCheck()
+            .sink { [weak self] versionEntity in
+                if CommonUtil.appVersion.compare(versionEntity.minimumVersion, options: .numeric) == .orderedAscending {
+                    self?.versionAction.send(.forceUpdate)
+                } else if CommonUtil.appVersion.compare(versionEntity.stableVersion, options: .numeric) == .orderedAscending {
+                    self?.versionAction.send(.optionalUpdate)
+                } else {
+                    self?.versionAction.send(.normal)
+                }
             }.store(in: &cancelBag)
     }
     

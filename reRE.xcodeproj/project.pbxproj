@@ -111,6 +111,8 @@
 		FE4DCE192CC51C9200C68DA3 /* PaginationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE182CC51C9200C68DA3 /* PaginationModel.swift */; };
 		FE4DCE1D2CCD11E800C68DA3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE1C2CCD11E800C68DA3 /* LoadingView.swift */; };
 		FE4DCE1F2CCD12AE00C68DA3 /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FE4DCE1E2CCD12AE00C68DA3 /* Loading.json */; };
+		FE4DCE232CDCDE5A00C68DA3 /* RemoteVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE222CDCDE5A00C68DA3 /* RemoteVersionItem.swift */; };
+		FE4DCE252CDCDE8A00C68DA3 /* VersionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE242CDCDE8A00C68DA3 /* VersionEntity.swift */; };
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
 		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
@@ -327,6 +329,8 @@
 		FE4DCE182CC51C9200C68DA3 /* PaginationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationModel.swift; sourceTree = "<group>"; };
 		FE4DCE1C2CCD11E800C68DA3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		FE4DCE1E2CCD12AE00C68DA3 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		FE4DCE222CDCDE5A00C68DA3 /* RemoteVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVersionItem.swift; sourceTree = "<group>"; };
+		FE4DCE242CDCDE8A00C68DA3 /* VersionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionEntity.swift; sourceTree = "<group>"; };
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
 		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
@@ -953,6 +957,7 @@
 		FECFE44C2C32B88600078CDF /* RemoteItem */ = {
 			isa = PBXGroup;
 			children = (
+				FE4DCE222CDCDE5A00C68DA3 /* RemoteVersionItem.swift */,
 				FECFE44D2C32B8B400078CDF /* RemoteBannerItem.swift */,
 				FE9826072C340A01006F0C67 /* RemoteMovieSetsItem.swift */,
 				FE9826522C3BFBB3006F0C67 /* RemoteLoginItem.swift */,
@@ -979,6 +984,7 @@
 		FECFE4502C32B94300078CDF /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				FE4DCE242CDCDE8A00C68DA3 /* VersionEntity.swift */,
 				FECFE4512C32B94D00078CDF /* BannerEntity.swift */,
 				FE9826092C340CD2006F0C67 /* MovieSetsEntity.swift */,
 				FEF6F4602C51161300B35A9C /* UserEntity.swift */,
@@ -1242,6 +1248,7 @@
 				FE9826082C340A01006F0C67 /* RemoteMovieSetsItem.swift in Sources */,
 				432C09562BD4F00900BBFDB1 /* ScreenUtil.swift in Sources */,
 				FEF6F4812C561B1A00B35A9C /* AlertViewController.swift in Sources */,
+				FE4DCE252CDCDE8A00C68DA3 /* VersionEntity.swift in Sources */,
 				FEB374992C7AF3C0005B0286 /* RevaluationUsecaseProtocol.swift in Sources */,
 				432C096D2BD4F59600BBFDB1 /* TouchableStackView.swift in Sources */,
 				432C095F2BD4F25000BBFDB1 /* RankViewModel.swift in Sources */,
@@ -1338,6 +1345,7 @@
 				4364A13A2BC667AC00F867B6 /* SearchBaseCoordinator.swift in Sources */,
 				FE4B24AF2C90781D00666609 /* RevaluationHistoryViewController.swift in Sources */,
 				FEF6F4852C56317700B35A9C /* AppSettingMenuItemCell.swift in Sources */,
+				FE4DCE232CDCDE5A00C68DA3 /* RemoteVersionItem.swift in Sources */,
 				432C093D2BC6793300BBFDB1 /* LocalDataFetchable.swift in Sources */,
 				FE524D762C8C1723003CEA97 /* RevaluateRequestModel.swift in Sources */,
 				432C09542BD4EFD800BBFDB1 /* Logger.swift in Sources */,
