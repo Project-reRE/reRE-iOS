@@ -516,13 +516,23 @@ final class RevaluateViewController: BaseNavigationViewController {
         
         viewModel.getRevaluationSuccessPublisher()
             .mainSink { [weak self] _ in
-                CommonUtil.showAlertView(withType: .default,
-                                         buttonType: .oneButton,
-                                         title: "재평가 완료하기",
-                                         description: "재평가가 완료되었어요!\n당신의 재평가는 의미있는 기록이 될거예요.",
-                                         submitCompletion: { [weak self] in
-                    self?.navigationController?.popViewController(animated: true)
-                }, cancelCompletion: nil)
+                if self?.viewModel.myHistoryEntity == nil {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: "재평가 완료하기",
+                                             description: "재평가가 완료되었어요!\n당신의 재평가는 의미있는 기록이 될거예요.",
+                                             submitCompletion: { [weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }, cancelCompletion: nil)
+                } else {
+                    CommonUtil.showAlertView(withType: .default,
+                                             buttonType: .oneButton,
+                                             title: "재평가 수정하기",
+                                             description: "재평가가 수정되었어요!",
+                                             submitCompletion: { [weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }, cancelCompletion: nil)
+                }
             }.store(in: &cancelBag)
     }
     
