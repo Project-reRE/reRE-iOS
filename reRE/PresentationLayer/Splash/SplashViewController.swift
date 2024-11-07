@@ -71,6 +71,7 @@ final class SplashViewController: BaseViewController {
                                              buttonType: .oneButton,
                                              title: "업데이트",
                                              description: "보다 원활한 이용을 위해\n업데이트를 진행해주세요.",
+                                             submitText: "업데이트",
                                              submitCompletion: {
                         CommonUtil.goToAppStore()
                     }, cancelCompletion: nil)
@@ -78,7 +79,9 @@ final class SplashViewController: BaseViewController {
                     CommonUtil.showAlertView(withType: .default,
                                              buttonType: .twoButton,
                                              title: "업데이트",
-                                             description: "보다 원활한 이용을 위해\n업데이트를 진행할까요?") {
+                                             description: "보다 원활한 이용을 위해\n업데이트를 진행할까요?",
+                                             submitText: "업데이트",
+                                             cancelText: "취소") {
                         CommonUtil.goToAppStore()
                     } cancelCompletion: { [weak self] in
                         self?.viewModel.getLoginType()
