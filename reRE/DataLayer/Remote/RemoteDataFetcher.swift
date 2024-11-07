@@ -283,6 +283,7 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             self.networkManager.fetchService(.getMovieDetail(movieId: movieId, params: params)) { result in
                 switch result {
                 case .success(let response):
+                    LogDebug(response.data)
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         promise(.success(.failure(error)))

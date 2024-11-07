@@ -37,33 +37,33 @@ struct RemoteMovieRecentRatingsItem: Decodable {
 }
 
 struct RemoteMovieSpecialPointItem: Decodable {
-    let PLANNING_INTENT: Int?
-    let DIRECTORS_DIRECTION: Int?
-    let ACTING_SKILLS: Int?
-    let SCENARIO: Int?
-    let OST: Int?
-    let SOCIAL_ISSUES: Int?
-    let VISUAL_ELEMENT: Int?
-    let SOUND_ELEMENT: Int?
+    let PLANNING_INTENT: String?
+    let DIRECTORS_DIRECTION: String?
+    let ACTING_SKILLS: String?
+    let SCENARIO: String?
+    let OST: String?
+    let SOCIAL_ISSUES: String?
+    let VISUAL_ELEMENT: String?
+    let SOUND_ELEMENT: String?
 }
 
 struct RemoteMovieFeelingsItem: Decodable {
-    let POSITIVE: Int?
-    let NEGATIVE: Int?
-    let NOT_SURE: Int?
+    let POSITIVE: String?
+    let NEGATIVE: String?
+    let NOT_SURE: String?
 }
 
 struct RemoteRevaluatedGenderItem: Decodable {
-    let MALE: Int?
-    let FEMALE: Int?
+    let MALE: String?
+    let FEMALE: String?
 }
 
 struct RemoteRevaluatedAgeItem: Decodable {
-    let TEENS: Int?
-    let TWENTIES: Int?
-    let THIRTIES: Int?
-    let FORTIES: Int?
-    let FIFTIES_PLUS: Int?
+    let TEENS: String?
+    let TWENTIES: String?
+    let THIRTIES: String?
+    let FORTIES: String?
+    let FIFTIES_PLUS: String?
 }
 
 struct RemoteMovieMostSpecialPointItem: Decodable {

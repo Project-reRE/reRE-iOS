@@ -109,23 +109,23 @@ struct MovieRecentRatingsEntity {
 }
 
 struct MovieSpecialPointEntity {
-    let PLANNING_INTENT: Int
-    let DIRECTORS_DIRECTION: Int
-    let ACTING_SKILLS: Int
-    let SCENARIO: Int
-    let OST: Int
-    let SOCIAL_ISSUES: Int
-    let VISUAL_ELEMENT: Int
-    let SOUND_ELEMENT: Int
+    let PLANNING_INTENT: String
+    let DIRECTORS_DIRECTION: String
+    let ACTING_SKILLS: String
+    let SCENARIO: String
+    let OST: String
+    let SOCIAL_ISSUES: String
+    let VISUAL_ELEMENT: String
+    let SOUND_ELEMENT: String
     
-    init(PLANNING_INTENT: Int,
-         DIRECTORS_DIRECTION: Int,
-         ACTING_SKILLS: Int,
-         SCENARIO: Int,
-         OST: Int,
-         SOCIAL_ISSUES: Int,
-         VISUAL_ELEMENT: Int,
-         SOUND_ELEMENT: Int) {
+    init(PLANNING_INTENT: String,
+         DIRECTORS_DIRECTION: String,
+         ACTING_SKILLS: String,
+         SCENARIO: String,
+         OST: String,
+         SOCIAL_ISSUES: String,
+         VISUAL_ELEMENT: String,
+         SOUND_ELEMENT: String) {
         self.PLANNING_INTENT = PLANNING_INTENT
         self.DIRECTORS_DIRECTION = DIRECTORS_DIRECTION
         self.ACTING_SKILLS = ACTING_SKILLS
@@ -137,58 +137,58 @@ struct MovieSpecialPointEntity {
     }
     
     init() {
-        PLANNING_INTENT = 0
-        DIRECTORS_DIRECTION = 0
-        ACTING_SKILLS = 0
-        SCENARIO = 0
-        OST = 0
-        SOCIAL_ISSUES = 0
-        VISUAL_ELEMENT = 0
-        SOUND_ELEMENT = 0
+        PLANNING_INTENT = ""
+        DIRECTORS_DIRECTION = ""
+        ACTING_SKILLS = ""
+        SCENARIO = ""
+        OST = ""
+        SOCIAL_ISSUES = ""
+        VISUAL_ELEMENT = ""
+        SOUND_ELEMENT = ""
     }
 }
 
 struct MovieFeelingsEntity {
-    let POSITIVE: Int
-    let NEGATIVE: Int
-    let NOT_SURE: Int
+    let POSITIVE: String
+    let NEGATIVE: String
+    let NOT_SURE: String
     
-    init(POSITIVE: Int, NEGATIVE: Int, NOT_SURE: Int) {
+    init(POSITIVE: String, NEGATIVE: String, NOT_SURE: String) {
         self.POSITIVE = POSITIVE
         self.NEGATIVE = NEGATIVE
         self.NOT_SURE = NOT_SURE
     }
     
     init() {
-        POSITIVE = 0
-        NEGATIVE = 0
-        NOT_SURE = 0
+        POSITIVE = ""
+        NEGATIVE = ""
+        NOT_SURE = ""
     }
 }
 
 struct RevaluatedGenderEntity {
-    let MALE: Int
-    let FEMALE: Int
+    let MALE: String
+    let FEMALE: String
     
-    init(MALE: Int, FEMALE: Int) {
+    init(MALE: String, FEMALE: String) {
         self.MALE = MALE
         self.FEMALE = FEMALE
     }
     
     init() {
-        MALE = 0
-        FEMALE = 0
+        MALE = ""
+        FEMALE = ""
     }
 }
 
 struct RevaluatedAgeEntity {
-    let TEENS: Int
-    let TWENTIES: Int
-    let THIRTIES: Int
-    let FORTIES: Int
-    let FIFTIES_PLUS: Int
+    let TEENS: String
+    let TWENTIES: String
+    let THIRTIES: String
+    let FORTIES: String
+    let FIFTIES_PLUS: String
     
-    init(TEENS: Int, TWENTIES: Int, THIRTIES: Int, FORTIES: Int, FIFTIES_PLUS: Int) {
+    init(TEENS: String, TWENTIES: String, THIRTIES: String, FORTIES: String, FIFTIES_PLUS: String) {
         self.TEENS = TEENS
         self.TWENTIES = TWENTIES
         self.THIRTIES = THIRTIES
@@ -197,11 +197,11 @@ struct RevaluatedAgeEntity {
     }
     
     init() {
-        TEENS = 0
-        TWENTIES = 0
-        THIRTIES = 0
-        FORTIES = 0
-        FIFTIES_PLUS = 0
+        TEENS = ""
+        TWENTIES = ""
+        THIRTIES = ""
+        FORTIES = ""
+        FIFTIES_PLUS = ""
     }
 }
 
