@@ -26,8 +26,6 @@ final class RankingItemCell: UICollectionViewCell {
         $0.font = FontSet.body02.font
         $0.backgroundColor = .black.withAlphaComponent(0.75)
         $0.layer.masksToBounds = true
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.blue.cgColor
         $0.layer.cornerRadius = moderateScale(number: 4)
     }
     
