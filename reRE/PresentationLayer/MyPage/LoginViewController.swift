@@ -107,8 +107,13 @@ final class LoginViewController: BaseNavigationViewController {
     override func makeConstraints() {
         super.makeConstraints()
         
+        let minX = UIScreen.main.bounds.height - getSafeAreaTop() - moderateScale(number: 44)
+        let topSpacing: CGFloat = minX - moderateScale(number: 64) - moderateScale(number: (56 + 8) * 3)
+        let topMargin: CGFloat = (topSpacing - moderateScale(number: 192)) / 2
+        
         splashLogoImageView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalTo(topContainerView.snp.bottom).offset(topMargin)
+            $0.centerX.equalToSuperview()
             $0.size.equalTo(moderateScale(number: 192))
         }
         
@@ -128,7 +133,7 @@ final class LoginViewController: BaseNavigationViewController {
             $0.top.equalTo(appleLoginButton.snp.bottom).offset(moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 56))
-            $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom())
+            $0.bottom.equalToSuperview().inset(moderateScale(number: 64))
         }
         
         [kakaoIcon, appleIcon, googleIcon].forEach { subView in
