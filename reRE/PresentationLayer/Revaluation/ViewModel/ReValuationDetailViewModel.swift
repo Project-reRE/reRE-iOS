@@ -47,10 +47,14 @@ final class ReValuationDetailViewModel: BaseViewModel {
     }
     
     func checkAlreadyRevaluated() {
-        usecase.checkAlreadyRevaluated(withId: movieId)
-            .sink { [weak self] myHistory in
-                self?.myHistory.send(myHistory)
-            }.store(in: &cancelBag)
+        if StaticValues.isLoggedIn.value {
+            usecase.checkAlreadyRevaluated(withId: movieId)
+                .sink { [weak self] myHistory in
+                    self?.myHistory.send(myHistory)
+                }.store(in: &cancelBag)
+        } else {
+            myHistory.send(nil)
+        }
     }
     
     func getRevaluationDetail() {
