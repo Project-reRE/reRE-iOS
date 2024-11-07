@@ -134,13 +134,6 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         bind()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        CommonUtil.showLoadingView()
-        viewModel.getRevaluationDetail()
-    }
-    
     override func addViews() {
         super.addViews()
         
@@ -297,6 +290,17 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             self.coordinator?.moveTo(appFlow: TabBarFlow.common(.web),
                                      userData: ["webViewType": WebViewType.seriesOn(urlString: "https://m.serieson.naver.com/v3/search?query=\(self.viewModel.getRevaluationDataValue().data.title)")])
         }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(shouldUpdateRevaluationDetail),
+                                               name: .revaluationAdded,
+                                               object: nil)
+    }
+    
+    override func deinitialize() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .revaluationAdded,
+                                                  object: nil)
     }
     
     private func bind() {
@@ -369,6 +373,8 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 }
             }.store(in: &cancelBag)
         
+        CommonUtil.showLoadingView()
+        viewModel.getRevaluationDetail()
         viewModel.checkAlreadyRevaluated()
     }
     
@@ -386,5 +392,12 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
         genreLabel.text = model.genre.map { $0 }.joined(separator: ", ")
         directorLabel.text = model.directors.map { $0.directorNm }.joined(separator: ", ")
         actorLabel.text = model.actors.map { $0.actorNm }.joined(separator: ", ")
+    }
+    
+    @objc
+    private func shouldUpdateRevaluationDetail() {
+        CommonUtil.showLoadingView()
+        viewModel.getRevaluationDetail()
+        viewModel.checkAlreadyRevaluated()
     }
 }
