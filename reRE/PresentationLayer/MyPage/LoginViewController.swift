@@ -154,7 +154,6 @@ final class LoginViewController: BaseNavigationViewController {
             self?.kakaoLogin { [weak self] accessToken, error in
                 guard error == nil,
                       let accessToken = accessToken else {
-                    self?.showBaseError(with: error)
                     return
                 }
                 
@@ -204,6 +203,11 @@ final class LoginViewController: BaseNavigationViewController {
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
             guard result?.user.profile?.email.isEmpty == false else {
                 self?.showEmailNotExistError()
                 completion(nil, nil)
