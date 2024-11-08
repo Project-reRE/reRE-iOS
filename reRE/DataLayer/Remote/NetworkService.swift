@@ -34,7 +34,7 @@ extension NetworkService: TargetType {
 #if DEBUG
         return URL(string: "http://api.dev.rerevaluation.com")!
 #else
-        return URL(string: "api.revaluation.co.kr")!
+        return URL(string: "https://api.reevaluation.co.kr")!
 #endif
     }
     
