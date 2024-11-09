@@ -97,6 +97,19 @@ extension RevaluationUsecase: RevaluationUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
+    func reportRevaluation(withId revaluationId: String, responseNumber: Int) -> AnyPublisher<Void, Never> {
+        return repository.reportRevaluation(withId: revaluationId, responseNumber: responseNumber)
+            .compactMap { [weak self] result in
+                switch result {
+                case .success(let entity):
+                    return entity
+                case .failure(let error):
+                    self?.errorSubject.send(error)
+                    return nil
+                }
+            }.eraseToAnyPublisher()
+    }
+    
     func getErrorSubject() -> AnyPublisher<Error, Never> {
         return errorSubject.eraseToAnyPublisher()
     }

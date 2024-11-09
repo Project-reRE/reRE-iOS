@@ -45,4 +45,8 @@ extension RevaluationRepository: RevaluationRepositoryProtocol {
     func updateRevaluationLikes(withId revaluationId: String, isLiked: Bool) -> AnyPublisher<Result<String, Error>, Never> {
         return remoteDataFetcher.updateRevaluationLikes(withId: revaluationId, isLiked: isLiked)
     }
+    
+    func reportRevaluation(withId revaluationId: String, responseNumber: Int) -> AnyPublisher<Result<Void, Error>, Never> {
+        return remoteDataFetcher.reportRevaluation(withId: revaluationId, responseNumber: responseNumber)
+    }
 }

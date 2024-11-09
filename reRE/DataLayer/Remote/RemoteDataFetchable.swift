@@ -25,7 +25,7 @@ protocol RemoteDataFetchable: AnyObject {
     func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Result<Void, Error>, Never>
     func updateRevaluation(withId revaluationId: String, updatedModel: RevaluateRequestModel) -> AnyPublisher<Result<MyHistoryEntityData, Error>, Never>
     func deleteRevaluation(withId revaluationId: String) -> AnyPublisher<Result<Void, Error>, Never>
-    
+    func reportRevaluation(withId revaluationId: String, responseNumber: Int) -> AnyPublisher<Result<Void, Error>, Never>
     func logout()
     func deleteAccount() -> AnyPublisher<Result<Void, Error>, Never>
 }

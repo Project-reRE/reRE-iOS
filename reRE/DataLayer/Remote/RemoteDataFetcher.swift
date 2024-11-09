@@ -429,6 +429,25 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
+    func reportRevaluation(withId revaluationId: String, responseNumber: Int) -> AnyPublisher<Result<Void, Error>, Never> {
+        return Future<Result<Void, Error>, Never> { [weak self] promise in
+            let params: [String: Any] = ["reason": responseNumber]
+            self?.networkManager.fetchService(.reportRevaluation(revaluationId: revaluationId, params: params)) { result in
+                switch result {
+                case .success(let response):
+                    if let error = DecodeUtil.decode(UserError.self, data: response.data) {
+                        LogDebug(error)
+                        promise(.success(.failure(error)))
+                    } else {
+                        promise(.success(.success(())))
+                    }
+                case .failure(let error):
+                    promise(.success(.failure(error)))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
     func logout() {
         UserDefaultsManager.shared.setLoginType(loginType: nil)
         StaticValues.isLoggedIn.send(false)

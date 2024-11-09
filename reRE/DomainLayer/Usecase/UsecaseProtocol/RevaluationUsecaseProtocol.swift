@@ -15,4 +15,5 @@ protocol RevaluationUsecaseProtocol: BaseUsecaseProtocol {
     func updateRevaluation(withId revaluationId: String, updatedModel: RevaluateRequestModel) -> AnyPublisher<MyHistoryEntityData, Never>
     func getOtherRevaluations(with model: OtherRevaluationsRequestModel) -> AnyPublisher<OtherRevaluationsEntity, Never>
     func updateRevaluationLikes(withId revaluationId: String, isLiked: Bool) -> AnyPublisher<String, Never>
+    func reportRevaluation(withId revaluationId: String, responseNumber: Int) -> AnyPublisher<Void, Never>
 }

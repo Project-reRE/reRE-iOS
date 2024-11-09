@@ -109,6 +109,11 @@ final class OtherRevaluationsViewController: BaseNavigationViewController {
                 self?.showBaseError(with: error)
             }.store(in: &cancelBag)
         
+        viewModel.reportSuccessPublisher
+            .mainSink { _ in
+                CommonUtil.hideLoadingView()
+            }.store(in: &cancelBag)
+        
         viewModel.getOtherRevaluationsPublisher()
             .droppedSink { [weak self] list in
                 CommonUtil.hideLoadingView()
@@ -191,8 +196,10 @@ extension OtherRevaluationsViewController: UICollectionViewDataSource {
             CommonUtil.hideLoadingView()
             
             let reportVC = ReportAlertViewController()
-            reportVC.configureAlertView { [weak self] in
-                print("report !!!")
+            reportVC.configureAlertView { [weak self] selectedIndex in
+                CommonUtil.showLoadingView()
+                self?.viewModel.reportRevaluation(withId: otherRevaluation.id,
+                                                  responseNumber: selectedIndex + 1)
             }
             
             reportVC.modalPresentationStyle = .overFullScreen

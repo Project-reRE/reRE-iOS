@@ -180,10 +180,16 @@ final class ReportAlertViewController: UIViewController {
         }
     }
     
-    func configureAlertView(submitCompletion: (() -> Void)?) {
+    func configureAlertView(submitCompletion: ((Int) -> Void)?) {
         reportButton.didTapped { [weak self] in
-            self?.dismiss(animated: false)
-            submitCompletion?()
+            guard let self = self else { return }
+            
+            let reasonList = [badWordReasonLabel, copyRightReasonLabel, defamationReasonLabel, sexualReasonLabel]
+            
+            guard let selectedReasonIndex = reasonList.firstIndex(where: { $0.isSelected }) else { return }
+            
+            self.dismiss(animated: false)
+            submitCompletion?(selectedReasonIndex)
         }
     }
 }

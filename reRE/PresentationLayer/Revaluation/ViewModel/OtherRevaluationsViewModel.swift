@@ -10,6 +10,11 @@ import Combine
 
 final class OtherRevaluationsViewModel: BaseViewModel {
     private let otherRevaluations = CurrentValueSubject<[OtherRevaluationEntity], Never>([])
+    private let reportSuccess = PassthroughSubject<Void, Never>()
+    var reportSuccessPublisher: AnyPublisher<Void, Never> {
+        return reportSuccess.eraseToAnyPublisher()
+    }
+    
     private(set) var isPopularityOrder: Bool = true
     
     private let usecase: RevaluationUsecaseProtocol
@@ -62,5 +67,12 @@ final class OtherRevaluationsViewModel: BaseViewModel {
     func changeOrder() {
         isPopularityOrder.toggle()
         getOtherRevaluations()
+    }
+    
+    func reportRevaluation(withId revaluationId: String, responseNumber: Int) {
+        usecase.reportRevaluation(withId: revaluationId, responseNumber: responseNumber)
+            .sink { [weak self] _ in
+                self?.reportSuccess.send(())
+            }.store(in: &cancelBag)
     }
 }

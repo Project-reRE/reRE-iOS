@@ -27,6 +27,7 @@ enum NetworkService {
     case updateRevaluationLikes(isLiked: Bool, revaluationId: String)
     case updateRevaluation(revaluationId: String, params: Encodable)
     case deleteRevaluation(revaluationId: String)
+    case reportRevaluation(revaluationId: String, params: [String: Any])
 }
 
 extension NetworkService: TargetType {
@@ -83,6 +84,8 @@ extension NetworkService: TargetType {
             return "/revaluations/\(revaluationId)"
         case .deleteRevaluation(let revaluationId):
             return "/revaluations/\(revaluationId)"
+        case .reportRevaluation(let revaluationId, _):
+            return "/revaluations/report/\(revaluationId)"
         }
     }
     
@@ -111,6 +114,7 @@ extension NetworkService: TargetType {
             }
         case .updateRevaluation: return .put
         case .deleteRevaluation: return .delete
+        case .reportRevaluation: return .post
         }
     }
     
@@ -152,6 +156,8 @@ extension NetworkService: TargetType {
             return .requestJSONEncodable(params)
         case .deleteRevaluation:
             return .requestPlain
+        case .reportRevaluation(_, let params):
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         }
     }
     
