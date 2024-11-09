@@ -242,7 +242,8 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             let params: [String: Any] = ["startDate": model.startDate,
                                          "endDate": model.endDate,
                                          "page": model.page,
-                                         "limit": model.limit]
+                                         "limit": model.limit,
+                                         "order": "-createdAt"]
             
             self.networkManager.fetchService(.myRevaluations(params: params)) { result in
                 switch result {
