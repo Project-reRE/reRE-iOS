@@ -15,14 +15,13 @@ final class NoDataCell: UICollectionViewCell {
         case noGenreRevaluations
     }
     
-    private lazy var stackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.alignment = .center
-        $0.spacing = moderateScale(number: 8)
+    private lazy var containerView = UIView().then {
+        $0.backgroundColor = .clear
     }
     
     private lazy var imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(named: "NoRevaluationIcon")
     }
     
     private lazy var descriptionLabel = UILabel().then {
@@ -39,28 +38,34 @@ final class NoDataCell: UICollectionViewCell {
         $0.layer.cornerRadius = moderateScale(number: 8)
         $0.backgroundColor = ColorSet.tertiary(.navy40).color
         $0.textColor = ColorSet.gray(.white).color
-        $0.font = FontSet.button01.font
-        $0.isHidden = true
+        $0.font = FontSet.button02.font
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(stackView)
-        stackView.addArrangedSubviews([imageView, descriptionLabel, actionButton])
-        stackView.setCustomSpacing(moderateScale(number: 16), after: descriptionLabel)
+        addSubview(containerView)
         
-        stackView.snp.makeConstraints {
+        containerView.addSubviews([imageView, descriptionLabel, actionButton])
+        containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
         imageView.snp.makeConstraints {
+            $0.top.centerX.equalToSuperview()
             $0.size.equalTo(moderateScale(number: 112))
         }
         
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom).offset(moderateScale(number: 8))
+            $0.centerX.equalToSuperview()
+        }
+        
         actionButton.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 44))
             $0.width.equalTo(moderateScale(number: 176))
+            $0.bottom.centerX.equalToSuperview()
         }
     }
     
@@ -68,17 +73,13 @@ final class NoDataCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateView(with type: NoDataType, isButtonHidden: Bool, genre: String? = nil) {
-        actionButton.isHidden = isButtonHidden
-        
+    func updateView(with type: NoDataType, genre: String? = nil) {
         switch type {
         case .noYesterDayRevaluations:
-            imageView.image = UIImage(named: "NoRevaluationIcon")
             descriptionLabel.text = "어제 재평가된 영화가 없어요!\n여러분의 재평가를 공유해 주세요."
         case .noGenreRevaluations:
             guard let genre = genre else { return }
             
-            imageView.image = UIImage(named: "NoRevaluationIcon")
             descriptionLabel.text = "'\(genre)'에 대한 평가가 없어요!\n처음으로 재평가를 해주시는 건 어떨까요?"
         }
     }

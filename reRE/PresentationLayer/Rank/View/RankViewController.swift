@@ -314,7 +314,7 @@ extension RankViewController: UICollectionViewDataSource {
             if viewModel.isAllRevaluationEmpty {
                 guard let cell = collectionView.dequeueReusableCell(NoDataCell.self, indexPath: indexPath) else { return .init() }
                 
-                cell.updateView(with: .noYesterDayRevaluations, isButtonHidden: false)
+                cell.updateView(with: .noYesterDayRevaluations)
                 cell.actionButton.didTapped { [weak self] in
                     self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
                 }
@@ -325,7 +325,7 @@ extension RankViewController: UICollectionViewDataSource {
                 
                 let genre = viewModel.movieSetsValue[indexPath.section - 1].genre
                 
-                cell.updateView(with: .noGenreRevaluations, isButtonHidden: false, genre: genre)
+                cell.updateView(with: .noGenreRevaluations, genre: genre)
                 cell.actionButton.didTapped { [weak self] in
                     self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
                 }
