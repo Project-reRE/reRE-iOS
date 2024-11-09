@@ -50,6 +50,8 @@ final class RevaluationSpecialPointView: UIView {
     }
     
     func updateView(withModel model: [MovieStatisticsPercentageEntity]) {
+        [firstSpeicialPointView, secondSpeicialPointView, thirdSpeicialPointView].forEach { $0.isHidden = true }
+        
         if let firstSpecialPoint = model.first(where: { $0.rank == "1" }) {
             firstSpeicialPointView.isHidden = false
             firstSpeicialPointView.updateView(withModel: firstSpecialPoint)

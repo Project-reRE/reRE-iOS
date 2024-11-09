@@ -295,11 +295,18 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                                                selector: #selector(shouldUpdateRevaluationDetail),
                                                name: .revaluationAdded,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(shouldUpdateRevaluationDetail),
+                                               name: .revaluationUpdated,
+                                               object: nil)
     }
     
     override func deinitialize() {
         NotificationCenter.default.removeObserver(self,
                                                   name: .revaluationAdded,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .revaluationUpdated,
                                                   object: nil)
     }
     
@@ -319,7 +326,7 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
                 
                 CommonUtil.hideLoadingView()
                 
-                if let myHistory = myHistory {
+                if myHistory != nil {
                     self.revaluateButton.text = "\(self.viewModel.currentDate)월 재평가 수정하기"
                 } else {
                     self.revaluateButton.text = "\(self.viewModel.currentDate)월 재평가하기"

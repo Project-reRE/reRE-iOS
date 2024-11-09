@@ -13,6 +13,9 @@ final class ChartView: UIView {
     
     var ratings: [MovieRecentRatingsEntity]? {
         didSet {
+            layersCache.forEach { $0.removeFromSuperlayer() }
+            layersCache.removeAll()
+            self.subviews.forEach { $0.removeFromSuperview() }
             drawChart()
         }
     }
@@ -29,6 +32,8 @@ final class ChartView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var layersCache: [CAShapeLayer] = []
+    
     private func drawChart() {
         guard let ratings = ratings else { return }
         
@@ -41,6 +46,8 @@ final class ChartView: UIView {
         
         let backgroundLayer = CAShapeLayer()
         layer.addSublayer(backgroundLayer)
+        layersCache.append(backgroundLayer)
+        
         let backgroundPath = UIBezierPath()
         backgroundPath.move(to: CGPoint(x: moderateScale(number: 45), y: minRatingPosY))
         
@@ -62,7 +69,7 @@ final class ChartView: UIView {
             circleLayer.lineWidth = 1
             
             layer.addSublayer(circleLayer)
-            
+            layersCache.append(circleLayer)
             backgroundPath.addLine(to: CGPoint(x: posX, y: posY))
             
             if index < ratings.count - 1 {
@@ -80,6 +87,7 @@ final class ChartView: UIView {
                 lineLayer.fillColor = UIColor.clear.cgColor
                 lineLayer.lineWidth = 1
                 layer.addSublayer(lineLayer)
+                layersCache.append(lineLayer)
             }
             
             let monthLabel = UILabel()
