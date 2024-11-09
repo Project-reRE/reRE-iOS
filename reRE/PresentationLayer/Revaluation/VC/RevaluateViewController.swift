@@ -15,6 +15,7 @@ final class RevaluateViewController: BaseNavigationViewController {
     private var cancelBag = Set<AnyCancellable>()
     
     var coordinator: CommonBaseCoordinator?
+    private var buttonBottomConstraints: Constraint?
     
     private let commentPlaceholder: String = "작성한 한 줄 평에 부적절한 내용이 있을 경우, 사전 안내 없이 삭제될 수 있어요."
     private let commentCountLimit: Int = 100
@@ -198,15 +199,15 @@ final class RevaluateViewController: BaseNavigationViewController {
         super.makeConstraints()
         
         revaluateButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom())
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 52))
+            buttonBottomConstraints = $0.bottom.equalToSuperview().inset(getDefaultSafeAreaBottom()).constraint
         }
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(topContainerView.snp.bottom)
             $0.centerX.width.equalToSuperview()
-            $0.bottom.equalTo(revaluateButton.snp.top).offset(-moderateScale(number: 10))
+            $0.bottom.equalTo(revaluateButton.snp.top).offset(-moderateScale(number: 8))
         }
         
         containerView.snp.makeConstraints {
@@ -596,10 +597,12 @@ final class RevaluateViewController: BaseNavigationViewController {
             let currentTextFieldFrame: CGRect = currentTextView.convert(currentTextView.bounds, to: self.view)
             
             if keyboardFrame.intersects(currentTextFieldFrame) {
-                let offset: CGFloat = currentTextFieldFrame.maxY - keyboardFrame.minY + 10
+                let offset: CGFloat = currentTextFieldFrame.maxY - keyboardFrame.minY + moderateScale(number: 72)
                 self.currentScrollOffsetY = self.scrollView.contentOffset.y
                 self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentOffset.y + offset), animated: true)
             }
+            
+            self.buttonBottomConstraints?.update(inset: keyboardFrame.height + moderateScale(number: 12))
         }
     }
     
@@ -607,7 +610,7 @@ final class RevaluateViewController: BaseNavigationViewController {
     func keyboardWillHide(_ notification: NSNotification) {
         animateWithKeyboard(notification: notification) { [weak self] _ in
             guard let self = self else { return }
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: self.currentScrollOffsetY), animated: true)
+            self.buttonBottomConstraints?.update(inset: getDefaultSafeAreaBottom())
         }
     }
 }
