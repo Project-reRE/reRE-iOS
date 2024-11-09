@@ -160,7 +160,7 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
         userThumbnailView.kf.setImage(with: URL(string: model.user.profileUrl))
         
         if model.user.nickName.isEmpty {
-            nicknameLabel.text = "아아..탈퇴한회원입니다"
+            nicknameLabel.text = "탈퇴한회원입니다"
         } else {
             nicknameLabel.text = model.user.nickName
         }
