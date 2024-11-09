@@ -364,6 +364,7 @@ final class RevaluateViewController: BaseNavigationViewController {
             updateCountLabel(characterCount: myHistory.comment.count)
             
             if let currentMonth = Int(currentMonthString) {
+                setNavigationTitle(with: "\(currentMonth)월 재평가 수정하기")
                 revaluateButton.text = "\(currentMonth)월 재평가 수정하기"
             } else {
                 setNavigationTitle(with: "재평가하기")

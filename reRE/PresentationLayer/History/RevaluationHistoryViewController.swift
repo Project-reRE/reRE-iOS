@@ -139,11 +139,11 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
     override func addViews() {
         super.addViews()
         
-        view.addSubview(scrollView)
+        view.addSubviews([scrollView, editRevaluationButton, deleteRevaluationButton])
         scrollView.addSubview(containerView)
         containerView.addSubviews([thumbnailImageView, revaluationStackView, titleLabel,
                                    revaluationDetailView, revaluationCommentView,
-                                   getMovieInfoButton, editRevaluationButton, deleteRevaluationButton])
+                                   getMovieInfoButton])
         
         revaluationStackView.addArrangedSubviews([starIcon, ratingLabel, revaluateDateView])
         revaluationStackView.setCustomSpacing(moderateScale(number: 4), after: starIcon)
@@ -160,7 +160,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         scrollView.snp.makeConstraints {
             $0.top.equalTo(topContainerView.snp.bottom)
             $0.centerX.width.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(getSafeAreaBottom())
+            $0.bottom.equalTo(editRevaluationButton.snp.top)
         }
         
         containerView.snp.makeConstraints {
@@ -221,24 +221,19 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
             $0.top.equalTo(revaluationCommentView.snp.bottom).offset(moderateScale(number: 16))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 44))
+            $0.bottom.equalToSuperview().inset(moderateScale(number: 64))
         }
         
         editRevaluationButton.snp.makeConstraints {
-            $0.top.equalTo(getMovieInfoButton.snp.bottom).offset(moderateScale(number: 64))
+            $0.bottom.equalTo(deleteRevaluationButton.snp.top).offset(-moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 52))
         }
         
         deleteRevaluationButton.snp.makeConstraints {
-            $0.top.equalTo(editRevaluationButton.snp.bottom).offset(moderateScale(number: 8))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 44))
-            
-            if getSafeAreaBottom() == 0 {
-                $0.bottom.equalToSuperview().inset(moderateScale(number: getDefaultSafeAreaBottom()))
-            } else {
-                $0.bottom.equalToSuperview()
-            }
+            $0.bottom.equalToSuperview().inset(moderateScale(number: getDefaultSafeAreaBottom()))
         }
     }
     
