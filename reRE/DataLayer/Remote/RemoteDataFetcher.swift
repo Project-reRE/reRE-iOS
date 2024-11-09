@@ -75,7 +75,6 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                 
                 switch result {
                 case .success(let response):
-                    LogDebug(response.data)
                     if let remoteItem = DecodeUtil.decode(RemoteBannerItem.self, data: response.data) {
                         promise(.success(.success(self.remoteBannerMapper.remoteBannerItemToEntity(remoteItem: remoteItem))))
                     } else {
@@ -109,8 +108,6 @@ final class RemoteDataFetcher: RemoteDataFetchable {
             self?.networkManager.fetchService(withHeader: headers, .snsLogin(loginType: model.loginType)) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    LogDebug(response.data)
-                    
                     if let error = DecodeUtil.decode(UserError.self, data: response.data) {
                         LogDebug(error)
                         

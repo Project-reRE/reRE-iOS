@@ -86,6 +86,10 @@ final class RankViewModel: BaseViewModel {
         return movieSets.value
     }
     
+    var isAllRevaluationEmpty: Bool {
+        return movieSetsValue.allSatisfy({ $0.data.isEmpty }) || movieSetsValue.isEmpty
+    }
+    
     func getBannerList() {
         shouldGetBannerList.send(())
     }

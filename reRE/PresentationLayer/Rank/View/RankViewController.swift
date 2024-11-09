@@ -94,23 +94,7 @@ final class RankViewController: BaseViewController {
     private func bind() {
         viewModel.getErrorSubject()
             .mainSink { [weak self] error in
-                LogDebug(error)
-                
-                if let userError = error as? UserError {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: "statueCode: \(userError.statusCode)",
-                                             description: userError.message.first,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                } else {
-                    CommonUtil.showAlertView(withType: .default,
-                                             buttonType: .oneButton,
-                                             title: error.localizedDescription,
-                                             description: error.localizedDescription,
-                                             submitCompletion: nil,
-                                             cancelCompletion: nil)
-                }
+                self?.showBaseError(with: error)
             }.store(in: &cancelBag)
         
         viewModel.timerPublisher
@@ -164,7 +148,7 @@ final class RankViewController: BaseViewController {
             if sectionIndex == 0 {
                 return generateBannerLayout()
             } else {
-                if viewModel.movieSetsValue.isEmpty {
+                if viewModel.isAllRevaluationEmpty {
                     return generateNoDataLayout(shouldDisplayHeader: false)
                 } else {
                     if viewModel.movieSetsValue[sectionIndex - 1].data.isEmpty {
@@ -292,7 +276,7 @@ extension RankViewController: UICollectionViewDataSource {
         if section == 0 {
             return viewModel.bannerListValue.count
         } else {
-            if viewModel.movieSetsValue.isEmpty {
+            if viewModel.isAllRevaluationEmpty {
                 return 1
             } else {
                 if viewModel.movieSetsValue[section - 1].data.isEmpty {
@@ -327,7 +311,7 @@ extension RankViewController: UICollectionViewDataSource {
                 return cell
             }
         } else {
-            if viewModel.movieSetsValue.isEmpty {
+            if viewModel.isAllRevaluationEmpty {
                 guard let cell = collectionView.dequeueReusableCell(NoDataCell.self, indexPath: indexPath) else { return .init() }
                 
                 cell.updateView(with: .noYesterDayRevaluations, isButtonHidden: false)
@@ -341,7 +325,7 @@ extension RankViewController: UICollectionViewDataSource {
                 
                 let genre = viewModel.movieSetsValue[indexPath.section - 1].genre
                 
-                cell.updateView(with: .noYesterDayRevaluations, isButtonHidden: false, genre: genre)
+                cell.updateView(with: .noGenreRevaluations, isButtonHidden: false, genre: genre)
                 cell.actionButton.didTapped { [weak self] in
                     self?.coordinator?.moveTo(appFlow: TabBarFlow.common(.search), userData: nil)
                 }
@@ -365,8 +349,12 @@ extension RankViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         let bannerSection: Int = 1
-        let movieSetsSection: Int = viewModel.movieSetsValue.isEmpty ? 1 : viewModel.movieSetsValue.count
-        return bannerSection + movieSetsSection
+        
+        if viewModel.isAllRevaluationEmpty {
+            return bannerSection + 1
+        } else {
+            return bannerSection + viewModel.movieSetsValue.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
