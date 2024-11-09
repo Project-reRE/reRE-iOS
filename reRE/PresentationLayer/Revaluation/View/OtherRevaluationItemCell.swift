@@ -11,9 +11,8 @@ import SnapKit
 
 final class OtherRevaluationItemCell: UICollectionViewCell {
     private lazy var userThumbnailView = UIImageView().then {
+        $0.backgroundColor = ColorSet.gray(.gray40).color
         $0.contentMode = .scaleAspectFit
-        $0.layer.borderColor = UIColor.red.cgColor
-        $0.layer.borderWidth = 1
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = moderateScale(number: 20)
     }
@@ -159,7 +158,13 @@ final class OtherRevaluationItemCell: UICollectionViewCell {
         }
         
         userThumbnailView.kf.setImage(with: URL(string: model.user.profileUrl))
-        nicknameLabel.text = model.user.nickName
+        
+        if model.user.nickName.isEmpty {
+            nicknameLabel.text = "아아..탈퇴한회원입니다"
+        } else {
+            nicknameLabel.text = model.user.nickName
+        }
+        
         likesCountLabel.text = "\(model.statistics.numCommentLikes)"
         commentLabel.text = model.comment
         
