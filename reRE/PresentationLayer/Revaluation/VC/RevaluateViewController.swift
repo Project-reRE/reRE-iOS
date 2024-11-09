@@ -449,6 +449,8 @@ final class RevaluateViewController: BaseNavigationViewController {
         }
         
         revaluateButton.didTapped { [weak self] in
+            self?.commnetTextView.resignFirstResponder()
+            
             guard let self = self else { return }
             guard !self.viewModel.isOverDate else {
                 CommonUtil.showAlertView(withType: .default,
@@ -632,10 +634,9 @@ extension RevaluateViewController: UITextViewDelegate {
         updateCountLabel(characterCount: 0)
     }
     
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        guard let comment = textView.text else { return false }
+    func textViewDidChange(_ textView: UITextView) {
+        guard let comment = textView.text else { return }
         viewModel.updateComment(with: comment)
-        return true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
