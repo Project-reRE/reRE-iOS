@@ -169,15 +169,18 @@ struct MovieFeelingsEntity {
 struct RevaluatedGenderEntity {
     let MALE: String
     let FEMALE: String
+    let UNKNOWN: String
     
-    init(MALE: String, FEMALE: String) {
+    init(MALE: String, FEMALE: String, UNKNOWN: String) {
         self.MALE = MALE
         self.FEMALE = FEMALE
+        self.UNKNOWN = UNKNOWN
     }
     
     init() {
         MALE = ""
         FEMALE = ""
+        UNKNOWN = ""
     }
 }
 
@@ -187,13 +190,15 @@ struct RevaluatedAgeEntity {
     let THIRTIES: String
     let FORTIES: String
     let FIFTIES_PLUS: String
+    let UNKNOWN: String
     
-    init(TEENS: String, TWENTIES: String, THIRTIES: String, FORTIES: String, FIFTIES_PLUS: String) {
+    init(TEENS: String, TWENTIES: String, THIRTIES: String, FORTIES: String, FIFTIES_PLUS: String, UNKNOWN: String) {
         self.TEENS = TEENS
         self.TWENTIES = TWENTIES
         self.THIRTIES = THIRTIES
         self.FORTIES = FORTIES
         self.FIFTIES_PLUS = FIFTIES_PLUS
+        self.UNKNOWN = UNKNOWN
     }
     
     init() {
@@ -202,6 +207,7 @@ struct RevaluatedAgeEntity {
         THIRTIES = ""
         FORTIES = ""
         FIFTIES_PLUS = ""
+        UNKNOWN = ""
     }
 }
 

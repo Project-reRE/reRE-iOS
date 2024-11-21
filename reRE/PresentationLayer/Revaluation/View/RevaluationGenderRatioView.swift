@@ -37,6 +37,16 @@ final class RevaluationGenderRatioView: UIView {
         $0.ratioLabel.text = "0.0%"
     }
     
+    private lazy var unknownGenderContainerView = RevaluationCriteriaView().then {
+        $0.textContainerView.backgroundColor = ColorSet.gray(.gray40).color
+        $0.titleLabel.text = "비공개"
+        $0.titleLabel.textColor = ColorSet.gray(.gray80).color
+        $0.titleLabel.font = FontSet.label01.font
+        $0.ratioLabel.textColor = ColorSet.gray(.gray60).color
+        $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -52,7 +62,7 @@ final class RevaluationGenderRatioView: UIView {
     
     private func addViews() {
         addSubviews([ratioView, criteriaContainerView])
-        criteriaContainerView.addArrangedSubviews([maleContainerView, femaleContainerView])
+        criteriaContainerView.addArrangedSubviews([maleContainerView, femaleContainerView, unknownGenderContainerView])
     }
     
     private func makeConstraints() {
@@ -91,7 +101,18 @@ final class RevaluationGenderRatioView: UIView {
             ratioData.append(0)
         }
         
+        if let unknownAge = model.first(where: { $0.type == "UNKNOWN" }) {
+            unknownGenderContainerView.updateRatio(withRatioText: "\(unknownAge.value)%")
+            
+            let ratio: Double = Double(unknownAge.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
+        
         ratioView.drawPiChart(withData: ratioData,
-                              colorList: [ColorSet.primary(.orange50).color, ColorSet.tertiary(.navy50).color])
+                              colorList: [ColorSet.primary(.orange50).color,
+                                          ColorSet.tertiary(.navy50).color,
+                                          ColorSet.gray(.gray40).color])
     }
 }

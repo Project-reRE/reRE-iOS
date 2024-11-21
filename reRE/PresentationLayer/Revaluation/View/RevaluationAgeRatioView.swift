@@ -67,6 +67,16 @@ final class RevaluationAgeRatioView: UIView {
         $0.ratioLabel.text = "0.0%"
     }
     
+    private lazy var unknownAgeContainerView = RevaluationCriteriaView().then {
+        $0.textContainerView.backgroundColor = ColorSet.gray(.gray40).color
+        $0.titleLabel.text = "비공개"
+        $0.titleLabel.textColor = ColorSet.gray(.gray80).color
+        $0.titleLabel.font = FontSet.label01.font
+        $0.ratioLabel.textColor = ColorSet.gray(.gray60).color
+        $0.ratioLabel.font = FontSet.label01.font
+        $0.ratioLabel.text = "0.0%"
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -84,7 +94,7 @@ final class RevaluationAgeRatioView: UIView {
         addSubviews([ratioView, criteriaContainerView])
         criteriaContainerView.addArrangedSubviews([teensContainerView, twentiesContainerView,
                                                    thirtiesContainerView, fortiesContainerView,
-                                                   fiftiesPlusContainerView])
+                                                   fiftiesPlusContainerView, unknownAgeContainerView])
     }
     
     private func makeConstraints() {
@@ -150,11 +160,21 @@ final class RevaluationAgeRatioView: UIView {
             ratioData.append(0)
         }
         
+        if let unknownAge = model.first(where: { $0.type == "UNKNOWN" }) {
+            unknownAgeContainerView.updateRatio(withRatioText: "\(unknownAge.value)%")
+            
+            let ratio: Double = Double(unknownAge.value) ?? 0
+            ratioData.append(ratio / 100)
+        } else {
+            ratioData.append(0)
+        }
+        
         ratioView.drawPiChart(withData: ratioData,
                               colorList: [ColorSet.primary(.orange60).color,
                                           ColorSet.secondary(.olive60).color,
                                           ColorSet.secondary(.cyan60).color,
                                           ColorSet.secondary(.cyan40).color,
-                                          ColorSet.tertiary(.navy40).color])
+                                          ColorSet.tertiary(.navy40).color,
+                                          ColorSet.gray(.gray40).color])
     }
 }

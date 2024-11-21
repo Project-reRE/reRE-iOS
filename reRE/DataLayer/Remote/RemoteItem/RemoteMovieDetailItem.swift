@@ -56,6 +56,7 @@ struct RemoteMovieFeelingsItem: Decodable {
 struct RemoteRevaluatedGenderItem: Decodable {
     let MALE: String?
     let FEMALE: String?
+    let UNKNOWN: String?
 }
 
 struct RemoteRevaluatedAgeItem: Decodable {
@@ -64,6 +65,7 @@ struct RemoteRevaluatedAgeItem: Decodable {
     let THIRTIES: String?
     let FORTIES: String?
     let FIFTIES_PLUS: String?
+    let UNKNOWN: String?
 }
 
 struct RemoteMovieStatisticsPercentageItem: Decodable {
