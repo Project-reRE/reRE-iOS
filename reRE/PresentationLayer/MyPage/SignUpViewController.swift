@@ -62,6 +62,18 @@ final class SignUpViewController: BaseNavigationViewController {
         $0.textColor = ColorSet.gray(.gray80).color
     }
     
+    private lazy var openBirthButton = ToggleButton().then {
+        $0.titleLabel.text = "공개"
+        $0.updateRadioButton(isSelected: true)
+        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    }
+    
+    private lazy var privateBirthButton = ToggleButton().then {
+        $0.titleLabel.text = "비공개"
+        $0.updateRadioButton(isSelected: false)
+        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    }
+    
     private lazy var yearOfBirthTextField = UITextField().then {
         $0.backgroundColor = ColorSet.gray(.gray20).color
         $0.layer.cornerRadius = moderateScale(number: 8)
@@ -91,7 +103,7 @@ final class SignUpViewController: BaseNavigationViewController {
     }
     
     private lazy var genderButtonStackView = UIStackView().then {
-        $0.spacing = moderateScale(number: 7)
+        $0.spacing = moderateScale(number: 8)
         $0.distribution = .fillEqually
     }
     
@@ -109,6 +121,18 @@ final class SignUpViewController: BaseNavigationViewController {
     
     private lazy var femaleButton = TouchableLabel().then {
         $0.text = "여성"
+        $0.textColor = ColorSet.gray(.gray50).color
+        $0.font = FontSet.button02.font
+        $0.layer.borderColor = ColorSet.gray(.gray40).color?.cgColor
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = moderateScale(number: 8)
+        $0.layer.masksToBounds = true
+        $0.backgroundColor = .clear
+        $0.textAlignment = .center
+    }
+    
+    private lazy var privateGenderButton = TouchableLabel().then {
+        $0.text = "비공개"
         $0.textColor = ColorSet.gray(.gray50).color
         $0.font = FontSet.button02.font
         $0.layer.borderColor = ColorSet.gray(.gray40).color?.cgColor
@@ -179,10 +203,10 @@ final class SignUpViewController: BaseNavigationViewController {
         view.addSubviews([scrollView, signUpButton])
         scrollView.addSubview(containerView)
         containerView.addSubviews([imageView, titleLabel, descriptionLabel, yearOfBirthTitleLabel,
-                                   yearOfBirthTextField, genderTitleLabel, genderButtonStackView,
-                                   termsStackView])
+                                   openBirthButton, privateBirthButton, yearOfBirthTextField,
+                                   genderTitleLabel, genderButtonStackView, termsStackView])
         yearOfBirthTextField.addSubview(clearButton)
-        genderButtonStackView.addArrangedSubviews([maleButton, femaleButton])
+        genderButtonStackView.addArrangedSubviews([maleButton, femaleButton, privateGenderButton])
         termsStackView.addArrangedSubviews([allAgreeButton, dividerView, ageAgreementButton,
                                             serviceAgreementButton, privacyPolicyAgreementButton])
         termsStackView.setCustomSpacing(moderateScale(number: 16), after: allAgreeButton)
@@ -229,8 +253,19 @@ final class SignUpViewController: BaseNavigationViewController {
             $0.leading.equalToSuperview().inset(moderateScale(number: 24))
         }
         
-        yearOfBirthTextField.snp.makeConstraints {
+        openBirthButton.snp.makeConstraints {
             $0.top.equalTo(yearOfBirthTitleLabel.snp.bottom).offset(moderateScale(number: 12))
+            $0.leading.equalToSuperview().inset(moderateScale(number: 24))
+        }
+        
+        privateBirthButton.snp.makeConstraints {
+            $0.centerY.equalTo(openBirthButton)
+            $0.leading.equalTo(openBirthButton.snp.trailing).offset(moderateScale(number: 28))
+            $0.trailing.lessThanOrEqualToSuperview()
+        }
+        
+        yearOfBirthTextField.snp.makeConstraints {
+            $0.top.equalTo(openBirthButton.snp.bottom).offset(moderateScale(number: 12))
             $0.leading.trailing.equalToSuperview().inset(moderateScale(number: 16))
             $0.height.equalTo(moderateScale(number: 48))
         }
@@ -265,30 +300,84 @@ final class SignUpViewController: BaseNavigationViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         view.addGestureRecognizer(tapGestureRecognizer)
         
+        openBirthButton.didTapped { [weak self] in
+            guard let self = self else { return }
+            guard !self.openBirthButton.isSelected else { return }
+            
+            self.openBirthButton.updateRadioButton(isSelected: true)
+            self.privateBirthButton.updateRadioButton(isSelected: false)
+            
+            self.yearOfBirthTextField.snp.updateConstraints {
+                $0.height.equalTo(moderateScale(number: 48))
+            }
+            
+            self.viewModel.setUserBirth(withYear: "")
+        }
+        
+        privateBirthButton.didTapped { [weak self] in
+            guard let self = self else { return }
+            guard !self.privateBirthButton.isSelected else { return }
+            
+            self.privateBirthButton.updateRadioButton(isSelected: true)
+            self.openBirthButton.updateRadioButton(isSelected: false)
+            
+            self.yearOfBirthTextField.snp.updateConstraints {
+                $0.height.equalTo(0)
+            }
+            
+            self.clearTextField()
+        }
+        
         clearButton.didTapped { [weak self] in
-            self?.yearOfBirthTextField.text = ""
-            self?.clearButton.isHidden = true
-            self?.viewModel.setUserBirth(withYear: "")
+            self?.clearTextField()
         }
         
         maleButton.didTapped { [weak self] in
-            self?.maleButton.backgroundColor = ColorSet.primary(.darkGreen40).color
-            self?.maleButton.textColor = ColorSet.gray(.white).color
+            guard let self = self else { return }
             
-            self?.femaleButton.backgroundColor = .clear
-            self?.femaleButton.textColor = ColorSet.gray(.gray50).color
+            for arrangedSubView in self.genderButtonStackView.arrangedSubviews {
+                if arrangedSubView == self.maleButton {
+                    (arrangedSubView as? TouchableLabel)?.backgroundColor = ColorSet.primary(.darkGreen40).color
+                    (arrangedSubView as? TouchableLabel)?.textColor = ColorSet.gray(.white).color
+                } else {
+                    (arrangedSubView as? TouchableLabel)?.backgroundColor = .clear
+                    (arrangedSubView as? TouchableLabel)?.textColor = ColorSet.gray(.gray50).color
+                }
+            }
             
-            self?.viewModel.setUserGender(isMale: true)
+            self.viewModel.setUserGender(to: .male)
         }
         
         femaleButton.didTapped { [weak self] in
-            self?.femaleButton.backgroundColor = ColorSet.primary(.darkGreen40).color
-            self?.femaleButton.textColor = ColorSet.gray(.white).color
+            guard let self = self else { return }
             
-            self?.maleButton.backgroundColor = .clear
-            self?.maleButton.textColor = ColorSet.gray(.gray50).color
+            for arrangedSubView in self.genderButtonStackView.arrangedSubviews {
+                if arrangedSubView == self.femaleButton {
+                    (arrangedSubView as? TouchableLabel)?.backgroundColor = ColorSet.primary(.darkGreen40).color
+                    (arrangedSubView as? TouchableLabel)?.textColor = ColorSet.gray(.white).color
+                } else {
+                    (arrangedSubView as? TouchableLabel)?.backgroundColor = .clear
+                    (arrangedSubView as? TouchableLabel)?.textColor = ColorSet.gray(.gray50).color
+                }
+            }
             
-            self?.viewModel.setUserGender(isMale: false)
+            self.viewModel.setUserGender(to: .female)
+        }
+        
+        privateGenderButton.didTapped { [weak self] in
+            guard let self = self else { return }
+            
+            for arrangedSubView in self.genderButtonStackView.arrangedSubviews {
+                if arrangedSubView == self.privateGenderButton {
+                    (arrangedSubView as? TouchableLabel)?.backgroundColor = ColorSet.primary(.darkGreen40).color
+                    (arrangedSubView as? TouchableLabel)?.textColor = ColorSet.gray(.white).color
+                } else {
+                    (arrangedSubView as? TouchableLabel)?.backgroundColor = .clear
+                    (arrangedSubView as? TouchableLabel)?.textColor = ColorSet.gray(.gray50).color
+                }
+            }
+            
+            self.viewModel.setUserGender(to: .unknown)
         }
         
         allAgreeButton.didTapped { [weak self] in
@@ -449,6 +538,12 @@ final class SignUpViewController: BaseNavigationViewController {
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
             completion(result?.user.accessToken.tokenString, error)
         }
+    }
+    
+    private func clearTextField() {
+        yearOfBirthTextField.text = ""
+        clearButton.isHidden = true
+        viewModel.setUserBirth(withYear: nil)
     }
     
     @objc

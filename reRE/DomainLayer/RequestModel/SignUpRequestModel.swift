@@ -9,6 +9,6 @@ import Foundation
 
 struct SignUpRequestModel: Encodable {
     let provider: String
-    let gender: Bool
-    let birthDate: String
+    let gender: String?
+    let birthDate: String?
 }

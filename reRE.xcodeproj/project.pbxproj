@@ -114,6 +114,7 @@
 		FE4DCE232CDCDE5A00C68DA3 /* RemoteVersionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE222CDCDE5A00C68DA3 /* RemoteVersionItem.swift */; };
 		FE4DCE252CDCDE8A00C68DA3 /* VersionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE242CDCDE8A00C68DA3 /* VersionEntity.swift */; };
 		FE4DCE272CDE330700C68DA3 /* GoogleService-Info-Live.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE4DCE262CDE330700C68DA3 /* GoogleService-Info-Live.plist */; };
+		FE4DCE292CEF625D00C68DA3 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4DCE282CEF625D00C68DA3 /* ToggleButton.swift */; };
 		FE524D702C85E551003CEA97 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */; };
 		FE524D722C85E838003CEA97 /* RevaluationAgeRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */; };
 		FE524D742C85E886003CEA97 /* RevaluationCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */; };
@@ -333,6 +334,7 @@
 		FE4DCE222CDCDE5A00C68DA3 /* RemoteVersionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVersionItem.swift; sourceTree = "<group>"; };
 		FE4DCE242CDCDE8A00C68DA3 /* VersionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionEntity.swift; sourceTree = "<group>"; };
 		FE4DCE262CDE330700C68DA3 /* GoogleService-Info-Live.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Live.plist"; sourceTree = "<group>"; };
+		FE4DCE282CEF625D00C68DA3 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		FE524D6F2C85E551003CEA97 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FE524D712C85E838003CEA97 /* RevaluationAgeRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationAgeRatioView.swift; sourceTree = "<group>"; };
 		FE524D732C85E886003CEA97 /* RevaluationCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevaluationCriteriaView.swift; sourceTree = "<group>"; };
@@ -673,6 +675,7 @@
 				FE9826462C3BF3EC006F0C67 /* LoginViewController.swift */,
 				FE9826482C3BFB02006F0C67 /* LoginViewModel.swift */,
 				FE98266E2C3E9B70006F0C67 /* SignUpViewController.swift */,
+				FE4DCE282CEF625D00C68DA3 /* ToggleButton.swift */,
 				FE9826852C437651006F0C67 /* TermsStackView.swift */,
 				FEB3748A2C75F48D005B0286 /* DeleteAccountViewController.swift */,
 				FEB3748C2C75F4B2005B0286 /* DeleteAccountViewModel.swift */,
@@ -1218,6 +1221,7 @@
 				4364A13C2BC667BB00F867B6 /* RankBaseCoordinator.swift in Sources */,
 				FEB374852C74BACD005B0286 /* MyHistoryRequestModel.swift in Sources */,
 				FE98260A2C340CD2006F0C67 /* MovieSetsEntity.swift in Sources */,
+				FE4DCE292CEF625D00C68DA3 /* ToggleButton.swift in Sources */,
 				FE4DCE172CC51AB200C68DA3 /* OtherRevaluationsRequestModel.swift in Sources */,
 				4364A1552BC6724F00F867B6 /* RankViewController.swift in Sources */,
 				FEF9D6AC2C9ADF4A00D948F5 /* CheckMarkLabel.swift in Sources */,

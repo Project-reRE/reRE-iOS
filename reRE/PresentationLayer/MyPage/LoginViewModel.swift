@@ -13,13 +13,19 @@ struct LoginRequestModel {
     let loginType: SNSLoginType
 }
 
+enum GenderType: String {
+    case male = "MALE"
+    case female = "FEMALE"
+    case unknown = "UNKNOWN"
+}
+
 final class LoginViewModel: BaseViewModel {
     private let isSatisfiedCondition = PassthroughSubject<Bool, Never>()
     
     private let shouldSNSLogin = CurrentValueSubject<LoginRequestModel, Never>(.init(accessToken: "", loginType: .kakao))
     private let shouldSignUp = PassthroughSubject<SignUpRequestModel, Never>()
-    private let userBirth = CurrentValueSubject<String, Never>("")
-    private let userGender = CurrentValueSubject<Bool?, Never>(nil)
+    private let userBirth = CurrentValueSubject<String?, Never>(nil)
+    private let userGender = CurrentValueSubject<GenderType?, Never>(nil)
     private let userAgreement = CurrentValueSubject<Bool, Never>(false)
     
     private let loginCompletion = PassthroughSubject<Void, Never>()
@@ -50,13 +56,13 @@ final class LoginViewModel: BaseViewModel {
         userBirthPublisher
             .combineLatest(userGenderPublisher, userAgreementPublisher)
             .sink { [weak self] birth, gender, agreement in
-                guard let selectedGender = gender else {
+                guard gender != nil else {
                     self?.isSatisfiedCondition.send(false)
                     return
                 }
                 
-                let isValidBirth: Bool = birth.count == 4
-                self?.isSatisfiedCondition.send(isValidBirth && selectedGender && agreement)
+                let isValidBirth: Bool = birth == nil || birth?.count == 4
+                self?.isSatisfiedCondition.send(isValidBirth && agreement)
             }.store(in: &cancelBag)
         
         shouldSignUp
@@ -72,18 +78,19 @@ final class LoginViewModel: BaseViewModel {
         shouldSNSLogin.send(.init(accessToken: accessToken, loginType: loginType))
     }
     
-    func setUserBirth(withYear year: String) {
+    func setUserBirth(withYear year: String?) {
         userBirth.send(year)
     }
     
     func canSignUpAge() -> Bool {
-        guard let birthday = userBirth.value.toDate(with: "yyyy") else { return false }
+        guard userBirth.value != nil else { return true }
+        guard let birthday = userBirth.value?.toDate(with: "yyyy") else { return false }
         guard let age = Calendar.current.dateComponents([.year], from: birthday, to: Date()).year else { return false }
         return age >= 14
     }
     
-    func setUserGender(isMale: Bool) {
-        userGender.send(isMale)
+    func setUserGender(to gender: GenderType) {
+        userGender.send(gender)
     }
     
     func setUserAgreement(isAllAgree: Bool) {
@@ -98,7 +105,7 @@ final class LoginViewModel: BaseViewModel {
         guard let gender = userGender.value else { return }
         
         shouldSignUp.send(SignUpRequestModel(provider: shouldSNSLogin.value.loginType.provider,
-                                             gender: gender,
+                                             gender: gender.rawValue,
                                              birthDate: userBirth.value))
     }
     
