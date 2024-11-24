@@ -10,6 +10,7 @@ import Combine
 
 struct LoginRequestModel {
     let accessToken: String
+    var email: String
     let loginType: SNSLoginType
 }
 
@@ -22,7 +23,7 @@ enum GenderType: String {
 final class LoginViewModel: BaseViewModel {
     private let isSatisfiedCondition = PassthroughSubject<Bool, Never>()
     
-    private let shouldSNSLogin = CurrentValueSubject<LoginRequestModel, Never>(.init(accessToken: "", loginType: .kakao))
+    private let shouldSNSLogin = CurrentValueSubject<LoginRequestModel, Never>(.init(accessToken: "", email: "", loginType: .kakao))
     private let shouldSignUp = PassthroughSubject<SignUpRequestModel, Never>()
     private let userBirth = CurrentValueSubject<String?, Never>(nil)
     private let userGender = CurrentValueSubject<GenderType?, Never>(nil)
@@ -73,9 +74,16 @@ final class LoginViewModel: BaseViewModel {
             }.store(in: &cancelBag)
     }
     
-    func snsLogin(withToken accessToken: String, loginType: SNSLoginType) {
-        currentSNSMethod = loginType
-        shouldSNSLogin.send(.init(accessToken: accessToken, loginType: loginType))
+    func snsLogin(with model: LoginRequestModel) {
+        currentSNSMethod = model.loginType
+        
+        var moderatedModel: LoginRequestModel = model
+        
+        if moderatedModel.email.isEmpty {
+            moderatedModel.email = shouldSNSLogin.value.email
+        }
+        
+        shouldSNSLogin.send(moderatedModel)
     }
     
     func setUserBirth(withYear year: String?) {
@@ -106,7 +114,8 @@ final class LoginViewModel: BaseViewModel {
         
         shouldSignUp.send(SignUpRequestModel(provider: shouldSNSLogin.value.loginType.provider,
                                              gender: gender.rawValue,
-                                             birthDate: userBirth.value))
+                                             birthDate: userBirth.value,
+                                             email: shouldSNSLogin.value.email))
     }
     
     func getLoginCompletionPublisher() -> AnyPublisher<Void, Never> {

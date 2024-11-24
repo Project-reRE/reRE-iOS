@@ -163,14 +163,15 @@ final class LoginViewController: BaseNavigationViewController {
                 }
                 
                 UserApi.shared.me { [weak self] user, error in
-                    guard user?.kakaoAccount?.isEmailValid == true else {
+                    guard user?.kakaoAccount?.isEmailValid == true,
+                          let email = user?.kakaoAccount?.email else {
                         self?.showEmailNotExistError()
                         return
                     }
+                    
+                    CommonUtil.showLoadingView()
+                    self?.viewModel.snsLogin(with: .init(accessToken: accessToken, email: email, loginType: .kakao))
                 }
-                
-                CommonUtil.showLoadingView()
-                self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
             }
         }
         
@@ -179,14 +180,15 @@ final class LoginViewController: BaseNavigationViewController {
         }
         
         googleLoginButton.didTapped { [weak self] in
-            self?.googleLogin { [weak self] accessToken, error in
+            self?.googleLogin { [weak self] accessToken, email, error in
                 guard error == nil,
-                      let accessToken = accessToken else {
+                      let accessToken = accessToken,
+                      let email = email else {
                     return
                 }
                 
                 CommonUtil.showLoadingView()
-                self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
+                self?.viewModel.snsLogin(with: .init(accessToken: accessToken, email: email, loginType: .google))
             }
         }
     }
@@ -203,23 +205,24 @@ final class LoginViewController: BaseNavigationViewController {
         }
     }
     
-    private func googleLogin(_ completion: @escaping (String?, Error?) -> Void) {
+    private func googleLogin(_ completion: @escaping (String?, String?, Error?) -> Void) {
         let clientID: String = StaticValues.googleClientId
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
             guard error == nil else {
-                completion(nil, error)
+                completion(nil, nil, error)
                 return
             }
             
-            guard result?.user.profile?.email.isEmpty == false else {
+            guard result?.user.profile?.email.isEmpty == false,
+                  let email = result?.user.profile?.email else {
                 self?.showEmailNotExistError()
-                completion(nil, nil)
+                completion(nil, nil, nil)
                 return
             }
             
-            completion(result?.user.accessToken.tokenString, error)
+            completion(result?.user.accessToken.tokenString, email, error)
         }
     }
     
@@ -244,26 +247,28 @@ final class LoginViewController: BaseNavigationViewController {
                                 }
                                 
                                 UserApi.shared.me { [weak self] user, error in
-                                    guard user?.kakaoAccount?.isEmailValid == true else {
+                                    guard user?.kakaoAccount?.isEmailValid == true,
+                                          let email = user?.kakaoAccount?.email else {
                                         self?.showEmailNotExistError()
                                         return
                                     }
+                                    
+                                    CommonUtil.showLoadingView()
+                                    self?.viewModel.snsLogin(with: .init(accessToken: accessToken, email: email, loginType: .kakao))
                                 }
-                                
-                                CommonUtil.showLoadingView()
-                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
                             }
                         case .apple:
                             self.appleLogin()
                         case .google:
-                            self.googleLogin { [weak self] accessToken, error in
+                            self.googleLogin { [weak self] accessToken, email, error in
                                 guard error == nil,
-                                      let accessToken = accessToken else {
+                                      let accessToken = accessToken,
+                                      let email = email else {
                                     return
                                 }
                                 
                                 CommonUtil.showLoadingView()
-                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
+                                self?.viewModel.snsLogin(with: .init(accessToken: accessToken, email: email, loginType: .google))
                             }
                         }
                     case 404: // Should SignUp
@@ -399,15 +404,14 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
             return
         }
         
-        let email: String? = decode(jwtToken: idTokenString)["email"] as? String
-        
-        guard email?.isEmpty == false else {
+        guard let email = decode(jwtToken: idTokenString)["email"] as? String,
+              email.isEmpty == false else {
             showEmailNotExistError()
             return
         }
         
         CommonUtil.showLoadingView()
-        viewModel.snsLogin(withToken: idTokenString, loginType: .apple)
+        viewModel.snsLogin(with: .init(accessToken: idTokenString, email: email, loginType: .apple))
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

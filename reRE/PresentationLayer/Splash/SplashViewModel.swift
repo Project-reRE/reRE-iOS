@@ -64,7 +64,7 @@ final class SplashViewModel: BaseViewModel {
     }
     
     func snsLogin(withToken accessToken: String, loginType: SNSLoginType) {
-        shouldSNSLogin.send(.init(accessToken: accessToken, loginType: loginType))
+        shouldSNSLogin.send(.init(accessToken: accessToken, email: "", loginType: loginType))
     }
     
     func getLoginCompletionPublisher() -> AnyPublisher<Void, Never> {

@@ -415,6 +415,7 @@ final class SignUpViewController: BaseNavigationViewController {
                 return
             }
             
+            CommonUtil.showLoadingView()
             self.viewModel.signUp()
         }
         
@@ -455,7 +456,7 @@ final class SignUpViewController: BaseNavigationViewController {
                                     return
                                 }
                                 
-                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .kakao)
+                                self?.viewModel.snsLogin(with: .init(accessToken: accessToken, email: "", loginType: .kakao))
                             }
                         case .apple:
                             self.appleLogin()
@@ -466,7 +467,7 @@ final class SignUpViewController: BaseNavigationViewController {
                                     return
                                 }
                                 
-                                self?.viewModel.snsLogin(withToken: accessToken, loginType: .google)
+                                self?.viewModel.snsLogin(with: .init(accessToken: accessToken, email: "", loginType: .google))
                             }
                         }
                     default:
@@ -513,8 +514,8 @@ final class SignUpViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
         
         viewModel.getLoginCompletionPublisher()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .mainSink { [weak self] _ in
+                CommonUtil.hideLoadingView()
                 self?.navigationController?.popViewController(animated: true)
             }.store(in: &cancelBag)
     }
@@ -662,7 +663,7 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
             return
         }
         
-        viewModel.snsLogin(withToken: idTokenString, loginType: .apple)
+        viewModel.snsLogin(with: .init(accessToken: idTokenString, email: "", loginType: .apple))
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

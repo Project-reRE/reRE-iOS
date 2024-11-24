@@ -11,4 +11,5 @@ struct SignUpRequestModel: Encodable {
     let provider: String
     let gender: String?
     let birthDate: String?
+    let email: String
 }

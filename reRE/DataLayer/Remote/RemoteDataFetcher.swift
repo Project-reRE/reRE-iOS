@@ -172,7 +172,6 @@ final class RemoteDataFetcher: RemoteDataFetchable {
                         LogDebug(error)
                         promise(.success(.failure(error)))
                     } else if let remoteItem = DecodeUtil.decode(RemoteUserItem.self, data: response.data) {
-                        print("remoteItem: \(remoteItem)")
                         promise(.success(.success(self.remoteProfileMapper.remoteMyProfileItemToEntity(remoteItem: remoteItem))))
                     } else {
                         LogDebug(response.data)
