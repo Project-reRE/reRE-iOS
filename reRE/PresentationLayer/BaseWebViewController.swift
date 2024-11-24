@@ -133,10 +133,37 @@ final class BaseWebViewController: BaseNavigationViewController {
 // MARK: - WKNavigationDelegate
 extension BaseWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let _ = navigationAction.request.url {
-            decisionHandler(.allow)
+        if let webViewType = webViewType {
+            switch webViewType {
+            case .privacyPolicy, .serviceAgreement, .notice, .faq, .termsPolicy, .openAPI:
+                if let _ = navigationAction.request.url {
+                    decisionHandler(.allow)
+                } else {
+                    decisionHandler(.cancel)
+                }
+            case .seriesOn(let urlString):
+                if let requestURL = navigationAction.request.url {
+                    let urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    if requestURL.absoluteString == urlString {
+                        decisionHandler(.allow)
+                    } else {
+                        if UIApplication.shared.canOpenURL(requestURL) {
+                            decisionHandler(.cancel)
+                            UIApplication.shared.open(requestURL)
+                        } else {
+                            decisionHandler(.allow)
+                        }
+                    }
+                } else {
+                    decisionHandler(.cancel)
+                }
+            }
         } else {
-            decisionHandler(.cancel)
+            if let _ = navigationAction.request.url {
+                decisionHandler(.allow)
+            } else {
+                decisionHandler(.cancel)
+            }
         }
     }
 }
