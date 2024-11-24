@@ -122,7 +122,7 @@ struct RemoteRevaluationMapper {
                                                       email: $0.user?.email ?? "",
                                                       provider: $0.user?.provider ?? "",
                                                       role: $0.user?.role ?? "",
-                                                      gender: $0.user?.gender ?? true,
+                                                      gender: GenderType(rawValue: $0.user?.gender ?? "UNKNOWN") ?? .unknown,
                                                       birthDate: $0.user?.birthDate ?? "",
                                                       createdAt: $0.user?.createdAt ?? "",
                                                       updatedAt: $0.user?.updatedAt ?? "",

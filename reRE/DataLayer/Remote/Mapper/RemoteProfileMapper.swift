@@ -17,7 +17,7 @@ struct RemoteProfileMapper {
                           email: remoteItem.email ?? "",
                           provider: remoteItem.provider ?? "",
                           role: remoteItem.role ?? "",
-                          gender: remoteItem.gender ?? true,
+                          gender: GenderType(rawValue: remoteItem.gender ?? "UNKNOWN") ?? .unknown,
                           birthDate: remoteItem.birthDate ?? "",
                           createdAt: remoteItem.createdAt ?? "",
                           updatedAt: remoteItem.updatedAt ?? "",

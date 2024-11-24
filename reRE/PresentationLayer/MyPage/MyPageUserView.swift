@@ -14,8 +14,6 @@ final class MyPageUserView: UIView {
     private lazy var thumbnailImageView = TouchableImageView(frame: .zero).then {
         $0.contentMode = .scaleAspectFit
         $0.layer.cornerRadius = moderateScale(number: 42)
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.red.cgColor
         $0.layer.masksToBounds = true
         $0.kf.indicatorType = .activity
     }
@@ -220,9 +218,23 @@ final class MyPageUserView: UIView {
     
     func updateView(withModel model: UserEntity) {
         nicknameLabel.text = model.nickName
-        genderLabel.text = model.gender ? "남성" : "여성"
+        
+        switch model.gender {
+        case .male:
+            genderLabel.text = "남성"
+        case .female:
+            genderLabel.text = "여성"
+        case .unknown:
+            genderLabel.text = "비공개"
+        }
+        
         revaluationCountLabel.text = "\(model.statistics.numRevaluations.formattedString())개"
-        birthLabel.text = "\(model.birthDate)년생"
+        
+        if model.birthDate.isEmpty {
+            birthLabel.text = "비공개"
+        } else {
+            birthLabel.text = "\(model.birthDate)년생"
+        }
         
         emailLabel.text = model.email
         thumbnailImageView.kf.setImage(with: URL(string: model.profileUrl))

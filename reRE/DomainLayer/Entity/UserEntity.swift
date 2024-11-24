@@ -16,7 +16,7 @@ struct UserEntity {
     let email: String
     let provider: String
     let role: String
-    let gender: Bool
+    let gender: GenderType
     let birthDate: String
     let createdAt: String
     let updatedAt: String
@@ -31,7 +31,7 @@ struct UserEntity {
          email: String,
          provider: String,
          role: String,
-         gender: Bool,
+         gender: GenderType,
          birthDate: String,
          createdAt: String,
          updatedAt: String,
@@ -62,7 +62,7 @@ struct UserEntity {
         email = ""
         provider = ""
         role = ""
-        gender = true
+        gender = .unknown
         birthDate = ""
         createdAt = ""
         updatedAt = ""

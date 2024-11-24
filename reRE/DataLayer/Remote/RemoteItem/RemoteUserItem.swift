@@ -16,7 +16,7 @@ struct RemoteUserItem: Decodable {
     let email: String?
     let provider: String?
     let role: String?
-    let gender: Bool?
+    let gender: String?
     let birthDate: String?
     let createdAt: String?
     let updatedAt: String?
