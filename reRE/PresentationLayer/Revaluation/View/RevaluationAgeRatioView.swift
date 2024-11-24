@@ -116,7 +116,11 @@ final class RevaluationAgeRatioView: UIView {
         var ratioData: [Double] = []
         
         if let teens = model.first(where: { $0.type == "TEENS" }) {
-            teensContainerView.updateRatio(withRatioText: "\(teens.value)%")
+            if let formattedValue = Double(teens.value)?.formatToString() {
+                teensContainerView.updateRatio(withRatioText: "\(formattedValue)%")
+            } else {
+                teensContainerView.updateRatio(withRatioText: "\(teens.value)%")
+            }
             
             let ratio: Double = Double(teens.value) ?? 0
             ratioData.append(ratio / 100)
@@ -125,7 +129,11 @@ final class RevaluationAgeRatioView: UIView {
         }
         
         if let twenties = model.first(where: { $0.type == "TWENTIES" }) {
-            twentiesContainerView.updateRatio(withRatioText: "\(twenties.value)%")
+            if let formattedValue = Double(twenties.value)?.formatToString() {
+                twentiesContainerView.updateRatio(withRatioText: "\(formattedValue)%")
+            } else {
+                twentiesContainerView.updateRatio(withRatioText: "\(twenties.value)%")
+            }
             
             let ratio: Double = Double(twenties.value) ?? 0
             ratioData.append(ratio / 100)
@@ -134,7 +142,11 @@ final class RevaluationAgeRatioView: UIView {
         }
         
         if let thirties = model.first(where: { $0.type == "THIRTIES" }) {
-            thirtiesContainerView.updateRatio(withRatioText: "\(thirties.value)%")
+            if let formattedValue = Double(thirties.value)?.formatToString() {
+                thirtiesContainerView.updateRatio(withRatioText: "\(formattedValue)%")
+            } else {
+                thirtiesContainerView.updateRatio(withRatioText: "\(thirties.value)%")
+            }
             
             let ratio: Double = Double(thirties.value) ?? 0
             ratioData.append(ratio / 100)
@@ -143,7 +155,11 @@ final class RevaluationAgeRatioView: UIView {
         }
         
         if let forties = model.first(where: { $0.type == "FORTIES" }) {
-            fortiesContainerView.updateRatio(withRatioText: "\(forties.value)%")
+            if let formattedValue = Double(forties.value)?.formatToString() {
+                fortiesContainerView.updateRatio(withRatioText: "\(formattedValue)%")
+            } else {
+                fortiesContainerView.updateRatio(withRatioText: "\(forties.value)%")
+            }
             
             let ratio: Double = Double(forties.value) ?? 0
             ratioData.append(ratio / 100)
@@ -152,7 +168,11 @@ final class RevaluationAgeRatioView: UIView {
         }
         
         if let fiftiesPlus = model.first(where: { $0.type == "FIFTIES_PLUS" }) {
-            fiftiesPlusContainerView.updateRatio(withRatioText: "\(fiftiesPlus.value)%")
+            if let formattedValue = Double(fiftiesPlus.value)?.formatToString() {
+                fiftiesPlusContainerView.updateRatio(withRatioText: "\(formattedValue)%")
+            } else {
+                fiftiesPlusContainerView.updateRatio(withRatioText: "\(fiftiesPlus.value)%")
+            }
             
             let ratio: Double = Double(fiftiesPlus.value) ?? 0
             ratioData.append(ratio / 100)
@@ -161,7 +181,11 @@ final class RevaluationAgeRatioView: UIView {
         }
         
         if let unknownAge = model.first(where: { $0.type == "UNKNOWN" }) {
-            unknownAgeContainerView.updateRatio(withRatioText: "\(unknownAge.value)%")
+            if let formattedValue = Double(unknownAge.value)?.formatToString() {
+                unknownAgeContainerView.updateRatio(withRatioText: "\(formattedValue)%")
+            } else {
+                unknownAgeContainerView.updateRatio(withRatioText: "\(unknownAge.value)%")
+            }
             
             let ratio: Double = Double(unknownAge.value) ?? 0
             ratioData.append(ratio / 100)

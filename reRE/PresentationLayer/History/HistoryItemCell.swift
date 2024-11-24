@@ -38,7 +38,6 @@ final class HistoryItemCell: UICollectionViewCell {
     private lazy var ratingLabel = UILabel().then {
         $0.font = FontSet.title03.font
         $0.textColor = ColorSet.gray(.white).color
-        $0.text = "3.75"
     }
     
     override init(frame: CGRect) {
@@ -117,6 +116,6 @@ final class HistoryItemCell: UICollectionViewCell {
             posterImageView.image = UIImage(named: "DefaultThumbnail")
         }
         
-        ratingLabel.text = "\(data.numStars)"
+        ratingLabel.text = data.numStars.formatToString()
     }
 }

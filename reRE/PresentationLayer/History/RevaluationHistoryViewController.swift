@@ -322,7 +322,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         }
         
         titleLabel.text = history.movie.data.title
-        ratingLabel.text = "\(history.numStars)"
+        ratingLabel.text = history.numStars.formatToString()
         commentLabel.text = history.comment
         
         if let createdDate = history.createdAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")?.dateToString(with: "yyyy-MM-dd") {

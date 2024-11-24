@@ -235,10 +235,11 @@ final class RevaluationDetailView: UIStackView {
             revaluationParticipantsTitleLabel.text = "\(month)월, 재평가에 참여한 사람들"
         }
         
-        gradeLabel.text = "\(model.numStars)"
-        
         if let numStars = Double(model.numStars) {
             ratingView.rating = numStars
+            gradeLabel.text = numStars.formatToString()
+        } else {
+            gradeLabel.text = "\(model.numStars)"
         }
     }
     

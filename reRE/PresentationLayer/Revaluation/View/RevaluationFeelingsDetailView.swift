@@ -33,7 +33,7 @@ final class RevaluationFeelingsDetailView: UIView {
     }
     
     private(set) lazy var ratioLabel = UILabel().then {
-        $0.text = "0.00%"
+        $0.text = "0.0%"
         $0.font = FontSet.label01.font
         $0.textAlignment = .center
         

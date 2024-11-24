@@ -107,7 +107,7 @@ final class ChartView: UIView {
             }
             
             let ratingLabel = UILabel()
-            ratingLabel.text = "\(rating.numStars)"
+            ratingLabel.text = numStars.formatToString()
             ratingLabel.textColor = ColorSet.primary(.orange60).color
             ratingLabel.font = FontSet.body04.font
             addSubview(ratingLabel)

@@ -29,15 +29,27 @@ final class RevaluationFeelingsView: UIStackView {
     
     func updateView(withModel model: [MovieStatisticsPercentageEntity]) {
         if let positiveModel = model.first(where: { $0.type == "POSITIVE" }) {
-            positiveFeelingsView.ratioLabel.text = "\(positiveModel.value)%"
+            if let formattedValue = Double(positiveModel.value)?.formatToString() {
+                positiveFeelingsView.ratioLabel.text = "\(formattedValue)%"
+            } else {
+                positiveFeelingsView.ratioLabel.text = "\(positiveModel.value)%"
+            }
         }
         
         if let negativeModel = model.first(where: { $0.type == "NEGATIVE" }) {
-            nagativeFeelingsView.ratioLabel.text = "\(negativeModel.value)%"
+            if let formattedValue = Double(negativeModel.value)?.formatToString() {
+                nagativeFeelingsView.ratioLabel.text = "\(formattedValue)%"
+            } else {
+                nagativeFeelingsView.ratioLabel.text = "\(negativeModel.value)%"
+            }
         }
         
         if let notSureModel = model.first(where: { $0.type == "NOT_SURE" }) {
-            notSureFeelingsView.ratioLabel.text = "\(notSureModel.value)%"
+            if let formattedValue = Double(notSureModel.value)?.formatToString() {
+                notSureFeelingsView.ratioLabel.text = "\(formattedValue)%"
+            } else {
+                notSureFeelingsView.ratioLabel.text = "\(notSureModel.value)%"
+            }
         }
     }
 }
