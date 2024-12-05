@@ -32,8 +32,8 @@ extension RevaluationUsecase: RevaluationUsecaseProtocol {
             }.eraseToAnyPublisher()
     }
     
-    func getMovieDetail(withId movieId: String) -> AnyPublisher<MovieDetailEntity, Never> {
-        return repository.getMovieDetail(withId: movieId)
+    func getMovieDetail(withId movieId: String, date: String) -> AnyPublisher<MovieDetailEntity, Never> {
+        return repository.getMovieDetail(withId: movieId, date: date)
             .compactMap { [weak self] result in
                 switch result {
                 case .success(let entity):

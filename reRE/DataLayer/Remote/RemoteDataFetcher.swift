@@ -284,15 +284,11 @@ final class RemoteDataFetcher: RemoteDataFetchable {
         }.eraseToAnyPublisher()
     }
     
-    func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never> {
+    func getMovieDetail(withId movieId: String, date: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never> {
         return Future<Result<MovieDetailEntity, Error>, Never> { [weak self] promise in
             guard let self = self else { return }
             
-            var params: [String: String] = [:]
-            
-            if let currentDate = Date().startDayOfMonth()?.dateToString(with: "yyyy-MM") {
-                params.updateValue(currentDate, forKey: "currentDate")
-            }
+            let params: [String: String] = ["currentDate": date]
             
             print("############")
             print("movieId: \(movieId)")

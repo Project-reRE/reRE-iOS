@@ -22,8 +22,8 @@ extension RevaluationRepository: RevaluationRepositoryProtocol {
         return remoteDataFetcher.checkAlreadyRevaluated(withId: movieId)
     }
     
-    func getMovieDetail(withId movieId: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never> {
-        return remoteDataFetcher.getMovieDetail(withId: movieId)
+    func getMovieDetail(withId movieId: String, date: String) -> AnyPublisher<Result<MovieDetailEntity, Error>, Never> {
+        return remoteDataFetcher.getMovieDetail(withId: movieId, date: date)
     }
     
     func revaluate(with reqestModel: RevaluateRequestModel) -> AnyPublisher<Result<Void, Error>, Never> {

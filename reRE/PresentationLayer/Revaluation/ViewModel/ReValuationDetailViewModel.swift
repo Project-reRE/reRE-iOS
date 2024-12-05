@@ -57,33 +57,29 @@ final class ReValuationDetailViewModel: BaseViewModel {
         }
     }
     
-    func getRevaluationDetail() {
-        usecase.getMovieDetail(withId: movieId)
+    func getRevaluationDetail(of date: String) {
+        usecase.getMovieDetail(withId: movieId, date: date)
             .sink { [weak self] movieDetailEntity in
                 self?.revaluationData.send(movieDetailEntity)
                 
-                if let currentMonthData = movieDetailEntity.statistics.first?.numRecentStars.first(where: { $0.currentDate == Date().dateToString(with: "yyyy-MM") }) {
+                if let currentMonthData = movieDetailEntity.statistics.first?.numRecentStars.first(where: { $0.currentDate == date }) {
                     self?.showingRatingData.send(currentMonthData)
                 }
             }.store(in: &cancelBag)
     }
     
     func getPrevMonthRevaluation() {
-        let prevMonth = showingRatingData.value.currentDate.toDate(with: "yyyy-MM")?.oneMonthBefore
-        
-        guard let prevMonthString = prevMonth?.dateToString(with: "yyyy-MM") else { return }
-        guard let prevMonthData = revaluationData.value.statistics.first?.numRecentStars.first(where: { $0.currentDate == prevMonthString }) else { return }
-        
-        showingRatingData.send(prevMonthData)
+        guard let prevMonth = showingRatingData.value.currentDate.toDate(with: "yyyy-MM")?.oneMonthBefore else { return }
+        getRevaluationDetail(of: prevMonth.dateToString(with: "yyyy-MM"))
     }
     
     func getNextMonthRevaluation() {
-        let nextMonth = showingRatingData.value.currentDate.toDate(with: "yyyy-MM")?.oneMonthLater
+        guard let nextMonth = showingRatingData.value.currentDate.toDate(with: "yyyy-MM")?.oneMonthLater,
+              nextMonth < Date() else {
+            return
+        }
         
-        guard let nextMonthString = nextMonth?.dateToString(with: "yyyy-MM") else { return }
-        guard let nextMonthData = revaluationData.value.statistics.first?.numRecentStars.first(where: { $0.currentDate == nextMonthString }) else { return }
-        
-        showingRatingData.send(nextMonthData)
+        getRevaluationDetail(of: nextMonth.dateToString(with: "yyyy-MM"))
     }
     
     func getRevaluationDataPublisher() -> AnyPublisher<MovieDetailEntity, Never> {

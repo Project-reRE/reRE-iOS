@@ -381,7 +381,11 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
             }.store(in: &cancelBag)
         
         CommonUtil.showLoadingView()
-        viewModel.getRevaluationDetail()
+        
+        if let currentDate = Date().startDayOfMonth()?.dateToString(with: "yyyy-MM") {
+            viewModel.getRevaluationDetail(of: currentDate)
+        }
+        
         viewModel.checkAlreadyRevaluated()
     }
     
@@ -404,7 +408,11 @@ final class RevaluationDetailViewController: BaseNavigationViewController {
     @objc
     private func shouldUpdateRevaluationDetail() {
         CommonUtil.showLoadingView()
-        viewModel.getRevaluationDetail()
+        
+        if let currentDate = Date().startDayOfMonth()?.dateToString(with: "yyyy-MM") {
+            viewModel.getRevaluationDetail(of: currentDate)
+        }
+        
         viewModel.checkAlreadyRevaluated()
     }
 }
