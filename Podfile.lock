@@ -1,0 +1,42 @@
+PODS:
+  - CocoaLumberjack/Core (3.7.4)
+  - CocoaLumberjack/Swift (3.7.4):
+    - CocoaLumberjack/Core
+  - Cosmos (25.0.1)
+  - Kingfisher (7.6.1)
+  - lottie-ios (4.5.0)
+  - SnapKit (5.7.1)
+  - Swinject (2.9.1)
+  - Then (3.0.0)
+
+DEPENDENCIES:
+  - CocoaLumberjack/Swift (~> 3.7.2)
+  - Cosmos
+  - Kingfisher (= 7.6.1)
+  - lottie-ios
+  - SnapKit
+  - Swinject
+  - Then
+
+SPEC REPOS:
+  trunk:
+    - CocoaLumberjack
+    - Cosmos
+    - Kingfisher
+    - lottie-ios
+    - SnapKit
+    - Swinject
+    - Then
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
+  Kingfisher: 93a3c6d0d551658a31e19f21747e1d15cb39d525
+  lottie-ios: a881093fab623c467d3bce374367755c272bdd59
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  Swinject: a827d508c6270da03ec74e558e728917a888fa9b
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
+
+PODFILE CHECKSUM: 9a916aac433935bb76c808637e7964a24d81fdf0
+
+COCOAPODS: 1.15.2
