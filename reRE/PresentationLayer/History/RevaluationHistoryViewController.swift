@@ -325,7 +325,7 @@ final class RevaluationHistoryViewController: BaseNavigationViewController {
         ratingLabel.text = history.numStars.formatToString()
         commentLabel.text = history.comment
         
-        if let createdDate = history.createdAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")?.dateToString(with: "yyyy-MM-dd") {
+        if let createdDate = history.createdAt.toDate(with: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")?.dateToString(with: "yyyy.MM.dd") {
             revaluateDateLabel.text = "\(createdDate) 평가"
         }
         
